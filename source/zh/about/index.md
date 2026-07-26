@@ -1,13 +1,14 @@
 ---
 title: 關於
-description: "關於 Casper：一篇寫給公開研究筆記的作者介紹。"
+description: "關於 Seraph：一篇寫給公開研究筆記的作者介紹。曾使用 Casper 作為公開名稱。"
 comments: true
 ---
 
 <section class="about-v1-hero" aria-labelledby="about-v1-title">
   <p class="about-v1-kicker">關於</p>
-  <h1 id="about-v1-title">About Casper</h1>
+  <h1 id="about-v1-title">About Seraph</h1>
   <p>每一段旅程，都有一個開始的地方。</p>
+  <p>曾使用 Casper 作為公開名稱。</p>
 </section>
 
 <section class="about-v1-chapter">
@@ -15,7 +16,7 @@ comments: true
   <h2>起點</h2>
   <p>我一開始並沒有很清楚的地圖。</p>
   <p>技術對那時候的我來說，只是一個可以安放好奇心的地方。我喜歡把陌生的東西打開，拆成比較小的部分，再慢慢理解它為什麼會這樣運作。</p>
-  <p>Casper 的起點不是一個完成的身份，而是一份學著更仔細看世界的安靜紀錄。</p>
+  <p>Seraph 的起點不是一個完成的身份，而是一份學著更仔細看世界的安靜紀錄。</p>
 </section>
 
 <section class="about-v1-chapter">
@@ -46,7 +47,7 @@ comments: true
 <section class="about-v1-chapter">
   <p class="about-v1-chapter-number">第五章</p>
   <h2>今天</h2>
-  <p>今天的 Casper 仍然還在路上。</p>
+  <p>今天的 Seraph 仍然還在路上。</p>
   <p>我還在學怎麼問出更好的問題，怎麼用更謹慎的方式做東西，也怎麼把沒有完成的部分誠實地寫出來。</p>
   <p>這一頁不是能力清單。它只是某個仍然正在前進的人，暫時留下的一張照片。</p>
 </section>
@@ -70,5 +71,5 @@ comments: true
   <p>讓你願意一直做下去的事情。</p>
   <p>剩下的，</p>
   <p>交給時間。</p>
-  <p class="about-v1-signature">—— Casper</p>
+  <p class="about-v1-signature">—— Seraph</p>
 </section>

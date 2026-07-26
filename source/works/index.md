@@ -1,6 +1,6 @@
 ---
 title: Works
-description: Project index for Casper's work across cybersecurity, medical cybersecurity, and robotics.
+description: Project index for Seraph's work across cybersecurity, medical cybersecurity, and robotics.
 ---
 
 # Works

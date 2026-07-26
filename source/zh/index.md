@@ -1,12 +1,12 @@
 ---
 title: 首頁
-description: Casper 的中文首頁，整理 Cybersecurity、全端開發、Robotics、AI 與 Medical Cybersecurity 的學習和作品。
+description: Seraph 的中文首頁，專注於資安、Home Lab、醫療科技、IoT 與網站開發。
 comments: true
 ---
 
 <section class="home-page">
   <section class="home-hero" aria-labelledby="zh-home-hero-title">
-    <p class="home-hero-kicker">嗨，我是 <strong>Casper</strong>。</p>
+    <p class="home-hero-kicker">嗨，我是 <strong>Seraph</strong>。</p>
     <div class="home-hero-roles">
       <strong id="zh-home-hero-title">Cybersecurity Student</strong>
       <strong>Full 技術 Developer</strong>

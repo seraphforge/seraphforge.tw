@@ -3727,7 +3727,7 @@ html[data-theme="light"] .post-body .highlight code {
   }
 }
 
-/* Casper Security Lab OS V2.0 design system. */
+/* Seraph blog OS V2.0 design system. */
 :root,
 html[data-theme="dark"] {
   --os-bg: #0b1017;
@@ -7050,7 +7050,7 @@ html[data-theme="dark"] .about-lab-profile th {
   }
 }
 
-/* About Casper: Personal Cyber Lab profile page. */
+/* About Seraph: Personal Cyber Lab profile page. */
 .about-casper {
   display: grid;
   gap: 28px;
@@ -8050,7 +8050,7 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   }
 }
 
-/* Project Polaris preface: Why Casper Exists. */
+/* Project Polaris preface: Why Seraph Exists. */
 .why-casper-exists {
   padding: clamp(76px, 12vw, 150px) clamp(18px, 5vw, 56px) !important;
   background: transparent !important;

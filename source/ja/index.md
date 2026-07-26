@@ -1,12 +1,12 @@
 ---
 title: ホーム
-description: Casper の日本語ホーム。Cybersecurity、フルスタック開発、Robotics、AI、Medical Cybersecurity の学びと制作をまとめます。
+description: Seraph の日本語ホーム。サイバーセキュリティ、Home Lab、医療技術、IoT、Web 開発に取り組んでいます。
 comments: true
 ---
 
 <section class="home-page">
   <section class="home-hero" aria-labelledby="ja-home-hero-title">
-    <p class="home-hero-kicker">こんにちは、<strong>Casper</strong> です。</p>
+    <p class="home-hero-kicker">こんにちは、<strong>Seraph</strong> です。</p>
     <div class="home-hero-roles">
       <strong id="ja-home-hero-title">Cybersecurity Student</strong>
       <strong>Full 技術 Developer</strong>

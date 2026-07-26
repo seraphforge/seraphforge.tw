@@ -1,4 +1,4 @@
 ﻿---
 title: Dashboard
-description: Dashboard entry for Casper Security Lab OS.
+description: Seraph 的儀表板入口。
 ---

@@ -1,13 +1,14 @@
 ---
-title: Casper について
-description: "Casper について。公開研究ノートのための作者紹介。"
+title: Seraph について
+description: "Seraph について。公開研究ノートのための作者紹介。以前は Casper の名前で活動していました。"
 comments: true
 ---
 
 <section class="about-v1-hero" aria-labelledby="about-v1-title">
   <p class="about-v1-kicker">作者紹介</p>
-  <h1 id="about-v1-title">About Casper</h1>
+  <h1 id="about-v1-title">About Seraph</h1>
   <p>どんな旅にも、始まりの場所があります。</p>
+  <p>以前は Casper の名前で活動していました。</p>
 </section>
 
 <section class="about-v1-chapter">
@@ -15,7 +16,7 @@ comments: true
   <h2>起点</h2>
   <p>最初からはっきりした地図があったわけではありません。</p>
   <p>技術は、私にとって好奇心の行き先でした。知らないものを開き、小さく分けて、なぜそう動くのかを少しずつ理解していく感覚が好きでした。</p>
-  <p>Casper の始まりは、完成した肩書きではありません。世界をもう少し丁寧に見るための、静かな記録でした。</p>
+  <p>Seraph の始まりは、完成した肩書きではありません。世界をもう少し丁寧に見るための、静かな記録でした。</p>
 </section>
 
 <section class="about-v1-chapter">
@@ -46,7 +47,7 @@ comments: true
 <section class="about-v1-chapter">
   <p class="about-v1-chapter-number">第5章</p>
   <h2>今日</h2>
-  <p>今日の Casper は、まだ途中にあります。</p>
+  <p>今日の Seraph は、まだ途中にあります。</p>
   <p>より良い問いを立てること、より慎重に作ること、そして未完成な部分を隠さずに書くことを、今も学んでいます。</p>
   <p>このページは能力の一覧ではありません。まだ前に進んでいる人の、今の一枚の記録です。</p>
 </section>
@@ -70,5 +71,5 @@ comments: true
   <p>続けたいと思えるものを見つけてください。</p>
   <p>残りは、</p>
   <p>時間に任せればいい。</p>
-  <p class="about-v1-signature">—— Casper</p>
+  <p class="about-v1-signature">—— Seraph</p>
 </section>

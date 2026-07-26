@@ -1,13 +1,14 @@
 ---
 title: About
-description: "About Casper: an author introduction for a public research notebook."
+description: "About Seraph: an author introduction for a public research notebook. Formerly known as Casper."
 comments: true
 ---
 
 <section class="about-v1-hero" aria-labelledby="about-v1-title">
   <p class="about-v1-kicker">About</p>
-  <h1 id="about-v1-title">About Casper</h1>
+  <h1 id="about-v1-title">About Seraph</h1>
   <p>Every journey starts somewhere.</p>
+  <p>Formerly known as Casper.</p>
 </section>
 
 <section class="about-v1-chapter">
@@ -15,7 +16,7 @@ comments: true
   <h2>The Beginning</h2>
   <p>I did not begin with a clear map.</p>
   <p>At first, technology was simply a place where curiosity had somewhere to go. I liked the feeling of opening something unfamiliar, breaking it into smaller pieces, and slowly understanding why it worked.</p>
-  <p>That was the beginning of Casper: not a finished identity, but a quiet record of learning how to look more carefully.</p>
+  <p>That was the beginning of Seraph: not a finished identity, but a quiet record of learning how to look more carefully.</p>
 </section>
 
 <section class="about-v1-chapter">
@@ -45,7 +46,7 @@ comments: true
 <section class="about-v1-chapter">
   <p class="about-v1-chapter-number">Chapter 5</p>
   <h2>Today</h2>
-  <p>Today, Casper is still in progress.</p>
+  <p>Today, Seraph is still in progress.</p>
   <p>I am still learning how to ask better questions, how to build with more care, and how to write in a way that makes the path visible instead of hiding the unfinished parts.</p>
   <p>This page is not a summary of everything I can do. It is a snapshot of someone still moving forward.</p>
 </section>
@@ -68,5 +69,5 @@ comments: true
   <p>that you are willing to keep doing.</p>
   <p>Leave the rest</p>
   <p>to time.</p>
-  <p class="about-v1-signature">-- Casper</p>
+  <p class="about-v1-signature">-- Seraph</p>
 </section>
