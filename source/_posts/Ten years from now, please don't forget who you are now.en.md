@@ -1,4 +1,4 @@
----
+﻿---
 title: "Ten Years From Now, Please Don't Forget Who You Are Now"
 date: 2026-06-23
 sticky: 90
@@ -17,7 +17,7 @@ description: "A personal letter to my future self, reminding the person I may be
 seo_title: "Ten Years From Now, Please Don't Forget Who You Are Now"
 seo_description: "A reflection addressed to my future self, recording my current life as a student learning Cybersecurity, robotics, Web development, AI, medical cybersecurity, and team leadership."
 og_description: "May the person you become ten years from now still remember who you are today: the late nights, the failures, the people beside you, and the version of yourself that once believed in the future."
-canonical_url: https://casper.tw/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/
+canonical_url: https://seraphforge.github.io/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/
 ---
 
 # Ten Years From Now, Please Don't Forget Who You Are Now
@@ -322,7 +322,7 @@ And that was always part of life.
 
 ## Finally
 
-Casper, ten years from now.
+Seraph, ten years from now.
 
 If one day you happen to return to this blog
 
@@ -358,4 +358,4 @@ the current me will be very happy.
 
 > May the you of ten years from now still remember who you are now.
 >
-> -- Casper, 2026
+> -- Seraph, 2026

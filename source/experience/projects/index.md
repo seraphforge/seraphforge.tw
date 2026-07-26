@@ -19,7 +19,7 @@ technologies:
   - ROS2
   - Raspberry Pi
   - ESP32
-cover: /images/casper-og.png
+cover: /images/seraph-og.png
 related_categories:
   - Experience
 gallery: []

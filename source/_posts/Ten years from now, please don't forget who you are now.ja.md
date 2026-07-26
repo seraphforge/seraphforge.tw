@@ -1,4 +1,4 @@
----
+﻿---
 title: "十年後の自分へ、今の自分を忘れないでほしい"
 date: 2026-06-23
 sticky: 90
@@ -17,7 +17,7 @@ description: "十年後の自分へ向けた個人的な文章。今の情熱、
 seo_title: "十年後の自分へ、今の自分を忘れないでほしい"
 seo_description: "未来の自分に向けて、学生として Cybersecurity、ロボット、Web 開発、AI、Medical Cybersecurity、帶隊を学んでいる今の努力と信念を書き残す成長反思。"
 og_description: "十年後のあなたが、今の自分をまだ覚えていますように。夜更かし、失敗、一緒に歩いた人たち、そして夢を信じていた自分を忘れないでほしい。"
-canonical_url: https://casper.tw/ja/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/
+canonical_url: https://seraphforge.github.io/ja/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/
 ---
 
 # 十年後の自分へ、今の自分を忘れないでほしい
@@ -320,7 +320,7 @@ ROS2 を学んでいる。
 
 ## 最後に
 
-十年後の Casper へ。
+十年後の Seraph へ。
 
 もしある日、偶然このブログに戻ってきて。
 
@@ -356,4 +356,4 @@ ROS2 を学んでいる。
 
 > 十年後のあなたが、今の自分をまだ覚えていますように。
 >
-> -- 2026 年の Casper
+> -- 2026 年の Seraph

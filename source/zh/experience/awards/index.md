@@ -18,7 +18,7 @@ technologies:
   - Linux
   - Web Security
   - CTF
-cover: /images/casper-og.png
+cover: /images/seraph-og.png
 related_categories:
   - 經歷
 gallery: []

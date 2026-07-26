@@ -1,4 +1,4 @@
----
+﻿---
 title: 台灣學生資安，真的是越走越陌路嗎？
 date: 2026-06-23
 site_lang: zh-TW
@@ -16,7 +16,7 @@ description: 從比賽、CTF、AIS3 經驗與帶學弟參賽的過程，反思�
 seo_title: 台灣學生資安，真的是越走越陌路嗎？
 seo_description: 一篇個人觀察與反思，記錄我從資安比賽、My First CTF、AIS3 Pre-exam、帶學弟參賽與老師對談中，看見台灣學生資安圈可能流失初學者的原因。
 og_description: 我仍然喜歡資安，但也開始思考：我們是在培養更多有熱情的人，還是在一次次挫折中把他們推離這個圈子？
-canonical_url: https://casper.tw/zh/2026/06/23/taiwan-student-cybersecurity-growing-apart/
+canonical_url: https://seraphforge.github.io/zh/2026/06/23/taiwan-student-cybersecurity-growing-apart/
 ---
 
 # 台灣學生資安，真的是越走越陌路嗎？

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Prologue: Keeping the People and Stories That Walked With Me"
 date: 2026-06-23
 sticky: 100
@@ -17,7 +17,7 @@ description: "A prologue about why I started writing this blog: not only as tech
 seo_title: "Prologue: Keeping the People and Stories That Walked With Me"
 seo_description: "A blog prologue about why I started writing, and about the people who walked with me through Cybersecurity, competitions, projects, robotics, medical topics, education, and team leadership."
 og_description: "This blog is not only a set of technical notes. It is closer to a memoir, keeping the people, stories, and youth that shaped my growth."
-canonical_url: https://casper.tw/2026/06/23/prologue-the-people-i-met-along-the-way/
+canonical_url: https://seraphforge.github.io/2026/06/23/prologue-the-people-i-met-along-the-way/
 ---
 
 # Prologue: Keeping the People and Stories That Walked With Me

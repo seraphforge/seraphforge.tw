@@ -130,6 +130,12 @@
               return escaped.replace(pattern, '<mark>$1</mark>');
             }
 
+            function normalizeSearchUrl(url) {
+              const value = String(url || '/');
+              if (/^https?:\/\//i.test(value)) return value;
+              return value.replace(/^\/+/, '/');
+            }
+
             function renderResults(list, keyword) {
               if (!keyword.trim()) {
                 results.innerHTML = '<p class="search-hint"><%= pageCopy.searchHint %></p>';
@@ -148,7 +154,7 @@
                   <article class="search-result-item">
                     <div class="search-result-date">${post.date ? post.date.slice(0, 10) : ''}</div>
                     <div class="search-result-main">
-                      <a class="search-result-title" href="${post.url}">${highlight(post.title || '<%= pageCopy.untitled %>', keyword)}</a>
+                      <a class="search-result-title" href="${normalizeSearchUrl(post.url)}">${highlight(post.title || '<%= pageCopy.untitled %>', keyword)}</a>
                       <p class="search-result-excerpt">${highlight(excerpt, keyword)}...</p>
                     </div>
                   </article>

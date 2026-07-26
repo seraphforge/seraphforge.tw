@@ -1,4 +1,4 @@
----
+﻿---
 title: 我再也不相信 Codex，但我還是會繼續用它
 date: 2026-06-25
 site_lang: zh-TW
@@ -16,7 +16,7 @@ description: 一篇關於使用 Codex 的個人技術反思，記錄我為什麼
 seo_title: 我再也不相信 Codex，但我還是會繼續用它
 seo_description: 從個人部落格維護與 AI coding tool 使用經驗出發，反思 Codex 的價值、風險、驗證需求，以及工程師判斷力為什麼仍然重要。
 og_description: 我不再相信 Codex 可以替我完成所有事情，但我仍然會用它，因為真正該被相信的不是工具，而是使用工具的人是否保有判斷力。
-canonical_url: https://casper.tw/zh/2026/06/25/why-i-still-use-codex/
+canonical_url: https://seraphforge.github.io/zh/2026/06/25/why-i-still-use-codex/
 ---
 
 # 我再也不相信 Codex，但我還是會繼續用它
@@ -65,7 +65,7 @@ Codex 最危險的地方，不是它會出錯。
 
 因為它不知道你的部署習慣。它不知道哪些設定是歷史包袱，哪些設定是你故意保留的。它也不知道某些看起來「可以順手整理」的東西，其實一改就會炸掉。
 
-在我的部落格裡，像 `root: /casper.tw/`、deploy branch、GitHub Pages 的路徑，這些東西看起來只是幾行設定，但它們背後其實是網站能不能正常上線的前提。
+在我的部落格裡，root 設定曾使用錯誤的專案子路徑，deploy branch 與 GitHub Pages 設定看起來也只是幾行設定，但它們背後其實是網站能不能正常上線的前提。
 
 工具不會替我承擔後果。
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: NIHSCED 資安コミュニティから、制御科の選手チームへ
 date: 2026-05-16
 updated: 2026-05-16
@@ -14,15 +14,15 @@ tags:
   - Competition Team
   - Neihu Vocational High School
   - Legacy
-banner: /images/casper.png
-cover: /images/casper.png
+banner: /images/seraph.png
+cover: /images/seraph.png
 slug: from-nihscsed-to-control-team
 permalink: ja/2026/05/16/from-nihscsed-to-control-team/
 description: NIHSCED IWHC の white-hat security community から、内湖高工制御科の選手チームへ。学生コミュニティ、技術継承、未来の方向性についての個人的な記録。
 seo_title: NIHSCED 資安コミュニティから、制御科の選手チームへ
 seo_description: NIHSCED IWHC の資安コミュニティ総召から、内湖高工制御科の選手チーム、学生文化、技術継承を推進する立場へ移っていく過程を記録した個人経験記事。
 og_description: 終わったのではなく、別の形で前に進む物語もある。資安コミュニティから制御科の選手チームへ移っていく自分の変化を記録する。
-canonical_url: https://casper.tw/ja/2026/05/16/from-nihscsed-to-control-team/
+canonical_url: https://seraphforge.github.io/ja/2026/05/16/from-nihscsed-to-control-team/
 toc: true
 ---
 

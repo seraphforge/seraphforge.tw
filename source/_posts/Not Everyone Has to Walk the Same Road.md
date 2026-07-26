@@ -1,4 +1,4 @@
----
+﻿---
 title: 不是每個人都一定要走一樣的路
 date: 2026-04-18
 updated: 2026-05-15
@@ -12,15 +12,15 @@ tags:
   - 資安
   - 高中生活
   - 選擇
-banner: /images/casper.png
-cover: /images/casper.png
+banner: /images/seraph.png
+cover: /images/seraph.png
 slug: not-everyone-has-to-walk-the-same-road
 permalink: zh/2026/04/18/not-everyone-has-to-walk-the-same-road/
 description: 一篇關於高中階段選擇不同道路的個人成長反思，記錄我如何在資訊安全、專題、比賽與升學之間找到自己的方向。
 seo_title: 不是每個人都一定要走一樣的路
 seo_description: 從高二、高三到升學選擇，記錄我如何在資訊安全研習、比賽、網站與專題中走出一條不同於標準答案的路。
 og_description: 不是每個人都一定要走一樣的路。有些路不是因為比較輕鬆才選擇，而是因為那條路真的讓自己重新活了起來。
-canonical_url: https://casper.tw/zh/2026/04/18/not-everyone-has-to-walk-the-same-road/
+canonical_url: https://seraphforge.github.io/zh/2026/04/18/not-everyone-has-to-walk-the-same-road/
 toc: true
 ---
 

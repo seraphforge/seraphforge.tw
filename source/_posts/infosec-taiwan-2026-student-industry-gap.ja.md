@@ -1,4 +1,4 @@
----
+﻿---
 title: InfoSec Taiwan 2026 で見えた、学生と企業の Cybersecurity に対する距離
 date: 2026-07-07
 site_lang: ja
@@ -24,7 +24,7 @@ permalink: ja/2026/07/07/infosec-taiwan-2026-student-industry-gap/
 seo_title: InfoSec Taiwan 2026 で見えた、学生と企業の Cybersecurity に対する距離
 seo_description: InfoSec Taiwan 2026 の展示を通じて、学生の CTF、AI、IoT 系プロジェクトと、企業が求める SOC、Incident Response、Zero Trust、Post-Quantum Cryptography との違いを考察する。
 og_description: 学生は「何を作れるか」を考えがちだが、企業は「それがどんな現実の問題を解くのか」を重視する。InfoSec Taiwan 2026 後の考察。
-canonical_url: https://casper.tw/ja/2026/07/07/infosec-taiwan-2026-student-industry-gap/
+canonical_url: https://seraphforge.github.io/ja/2026/07/07/infosec-taiwan-2026-student-industry-gap/
 ---
 
 # InfoSec Taiwan 2026 で見えた、学生と企業の Cybersecurity に対する距離

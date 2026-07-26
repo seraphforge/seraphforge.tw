@@ -1,4 +1,4 @@
-<%
+﻿<%
   const i18nPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const i18nParts = i18nPath.split('/').filter(Boolean);
   const lang = i18nParts[0] === 'zh' ? 'zh' : (i18nParts[0] === 'ja' ? 'ja' : 'en');
@@ -43,7 +43,7 @@
       nav: { home: 'Home', projects: 'Projects', experience: 'Experience', labs: 'Lab', writing: 'Blog', about: 'About' },
       hero: {
         home: { title: ['Seraph', 'Research • Build • Protect.'] },
-        about: { title: 'About', body: 'I am Seraph. Formerly known as Casper. This site is my public engineering notebook for cybersecurity, home lab, medical technology, IoT, and web development.' },
+        about: { title: 'About', body: 'I am Seraph. This site is my public engineering notebook for cybersecurity, home lab, medical technology, IoT, and web development.' },
         experience: { title: 'Experience', body: 'A structured record of competitions, awards, workshops, teaching support, community work, and certifications.' },
         projects: { title: 'Projects', body: 'Selected projects across Cybersecurity, Medical Cybersecurity, Robotics, full stack development, and embedded systems.' },
         labs: { title: 'Lab', body: 'Research experiments, prototypes, and notes in progress: ROS2 robots, medical security gateways, CTF notes, and web experiments.' },
@@ -52,12 +52,12 @@
       brand: { eyebrow: 'Tech Blog · Research Lab · Portfolio', mission: ['Research • Build • Protect.', 'Cybersecurity, home lab, medical technology, IoT, and web development.'] },
       profile: {
         title: 'About Seraph',
-        intro: 'I am Seraph, an engineering student building across cybersecurity, home lab, medical technology, IoT, and web development. Formerly known as Casper.',
+        intro: 'I am Seraph, an engineering student building across cybersecurity, home lab, medical technology, IoT, and web development. ',
         mission: 'This site is a technical blog, research lab, and portfolio: articles for what I learn, projects for what I can show, and Lab for experiments still in progress.',
         quote: 'If you truly believe this is your path, never give up halfway.'
       },
       aboutSections: [
-        ['Intro', 'I am Seraph. Formerly known as Casper. I am still growing as an engineering student, and I care more about building honest working systems than writing perfect-looking concepts.'],
+        ['Intro', 'I am Seraph. I am still growing as an engineering student, and I care more about building honest working systems than writing perfect-looking concepts.'],
         ['What I Build', 'My current learning path connects Cybersecurity, Web development, Robotics, Embedded systems, and Medical Cybersecurity. I like projects that force hardware, software, security, and real users to meet.'],
         ['How I Learn', 'I learn by joining competitions, attending workshops, failing, debugging, rebuilding, and writing down the process. The notes are not only success records; they also keep the mistakes visible.'],
         ['Why This Site Exists', 'This site is my public engineering notebook: a technical blog, research lab, and portfolio for work across cybersecurity, robotics, medical security, and web development.'],
@@ -115,7 +115,7 @@
       nav: { home: '首頁', projects: '專案', experience: '經歷', labs: 'Labs', writing: '文章', about: '關於' },
       hero: {
         home: { title: ['Cybersecurity Student', 'Web Developer', 'Robotics Builder'] },
-        about: { title: '關於', body: '我是 Seraph。曾使用 Casper 作為公開名稱。這個網站是我專注於資安、Home Lab、醫療科技、IoT 與網站開發的 public engineering notebook。' },
+        about: { title: '關於', body: '我是 Seraph。這個網站是我專注於資安、Home Lab、醫療科技、IoT 與網站開發的 public engineering notebook。' },
         experience: { title: '經歷', body: '整理競賽、獎項、研習、教學支援、社群參與與證照紀錄。' },
         projects: { title: '專案', body: '橫跨 Cybersecurity、Medical Cybersecurity、Robotics、full stack development 與 embedded systems 的實作專案。' },
         labs: { title: 'Labs', body: '把想法做成小實驗、原型與可回顧的技術筆記。' },
@@ -129,7 +129,7 @@
         quote: '如果你真的認為這是你的路，那就不要半途而廢。'
       },
       aboutSections: [
-        ['Intro', '我是 Seraph。曾使用 Casper 作為公開名稱。我還在成長中，比起把概念寫得很漂亮，我更在意能不能把系統真的做出來。'],
+        ['Intro', '我是 Seraph。我還在成長中，比起把概念寫得很漂亮，我更在意能不能把系統真的做出來。'],
         ['What I Build', '我正在學 Cybersecurity、Web development、Robotics、Embedded systems 與 Medical Cybersecurity。我喜歡會讓硬體、軟體、安全與真實使用情境交會的題目。'],
         ['How I Learn', '我透過比賽、研習、失敗、debug、重做與紀錄來學習。這些筆記不只放成果，也保留過程中的卡關與修正。'],
         ['Why This Site Exists', '這個網站是我的 public engineering notebook：技術部落格、研究實驗室與個人作品集，用來整理 Cybersecurity、Robotics、Medical Security 與 Web Development 的學習和實作。'],
@@ -186,7 +186,7 @@
       nav: { home: 'ホーム', projects: 'プロジェクト', experience: '経歴', labs: 'Labs', writing: '記事', about: 'About' },
       hero: {
         home: { title: ['Cybersecurity Student', 'Web Developer', 'Robotics Builder'] },
-        about: { title: 'About', body: 'Seraph です。以前は Casper の名前で活動していました。このサイトはサイバーセキュリティ、Home Lab、医療技術、IoT、Web 開発に取り組むための public engineering notebook です。' },
+        about: { title: 'About', body: 'Seraph です。このサイトはサイバーセキュリティ、Home Lab、医療技術、IoT、Web 開発に取り組むための public engineering notebook です。' },
         experience: { title: '経歴', body: 'コンペティション、受賞、ワークショップ、教育サポート、コミュニティ活動、資格を整理しています。' },
         projects: { title: 'プロジェクト', body: 'Cybersecurity、Medical Cybersecurity、Robotics、full stack development、embedded systems の実装プロジェクトです。' },
         labs: { title: 'Labs', body: 'アイデアを小さな実験、試作、振り返れる技術ノートにする場所です。' },
@@ -200,7 +200,7 @@
         quote: 'これが自分の道だと本気で思うなら、途中で諦めるな。'
       },
       aboutSections: [
-        ['Intro', 'Seraph です。以前は Casper の名前で活動していました。まだ成長途中の engineering student として、きれいな概念よりも実際に動くシステムを作ることを大切にしています。'],
+        ['Intro', 'Seraph です。まだ成長途中の engineering student として、きれいな概念よりも実際に動くシステムを作ることを大切にしています。'],
         ['What I Build', 'Cybersecurity、Web development、Robotics、Embedded systems、Medical Cybersecurity を学んでいます。hardware、software、security、実際の利用場面が交わるテーマが好きです。'],
         ['How I Learn', 'コンペティション、ワークショップ、失敗、debug、作り直し、記録を通して学んでいます。成果だけではなく、詰まった点や修正も残します。'],
         ['Why This Site Exists', 'このサイトは私の public engineering notebook です。技術ブログ、研究ラボ、ポートフォリオとして、Cybersecurity、Robotics、Medical Security、Web Development の学習と制作を整理します。'],
@@ -871,17 +871,17 @@
   </section>
 <% } %>
 
-<% function renderWhyCasperExists() { %>
-  <section class="why-casper-exists" aria-labelledby="<%= lang %>-why-casper-title">
-    <div class="why-casper-inner">
-      <header class="why-casper-header">
-        <p class="why-casper-kicker"><%= uiCopy.whyKicker %></p>
-        <h2 id="<%= lang %>-why-casper-title"><%= homeV1Copy.whyTitle %></h2>
+<% function renderWhySeraphExists() { %>
+  <section class="why-seraph-exists" aria-labelledby="<%= lang %>-why-seraph-title">
+    <div class="why-seraph-inner">
+      <header class="why-seraph-header">
+        <p class="why-seraph-kicker"><%= uiCopy.whyKicker %></p>
+        <h2 id="<%= lang %>-why-seraph-title"><%= homeV1Copy.whyTitle %></h2>
       </header>
-      <div class="why-casper-body">
+      <div class="why-seraph-body">
         <% homeV1Copy.why.forEach(function(line) { %><p><%= line %></p><% }) %>
       </div>
-      <a class="why-casper-link" href="<%= localHref('about') %>"><%= homeV1Copy.whyLink %></a>
+      <a class="why-seraph-link" href="<%= localHref('about') %>"><%= homeV1Copy.whyLink %></a>
     </div>
   </section>
 <% } %>
@@ -993,7 +993,7 @@
       <h2 id="<%= lang %>-profile-title" class="section-title"><%= t.profile.title %></h2>
     </div>
     <div class="profile-panel-grid">
-      <div class="profile-photo-wrap"><img class="profile-photo" src="<%= url_for('/images/casper.png') %>" alt="<%= uiCopy.imageAlt %>"></div>
+      <div class="profile-photo-wrap"><img class="profile-photo" src="<%= url_for('/images/seraph.png') %>" alt="<%= uiCopy.imageAlt %>"></div>
       <div class="profile-panel-body">
         <p><%= t.profile.intro %></p>
         <p><%= t.profile.mission %></p>
@@ -1276,7 +1276,7 @@
   <% if (section === 'home' || section === 'dashboard') { %>
     <% renderHomeHero(); %>
     <% renderSpaceGuide(); %>
-    <% renderWhyCasperExists(); %>
+    <% renderWhySeraphExists(); %>
     <% renderExplorationAreas(); %>
     <% renderSelectedWorks(); %>
     <% renderLatestFieldNotes(); %>

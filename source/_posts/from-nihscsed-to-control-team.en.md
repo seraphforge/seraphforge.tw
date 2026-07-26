@@ -1,4 +1,4 @@
----
+﻿---
 title: From the NIHSCED Security Community to a Control Engineering Competition Team
 date: 2026-05-16
 updated: 2026-05-16
@@ -14,15 +14,15 @@ tags:
   - Competition Team
   - Neihu Vocational High School
   - Legacy
-banner: /images/casper.png
-cover: /images/casper.png
+banner: /images/seraph.png
+cover: /images/seraph.png
 slug: from-nihscsed-to-control-team
 permalink: 2026/05/16/from-nihscsed-to-control-team/
 description: A personal reflection on moving from the NIHSCED IWHC white-hat security community to building a competition team and technical culture in the Control Engineering department.
 seo_title: From the NIHSCED Security Community to a Control Engineering Competition Team
 seo_description: A personal story about moving from leading the NIHSCED IWHC security community to helping connect competition teams, student projects, technical continuity, and student culture in Control Engineering.
 og_description: Some stories do not end. They continue in a different form. This article records my shift from a student security community toward a Control Engineering competition team.
-canonical_url: https://casper.tw/2026/05/16/from-nihscsed-to-control-team/
+canonical_url: https://seraphforge.github.io/2026/05/16/from-nihscsed-to-control-team/
 toc: true
 ---
 

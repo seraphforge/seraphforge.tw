@@ -1,4 +1,4 @@
----
+﻿---
 title: "Not Everyone Has to Walk the Same Road"
 date: 2026-04-18
 updated: 2026-05-15
@@ -12,15 +12,15 @@ tags:
   - Cybersecurity
   - High School Life
   - Choices
-banner: /images/casper.png
-cover: /images/casper.png
+banner: /images/seraph.png
+cover: /images/seraph.png
 slug: not-everyone-has-to-walk-the-same-road
 permalink: 2026/04/18/not-everyone-has-to-walk-the-same-road/
 description: "A personal reflection on choosing a different path in high school, and how Cybersecurity, projects, competitions, and late-night work helped me find my own direction."
 seo_title: "Not Everyone Has to Walk the Same Road"
 seo_description: "A personal growth reflection about choosing a different path through Cybersecurity workshops, competitions, websites, projects, and college preparation."
 og_description: "Not everyone has to walk the same road. Some paths are not chosen because they are easier, but because they make you feel alive again."
-canonical_url: https://casper.tw/2026/04/18/not-everyone-has-to-walk-the-same-road/
+canonical_url: https://seraphforge.github.io/2026/04/18/not-everyone-has-to-walk-the-same-road/
 toc: true
 ---
 

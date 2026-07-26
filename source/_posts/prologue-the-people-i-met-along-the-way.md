@@ -1,4 +1,4 @@
----
+﻿---
 title: 序章：把那些一起走過的人和故事留下來
 date: 2026-06-23
 sticky: 100
@@ -17,7 +17,7 @@ description: 寫下我開始經營部落格的原因：不只是技術筆記，�
 seo_title: 序章：把那些一起走過的人和故事留下來
 seo_description: 一篇部落格序章，記錄我為什麼開始寫作，以及那些在資安、競賽、專題、機器人、醫療、教育與帶隊過程中陪我走過的人。
 og_description: 這個部落格不只是技術筆記，更像一本回憶錄，記錄我成長過程中那些一起走過的人、故事與青春。
-canonical_url: https://casper.tw/zh/2026/06/23/prologue-the-people-i-met-along-the-way/
+canonical_url: https://seraphforge.github.io/zh/2026/06/23/prologue-the-people-i-met-along-the-way/
 ---
 
 # 序章：把那些一起走過的人和故事留下來

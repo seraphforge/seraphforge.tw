@@ -1,4 +1,4 @@
----
+﻿---
 title: 從零售業打工，我看見中小企業最容易忽略的資訊安全
 date: 2026-07-18
 site_lang: zh-TW
@@ -18,7 +18,7 @@ description: 從零售業第一線工作經驗出發，反思中小企業在新�
 seo_title: 從零售業打工，我看見中小企業最容易忽略的資訊安全
 seo_description: 一篇從零售業第一線工作出發的資安反思，談中小企業如何從帳號、密碼、通報、設備管理與教育訓練建立 Responsible Security Culture。
 og_description: 資安不只存在於科技公司、醫院或金融業。從零售業第一線，我看見真正常見的風險，往往不是 CVE，而是人的習慣與流程。
-canonical_url: https://casper.tw/zh/2026/07/18/retail-work-sme-security-culture/
+canonical_url: https://seraphforge.github.io/zh/2026/07/18/retail-work-sme-security-culture/
 reading_time: 約 8 分鐘
 hero_image_suggestion: 一張匿名化的零售工作場景，畫面中有收銀設備、庫存螢幕、員工識別卡與模糊的人影，但不出現任何品牌、店名、標誌或可識別企業資訊。
 hero_banner_colors:

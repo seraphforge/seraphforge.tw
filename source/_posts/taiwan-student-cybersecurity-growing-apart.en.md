@@ -1,4 +1,4 @@
----
+﻿---
 title: "Is Taiwan's Student Cybersecurity Community Really Growing Apart?"
 date: 2026-06-23
 site_lang: en
@@ -16,7 +16,7 @@ description: "A personal reflection on competitions, CTF, AIS3 experiences, and 
 seo_title: "Is Taiwan's Student Cybersecurity Community Really Growing Apart?"
 seo_description: "A personal observation on Taiwan's student Cybersecurity community, based on competitions, My First CTF, AIS3 Pre-exam, mentoring junior students, and a conversation with a teacher."
 og_description: "I still like Cybersecurity, but I have started asking whether we are cultivating more passionate people, or pushing them away through repeated frustration."
-canonical_url: https://casper.tw/2026/06/23/taiwan-student-cybersecurity-growing-apart/
+canonical_url: https://seraphforge.github.io/2026/06/23/taiwan-student-cybersecurity-growing-apart/
 ---
 
 # Is Taiwan's Student Cybersecurity Community Really Growing Apart?

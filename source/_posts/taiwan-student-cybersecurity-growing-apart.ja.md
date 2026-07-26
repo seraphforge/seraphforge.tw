@@ -1,4 +1,4 @@
----
+﻿---
 title: "台湾の学生 Cybersecurity は、本当にだんだん遠ざかっているのか"
 date: 2026-06-23
 site_lang: ja
@@ -16,7 +16,7 @@ description: "競技、CTF、AIS3 の経験、後輩を連れて大会に出た�
 seo_title: "台湾の学生 Cybersecurity は、本当にだんだん遠ざかっているのか"
 seo_description: "資安競技、My First CTF、AIS3 Pre-exam、後輩の帶隊、先生との対話を通じて、台湾の学生 Cybersecurity 圈が初心者を失っている可能性について考える。"
 og_description: "今でも Cybersecurity は好きだ。それでも、私たちは情熱を持つ人を育てているのか、それとも挫折を重ねてこの圈子から押し出しているのかを考え始めた。"
-canonical_url: https://casper.tw/ja/2026/06/23/taiwan-student-cybersecurity-growing-apart/
+canonical_url: https://seraphforge.github.io/ja/2026/06/23/taiwan-student-cybersecurity-growing-apart/
 ---
 
 # 台湾の学生 Cybersecurity は、本当にだんだん遠ざかっているのか

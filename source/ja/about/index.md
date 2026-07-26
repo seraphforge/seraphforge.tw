@@ -1,6 +1,6 @@
----
+﻿---
 title: Seraph について
-description: "Seraph について。公開研究ノートのための作者紹介。以前は Casper の名前で活動していました。"
+description: "Seraph について。公開研究ノートのための作者紹介。"
 comments: true
 ---
 
@@ -8,7 +8,7 @@ comments: true
   <p class="about-v1-kicker">作者紹介</p>
   <h1 id="about-v1-title">About Seraph</h1>
   <p>どんな旅にも、始まりの場所があります。</p>
-  <p>以前は Casper の名前で活動していました。</p>
+  <p></p>
 </section>
 
 <section class="about-v1-chapter">

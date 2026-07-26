@@ -1,6 +1,6 @@
----
+﻿---
 title: About
-description: "About Seraph: an author introduction for a public research notebook. Formerly known as Casper."
+description: "About Seraph: an author introduction for a public research notebook."
 comments: true
 ---
 
@@ -8,7 +8,7 @@ comments: true
   <p class="about-v1-kicker">About</p>
   <h1 id="about-v1-title">About Seraph</h1>
   <p>Every journey starts somewhere.</p>
-  <p>Formerly known as Casper.</p>
+  <p></p>
 </section>
 
 <section class="about-v1-chapter">

@@ -21,7 +21,7 @@ A team platform experiment for organizing competition links, schedules, and dash
   <span>SQLite</span>
 </div>
 
-<a class="featured-project-link" href="/casper.tw/projects/nihs-control-team/">Read More</a>
+<a class="featured-project-link" href="/projects/nihs-control-team/">Read More</a>
 
 </article>
 
@@ -37,7 +37,7 @@ Notes and project ideas around healthcare systems, medical devices, privacy, and
   <span>Risk</span>
 </div>
 
-<a class="featured-project-link" href="/casper.tw/projects/medical-cybersecurity/">Read More</a>
+<a class="featured-project-link" href="/projects/medical-cybersecurity/">Read More</a>
 
 </article>
 
@@ -53,7 +53,7 @@ A hands-on robotics build focused on sensors, motor control, ROS2, and autonomou
   <span>LiDAR</span>
 </div>
 
-<a class="featured-project-link" href="/casper.tw/projects/autonomous-robot/">Read More</a>
+<a class="featured-project-link" href="/projects/autonomous-robot/">Read More</a>
 
 </article>
 

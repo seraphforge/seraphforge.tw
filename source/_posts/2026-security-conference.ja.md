@@ -1,4 +1,4 @@
----
+﻿---
 title: 2026 資安大会参訪記：展示会場から見えた Cybersecurity 業界の実像
 date: 2026-05-09
 updated: 2026-05-15
@@ -21,7 +21,7 @@ description: 2026 資安大会を参訪し、Zero Trust、AI SOC、医療資安�
 seo_title: 2026 資安大会参訪記：展示会場から見えた Cybersecurity 業界の実像
 seo_description: 2026 資安大会の参訪記。Zero Trust、Social Engineering、ROS ロボット資安、AI guardrails、Cloud/API Security、Medical Cybersecurity、OT、AI SOC についての観察をまとめる。
 og_description: Cybersecurity は単一技術ではなく、治理、教育、監視、鑑識、クラウド、AI、医療、OT、通信安全を含む社会基盤の保護システムだと感じた。
-canonical_url: https://casper.tw/ja/2026/05/09/2026-security-conference/
+canonical_url: https://seraphforge.github.io/ja/2026/05/09/2026-security-conference/
 toc: true
 ---
 

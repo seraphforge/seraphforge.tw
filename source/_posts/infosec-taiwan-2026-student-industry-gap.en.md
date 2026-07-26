@@ -1,4 +1,4 @@
----
+﻿---
 title: What InfoSec Taiwan 2026 Showed Me About the Gap Between Students and Industry
 date: 2026-07-07
 site_lang: en
@@ -24,7 +24,7 @@ permalink: 2026/07/07/infosec-taiwan-2026-student-industry-gap/
 seo_title: What InfoSec Taiwan 2026 Showed Me About the Gap Between Students and Industry
 seo_description: A reflection from InfoSec Taiwan 2026 on the gap between student cybersecurity projects and industry needs, covering CTF, AI, SOC, incident response, Zero Trust, and post-quantum cryptography.
 og_description: Students often ask what they can build. Companies are more focused on what real problem it solves. This article reflects on that gap after InfoSec Taiwan 2026.
-canonical_url: https://casper.tw/2026/07/07/infosec-taiwan-2026-student-industry-gap/
+canonical_url: https://seraphforge.github.io/2026/07/07/infosec-taiwan-2026-student-industry-gap/
 ---
 
 # What InfoSec Taiwan 2026 Showed Me About the Gap Between Students and Industry

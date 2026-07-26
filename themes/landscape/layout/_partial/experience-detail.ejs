@@ -1,4 +1,4 @@
-<%
+﻿<%
   const expPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const expParts = expPath.split('/').filter(Boolean);
   const expLang = expParts[0] === 'zh' ? 'zh' : (expParts[0] === 'ja' ? 'ja' : 'en');
@@ -45,7 +45,7 @@
   const expBase = expLang === 'en' ? '/experience/' : '/' + expLang + '/experience/';
   const expUrl = function(slug) { return url_for(expBase + slug + '/'); };
   const expTitle = page.title || (experienceOrder[expIndex] && experienceOrder[expIndex].title) || 'Experience';
-  const expCover = page.cover || '/images/casper-og.png';
+  const expCover = page.cover || '/images/seraph-og.png';
   const expSummary = page.summary || page.description || '';
   const expTags = Array.isArray(page.tags) ? page.tags : (page.keywords ? String(page.keywords).split(',').map(function(tag) { return tag.trim(); }).filter(Boolean) : []);
   const expSkills = Array.isArray(page.skills) ? page.skills : [];

@@ -17,7 +17,7 @@ skills:
 technologies:
   - Computer hardware
   - Computer networks
-cover: /images/casper-og.png
+cover: /images/seraph-og.png
 related_categories:
   - 経歴
 gallery: []

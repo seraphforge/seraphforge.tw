@@ -20,7 +20,7 @@ technologies:
   - AI
   - Robotics
   - CTF
-cover: /images/casper-og.png
+cover: /images/seraph-og.png
 related_categories:
   - 経歴
 gallery: []

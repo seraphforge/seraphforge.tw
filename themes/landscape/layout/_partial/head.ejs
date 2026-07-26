@@ -1,4 +1,4 @@
-<meta charset="utf-8">
+﻿<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <%
@@ -28,7 +28,7 @@
     }
     return canonicalBaseUrl + localPath;
   };
-  const shareImage = absoluteUrl(page.cover || '/images/casper-og.png');
+  const shareImage = absoluteUrl(page.cover || '/images/seraph-og.png');
   const shareImageAlt = page.title ? page.title + ' preview image' : siteTitle + ' preview image';
   const metaType = page.layout === 'post' ? 'article' : 'website';
   const headPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
@@ -134,7 +134,7 @@
 <script>
   (function() {
     try {
-      document.documentElement.setAttribute('data-theme', localStorage.getItem('casper-theme') || 'light');
+      document.documentElement.setAttribute('data-theme', localStorage.getItem('seraph-theme') || 'light');
     } catch (error) {
       document.documentElement.setAttribute('data-theme', 'light');
     }

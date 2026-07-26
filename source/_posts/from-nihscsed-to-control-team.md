@@ -1,4 +1,4 @@
----
+﻿---
 title: 從 NIHSCED 資安社群，轉變到控制科選手團隊
 date: 2026-05-16
 updated: 2026-05-16
@@ -14,15 +14,15 @@ tags:
   - 選手團隊
   - 內湖高工
   - 傳承
-banner: /images/casper.png
-cover: /images/casper.png
+banner: /images/seraph.png
+cover: /images/seraph.png
 slug: from-nihscsed-to-control-team
 permalink: zh/2026/05/16/from-nihscsed-to-control-team/
 description: 從 NIHSCED IWHC 資安白帽社群到內湖高工控制科選手團隊，記錄我對學生社群、技術傳承與未來方向的轉變。
 seo_title: 從 NIHSCED 資安社群，轉變到控制科選手團隊
 seo_description: 一篇個人經驗文章，記錄我從 NIHSCED IWHC 資安社群總召，逐步轉向推動內湖高工控制科選手團隊、學生文化與技術傳承的歷程。
 og_description: 有些故事不是結束，而是換了一種方式繼續往前走。這篇文章記錄我從資安社群走向控制科選手團隊的轉變。
-canonical_url: https://casper.tw/zh/2026/05/16/from-nihscsed-to-control-team/
+canonical_url: https://seraphforge.github.io/zh/2026/05/16/from-nihscsed-to-control-team/
 toc: true
 ---
 

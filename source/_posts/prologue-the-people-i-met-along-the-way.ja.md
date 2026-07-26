@@ -1,4 +1,4 @@
----
+﻿---
 title: "序章：一緒に歩いてきた人と物語を残すために"
 date: 2026-06-23
 sticky: 100
@@ -17,7 +17,7 @@ description: "このブログを書き始めた理由。技術ノートだけで
 seo_title: "序章：一緒に歩いてきた人と物語を残すために"
 seo_description: "Cybersecurity、競技、プロジェクト、ロボット、医療、教育、帶隊の過程で出会った人たちと、自分がブログを書き始めた理由を記録する序章。"
 og_description: "このブログは技術ノートだけではなく、成長の過程で出会った人、物語、青春を残す回憶録のような場所。"
-canonical_url: https://casper.tw/ja/2026/06/23/prologue-the-people-i-met-along-the-way/
+canonical_url: https://seraphforge.github.io/ja/2026/06/23/prologue-the-people-i-met-along-the-way/
 ---
 
 # 序章：一緒に歩いてきた人と物語を残すために

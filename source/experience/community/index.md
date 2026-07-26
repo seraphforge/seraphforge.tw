@@ -18,7 +18,7 @@ technologies:
   - Web Security
   - Linux
   - Raspberry Pi
-cover: /images/casper-og.png
+cover: /images/seraph-og.png
 related_categories:
   - Experience
 gallery: []

@@ -1,4 +1,4 @@
----
+﻿---
 title: "I No Longer Trust Codex, But I Will Keep Using It"
 date: 2026-06-25
 site_lang: en
@@ -16,7 +16,7 @@ description: "A personal technical reflection on why I no longer fully trust Cod
 seo_title: "I No Longer Trust Codex, But I Will Keep Using It"
 seo_description: "A personal reflection from maintaining my blog and using an AI coding tool, covering Codex's value, risks, need for verification, and why engineering judgment still matters."
 og_description: "I no longer trust Codex to do everything for me, but I will still use it. The thing that should be trusted is not the tool itself, but whether the person using it keeps their judgment."
-canonical_url: https://casper.tw/2026/06/25/why-i-still-use-codex/
+canonical_url: https://seraphforge.github.io/2026/06/25/why-i-still-use-codex/
 ---
 
 # I No Longer Trust Codex, But I Will Keep Using It
@@ -65,7 +65,7 @@ But whether to accept the result still has to be decided by you.
 
 Because it does not know your deployment habits. It does not know which settings are historical baggage and which settings you intentionally kept. It also does not know that some things that look like they can be "cleaned up while we are here" may break everything once changed.
 
-In my blog, settings like `root: /casper.tw/`, the deploy branch, and GitHub Pages paths may look like only a few lines of configuration, but behind them is the basic condition for whether the site can go online correctly.
+In my blog, the root setting once used an incorrect project subpath, and deployment settings may look like only a few lines of configuration, but behind them is the basic condition for whether the site can go online correctly.
 
 The tool will not bear the consequences for me.
 

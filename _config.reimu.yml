@@ -314,7 +314,7 @@ cdn:
 
 injector:
   head_end: |
-    <link rel="stylesheet" href="/casper.tw/css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <style>
       html,
       body {

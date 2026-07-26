@@ -1,4 +1,4 @@
----
+﻿---
 title: "Reflections from the 2026 Cybersecurity Conference: Seeing the Real Shape of the Security Industry"
 date: 2026-05-09
 updated: 2026-05-15
@@ -21,7 +21,7 @@ description: After visiting the 2026 Cybersecurity Conference, I reflected on th
 seo_title: Reflections from the 2026 Cybersecurity Conference
 seo_description: A field note from the 2026 Cybersecurity Conference covering Zero Trust, social engineering, ROS robot security, AI guardrails, cloud and API security, medical cybersecurity, OT, and AI SOC.
 og_description: The conference helped me see Cybersecurity not as a single technique, but as a system spanning governance, education, monitoring, forensics, cloud, AI, medical systems, OT, and communications security.
-canonical_url: https://casper.tw/2026/05/09/2026-security-conference/
+canonical_url: https://seraphforge.github.io/2026/05/09/2026-security-conference/
 toc: true
 ---
 

@@ -7051,13 +7051,13 @@ html[data-theme="dark"] .about-lab-profile th {
 }
 
 /* About Seraph: Personal Cyber Lab profile page. */
-.about-casper {
+.about-seraph {
   display: grid;
   gap: 28px;
   max-width: 1040px;
 }
 
-.about-casper-hero {
+.about-seraph-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
   gap: clamp(20px, 4vw, 42px);
@@ -7071,7 +7071,7 @@ html[data-theme="dark"] .about-lab-profile th {
   border-radius: 14px;
 }
 
-.about-casper-kicker {
+.about-seraph-kicker {
   margin: 0 0 12px !important;
   color: var(--anon-green) !important;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -7081,7 +7081,7 @@ html[data-theme="dark"] .about-lab-profile th {
   text-transform: uppercase;
 }
 
-.about-casper h1 {
+.about-seraph h1 {
   margin: 0 0 14px !important;
   color: var(--anon-ink) !important;
   font-size: clamp(42px, 8vw, 92px) !important;
@@ -7089,7 +7089,7 @@ html[data-theme="dark"] .about-lab-profile th {
   letter-spacing: 0 !important;
 }
 
-.about-casper-lead {
+.about-seraph-lead {
   margin: 0 0 12px !important;
   color: var(--anon-ink) !important;
   font-size: clamp(20px, 3vw, 32px);
@@ -7097,13 +7097,13 @@ html[data-theme="dark"] .about-lab-profile th {
   line-height: 1.18 !important;
 }
 
-.about-casper p,
-.about-casper li {
+.about-seraph p,
+.about-seraph li {
   color: #2c3744 !important;
   line-height: 1.78 !important;
 }
 
-.about-casper-terminal {
+.about-seraph-terminal {
   display: grid;
   align-content: center;
   gap: 10px;
@@ -7115,20 +7115,20 @@ html[data-theme="dark"] .about-lab-profile th {
   color: var(--anon-terminal-ink);
 }
 
-.about-casper-terminal span {
+.about-seraph-terminal span {
   color: var(--anon-green);
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: 13px;
 }
 
-.about-casper-terminal strong {
+.about-seraph-terminal strong {
   color: #f8fafc;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: clamp(28px, 5vw, 48px);
   line-height: 1;
 }
 
-.about-casper-terminal p {
+.about-seraph-terminal p {
   margin: 0 !important;
   color: #dbeafe !important;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -7136,48 +7136,48 @@ html[data-theme="dark"] .about-lab-profile th {
   line-height: 1.55 !important;
 }
 
-.about-casper-grid {
+.about-seraph-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
-.about-casper .about-casper-card,
-.about-casper-panel,
-.about-casper-philosophy {
+.about-seraph .about-seraph-card,
+.about-seraph-panel,
+.about-seraph-philosophy {
   min-width: 0;
 }
 
-.about-casper-card,
-.about-casper-panel,
-.about-casper-philosophy {
+.about-seraph-card,
+.about-seraph-panel,
+.about-seraph-philosophy {
   padding: 22px;
   background: rgba(255, 252, 244, 0.58);
   border: 1px solid var(--anon-line);
   border-radius: 12px;
 }
 
-.about-casper h2 {
+.about-seraph h2 {
   margin: 0 0 14px !important;
   color: var(--anon-ink) !important;
   font-size: clamp(24px, 3vw, 34px) !important;
   line-height: 1.16 !important;
 }
 
-.about-casper h2::before {
+.about-seraph h2::before {
   content: "// ";
   color: var(--anon-cyan);
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
-.about-casper ul {
+.about-seraph ul {
   display: grid;
   gap: 8px;
   margin: 0;
   padding-left: 22px;
 }
 
-.about-casper table {
+.about-seraph table {
   display: table;
   width: 100%;
   margin: 0;
@@ -7188,8 +7188,8 @@ html[data-theme="dark"] .about-lab-profile th {
   border-spacing: 0;
 }
 
-.about-casper th,
-.about-casper td {
+.about-seraph th,
+.about-seraph td {
   padding: 13px 14px;
   background: rgba(255, 252, 244, 0.46) !important;
   border: 0 !important;
@@ -7199,17 +7199,17 @@ html[data-theme="dark"] .about-lab-profile th {
   vertical-align: top;
 }
 
-.about-casper tr:last-child td {
+.about-seraph tr:last-child td {
   border-bottom: 0 !important;
 }
 
-.about-casper th {
+.about-seraph th {
   color: var(--anon-ink) !important;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: 13px;
 }
 
-.about-casper td:first-child {
+.about-seraph td:first-child {
   width: 28%;
   color: var(--anon-orange) !important;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -7217,7 +7217,7 @@ html[data-theme="dark"] .about-lab-profile th {
   font-weight: 800;
 }
 
-.about-casper blockquote {
+.about-seraph blockquote {
   margin: 0 0 14px !important;
   background: var(--anon-terminal) !important;
   border: 1px solid #263241 !important;
@@ -7225,70 +7225,70 @@ html[data-theme="dark"] .about-lab-profile th {
   border-radius: 10px !important;
 }
 
-.about-casper blockquote p {
+.about-seraph blockquote p {
   color: #f8fafc !important;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: clamp(18px, 2.4vw, 26px);
   font-weight: 800;
 }
 
-html[data-theme="dark"] .about-casper-hero,
-html[data-theme="dark"] .about-casper-card,
-html[data-theme="dark"] .about-casper-panel,
-html[data-theme="dark"] .about-casper-philosophy {
+html[data-theme="dark"] .about-seraph-hero,
+html[data-theme="dark"] .about-seraph-card,
+html[data-theme="dark"] .about-seraph-panel,
+html[data-theme="dark"] .about-seraph-philosophy {
   background: rgba(15, 23, 32, 0.7);
 }
 
-html[data-theme="dark"] .about-casper p,
-html[data-theme="dark"] .about-casper li,
-html[data-theme="dark"] .about-casper td {
+html[data-theme="dark"] .about-seraph p,
+html[data-theme="dark"] .about-seraph li,
+html[data-theme="dark"] .about-seraph td {
   color: #dbe4ee !important;
 }
 
 @media (max-width: 820px) {
-  .about-casper-hero,
-  .about-casper-grid {
+  .about-seraph-hero,
+  .about-seraph-grid {
     grid-template-columns: 1fr;
   }
 
-  .about-casper-hero {
+  .about-seraph-hero {
     padding: 20px;
   }
 }
 
 @media (max-width: 640px) {
-  .about-casper table,
-  .about-casper thead,
-  .about-casper tbody,
-  .about-casper tr,
-  .about-casper th,
-  .about-casper td {
+  .about-seraph table,
+  .about-seraph thead,
+  .about-seraph tbody,
+  .about-seraph tr,
+  .about-seraph th,
+  .about-seraph td {
     display: block;
     width: 100%;
   }
 
-  .about-casper thead {
+  .about-seraph thead {
     display: none;
   }
 
-  .about-casper tr {
+  .about-seraph tr {
     border-bottom: 1px solid var(--anon-line);
   }
 
-  .about-casper tr:last-child {
+  .about-seraph tr:last-child {
     border-bottom: 0;
   }
 
-  .about-casper td {
+  .about-seraph td {
     border-bottom: 0 !important;
   }
 
-  .about-casper td:first-child {
+  .about-seraph td:first-child {
     width: 100%;
     padding-bottom: 4px;
   }
 
-  .about-casper td + td {
+  .about-seraph td + td {
     padding-top: 4px;
   }
 }
@@ -8051,14 +8051,14 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 }
 
 /* Project Polaris preface: Why Seraph Exists. */
-.why-casper-exists {
+.why-seraph-exists {
   padding: clamp(76px, 12vw, 150px) clamp(18px, 5vw, 56px) !important;
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
 }
 
-.why-casper-inner {
+.why-seraph-inner {
   display: grid;
   gap: clamp(28px, 5vw, 48px);
   width: min(100%, 680px);
@@ -8066,12 +8066,12 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   animation: polaris-preface-fade 620ms ease-out both;
 }
 
-.why-casper-header {
+.why-seraph-header {
   display: grid;
   gap: 10px;
 }
 
-.why-casper-kicker {
+.why-seraph-kicker {
   margin: 0 !important;
   color: var(--anon-muted, var(--lab-muted)) !important;
   font-size: 14px !important;
@@ -8080,7 +8080,7 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   line-height: 1.4 !important;
 }
 
-.why-casper-header h2 {
+.why-seraph-header h2 {
   margin: 0 !important;
   color: var(--anon-ink, var(--lab-text)) !important;
   font-family: Georgia, "Times New Roman", "Noto Serif TC", "Noto Serif JP", serif !important;
@@ -8090,14 +8090,14 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   letter-spacing: 0 !important;
 }
 
-.why-casper-body {
+.why-seraph-body {
   display: grid;
   gap: 1.05em;
   max-width: 34rem;
   margin: 0 !important;
 }
 
-.why-casper-body p {
+.why-seraph-body p {
   margin: 0 !important;
   color: var(--anon-muted, var(--lab-muted)) !important;
   font-size: clamp(18px, 2.1vw, 22px) !important;
@@ -8105,7 +8105,7 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   line-height: 1.95 !important;
 }
 
-.why-casper-link {
+.why-seraph-link {
   justify-self: start;
   margin-top: 4px;
   color: var(--anon-ink, var(--lab-text)) !important;
@@ -8115,8 +8115,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
-.why-casper-link:hover,
-.why-casper-link:focus-visible {
+.why-seraph-link:hover,
+.why-seraph-link:focus-visible {
   color: var(--anon-cyan, var(--os-accent)) !important;
   border-color: var(--anon-cyan, var(--os-accent));
   transform: translateY(-1px);
@@ -8135,17 +8135,17 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .why-casper-inner {
+  .why-seraph-inner {
     animation: none;
   }
 
-  .why-casper-link {
+  .why-seraph-link {
     transition: none;
   }
 }
 
 @media (max-width: 760px) {
-  .why-casper-exists {
+  .why-seraph-exists {
     padding: 72px 18px 96px !important;
   }
 }
@@ -8784,8 +8784,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 /* Home V1 polish: research notebook rhythm, not a landing page. */
 .i18n-page-home > .site-space-guide,
 .i18n-page-dashboard > .site-space-guide,
-.i18n-page-home > .why-casper-exists,
-.i18n-page-dashboard > .why-casper-exists,
+.i18n-page-home > .why-seraph-exists,
+.i18n-page-dashboard > .why-seraph-exists,
 .i18n-page-home > .exploration-areas,
 .i18n-page-dashboard > .exploration-areas,
 .i18n-page-home > .selected-works,
@@ -8817,8 +8817,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 
 .i18n-page-home .site-space-guide-kicker,
 .i18n-page-dashboard .site-space-guide-kicker,
-.i18n-page-home .why-casper-kicker,
-.i18n-page-dashboard .why-casper-kicker,
+.i18n-page-home .why-seraph-kicker,
+.i18n-page-dashboard .why-seraph-kicker,
 .i18n-page-home .exploration-areas-kicker,
 .i18n-page-dashboard .exploration-areas-kicker,
 .i18n-page-home .selected-works-kicker,
@@ -8839,8 +8839,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 
 .i18n-page-home .site-space-guide .section-title,
 .i18n-page-dashboard .site-space-guide .section-title,
-.i18n-page-home .why-casper-header h2,
-.i18n-page-dashboard .why-casper-header h2,
+.i18n-page-home .why-seraph-header h2,
+.i18n-page-dashboard .why-seraph-header h2,
 .i18n-page-home .exploration-areas-header h2,
 .i18n-page-dashboard .exploration-areas-header h2,
 .i18n-page-home .selected-works-header h2,
@@ -8881,8 +8881,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 .i18n-page-dashboard .latest-field-notes-inner,
 .i18n-page-home > .site-space-guide,
 .i18n-page-dashboard > .site-space-guide,
-.i18n-page-home .why-casper-inner,
-.i18n-page-dashboard .why-casper-inner,
+.i18n-page-home .why-seraph-inner,
+.i18n-page-dashboard .why-seraph-inner,
 .i18n-page-home .exploration-areas-inner,
 .i18n-page-dashboard .exploration-areas-inner,
 .i18n-page-home .selected-works-inner,
@@ -8918,8 +8918,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 @media (max-width: 760px) {
   .i18n-page-home > .site-space-guide,
   .i18n-page-dashboard > .site-space-guide,
-  .i18n-page-home > .why-casper-exists,
-  .i18n-page-dashboard > .why-casper-exists,
+  .i18n-page-home > .why-seraph-exists,
+  .i18n-page-dashboard > .why-seraph-exists,
   .i18n-page-home > .exploration-areas,
   .i18n-page-dashboard > .exploration-areas,
   .i18n-page-home > .selected-works,
@@ -9005,8 +9005,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 /* Home V1 compact spacing: keep notebook rhythm with less vertical drift. */
 .i18n-page-home > .site-space-guide,
 .i18n-page-dashboard > .site-space-guide,
-.i18n-page-home > .why-casper-exists,
-.i18n-page-dashboard > .why-casper-exists,
+.i18n-page-home > .why-seraph-exists,
+.i18n-page-dashboard > .why-seraph-exists,
 .i18n-page-home > .exploration-areas,
 .i18n-page-dashboard > .exploration-areas,
 .i18n-page-home > .selected-works,
@@ -9030,18 +9030,18 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
   gap: clamp(28px, 4.2vw, 48px);
 }
 
-.i18n-page-home .why-casper-inner,
-.i18n-page-dashboard .why-casper-inner {
+.i18n-page-home .why-seraph-inner,
+.i18n-page-dashboard .why-seraph-inner {
   gap: clamp(24px, 4.2vw, 40px);
 }
 
-.i18n-page-home .why-casper-body,
-.i18n-page-dashboard .why-casper-body {
+.i18n-page-home .why-seraph-body,
+.i18n-page-dashboard .why-seraph-body {
   gap: 0.82em;
 }
 
-.i18n-page-home .why-casper-body p,
-.i18n-page-dashboard .why-casper-body p {
+.i18n-page-home .why-seraph-body p,
+.i18n-page-dashboard .why-seraph-body p {
   line-height: 1.86 !important;
 }
 
@@ -9084,8 +9084,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
 @media (max-width: 760px) {
   .i18n-page-home > .site-space-guide,
   .i18n-page-dashboard > .site-space-guide,
-  .i18n-page-home > .why-casper-exists,
-  .i18n-page-dashboard > .why-casper-exists,
+  .i18n-page-home > .why-seraph-exists,
+  .i18n-page-dashboard > .why-seraph-exists,
   .i18n-page-home > .exploration-areas,
   .i18n-page-dashboard > .exploration-areas,
   .i18n-page-home > .selected-works,
@@ -9098,8 +9098,8 @@ html[data-theme="dark"] .i18n-page-dashboard .home-primary-actions .os-button:fo
     padding-bottom: 74px !important;
   }
 
-  .i18n-page-home .why-casper-body,
-  .i18n-page-dashboard .why-casper-body {
+  .i18n-page-home .why-seraph-body,
+  .i18n-page-dashboard .why-seraph-body {
     gap: 0.78em;
   }
 

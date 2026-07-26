@@ -8,8 +8,8 @@ language: zh-TW
 timezone: Asia/Taipei
 
 # URL
-url: https://casper3790.github.io
-root: /casper.tw/
+url: https://seraphforge.github.io
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -69,5 +69,5 @@ theme: landscape
 # Deployment
 deploy:
   type: git
-  repo: https://github.com/casper3790/casper.tw.git
+  repo: https://github.com/seraphforge/seraphforge.github.io.git
   branch: gh-pages

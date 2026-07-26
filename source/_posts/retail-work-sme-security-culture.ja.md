@@ -1,4 +1,4 @@
----
+﻿---
 title: 小売業のアルバイトで見えた、SME が見落としやすい Cybersecurity
 date: 2026-07-18
 site_lang: ja
@@ -18,7 +18,7 @@ description: 小売業の現場で働いた経験から、SME が新人教育、
 seo_title: 小売業のアルバイトで見えた、SME が見落としやすい Cybersecurity
 seo_description: 小売業の現場経験を起点に、SME Security、アカウント管理、パスワード、通報フロー、端末リスク、教育訓練、Responsible Security Culture について考察する。
 og_description: Cybersecurity はテック企業、医療機関、金融機関だけのものではない。小売業の現場で見えたのは、CVE よりも日々の習慣やプロセスに潜むリスクだった。
-canonical_url: https://casper.tw/ja/2026/07/18/retail-work-sme-security-culture/
+canonical_url: https://seraphforge.github.io/ja/2026/07/18/retail-work-sme-security-culture/
 reading_time: 約 8 分
 hero_image_suggestion: 匿名化された小売業の作業風景。レジ周辺の機器、在庫管理画面、従業員証、ぼかした人物を含めるが、ロゴ、店舗名、ブランド表示、企業を特定できる情報は一切入れない。
 hero_banner_colors:

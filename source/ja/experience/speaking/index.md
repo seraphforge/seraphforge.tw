@@ -19,7 +19,7 @@ technologies:
   - Linux
   - Raspberry Pi
   - Python
-cover: /images/casper-og.png
+cover: /images/seraph-og.png
 related_categories:
   - 経歴
 gallery: []

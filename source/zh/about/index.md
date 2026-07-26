@@ -1,6 +1,6 @@
----
+﻿---
 title: 關於
-description: "關於 Seraph：一篇寫給公開研究筆記的作者介紹。曾使用 Casper 作為公開名稱。"
+description: "關於 Seraph：一篇寫給公開研究筆記的作者介紹。"
 comments: true
 ---
 
@@ -8,7 +8,7 @@ comments: true
   <p class="about-v1-kicker">關於</p>
   <h1 id="about-v1-title">About Seraph</h1>
   <p>每一段旅程，都有一個開始的地方。</p>
-  <p>曾使用 Casper 作為公開名稱。</p>
+  <p></p>
 </section>
 
 <section class="about-v1-chapter">

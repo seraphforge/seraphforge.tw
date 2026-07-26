@@ -1,4 +1,4 @@
----
+﻿---
 title: "誰もが同じ道を歩かなければならないわけではない"
 date: 2026-04-18
 updated: 2026-05-15
@@ -12,15 +12,15 @@ tags:
   - Cybersecurity
   - High School Life
   - Choices
-banner: /images/casper.png
-cover: /images/casper.png
+banner: /images/seraph.png
+cover: /images/seraph.png
 slug: not-everyone-has-to-walk-the-same-road
 permalink: ja/2026/04/18/not-everyone-has-to-walk-the-same-road/
 description: "高校生活の中で、Cybersecurity、プロジェクト、競技、進学の間に自分の方向を見つけていった個人的な成長記録。"
 seo_title: "誰もが同じ道を歩かなければならないわけではない"
 seo_description: "高二、高三、進学選択の時期に、Cybersecurity の研習、競技、Web サイト、プロジェクトを通じて標準答案とは違う道を歩いた記録。"
 og_description: "誰もが同じ道を歩かなければならないわけではない。楽だからではなく、その道が自分をもう一度生き返らせてくれるから選ぶ道もある。"
-canonical_url: https://casper.tw/ja/2026/04/18/not-everyone-has-to-walk-the-same-road/
+canonical_url: https://seraphforge.github.io/ja/2026/04/18/not-everyone-has-to-walk-the-same-road/
 toc: true
 ---
 
