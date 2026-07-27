@@ -1,0 +1,181 @@
+/* Home page sections for a quiet technical journal. */
+.home-positioning-hero {
+  padding: clamp(2.2rem, 7vw, 5.5rem) 0 clamp(1.5rem, 4vw, 3rem);
+  border-bottom: var(--seraph-line);
+}
+
+.home-positioning-copy {
+  max-width: 790px;
+}
+
+.home-positioning-copy h1 {
+  margin-bottom: 0.35rem;
+  font-size: clamp(3rem, 9vw, 6.25rem);
+  line-height: 0.98;
+}
+
+.home-positioning-subtitle {
+  color: var(--seraph-accent);
+  font-family: var(--seraph-font-mono);
+  font-size: 0.9rem;
+}
+
+.home-positioning-summary {
+  margin-top: 1.35rem;
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  line-height: 1.8;
+}
+
+.home-primary-actions {
+  margin-top: 1.8rem;
+}
+
+.site-space-guide,
+.why-seraph-exists,
+.exploration-areas,
+.selected-works,
+.latest-field-notes,
+.currently-exploring,
+.home-epilogue {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.site-space-guide-intro,
+.why-seraph-header,
+.exploration-areas-header,
+.selected-works-header,
+.latest-field-notes-header,
+.currently-exploring-header,
+.home-epilogue-header {
+  max-width: 720px;
+}
+
+.site-space-guide-kicker,
+.why-seraph-kicker,
+.exploration-areas-kicker,
+.selected-works-kicker,
+.latest-field-notes-kicker,
+.currently-exploring-kicker,
+.home-epilogue-kicker,
+.os-section-kicker,
+.field-notes-index-kicker,
+.post-kicker,
+.page-kicker {
+  margin-bottom: 0.7rem;
+  color: var(--seraph-muted-2);
+  font-family: var(--seraph-font-mono);
+  font-size: 0.76rem;
+}
+
+.site-space-guide-list,
+.selected-works-list,
+.latest-field-notes-list,
+.currently-exploring-list {
+  display: grid;
+  gap: 0;
+  border-top: var(--seraph-line);
+}
+
+.site-space-guide-row,
+.selected-work-item,
+.latest-field-note-item,
+.currently-exploring-item {
+  padding: 1.15rem 0;
+  border-bottom: var(--seraph-line);
+}
+
+.site-space-guide-row {
+  display: grid;
+  grid-template-columns: 52px 160px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  color: var(--seraph-text);
+  text-decoration: none;
+}
+
+.site-space-guide-row strong {
+  color: var(--seraph-text-strong);
+  font-family: var(--seraph-font-serif);
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+
+.site-space-guide-number,
+.site-space-guide-room,
+.latest-field-note-item time,
+.exploration-area-item span {
+  color: var(--seraph-muted-2);
+  font-family: var(--seraph-font-mono);
+  font-size: 0.78rem;
+}
+
+.site-space-guide-desc {
+  grid-column: 3;
+  max-width: 68ch;
+  color: var(--seraph-muted);
+}
+
+.why-seraph-inner,
+.exploration-areas-inner,
+.selected-works-inner,
+.latest-field-notes-inner,
+.currently-exploring-inner,
+.home-epilogue-inner {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.why-seraph-body,
+.home-epilogue-body {
+  max-width: 74ch;
+  color: var(--seraph-text);
+}
+
+.why-seraph-link,
+.latest-field-notes-link,
+.selected-work-item a {
+  width: fit-content;
+  color: var(--seraph-link);
+  font-family: var(--seraph-font-mono);
+  font-size: 0.82rem;
+}
+
+.exploration-areas-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.exploration-area-item {
+  padding: 1.2rem;
+  background: var(--seraph-surface);
+  border: var(--seraph-line);
+  border-radius: var(--seraph-radius);
+}
+
+.exploration-area-item h3,
+.selected-work-item h3,
+.currently-exploring-item h3,
+.latest-field-note-item h3 {
+  margin-top: 0.45rem;
+  font-size: 1.2rem;
+}
+
+.exploration-area-item p,
+.selected-work-item p,
+.currently-exploring-item p,
+.latest-field-note-item p {
+  max-width: 72ch;
+  margin-top: 0.55rem;
+  color: var(--seraph-muted);
+}
+
+.latest-field-note-item h3 a {
+  text-decoration: none;
+}
+
+.home-epilogue-closing {
+  color: var(--seraph-accent);
+  font-family: var(--seraph-font-mono);
+}

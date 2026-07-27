@@ -4,11 +4,10 @@
   const normalizeHtmlLang = function(value) {
     const normalized = String(value || '').toLowerCase();
     if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh-Hant';
-    if (normalized === 'ja' || normalized === 'jp') return 'ja';
     if (normalized === 'en') return 'en';
     return '';
   };
-  const explicitHtmlLang = htmlParts[0] === 'zh' ? 'zh-Hant' : (htmlParts[0] === 'ja' ? 'ja' : (htmlParts[0] === 'en' ? 'en' : ''));
+  const explicitHtmlLang = htmlParts[0] === 'zh' ? 'zh-Hant' : (htmlParts[0] === 'en' ? 'en' : '');
   const htmlLang = explicitHtmlLang || normalizeHtmlLang(page.site_lang) || 'en';
 %>
 <!DOCTYPE html>

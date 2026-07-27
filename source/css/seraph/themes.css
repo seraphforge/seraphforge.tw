@@ -1,0 +1,24 @@
+/* Theme variable overrides for light mode. */
+html[data-theme="light"] {
+  --seraph-bg: #f5f3ee;
+  --seraph-bg-rgb: 245, 243, 238;
+  --seraph-bg-soft: #fbfaf7;
+  --seraph-surface: #ffffff;
+  --seraph-surface-2: #f6f8fa;
+  --seraph-surface-muted: #edf1f5;
+  --seraph-border: #d8e0e8;
+  --seraph-border-strong: #b8c4d0;
+  --seraph-text: #26313f;
+  --seraph-text-strong: #141b25;
+  --seraph-muted: #607083;
+  --seraph-muted-2: #7c8999;
+  --seraph-accent: #547b91;
+  --seraph-accent-2: #736a9c;
+  --seraph-link: #426e86;
+  --seraph-focus: rgba(84, 123, 145, 0.34);
+  --seraph-code-bg: #eef3f7;
+  --seraph-code-inline: rgba(84, 123, 145, 0.11);
+  --seraph-code-border: rgba(84, 123, 145, 0.2);
+  --seraph-selection-bg: rgba(84, 123, 145, 0.2);
+  --seraph-selection-text: #111923;
+}

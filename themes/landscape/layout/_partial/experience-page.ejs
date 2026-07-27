@@ -82,9 +82,9 @@
     const tagsHtml = renderTags(item.tags);
 
     return '<article class="' + classes.join(' ') + '">' +
-      '<div class="experience-card-year">' + (item.year || '') + '</div>' +
+      '<div class="experience-card-year seraph-experience-item__year">' + (item.year || '') + '</div>' +
       '<div class="experience-card-body">' +
-        '<h3>' + itemTitle + '</h3>' +
+        '<h3 class="seraph-experience-item__title">' + itemTitle + '</h3>' +
         (primaryMeta ? '<p class="experience-card-line">' + primaryMeta + '</p>' : '') +
         (itemDescription ? '<p class="experience-card-subline">' + itemDescription + '</p>' : '') +
         (secondaryMeta ? '<p class="experience-card-subline">' + secondaryMeta + '</p>' : '') +
@@ -94,11 +94,11 @@
   };
 %>
 
-<article class="experience-page experience-page-<%= expLang %>" lang="<%= expLang === 'zh' ? 'zh-Hant' : expLang %>">
-  <section class="experience-hero" aria-labelledby="experience-page-title">
-    <p class="experience-kicker"><%= expCopy.eyebrow %></p>
-    <h1 id="experience-page-title"><%= expCopy.title %></h1>
-    <p class="experience-subtitle"><%= expCopy.subtitle %></p>
+<article class="experience-page experience-page-<%= expLang %> seraph-page seraph-page--experience" lang="<%= expLang === 'zh' ? 'zh-Hant' : expLang %>">
+  <section class="experience-hero seraph-page__header" aria-labelledby="experience-page-title">
+    <p class="experience-kicker seraph-page__eyebrow"><%= expCopy.eyebrow %></p>
+    <h1 id="experience-page-title" class="seraph-page__title"><%= expCopy.title %></h1>
+    <p class="experience-subtitle seraph-page__intro"><%= expCopy.subtitle %></p>
 
     <div class="experience-stats-summary" aria-label="<%= expCopy.statsLabel %>">
       <%- renderStatsSummary() %>

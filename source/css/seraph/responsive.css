@@ -1,0 +1,180 @@
+/* Responsive behavior for tablet and mobile viewports. */
+@media (max-width: 980px) {
+  :root {
+    --seraph-pad-x: 20px;
+  }
+
+  .main-container,
+  .site-footer {
+    width: min(100% - 40px, 760px);
+  }
+
+  .brand-row {
+    align-items: flex-start;
+  }
+
+  .site-navigation,
+  .site-header__actions {
+    display: none;
+  }
+
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: min(100% - 40px, 760px);
+  }
+
+  .mobile-menu-button {
+    display: flex;
+  }
+
+  .mobile-nav:not([hidden]) {
+    display: block;
+  }
+
+  .featured-project-grid,
+  .case-study-list,
+  .experience-grid,
+  .profile-panel-grid,
+  .exploration-areas-list,
+  .terminal-stats-grid,
+  .tags-list-grid,
+  .engineering-projects-summary-grid,
+  .engineering-projects-skill-grid,
+  .engineering-projects-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-space-guide-row,
+  .writing-all-card,
+  .writing-item,
+  .field-notes-index-item,
+  .timeline-card,
+  .i18n-page-about .featured-project-card,
+  .project-index-item,
+  .experience-year-group,
+  .experience-card {
+    grid-template-columns: 1fr;
+  }
+
+  .site-space-guide-desc {
+    grid-column: auto;
+  }
+
+  .experience-year {
+    position: static;
+  }
+
+  .experience-card-aside {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+    background-size: 52px 52px;
+  }
+
+  .site-header {
+    position: sticky;
+    padding-top: 0.85rem;
+  }
+
+  .site-header__inner,
+  .mobile-nav {
+    width: calc(100% - 36px);
+  }
+
+  .main-container,
+  .site-footer {
+    width: calc(100% - 36px);
+  }
+
+  .site-brand__avatar {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-menu-button {
+    min-height: 38px;
+  }
+
+  .main-container {
+    padding: 2.4rem 0;
+  }
+
+  .home-page {
+    gap: 3rem;
+  }
+
+  .project-page-hero h1,
+  .field-notes-index-header h1,
+  .post-title {
+    font-size: clamp(2.05rem, 11vw, 3rem);
+  }
+
+  .home-positioning-copy h1 {
+    font-size: clamp(3rem, 18vw, 4.4rem);
+  }
+
+  .writing-all-card,
+  .writing-item,
+  .field-notes-index-item {
+    gap: 0.55rem;
+  }
+
+  .seraph-page__header {
+    margin-bottom: 2.2rem;
+  }
+
+  .seraph-page__title {
+    font-size: clamp(2.05rem, 11vw, 3rem);
+  }
+
+  .project-index-item,
+  .experience-card,
+  .experience-grid .experience-card {
+    padding: 1.25rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: var(--seraph-line);
+    border-radius: 0;
+  }
+
+  .project-index-title {
+    font-size: clamp(1.2rem, 7vw, 1.45rem);
+  }
+
+  .project-index-description {
+    font-size: 0.98rem;
+  }
+
+  .project-index-tech li {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .experience-section {
+    gap: 1rem;
+  }
+
+  .experience-section + .experience-section {
+    margin-top: 1.8rem;
+  }
+
+  .writing-all-body h3,
+  .writing-title > span {
+    font-size: 1.28rem;
+  }
+
+  .post-body {
+    font-size: 16.8px;
+    line-height: 1.82;
+  }
+
+  .post-body pre {
+    margin-inline: -0.25rem;
+  }
+}

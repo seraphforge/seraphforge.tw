@@ -5,7 +5,7 @@
     const tagLang = tagParts[0] === 'zh' ? 'zh' : (tagParts[0] === 'ja' ? 'ja' : 'en');
     const tagPostsRaw = page.posts && page.posts.toArray ? page.posts.toArray() : (page.posts ? page.posts.data || [] : []);
     const tagPosts = tagPostsRaw.filter(function(post) {
-      return detect_post_language(post) === tagLang;
+      return detect_post_language(post) === tagLang && seraph_should_show_post(post, 'tag');
     });
   %>
   <h1 class="section-title">Tag: <%= page.tag.name %></h1>

@@ -1,0 +1,85 @@
+/* Page shell, widths, and shared section rhythm. */
+.site-wrapper {
+  min-height: 100vh;
+}
+
+.main-container {
+  width: min(100% - 48px, var(--seraph-page-width));
+  margin: 0 auto;
+  padding: var(--seraph-space-6) 0;
+}
+
+.home-page,
+.archive-page,
+.page-content,
+.post-content {
+  margin-inline: auto;
+}
+
+.home-page {
+  display: grid;
+  gap: clamp(3rem, 7vw, 6.5rem);
+}
+
+.archive-page,
+.i18n-page-writing,
+.i18n-page-projects,
+.i18n-page-experience,
+.i18n-page-labs,
+.i18n-page-timeline {
+  width: min(100%, var(--seraph-list-width));
+}
+
+.post-content {
+  width: min(100%, var(--seraph-reading-width));
+}
+
+.page-content,
+.i18n-page-about {
+  width: min(100%, var(--seraph-about-width));
+}
+
+.project-page-hero,
+.field-notes-index-header,
+.post-header,
+.page-header {
+  margin-bottom: var(--seraph-space-5);
+}
+
+.project-page-hero {
+  padding-bottom: var(--seraph-space-4);
+  border-bottom: var(--seraph-line);
+}
+
+.project-page-hero h1,
+.field-notes-index-header h1,
+.post-title,
+.page-header .section-title {
+  max-width: 860px;
+  margin-bottom: 1rem;
+  font-size: clamp(2.4rem, 5.4vw, 4.2rem);
+  line-height: 1.08;
+}
+
+.project-page-hero p,
+.field-notes-index-header p,
+.page-body > p,
+.home-positioning-summary {
+  max-width: 72ch;
+  color: var(--seraph-muted);
+}
+
+.section-title {
+  margin-bottom: 1.1rem;
+  font-size: clamp(1.7rem, 3.3vw, 2.65rem);
+}
+
+.site-footer {
+  width: min(100% - 48px, var(--seraph-page-width));
+  margin: 0 auto;
+  padding: 2.5rem 0 3rem;
+  color: var(--seraph-muted-2);
+  border-top: var(--seraph-line);
+  font-family: var(--seraph-font-mono);
+  font-size: 0.78rem;
+}

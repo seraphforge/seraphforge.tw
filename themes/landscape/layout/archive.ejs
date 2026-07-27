@@ -11,7 +11,7 @@
     return Number.isNaN(parsed) ? 0 : parsed;
   };
   const postsArray = rawPostsArray.filter(function(post) {
-    return detect_post_language(post) === archiveLang;
+    return detect_post_language(post) === archiveLang && seraph_should_show_post(post, 'archive');
   }).sort(function(a, b) {
     return postTime(b) - postTime(a);
   });

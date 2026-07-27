@@ -1,0 +1,64 @@
+/* Global typography and document behavior. */
+html {
+  min-width: 0;
+  scroll-behavior: smooth;
+  background: var(--seraph-bg);
+}
+
+body {
+  min-width: 0;
+  color: var(--seraph-text);
+  background:
+    linear-gradient(rgba(127, 169, 189, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 169, 189, 0.022) 1px, transparent 1px),
+    var(--seraph-bg);
+  background-size: 72px 72px;
+  font-family: var(--seraph-font-sans);
+  font-size: 17px;
+  line-height: 1.75;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  color: var(--seraph-selection-text);
+  background: var(--seraph-selection-bg);
+}
+
+a {
+  color: var(--seraph-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease;
+}
+
+a:hover {
+  color: var(--seraph-text-strong);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--seraph-text-strong);
+  font-family: var(--seraph-font-serif);
+  font-weight: 650;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+p + p {
+  margin-top: 1.05em;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--seraph-font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--seraph-focus);
+  outline-offset: 3px;
+}

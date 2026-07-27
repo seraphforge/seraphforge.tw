@@ -6,8 +6,8 @@ author: Seraph
 language: en
 timezone: Asia/Taipei
 
-url: https://seraphforge.github.io
-root: /
+url: https://seraphforge.github.io/seraphforge.tw
+root: /seraphforge.tw/
 
 theme: landscape
 

@@ -8,7 +8,7 @@
       site.tags.each(function(tag) {
         const posts = tag.posts && tag.posts.toArray ? tag.posts.toArray() : (tag.posts ? tag.posts.data || [] : []);
         const count = posts.filter(function(post) {
-          return detect_post_language(post) === tagsLang;
+          return detect_post_language(post) === tagsLang && seraph_should_show_post(post, 'tag');
         }).length;
         if (count) visibleTags.push({ name: tag.name, path: tag.path, length: count });
       });

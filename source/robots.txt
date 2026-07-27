@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seraphforge.github.io/sitemap.xml
+Sitemap: https://seraphforge.github.io/seraphforge.tw/sitemap.xml
