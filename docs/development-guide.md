@@ -258,6 +258,17 @@ source/css/lab.css
 5. 避免以新的全域 `!important` 疊加未理解的舊規則。
 6. 不要在一般內容變更中順便大量整理 CSS。
 
+#### CSS extraction 規則
+
+1. 位於 `custom.css` 檔尾的 override 區段，不可直接改用 `@import`。
+2. 抽出的 stylesheet 必須維持原始 cascade 相對順序。
+3. 若原區段位於 `custom.css` 後方，應在 `themes/landscape/layout/_partial/head.ejs` 中於 `custom.css` 後載入。
+4. 不得修改 selector、specificity、屬性值或規則順序。
+5. 每次只抽出一個小區段。
+6. 必須執行 EN、ZH、JA × Desktop、Mobile × Light、Dark 視覺驗證。
+7. 有任何視覺差異就完整回退該次 extraction。
+8. 每次成功 extraction 必須建立獨立 commit。
+
 ## 5. 三語同步檢查清單
 
 ### 內容

@@ -155,7 +155,7 @@
 | 54 | `Experience landing page` 11432–11764 | `.experience-page`、`.experience-hero`、cards、stats、sections | 三語 Experience landing | 6 | 可能被 #55–#56 覆寫 | 否 | 中 | 可拆候選，但需連同後置規則盤點 |
 | 55 | `Experience final scope` 11765–11831 | `.experience-page article`、cards、stats hover | Experience landing | 21 | 是，防止全域 article/card | 明確 | 高 | 原位保留 |
 | 56 | `Minimal portfolio header and Experience layout` 11832–12169 | `.site-header .site-nav:not(...)`、mobile links、`.experience-page` | Header navigation + Experience | 164 | 是，跨兩種責任 | 否 | 高 | 先分 inventory，不可整段搬移 |
-| 57 | `Engineering Projects detail page` 12170–12504 | `.engineering-projects-page`、breadcrumbs、header、intro、section、project cards | Experience Projects detail collection | 21 | 位於檔尾，可能覆寫全域 article/card | 否 | 中 | 第一批拆分候選，但先確認完整 selector scope |
+| 57 | `Engineering Projects detail page` 歷史行號 12170–12504（已不在 `custom.css`） | `.engineering-projects-page`、breadcrumbs、header、intro、section、project cards | Experience Projects detail collection | 21 | 抽出前位於檔尾，可能覆寫全域 article/card | 否 | 已抽出 | `source/css/projects-engineering.css`；由 `head.ejs` 在 `custom.css` 後載入 |
 
 ---
 
@@ -413,7 +413,7 @@ Theme toggle and polished controls
 
 本節只提出候選，不代表已授權修改 CSS。
 
-## 候選 A：Engineering Projects detail
+## 候選 A：Engineering Projects detail（已抽出）
 
 - **Selector／區段**
   - `Engineering Projects detail page`
@@ -422,7 +422,10 @@ Theme toggle and polished controls
   - `.engineering-projects-header`
   - 其內部 section、card 與 responsive selector
 - **行號**
-  - 約 12170–12504。
+  - 原始歷史行號約 12170–12504；此區段已不在 `custom.css`。
+- **目前位置與載入方式**
+  - 新檔：`source/css/projects-engineering.css`。
+  - `themes/landscape/layout/_partial/head.ejs` 在 `custom.css` 後載入該 stylesheet。
 - **頁面影響**
   - `themes/landscape/layout/_partial/experience-detail.ejs` 中使用 `.engineering-projects-page` 的 Experience Projects collection。
   - 三語 Experience Projects 頁面。
@@ -431,15 +434,14 @@ Theme toggle and polished controls
   - Root class `.engineering-projects-page` 可在 EJS 找到實際使用點。
   - 多數 selector 具有明確 page scope。
   - 區段只有 1 個 media query、21 次 `!important`，規模相對可控。
-- **待確認**
-  - 區段是否混入未以 `.engineering-projects-page` 開頭的全域 selector。
-  - `experience-detail.ejs` 哪些 slug 會進入此 root class。
-  - 新 stylesheet 的載入位置能否保持在 `custom.css` 之後。
-- **後續驗證方式**
-  - 拆分前後比較 `/experience/projects/`、`/zh/experience/projects/`、`/ja/experience/projects/`。
-  - 比較完整 HTML、computed style 與 screenshots。
-  - 檢查 breadcrumbs、cards、related links、dark/light、mobile。
-  - 另檢查一般 Experience detail，確保沒有受到影響。
+- **不可使用 `@import` 的原因**
+  - `@import` 必須位於 style rules 前方，會把原本在 `custom.css` 檔尾生效的規則移到較早的 cascade 位置。
+  - 第一次嘗試因此造成 12 組視覺基準全部不一致；改由 `head.ejs` 在 `custom.css` 後載入後，才保留原始 cascade 語意。
+- **完成驗證**
+  - EN、ZH、JA × Desktop、Mobile × Light、Dark，共 12/12 組 screenshot hashes identical。
+  - Difference ratio：`0%`。
+  - 無 404、browser console error、CSS load failure 或 broken images。
+  - Commit：`1cd20247413172131e928e61d98c18daeb37e4c6`。
 - **回退方式**
   - 一個 commit 只搬移此區段並新增 stylesheet link。
   - 發生任何差異時 revert 該 commit，恢復原始檔尾區段與載入設定。
@@ -514,7 +516,7 @@ Theme toggle and polished controls
 
 ### 第一順位
 
-Phase 2B 最適合先實作的是 **候選 A：Engineering Projects detail（約 12170–12504）**。
+Phase 2B 第一個實作 **候選 A：Engineering Projects detail（歷史行號約 12170–12504）** 已完成。
 
 它不是零風險，但相較其他區段：
 
@@ -524,7 +526,7 @@ Phase 2B 最適合先實作的是 **候選 A：Engineering Projects detail（約
 - 頁面集合有限。
 - 可用單一 commit 搬移與回退。
 
-真正執行前仍必須先逐條確認區段內沒有 unscoped selector，並建立三語、light/dark、desktop/mobile baseline。
+此案例已確認獨立 stylesheet 必須保持原始 cascade 相對順序，並完成三語、light/dark、desktop/mobile baseline 驗證。
 
 ---
 

@@ -281,7 +281,7 @@ Experience 後方緊鄰 `Minimal portfolio header...` 區塊，包含不只 Expe
 - **回退方式**
   - Revert 單一文件 commit。
 
-### Step CSS-2：抽出 Project detail 尾端區塊
+### Step CSS-2：抽出 Project detail 尾端區塊（已完成）
 
 - **候選檔名**
   - `source/css/project-detail.css`
@@ -304,6 +304,10 @@ Experience 後方緊鄰 `Minimal portfolio header...` 區塊，包含不只 Expe
   - 比較產出 CSS 順序。
 - **回退方式**
   - Revert 該單一 commit，恢復原區塊與 stylesheet link。
+- **完成結果**
+  - 實際檔名為 `source/css/projects-engineering.css`。
+  - 已由 `themes/landscape/layout/_partial/head.ejs` 在 `custom.css` 後載入。
+  - 完成 commit：`1cd20247413172131e928e61d98c18daeb37e4c6`。
 
 ### Step CSS-3：抽出 Field Notes post 與 archive
 
@@ -1080,11 +1084,27 @@ test: add visual regression baseline
 
 ## Phase 2B：CSS 小範圍拆分
 
+### 已完成案例：Engineering Projects stylesheet extraction
+
+Engineering Projects detail page 的 stylesheet extraction 已完成。原始區段位於 `source/css/custom.css` 檔尾；抽出後的樣式位於 `source/css/projects-engineering.css`。
+
+第一次嘗試以 `@import` 載入新檔時失敗。CSS 規範要求 `@import` 位於 style rules 前方，因此原本位於 cascade 最後的 Engineering Projects 規則被移到較早的載入位置，改變了 cascade 語意並造成 12 組視覺基準全部不一致。
+
+正確做法是在 `themes/landscape/layout/_partial/head.ejs` 中，緊接 `custom.css` 之後載入獨立 stylesheet，以保存原區段相對於 `custom.css` 其餘規則的順序。完成後的驗證結果如下：
+
+- EN、ZH、JA × Desktop、Mobile × Light、Dark，共 12/12 組 screenshot hashes identical。
+- Difference ratio：`0%`。
+- 無 404。
+- 無 browser console error。
+- 無 CSS load failure。
+- 無 broken images。
+- 對應 commit：`1cd20247413172131e928e61d98c18daeb37e4c6`。
+
 ### 具體修改內容
 
 建議順序：
 
-1. Project detail 尾端 scoped CSS。
+1. [x] Project detail 尾端 scoped CSS。
 2. Field Notes。
 3. Projects index。
 4. Labs index。
