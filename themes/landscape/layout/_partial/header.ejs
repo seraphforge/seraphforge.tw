@@ -49,6 +49,7 @@
         home: '/',
         about: '/about/',
         projects: '/experience/projects/',
+        lab: '/labs/',
         experience: '/en/experience/',
         articles: '/archives/',
         contact: '#contact'
@@ -57,6 +58,7 @@
         home: '/zh/',
         about: '/zh/about/',
         projects: '/zh/experience/projects/',
+        lab: '/zh/labs/',
         experience: '/experience/',
         articles: '/zh/archives/',
         contact: '#contact'
@@ -65,6 +67,7 @@
         home: '/ja/',
         about: '/ja/about/',
         projects: '/ja/experience/projects/',
+        lab: '/ja/labs/',
         experience: '/ja/experience/',
         articles: '/ja/archives/',
         contact: '#contact'
@@ -170,12 +173,12 @@
     };
     const h = navLabels[currentLang] || navLabels.zh;
     const navItems = [
-      { key: 'home', label: h.home },
-      { key: 'about', label: h.about },
-      { key: 'projects', label: h.projects },
-      { key: 'experience', label: h.experience },
-      { key: 'articles', label: h.articles },
-      { key: 'contact', label: h.contact }
+      { key: 'articles', label: 'Journal' },
+      { key: 'projects', label: 'Projects' },
+      { key: 'lab', label: 'Labs' },
+      { key: 'articles', label: 'Notes' },
+      { key: 'experience', label: 'Experience' },
+      { key: 'about', label: 'About' }
     ];
     const renderNavLink = function(item) {
       const active = currentSection === item.key ? ' aria-current="page"' : '';
@@ -184,16 +187,10 @@
     };
   %>
   <div class="brand-row">
-    <a class="brand-avatar" href="<%= url_for(navPath('home')) %>" aria-label="<%= h.home %>">
-      <img src="<%= url_for('/images/seraph.png') %>" alt="Seraph avatar">
-    </a>
-
     <div class="brand-content">
       <div class="site-title">
-        <a href="<%= url_for(navPath('home')) %>"><span>Seraph</span></a>
+        <a href="<%= url_for(navPath('home')) %>"><b aria-hidden="true">S/</b><span>Seraph</span><small>Research Archive</small></a>
       </div>
-
-      <div class="site-subtitle">Find Your Polaris.</div>
 
       <nav class="site-nav" aria-label="Main navigation">
         <% navItems.forEach(function(item) { %><%- renderNavLink(item) %><% }); %>

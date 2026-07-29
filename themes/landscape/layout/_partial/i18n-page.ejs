@@ -483,7 +483,7 @@
       const postLang = detect_post_language(post);
       if (postLang !== lang) return;
       allPosts.push(post);
-      if (recentPosts.length < 3) recentPosts.push(post);
+      if (recentPosts.length < 4) recentPosts.push(post);
     });
   }
   const tagMap = {};
@@ -836,6 +836,183 @@
         <a class="os-button os-button-secondary" href="<%= localHref('writing') %>"><%= homeV1Copy.exploreNotes %></a>
       </div>
     </div>
+  </section>
+<% } %>
+
+<%
+  const redesignCopy = {
+    en: {
+      eyebrow: 'SECURITY · SYSTEMS · MEDICAL TECHNOLOGY',
+      statement: 'Building secure systems across cybersecurity, infrastructure, and medical technology.',
+      supplement: '記錄資安研究、系統實驗、醫療科技與工程實作。',
+      projects: 'Explore Projects',
+      journal: 'Read the Journal',
+      status: ['Based in Taiwan', 'Focused on Security Engineering', 'Currently exploring HPC and Medical Security'],
+      selected: 'Selected Work',
+      selectedIntro: 'Systems, research, and infrastructure selected from the working archive.',
+      viewProject: 'View project',
+      recent: 'Recent Journal',
+      recentIntro: 'Notes from current research, field work, and systems practice.',
+      viewArticle: 'View article',
+      allJournal: 'All journal entries',
+      research: 'Research Areas',
+      researchIntro: 'Five connected fields shaping the work.',
+      lab: 'Lab Status',
+      labIntro: 'A live index of systems and experiments currently on the bench.',
+      about: 'About Seraph',
+      aboutBody: 'I build and document practical systems at the intersection of cybersecurity, infrastructure, and healthcare technology.',
+      aboutLink: 'More about Seraph',
+      language: 'English',
+      online: 'Online',
+      active: 'Active Development',
+      running: 'Running',
+      progress: 'In Progress'
+    },
+    zh: {
+      eyebrow: 'SECURITY · SYSTEMS · MEDICAL TECHNOLOGY',
+      statement: 'Building secure systems across cybersecurity, infrastructure, and medical technology.',
+      supplement: '記錄資安研究、系統實驗、醫療科技與工程實作。',
+      projects: '探索專案',
+      journal: '閱讀 Journal',
+      status: ['位於台灣', '專注 Security Engineering', '目前探索 HPC 與 Medical Security'],
+      selected: '精選作品',
+      selectedIntro: '從持續進行的研究、系統與基礎設施工作中選出的案例。',
+      viewProject: '查看專案',
+      recent: '近期 Journal',
+      recentIntro: '來自研究、實作現場與系統工程的最新筆記。',
+      viewArticle: '閱讀文章',
+      allJournal: '查看所有文章',
+      research: '研究領域',
+      researchIntro: '五個彼此連結、持續塑造目前工作的領域。',
+      lab: 'Lab 狀態',
+      labIntro: '目前在線、運行與開發中的系統實驗索引。',
+      about: '關於 Seraph',
+      aboutBody: 'I build and document practical systems at the intersection of cybersecurity, infrastructure, and healthcare technology.',
+      aboutLink: '進一步了解 Seraph',
+      language: '中文',
+      online: 'Online',
+      active: 'Active Development',
+      running: 'Running',
+      progress: 'In Progress'
+    },
+    ja: {
+      eyebrow: 'SECURITY · SYSTEMS · MEDICAL TECHNOLOGY',
+      statement: 'Building secure systems across cybersecurity, infrastructure, and medical technology.',
+      supplement: 'サイバーセキュリティ、システム実験、医療技術、エンジニアリングの実践を記録します。',
+      projects: 'プロジェクトを見る',
+      journal: 'Journal を読む',
+      status: ['Based in Taiwan', 'Focused on Security Engineering', 'Currently exploring HPC and Medical Security'],
+      selected: 'Selected Work',
+      selectedIntro: '進行中の研究、システム、インフラストラクチャから選んだケースです。',
+      viewProject: 'プロジェクトを見る',
+      recent: 'Recent Journal',
+      recentIntro: '研究、フィールドワーク、システム実践からの最新ノート。',
+      viewArticle: '記事を読む',
+      allJournal: 'すべての記事',
+      research: 'Research Areas',
+      researchIntro: '現在の仕事を形づくる、相互につながった五つの領域。',
+      lab: 'Lab Status',
+      labIntro: '現在稼働・開発中のシステムと実験のインデックス。',
+      about: 'About Seraph',
+      aboutBody: 'I build and document practical systems at the intersection of cybersecurity, infrastructure, and healthcare technology.',
+      aboutLink: 'Seraph について',
+      language: '日本語',
+      online: 'Online',
+      active: 'Active Development',
+      running: 'Running',
+      progress: 'In Progress'
+    }
+  }[lang];
+  const redesignProjects = [
+    ['01', 'Medical Security', 'SecureCare', 'A secure healthcare technology concept connecting clinical workflows, trusted data, and practical risk controls.', ['Healthcare', 'Security', 'Risk'], '2026', projectHref('/projects/medical-cybersecurity/')],
+    ['02', 'Infrastructure', 'Home Lab Infrastructure', 'A resilient environment for networking, observability, deployment, and repeatable security experiments.', ['Linux', 'Networking', 'Raspberry Pi'], '2026', localHref('labs')],
+    ['03', 'Research Platform', 'Seraph Research Platform', 'The publishing and research system behind this multilingual technical journal.', ['Hexo', 'Research', 'Web'], '2026', localHref('about')]
+  ];
+  const redesignAreas = ['Cybersecurity', 'Medical Security', 'Infrastructure', 'IoT and Embedded Systems', 'High Performance Computing'];
+  const redesignLabs = [
+    ['Raspberry Pi Lab', redesignCopy.online],
+    ['SecureCare Demo', redesignCopy.active],
+    ['Home Lab Network', redesignCopy.running],
+    ['HPC Notes', redesignCopy.progress]
+  ];
+%>
+
+<% function renderHomeRound2() { %>
+  <section class="r2-hero" aria-labelledby="<%= lang %>-r2-hero-title">
+    <div class="r2-hero-grid" aria-hidden="true"></div>
+    <div class="r2-hero-main">
+      <p class="r2-eyebrow"><%= redesignCopy.eyebrow %></p>
+      <p class="r2-serial">SERAPH / 001</p>
+      <h1 id="<%= lang %>-r2-hero-title">Seraph</h1>
+      <p class="r2-hero-statement"><%= redesignCopy.statement %></p>
+      <p class="r2-hero-supplement"><%= redesignCopy.supplement %></p>
+      <div class="r2-actions">
+        <a class="r2-button r2-button-primary" href="<%= localHref('projects') %>"><%= redesignCopy.projects %><span aria-hidden="true">↗</span></a>
+        <a class="r2-button" href="<%= localHref('writing') %>"><%= redesignCopy.journal %><span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <aside class="r2-hero-status" aria-label="Profile status">
+      <% redesignCopy.status.forEach(function(item, index) { %>
+        <div><span><%= String(index + 1).padStart(2, '0') %></span><p><%= item %></p></div>
+      <% }) %>
+    </aside>
+    <a class="r2-scroll-cue" href="#selected-work"><span>Scroll to index</span><i aria-hidden="true"></i></a>
+  </section>
+
+  <section id="selected-work" class="r2-section r2-selected reveal-section" aria-labelledby="<%= lang %>-r2-selected">
+    <header class="r2-section-header">
+      <p>01 / WORK</p><div><h2 id="<%= lang %>-r2-selected"><%= redesignCopy.selected %></h2><p><%= redesignCopy.selectedIntro %></p></div>
+    </header>
+    <div class="r2-project-grid">
+      <% redesignProjects.forEach(function(project, index) { %>
+        <article class="r2-project <%= index === 0 ? 'r2-project-featured' : '' %>">
+          <div class="r2-project-top"><span><%= project[0] %> · <%= project[1] %></span><time><%= project[5] %></time></div>
+          <div><h3><%= project[2] %></h3><p><%= project[3] %></p></div>
+          <ul aria-label="Technology tags"><% project[4].forEach(function(tag) { %><li><%= tag %></li><% }) %></ul>
+          <a href="<%= project[6] %>"><%= redesignCopy.viewProject %><span aria-hidden="true">↗</span></a>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <section class="r2-section r2-journal reveal-section" aria-labelledby="<%= lang %>-r2-journal">
+    <header class="r2-section-header">
+      <p>02 / JOURNAL</p><div><h2 id="<%= lang %>-r2-journal"><%= redesignCopy.recent %></h2><p><%= redesignCopy.recentIntro %></p></div>
+    </header>
+    <div class="r2-journal-grid">
+      <% recentPosts.forEach(function(post, index) { %>
+        <article class="r2-journal-item <%= index === 0 ? 'r2-journal-featured' : '' %>">
+          <div class="r2-journal-meta"><time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY.MM.DD') %></time><span><%= postCategory(post) %></span></div>
+          <h3><a href="<%= url_for(post.path) %>"><%= post.title %></a></h3>
+          <% if (postSummary(post)) { %><p><%= postSummary(post) %></p><% } %>
+          <div class="r2-journal-foot"><span><%= readingMinutes(post) %> <%= t.readTimeSuffix %> · <%= redesignCopy.language %></span><a href="<%= url_for(post.path) %>"><%= redesignCopy.viewArticle %> →</a></div>
+        </article>
+      <% }) %>
+    </div>
+    <a class="r2-index-link" href="<%= localHref('writing') %>"><%= redesignCopy.allJournal %><span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="r2-section r2-research reveal-section" aria-labelledby="<%= lang %>-r2-research">
+    <header class="r2-section-header">
+      <p>03 / FIELDS</p><div><h2 id="<%= lang %>-r2-research"><%= redesignCopy.research %></h2><p><%= redesignCopy.researchIntro %></p></div>
+    </header>
+    <ol class="r2-area-list">
+      <% redesignAreas.forEach(function(area, index) { %><li><span><%= String(index + 1).padStart(2, '0') %></span><strong><%= area %></strong><i aria-hidden="true">↗</i></li><% }) %>
+    </ol>
+  </section>
+
+  <section class="r2-section r2-lab reveal-section" aria-labelledby="<%= lang %>-r2-lab">
+    <header class="r2-section-header">
+      <p>04 / SYSTEM</p><div><h2 id="<%= lang %>-r2-lab"><%= redesignCopy.lab %></h2><p><%= redesignCopy.labIntro %></p></div>
+    </header>
+    <div class="r2-status-panel">
+      <div class="r2-status-head"><span>seraph@lab:~$ status --all</span><time><%= date(new Date(), 'YYYY-MM-DD') %></time></div>
+      <% redesignLabs.forEach(function(item, index) { %><div class="r2-status-row"><span><%= String(index + 1).padStart(2, '0') %></span><strong><%= item[0] %></strong><em><i aria-hidden="true"></i><%= item[1] %></em></div><% }) %>
+    </div>
+  </section>
+
+  <section class="r2-section r2-about reveal-section" aria-labelledby="<%= lang %>-r2-about">
+    <p>05 / PROFILE</p><div><h2 id="<%= lang %>-r2-about"><%= redesignCopy.about %></h2><p><%= redesignCopy.aboutBody %></p><a href="<%= localHref('about') %>"><%= redesignCopy.aboutLink %> →</a></div>
   </section>
 <% } %>
 
@@ -1274,14 +1451,7 @@
 
 <section class="home-page i18n-page i18n-page-<%= section %>" lang="<%= lang === 'zh' ? 'zh-Hant' : lang %>">
   <% if (section === 'home' || section === 'dashboard') { %>
-    <% renderHomeHero(); %>
-    <% renderSpaceGuide(); %>
-    <% renderWhySeraphExists(); %>
-    <% renderExplorationAreas(); %>
-    <% renderSelectedWorks(); %>
-    <% renderLatestFieldNotes(); %>
-    <% renderCurrentlyExploring(); %>
-    <% renderHomeEpilogue(); %>
+    <% renderHomeRound2(); %>
   <% } else if (section === 'about') { %>
     <% renderPageHero('about'); %>
     <% renderAbout(); %>

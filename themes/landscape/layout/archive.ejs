@@ -23,6 +23,12 @@
   const postHref = function(post) {
     return url_for(post.path);
   };
+  const postCategory = function(post) {
+    if (!post.categories || !post.categories.length) return archiveLang === 'zh' ? '筆記' : (archiveLang === 'ja' ? 'ノート' : 'Notes');
+    const categories = post.categories.toArray ? post.categories.toArray() : (post.categories.data || []);
+    return categories.length ? categories[0].name : 'Notes';
+  };
+  const languageLabel = { en: 'EN', zh: 'ZH-TW', ja: 'JA' }[archiveLang];
   const groupedPosts = postsArray.reduce(function(groups, post) {
     const year = date(post.date, 'YYYY');
     if (!groups[year]) groups[year] = [];
@@ -32,9 +38,9 @@
   const years = Object.keys(groupedPosts).sort(function(a, b) { return Number(b) - Number(a); });
   const archiveCopy = {
     en: {
-      kicker: 'Field Notes',
-      title: 'Field Notes Archive',
-      intro: 'A chronological index of learning notes, experiments, mistakes, and ideas I want to keep.',
+      kicker: 'Journal / Archive',
+      title: 'Research Journal',
+      intro: 'A chronological index of security research, systems practice, field notes, and ideas in progress.',
       empty: 'No field notes yet.',
       read: 'Read Note →'
     },
@@ -73,12 +79,13 @@
               const href = postHref(post);
             %>
               <article class="field-notes-index-item">
-                <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+                <time datetime="<%= date_xml(post.date) %>"><span><%= date(post.date, 'MM.DD') %></span><small><%= date(post.date, 'ddd') %></small></time>
                 <div class="field-notes-index-body">
                   <h3><a class="field-notes-index-link" href="<%= href %>"><%= post.title %></a></h3>
                   <% if (excerpt) { %><p><%= excerpt %></p><% } %>
-                  <a class="field-notes-index-cta" href="<%= href %>"><%= archiveCopy.read %></a>
+                  <div class="field-notes-index-meta"><span><%= postCategory(post) %></span><span><%= languageLabel %></span></div>
                 </div>
+                <a class="field-notes-index-cta" href="<%= href %>" aria-label="<%= archiveCopy.read %> <%= post.title %>">↗</a>
               </article>
             <% }) %>
           </div>

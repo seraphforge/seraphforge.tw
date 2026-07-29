@@ -10,6 +10,11 @@
   const kanaPostChars = (rawPostText.match(/[\u3040-\u30ff]/g) || []).length;
   const latinPostChars = (rawPostText.match(/[A-Za-z]/g) || []).length;
   const postLang = kanaPostChars > 12 ? 'ja' : (cjkPostChars > latinPostChars ? 'zh' : 'en');
+  const postCategories = page.categories && page.categories.length
+    ? (page.categories.toArray ? page.categories.toArray() : (page.categories.data || []))
+    : [];
+  const postCategory = postCategories.length ? postCategories[0].name : (postLang === 'zh' ? '筆記' : (postLang === 'ja' ? 'ノート' : 'Notes'));
+  const postLanguageLabel = { en: 'English', zh: '繁體中文', ja: '日本語' }[postLang];
   const postCopy = {
     en: {
       kicker: 'Field Note',
@@ -40,8 +45,10 @@
     <h1 class="post-title"><%= page.title %></h1>
 
     <div class="post-meta">
-      <time><%= date(page.date, 'YYYY-MM-DD') %></time>
-      <span><%= postMinutes %> <%= postCopy.readTimeSuffix %></span>
+      <span><small>Published</small><time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY-MM-DD') %></time></span>
+      <span><small>Filed under</small><b><%= postCategory %></b></span>
+      <span><small>Reading time</small><b><%= postMinutes %> <%= postCopy.readTimeSuffix %></b></span>
+      <span><small>Language</small><b><%= postLanguageLabel %></b></span>
     </div>
   </header>
 

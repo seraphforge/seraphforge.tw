@@ -12092,3 +12092,750 @@ html[data-theme="dark"] .experience-page {
     font-size: 13px !important;
   }
 }
+
+/* =========================================================
+   Seraph Editorial Visual System — Round 1
+   ========================================================= */
+
+:root,
+html[data-theme="light"] {
+  --editorial-bg: #ffffff;
+  --editorial-surface: #ffffff;
+  --editorial-surface-soft: #f5f5f5;
+  --editorial-ink: #111111;
+  --editorial-muted: #666666;
+  --editorial-line: #dddddd;
+  --editorial-line-strong: #aaaaaa;
+  --editorial-accent: #000000;
+  --editorial-on-accent: #ffffff;
+  --editorial-radius: 2px;
+  --editorial-container: 1120px;
+  --editorial-reading: 760px;
+  --editorial-space-1: 8px;
+  --editorial-space-2: 12px;
+  --editorial-space-3: 16px;
+  --editorial-space-4: 24px;
+  --editorial-space-5: 32px;
+  --editorial-space-6: 48px;
+  --editorial-space-7: 72px;
+
+  --bg: var(--editorial-bg); --bg-alt: var(--editorial-surface);
+  --surface: var(--editorial-surface); --surface-strong: var(--editorial-surface-soft);
+  --text: var(--editorial-ink); --text-strong: var(--editorial-ink);
+  --text-soft: var(--editorial-muted); --muted: var(--editorial-muted);
+  --border: var(--editorial-line); --line: var(--editorial-line);
+  --accent: var(--editorial-accent); --accent-color: var(--editorial-accent);
+  --lab-bg: var(--editorial-bg); --lab-surface: var(--editorial-surface);
+  --lab-text: var(--editorial-ink); --lab-muted: var(--editorial-muted);
+  --lab-line: var(--editorial-line); --lab-accent: var(--editorial-accent);
+  --anon-bg: var(--editorial-bg); --anon-surface: var(--editorial-surface);
+  --anon-ink: var(--editorial-ink); --anon-muted: var(--editorial-muted);
+  --anon-line: var(--editorial-line); --anon-accent: var(--editorial-accent);
+  --experience-bg: var(--editorial-bg); --experience-surface: var(--editorial-surface);
+  --experience-text: var(--editorial-ink); --experience-muted: var(--editorial-muted);
+  --experience-line: var(--editorial-line); --experience-accent: var(--editorial-accent);
+  --r2-paper: var(--editorial-bg) !important;
+  --r2-surface: var(--editorial-surface-soft) !important;
+  --r2-ink: var(--editorial-ink) !important;
+  --r2-muted: var(--editorial-muted) !important;
+  --r2-line: var(--editorial-line) !important;
+  --r2-accent: var(--editorial-accent) !important;
+  --r2-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans TC", "Noto Sans JP", sans-serif !important;
+  --r2-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans TC", "Noto Sans JP", sans-serif !important;
+}
+
+html[data-theme="dark"] {
+  --editorial-bg: #000000;
+  --editorial-surface: #000000;
+  --editorial-surface-soft: #111111;
+  --editorial-ink: #f5f5f5;
+  --editorial-muted: #a3a3a3;
+  --editorial-line: #2a2a2a;
+  --editorial-line-strong: #555555;
+  --editorial-accent: #ffffff;
+  --editorial-on-accent: #000000;
+}
+
+html { color-scheme: light; background: var(--editorial-bg); }
+html[data-theme="dark"] { color-scheme: dark; }
+
+body,
+.site-wrapper,
+.main-container {
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-bg) !important;
+  background-image: none !important;
+}
+
+body {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Noto Sans JP", "PingFang TC", "Hiragino Sans", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0 !important;
+}
+
+.main-container {
+  width: min(calc(100% - 48px), var(--editorial-container)) !important;
+  max-width: var(--editorial-container) !important;
+  margin: 0 auto !important;
+  padding: var(--editorial-space-7) 0 !important;
+}
+
+h1,
+.section-title,
+.post-title,
+.page-header .section-title {
+  margin: 0 0 var(--editorial-space-4) !important;
+  color: var(--editorial-ink) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans TC", "Noto Sans JP", sans-serif !important;
+  font-size: clamp(2.5rem, 5vw, 4.25rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: var(--editorial-space-7) 0 var(--editorial-space-4) !important;
+  color: var(--editorial-ink) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans TC", "Noto Sans JP", sans-serif !important;
+  font-size: clamp(1.75rem, 3vw, 2.4rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
+}
+
+h3 {
+  margin: var(--editorial-space-5) 0 var(--editorial-space-3) !important;
+  color: var(--editorial-ink) !important;
+  font-family: inherit !important;
+  font-size: 1.2rem !important;
+  font-weight: 650 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.012em !important;
+}
+
+p,
+li,
+dd {
+  color: var(--editorial-muted) !important;
+}
+
+small,
+time,
+.post-meta,
+.writing-date,
+.field-notes-index-item time,
+.experience-card-year,
+.project-meta,
+.project-card-meta,
+.labs-card-meta {
+  color: var(--editorial-muted) !important;
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, var(--editorial-accent) 48%, transparent) !important;
+  text-underline-offset: 0.2em;
+  transition: color 180ms ease, text-decoration-color 180ms ease, border-color 180ms ease, background-color 180ms ease !important;
+}
+
+a:hover {
+  color: var(--editorial-accent) !important;
+  text-decoration-color: var(--editorial-accent) !important;
+  text-shadow: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--editorial-accent) !important;
+  outline-offset: 3px !important;
+}
+
+/* Quiet global shell */
+
+.home-page,
+.i18n-page,
+.page-content,
+.post-content,
+.archive-page,
+.tag-page,
+.tags-page,
+.experience-page,
+.experience-detail,
+.research-v1-page,
+.lab-page {
+  color: var(--editorial-ink) !important;
+  background: transparent !important;
+  background-image: none !important;
+  border-color: var(--editorial-line) !important;
+  box-shadow: none !important;
+}
+
+.home-page > section,
+.i18n-page > section,
+.experience-page > section,
+.experience-detail > section,
+.research-v1-page > section,
+.lab-page > section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: var(--editorial-space-7) !important;
+  padding-bottom: var(--editorial-space-7) !important;
+  background: transparent !important;
+  background-image: none !important;
+  border-color: var(--editorial-line) !important;
+  box-shadow: none !important;
+}
+
+.home-positioning-hero,
+.project-page-hero,
+.experience-hero,
+.lab-hero,
+.research-v1-header {
+  min-height: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  border-color: var(--editorial-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.home-positioning-hero h1,
+.project-page-hero h1,
+.experience-hero h1,
+.case-study-index-header h1,
+.lab-studio-header h1,
+.field-notes-index-header h1 {
+  color: var(--editorial-ink) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans TC", "Noto Sans JP", sans-serif !important;
+  font-size: clamp(2.5rem, 5vw, 4.25rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  text-shadow: none !important;
+}
+
+.home-positioning-summary,
+.home-positioning-description,
+.project-page-hero > p,
+.experience-subtitle,
+.field-notes-index-header > p {
+  max-width: var(--editorial-reading) !important;
+  color: var(--editorial-muted) !important;
+  font-family: inherit !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.75 !important;
+  text-shadow: none !important;
+}
+
+/* Monochrome homepage integration */
+
+.r2-hero,
+.r2-section,
+.r2-project,
+.r2-journal-item,
+.r2-status-panel {
+  color: var(--editorial-ink) !important;
+  background-color: var(--editorial-bg) !important;
+  background-image: none !important;
+  border-color: var(--editorial-line) !important;
+  box-shadow: none !important;
+}
+
+.r2-hero-grid,
+.r2-hero::after {
+  display: none !important;
+  background: none !important;
+  filter: none !important;
+}
+
+.r2-hero {
+  min-height: min(720px, calc(100svh - 72px)) !important;
+}
+
+.r2-hero-main {
+  padding-top: clamp(64px, 9vh, 96px) !important;
+  padding-bottom: 64px !important;
+}
+
+.r2-section {
+  padding-top: clamp(56px, 7vw, 88px) !important;
+  padding-bottom: clamp(56px, 7vw, 88px) !important;
+}
+
+.r2-status-panel,
+.r2-project.r2-project-featured {
+  background: var(--editorial-surface-soft) !important;
+}
+
+.r2-status-row em i {
+  background: var(--editorial-muted) !important;
+  box-shadow: none !important;
+}
+
+.r2-button-primary {
+  color: var(--editorial-on-accent) !important;
+  background: var(--editorial-accent) !important;
+  border-color: var(--editorial-accent) !important;
+}
+
+html .field-note-page .post-body pre,
+html .field-note-page .post-body .highlight {
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface-soft) !important;
+}
+
+/* Cards and surfaces */
+
+.featured-project-card,
+.project-card,
+.labs-card,
+.writing-item,
+.writing-all-item,
+.field-notes-index-item,
+.case-study-item,
+.lab-experiment-item,
+.experience-card,
+.experience-muted-card,
+.timeline-card,
+.terminal-stat-card,
+.exploration-area-item,
+.selected-work-item,
+.latest-field-note-item,
+.currently-exploring-item,
+.tag-card,
+.search-result-item {
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface) !important;
+  background-image: none !important;
+  border: 1px solid var(--editorial-line) !important;
+  border-radius: var(--editorial-radius) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease !important;
+}
+
+.featured-project-card:hover,
+.project-card:hover,
+.labs-card:hover,
+.writing-item:hover,
+.writing-all-item:hover,
+.field-notes-index-item:hover,
+.case-study-item:hover,
+.lab-experiment-item:hover,
+.experience-card:hover,
+.timeline-card:hover,
+.exploration-area-item:hover,
+.selected-work-item:hover,
+.latest-field-note-item:hover,
+.currently-exploring-item:hover,
+.tag-card:hover,
+.search-result-item:hover {
+  color: var(--editorial-ink) !important;
+  background: color-mix(in srgb, var(--editorial-surface) 92%, var(--editorial-accent)) !important;
+  border-color: var(--editorial-line-strong) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.featured-project-card::before,
+.featured-project-card::after,
+.project-card::before,
+.project-card::after,
+.case-study-item::before,
+.case-study-item::after,
+.lab-experiment-item::before,
+.lab-experiment-item::after,
+.writing-item::before,
+.field-notes-index-item::before {
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+.featured-project-card,
+.project-card,
+.labs-card,
+.case-study-item,
+.lab-experiment-item,
+.experience-card,
+.timeline-card,
+.tag-card,
+.search-result-item {
+  padding: var(--editorial-space-4) !important;
+}
+
+.featured-project-card h3,
+.project-card h3,
+.labs-card h3,
+.case-study-item h2,
+.lab-experiment-item h2,
+.experience-card h3,
+.timeline-card h3 {
+  color: var(--editorial-ink) !important;
+  text-shadow: none !important;
+}
+
+.featured-project-tags strong,
+.project-stack span,
+.labs-card-meta span,
+.post-card-meta span,
+.experience-tags span,
+.lab-tags span,
+.tag-cloud-link {
+  color: var(--editorial-muted) !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 1px solid var(--editorial-line) !important;
+  border-radius: var(--editorial-radius) !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: 0.8125rem !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Buttons and text links */
+
+.os-button,
+.home-primary-actions a,
+.lab-actions a {
+  min-height: 42px !important;
+  padding: 10px var(--editorial-space-3) !important;
+  color: var(--editorial-on-accent) !important;
+  background: var(--editorial-accent) !important;
+  background-image: none !important;
+  border: 1px solid var(--editorial-accent) !important;
+  border-radius: var(--editorial-radius) !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  font-weight: 650 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+  text-transform: none !important;
+  transform: none !important;
+  transition: opacity 180ms ease, background-color 180ms ease, border-color 180ms ease !important;
+}
+
+.os-button:hover,
+.home-primary-actions a:hover,
+.lab-actions a:hover {
+  color: var(--editorial-on-accent) !important;
+  box-shadow: none !important;
+  opacity: 0.86;
+  transform: none !important;
+}
+
+.os-button-secondary,
+.home-primary-actions a + a,
+.lab-actions a + a {
+  color: var(--editorial-ink) !important;
+  background: transparent !important;
+  border-color: var(--editorial-line-strong) !important;
+}
+
+.os-button-secondary:hover,
+.home-primary-actions a + a:hover,
+.lab-actions a + a:hover {
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface-soft) !important;
+}
+
+/* Article reading */
+
+.post-content.field-note-page,
+.notebook-page:not(.about-page) {
+  width: min(100%, var(--editorial-reading)) !important;
+  max-width: var(--editorial-reading) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.post-header,
+.page-header {
+  margin-bottom: var(--editorial-space-6) !important;
+  padding-bottom: var(--editorial-space-5) !important;
+  border-bottom: 1px solid var(--editorial-line) !important;
+}
+
+.post-title {
+  max-width: 18ch;
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+}
+
+.post-meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: var(--editorial-space-3) !important;
+}
+
+.post-body,
+.page-body {
+  color: var(--editorial-ink) !important;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Noto Sans JP", "PingFang TC", "Hiragino Sans", sans-serif !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.82 !important;
+  letter-spacing: 0 !important;
+}
+
+.post-body p,
+.page-body p {
+  margin: 0 0 var(--editorial-space-4) !important;
+  color: var(--editorial-ink) !important;
+}
+
+.post-body ul,
+.post-body ol,
+.page-body ul,
+.page-body ol {
+  margin: 0 0 var(--editorial-space-4) !important;
+  padding-left: 1.5em !important;
+}
+
+.post-body li + li,
+.page-body li + li {
+  margin-top: var(--editorial-space-1) !important;
+}
+
+.post-body blockquote,
+.page-body blockquote,
+blockquote {
+  margin: var(--editorial-space-5) 0 !important;
+  padding: var(--editorial-space-3) var(--editorial-space-4) !important;
+  color: var(--editorial-muted) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-left: 2px solid var(--editorial-accent) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-style: normal !important;
+}
+
+.post-body a,
+.page-body a {
+  color: var(--editorial-accent) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.2em !important;
+}
+
+.post-body code,
+.page-body code {
+  padding: 0.12em 0.35em !important;
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface-soft) !important;
+  border: 1px solid var(--editorial-line) !important;
+  border-radius: 2px !important;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", "Noto Sans Mono CJK TC", monospace !important;
+  font-size: 0.9em !important;
+}
+
+.post-body pre,
+.post-body .highlight,
+.page-body pre,
+.page-body .highlight {
+  max-width: 100% !important;
+  margin: var(--editorial-space-5) 0 !important;
+  padding: var(--editorial-space-4) !important;
+  overflow-x: auto !important;
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface-soft) !important;
+  background-image: none !important;
+  border: 1px solid var(--editorial-line) !important;
+  border-radius: var(--editorial-radius) !important;
+  box-shadow: none !important;
+}
+
+.post-body pre code,
+.post-body .highlight code,
+.page-body pre code,
+.page-body .highlight code {
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.post-body img,
+.page-body img {
+  max-width: 100% !important;
+  height: auto !important;
+  margin: var(--editorial-space-5) auto !important;
+  border-radius: var(--editorial-radius) !important;
+  box-shadow: none !important;
+}
+
+.post-body table,
+.page-body table {
+  width: 100% !important;
+  margin: var(--editorial-space-5) 0 !important;
+  border-collapse: collapse !important;
+  font-size: 0.9375rem !important;
+}
+
+.post-body th,
+.post-body td,
+.page-body th,
+.page-body td {
+  padding: var(--editorial-space-2) var(--editorial-space-3) !important;
+  border: 1px solid var(--editorial-line) !important;
+  text-align: left !important;
+}
+
+.post-body th,
+.page-body th {
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface-soft) !important;
+}
+
+.post-body hr,
+.page-body hr {
+  margin: var(--editorial-space-7) 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--editorial-line) !important;
+}
+
+/* Search and form controls */
+
+#local-search-input,
+.search-input {
+  min-height: 48px !important;
+  padding: var(--editorial-space-2) var(--editorial-space-3) !important;
+  color: var(--editorial-ink) !important;
+  background: var(--editorial-surface) !important;
+  border: 1px solid var(--editorial-line-strong) !important;
+  border-radius: var(--editorial-radius) !important;
+  box-shadow: none !important;
+  font: inherit !important;
+}
+
+/* Motion restraint */
+
+.lab-reveal,
+[class*="reveal"],
+[class*="animate"],
+.featured-project-card,
+.project-card,
+.case-study-item,
+.lab-experiment-item,
+.timeline-card,
+.experience-card {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    width: min(calc(100% - 32px), var(--editorial-container)) !important;
+  }
+
+  .main-container {
+    padding-top: var(--editorial-space-6) !important;
+    padding-bottom: var(--editorial-space-6) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-container {
+    width: min(calc(100% - 24px), var(--editorial-container)) !important;
+  }
+
+  .main-container {
+    padding-top: var(--editorial-space-5) !important;
+    padding-bottom: var(--editorial-space-6) !important;
+  }
+
+  h1,
+  .section-title,
+  .post-title,
+  .home-positioning-hero h1,
+  .project-page-hero h1,
+  .experience-hero h1,
+  .case-study-index-header h1,
+  .lab-studio-header h1,
+  .field-notes-index-header h1 {
+    font-size: clamp(2.15rem, 11vw, 3.1rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  h2 {
+    margin-top: var(--editorial-space-6) !important;
+    font-size: clamp(1.6rem, 8vw, 2.1rem) !important;
+  }
+
+  .home-page > section,
+  .i18n-page > section,
+  .experience-page > section,
+  .experience-detail > section,
+  .research-v1-page > section,
+  .lab-page > section {
+    padding-top: var(--editorial-space-6) !important;
+    padding-bottom: var(--editorial-space-6) !important;
+  }
+
+  .featured-project-card,
+  .project-card,
+  .labs-card,
+  .case-study-item,
+  .lab-experiment-item,
+  .experience-card,
+  .timeline-card,
+  .tag-card,
+  .search-result-item {
+    padding: var(--editorial-space-3) !important;
+  }
+
+  .post-body,
+  .page-body {
+    font-size: 1rem !important;
+    line-height: 1.78 !important;
+  }
+
+  .post-body pre,
+  .post-body .highlight,
+  .page-body pre,
+  .page-body .highlight {
+    padding: var(--editorial-space-3) !important;
+  }
+}
+
+.post-kicker,
+.page-kicker,
+.field-notes-index-kicker,
+.experience-kicker,
+.lab-kicker,
+.lab-section-kicker {
+  color: var(--editorial-accent) !important;
+  text-shadow: none !important;
+}
+
+.post-kicker::before,
+.page-kicker::before,
+.field-notes-index-kicker::before,
+.experience-kicker::before,
+.lab-kicker::before,
+.lab-section-kicker::before {
+  color: var(--editorial-accent) !important;
+  text-shadow: none !important;
+}

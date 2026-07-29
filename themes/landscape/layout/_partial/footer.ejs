@@ -27,7 +27,17 @@
   }[footerLang];
 %>
 <footer id="contact" class="site-footer polaris-footer" aria-label="<%= footerCopy.label %>">
-  <p class="polaris-footer-title"><%= footerCopy.title %></p>
-  <p class="polaris-footer-note"><%= footerCopy.note %></p>
-  <p class="footer-copy">&copy; 2026 Seraph.</p>
+  <div class="footer-brand">
+    <span aria-hidden="true">S/</span>
+    <div><p class="polaris-footer-title">Seraph</p><p class="polaris-footer-note">Security engineering · research · systems</p></div>
+  </div>
+  <div class="footer-location"><small>BASED IN</small><strong>Taiwan</strong></div>
+  <nav class="footer-links" aria-label="Footer links">
+    <a href="https://github.com/seraphforge" rel="me noopener">GitHub ↗</a>
+    <a href="mailto:seraphforge@gmail.com">Email / Contact ↗</a>
+  </nav>
+  <div class="footer-meta">
+    <p class="footer-copy">&copy; <%= date(new Date(), 'YYYY') %> Seraph</p>
+    <p>Built with Hexo · Last updated <%= date(new Date(), 'YYYY') %></p>
+  </div>
 </footer>
