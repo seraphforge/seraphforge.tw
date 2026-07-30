@@ -1323,47 +1323,98 @@
   <%
     const aboutCopy = {
       en: {
-        intro: 'Technical notes, project records, and practical experiments.',
-        focus: 'Currently focused on',
-        focusItems: ['Cybersecurity', 'Systems and infrastructure', 'Medical technology'],
-        areas: 'Areas of work',
-        areaItems: ['Security research', 'Web and software systems', 'IoT and embedded systems'],
-        selected: 'Selected projects'
+        home: 'Home',
+        title: 'About',
+        intro: [
+          'I do not like defining myself with a single title.',
+          'Some people know me through cybersecurity. Others know me through web development, home labs, robotics, medical technology, or teaching.',
+          'They may look like different fields, but to me they come from the same habit:',
+          'Break down a complicated problem, understand how it works, and try to make it better.',
+          'I prefer building things myself, and I usually document the failures, revisions, and final results along the way.',
+          'This website is not a formal résumé or a polished portfolio.',
+          'It is a continuously updated technical notebook for what I am learning, building, and still trying to understand.'
+        ],
+        current: 'Currently working on',
+        currentItems: ['Cybersecurity and Web Security', 'Home Lab, Linux, and systems experiments', 'Medical technology and device security', 'Web and platform development', 'FRC robotics and control systems', 'HPC and parallel computing'],
+        method: 'How I work',
+        methodBody: [
+          'I usually do not wait until I understand everything before starting.',
+          'I build a working version first, then improve it through errors, limitations, and actual use.',
+          'More than presenting a finished result, I care about explaining the process, making experiments repeatable, and helping my future self avoid the same mistakes.'
+        ],
+        contents: 'What you will find here',
+        contentItems: ['Technical notes', 'Project records', 'Experiments and debugging', 'Security observations', 'Learning summaries', 'Thoughts worth keeping']
       },
       zh: {
-        intro: '技術筆記、專案紀錄與實作實驗。',
-        focus: '目前關注',
-        focusItems: ['資訊安全', '系統與基礎設施', '醫療科技'],
-        areas: '工作領域',
-        areaItems: ['資安研究', '網站與軟體系統', 'IoT 與嵌入式系統'],
-        selected: '精選專案'
+        home: '首頁',
+        title: '關於我',
+        intro: [
+          '我不太喜歡用單一的身分定義自己。',
+          '有人因為資訊安全認識我，也有人因為網站、Home Lab、機器人、醫療科技或教學活動認識我。',
+          '看起來是不同領域，但對我來說，其實都是同一件事：',
+          '把一個複雜的問題拆開，理解它怎麼運作，再試著把它做得更好。',
+          '我喜歡實際動手做，也習慣把失敗、修改和最後的結果記錄下來。',
+          '這個網站不是一份正式履歷，也不是用來包裝自己的作品集。',
+          '它比較像是我持續更新的技術筆記，記錄我目前在學什麼、做什麼，以及哪些問題值得繼續研究。'
+        ],
+        current: '目前在做',
+        currentItems: ['資訊安全與 Web Security', 'Home Lab、Linux 與系統實驗', '醫療科技與裝置安全', '網站與平台開發', 'FRC 機器人與控制系統', 'HPC 與平行運算學習'],
+        method: '我做事的方式',
+        methodBody: [
+          '我通常不是先把所有東西學完才開始。',
+          '我會先做出一個能運作的版本，再從錯誤、限制與實際使用中慢慢修正。',
+          '比起只留下最後成果，我更重視能不能把過程說清楚、讓實驗重做，以及讓下一次的自己少走一點冤枉路。'
+        ],
+        contents: '這裡會放什麼',
+        contentItems: ['技術筆記', '專案紀錄', '實驗與除錯過程', '資安觀察', '學習整理', '偶爾值得留下來的想法']
       },
       ja: {
-        intro: '技術ノート、プロジェクト記録、実践的な実験。',
-        focus: '現在の重点',
-        focusItems: ['サイバーセキュリティ', 'システムとインフラストラクチャ', '医療技術'],
-        areas: '取り組む領域',
-        areaItems: ['セキュリティ研究', 'Web・ソフトウェアシステム', 'IoT・組み込みシステム'],
-        selected: '主なプロジェクト'
+        home: 'ホーム',
+        title: 'About',
+        intro: [
+          '私は自分を一つの肩書きだけで定義することが好きではありません。',
+          '情報セキュリティを通して私を知った人もいれば、Web 開発、Home Lab、ロボティクス、医療技術、教育活動を通して知った人もいます。',
+          '異なる分野に見えますが、私にとっては同じ考え方から始まっています。',
+          '複雑な問題を分解し、仕組みを理解し、より良い形にできないか試してみることです。',
+          '私は実際に手を動かして作ることが好きで、失敗、修正、結果まで記録するようにしています。',
+          'このサイトは正式な履歴書でも、完成された作品集でもありません。',
+          '今学んでいること、作っているもの、まだ理解しようとしていることを記録する、更新し続ける技術ノートです。'
+        ],
+        current: '現在取り組んでいること',
+        currentItems: ['情報セキュリティと Web Security', 'Home Lab、Linux、システム実験', '医療技術とデバイスセキュリティ', 'Web とプラットフォーム開発', 'FRC ロボットと制御システム', 'HPC と並列計算'],
+        method: '取り組み方',
+        methodBody: [
+          '私はすべてを理解してから始めるタイプではありません。',
+          'まず動くものを作り、エラー、制限、実際の使用を通して少しずつ改善します。',
+          '完成した成果だけを見せるよりも、過程を説明できること、実験を再現できること、次の自分が同じ失敗を繰り返さないことを大切にしています。'
+        ],
+        contents: 'このサイトにあるもの',
+        contentItems: ['技術ノート', 'プロジェクト記録', '実験とデバッグ', 'セキュリティに関する観察', '学習の整理', '残しておきたい考え']
       }
     }[lang];
   %>
-  <section class="about-overview" aria-labelledby="<%= lang %>-about-overview-title">
-    <h2 id="<%= lang %>-about-overview-title"><%= aboutCopy.focus %></h2>
-    <p class="about-overview-intro"><%= aboutCopy.intro %></p>
-    <ul><% aboutCopy.focusItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
-  </section>
-  <section class="about-overview" aria-labelledby="<%= lang %>-about-areas-title">
-    <h2 id="<%= lang %>-about-areas-title"><%= aboutCopy.areas %></h2>
-    <ul><% aboutCopy.areaItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
-  </section>
-  <section class="about-overview" aria-labelledby="<%= lang %>-about-projects-title">
-    <h2 id="<%= lang %>-about-projects-title"><%= aboutCopy.selected %></h2>
-    <div class="about-project-links">
-      <% caseStudyCopy.items.forEach(function(project, index) { %>
-        <a href="<%= caseStudyLinks[index] %>"><span><%= project[0] %></span><span aria-hidden="true">→</span></a>
-      <% }) %>
-    </div>
+  <section class="about-page-v2" aria-labelledby="<%= lang %>-about-title">
+    <nav class="about-breadcrumbs" aria-label="Breadcrumbs">
+      <a href="<%= localHref('home') %>"><%= aboutCopy.home %></a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page"><%= aboutCopy.title %></span>
+    </nav>
+    <header class="about-header">
+      <h1 id="<%= lang %>-about-title"><%= aboutCopy.title %></h1>
+      <div class="about-intro"><% aboutCopy.intro.forEach(function(paragraph) { %><p><%= paragraph %></p><% }) %></div>
+    </header>
+    <section class="about-section" aria-labelledby="<%= lang %>-about-current">
+      <h2 id="<%= lang %>-about-current"><%= aboutCopy.current %></h2>
+      <ul><% aboutCopy.currentItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
+    </section>
+    <section class="about-section" aria-labelledby="<%= lang %>-about-method">
+      <h2 id="<%= lang %>-about-method"><%= aboutCopy.method %></h2>
+      <div class="about-section-copy"><% aboutCopy.methodBody.forEach(function(paragraph) { %><p><%= paragraph %></p><% }) %></div>
+    </section>
+    <section class="about-section" aria-labelledby="<%= lang %>-about-contents">
+      <h2 id="<%= lang %>-about-contents"><%= aboutCopy.contents %></h2>
+      <ul><% aboutCopy.contentItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
+    </section>
   </section>
 <% } %>
 
@@ -1480,9 +1531,7 @@
   <% if (section === 'home' || section === 'dashboard') { %>
     <% renderHomeRound2(); %>
   <% } else if (section === 'about') { %>
-    <% renderPageHero('about'); %>
     <% renderAbout(); %>
-    <% renderGuide(); %>
   <% } else if (section === 'experience') { %>
     <% renderPageHero('experience'); %>
     <% renderExperienceCards(); %>
