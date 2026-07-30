@@ -22,6 +22,7 @@
     'labs',
     'writing',
     'timeline',
+    'about',
     'en/experience',
     'zh',
     'zh/dashboard',
@@ -30,13 +31,15 @@
     'zh/labs',
     'zh/writing',
     'zh/timeline',
+    'zh/about',
     'ja',
     'ja/dashboard',
     'ja/experience',
     'ja/projects',
     'ja/labs',
     'ja/writing',
-    'ja/timeline'
+    'ja/timeline',
+    'ja/about'
   ];
   const isI18nPage = i18nPagePaths.includes(normalizedPagePath);
   const pageCopy = {
@@ -75,10 +78,12 @@
   <%- partial('_partial/i18n-page') %>
 <% } else { %>
   <article class="page-content notebook-page<%= pageSection === 'about' ? ' about-page' : '' %>">
-    <header class="page-header">
-      <div class="page-kicker"><%= pageCopy.pageKicker %></div>
-      <h1 class="section-title"><%= page.title %></h1>
-    </header>
+    <% if (pageSection !== 'projects') { %>
+      <header class="page-header">
+        <div class="page-kicker"><%= pageCopy.pageKicker %></div>
+        <h1 class="section-title"><%= page.title %></h1>
+      </header>
+    <% } %>
 
     <div class="page-body">
       <% if (page.title === 'Search') { %>

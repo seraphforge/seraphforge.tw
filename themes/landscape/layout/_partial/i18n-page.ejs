@@ -538,7 +538,26 @@
   const postCategory = function(post) {
     if (!post.categories || !post.categories.length) return lang === 'zh' ? '筆記' : (lang === 'ja' ? 'メモ' : 'Notes');
     const categories = post.categories.toArray ? post.categories.toArray() : post.categories.data || [];
-    return categories.length ? categories[0].name : (lang === 'zh' ? '筆記' : (lang === 'ja' ? 'メモ' : 'Notes'));
+    const rawCategory = categories.length ? categories[0].name : '';
+    const localizedCategories = {
+      zh: {
+        Cybersecurity: '資訊安全',
+        Thoughts: '隨筆',
+        Personal: '個人',
+        'Personal Story': '個人故事',
+        'Medical Security': '醫療資安'
+      },
+      ja: {
+        Cybersecurity: 'サイバーセキュリティ',
+        Thoughts: '考察',
+        Personal: '個人',
+        'Personal Story': '個人ストーリー',
+        'Medical Security': '医療セキュリティ'
+      }
+    };
+    return (localizedCategories[lang] && localizedCategories[lang][rawCategory]) ||
+      rawCategory ||
+      (lang === 'zh' ? '筆記' : (lang === 'ja' ? 'メモ' : 'Notes'));
   };
   const postSummary = function(post) {
     const raw = post.description || post.excerpt || post.content || '';
@@ -842,12 +861,11 @@
 <%
   const redesignCopy = {
     en: {
-      eyebrow: 'SECURITY · SYSTEMS · MEDICAL TECHNOLOGY',
-      statement: 'Building secure systems across cybersecurity, infrastructure, and medical technology.',
-      supplement: '記錄資安研究、系統實驗、醫療科技與工程實作。',
+      eyebrow: 'TECHNICAL BLOG',
+      statement: 'Technical articles, projects, and notes.',
+      supplement: 'Cybersecurity, systems, medical technology, and engineering practice.',
       projects: 'Explore Projects',
       journal: 'Read the Journal',
-      status: ['Based in Taiwan', 'Focused on Security Engineering', 'Currently exploring HPC and Medical Security'],
       selected: 'Selected Work',
       selectedIntro: 'Systems, research, and infrastructure selected from the working archive.',
       viewProject: 'View project',
@@ -869,12 +887,11 @@
       progress: 'In Progress'
     },
     zh: {
-      eyebrow: 'SECURITY · SYSTEMS · MEDICAL TECHNOLOGY',
-      statement: 'Building secure systems across cybersecurity, infrastructure, and medical technology.',
+      eyebrow: '技術部落格',
+      statement: '技術文章、專案與筆記。',
       supplement: '記錄資安研究、系統實驗、醫療科技與工程實作。',
       projects: '探索專案',
       journal: '閱讀 Journal',
-      status: ['位於台灣', '專注 Security Engineering', '目前探索 HPC 與 Medical Security'],
       selected: '精選作品',
       selectedIntro: '從持續進行的研究、系統與基礎設施工作中選出的案例。',
       viewProject: '查看專案',
@@ -896,12 +913,11 @@
       progress: 'In Progress'
     },
     ja: {
-      eyebrow: 'SECURITY · SYSTEMS · MEDICAL TECHNOLOGY',
-      statement: 'Building secure systems across cybersecurity, infrastructure, and medical technology.',
+      eyebrow: '技術ブログ',
+      statement: '技術記事、プロジェクト、ノート。',
       supplement: 'サイバーセキュリティ、システム実験、医療技術、エンジニアリングの実践を記録します。',
       projects: 'プロジェクトを見る',
       journal: 'Journal を読む',
-      status: ['Based in Taiwan', 'Focused on Security Engineering', 'Currently exploring HPC and Medical Security'],
       selected: 'Selected Work',
       selectedIntro: '進行中の研究、システム、インフラストラクチャから選んだケースです。',
       viewProject: 'プロジェクトを見る',
@@ -951,12 +967,6 @@
         <a class="r2-button" href="<%= localHref('writing') %>"><%= redesignCopy.journal %><span aria-hidden="true">→</span></a>
       </div>
     </div>
-    <aside class="r2-hero-status" aria-label="Profile status">
-      <% redesignCopy.status.forEach(function(item, index) { %>
-        <div><span><%= String(index + 1).padStart(2, '0') %></span><p><%= item %></p></div>
-      <% }) %>
-    </aside>
-    <a class="r2-scroll-cue" href="#selected-work"><span>Scroll to index</span><i aria-hidden="true"></i></a>
   </section>
 
   <section id="selected-work" class="r2-section r2-selected reveal-section" aria-labelledby="<%= lang %>-r2-selected">
@@ -992,15 +1002,6 @@
     <a class="r2-index-link" href="<%= localHref('writing') %>"><%= redesignCopy.allJournal %><span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="r2-section r2-research reveal-section" aria-labelledby="<%= lang %>-r2-research">
-    <header class="r2-section-header">
-      <p>03 / FIELDS</p><div><h2 id="<%= lang %>-r2-research"><%= redesignCopy.research %></h2><p><%= redesignCopy.researchIntro %></p></div>
-    </header>
-    <ol class="r2-area-list">
-      <% redesignAreas.forEach(function(area, index) { %><li><span><%= String(index + 1).padStart(2, '0') %></span><strong><%= area %></strong><i aria-hidden="true">↗</i></li><% }) %>
-    </ol>
-  </section>
-
   <section class="r2-section r2-lab reveal-section" aria-labelledby="<%= lang %>-r2-lab">
     <header class="r2-section-header">
       <p>04 / SYSTEM</p><div><h2 id="<%= lang %>-r2-lab"><%= redesignCopy.lab %></h2><p><%= redesignCopy.labIntro %></p></div>
@@ -1011,9 +1012,6 @@
     </div>
   </section>
 
-  <section class="r2-section r2-about reveal-section" aria-labelledby="<%= lang %>-r2-about">
-    <p>05 / PROFILE</p><div><h2 id="<%= lang %>-r2-about"><%= redesignCopy.about %></h2><p><%= redesignCopy.aboutBody %></p><a href="<%= localHref('about') %>"><%= redesignCopy.aboutLink %> →</a></div>
-  </section>
 <% } %>
 
 <% function renderStats() { %>
@@ -1183,7 +1181,7 @@
 <% function renderPageHero(key) { %>
   <section class="project-page-hero" aria-labelledby="<%= lang %>-<%= key %>-hero-title">
     <h1 id="<%= lang %>-<%= key %>-hero-title"><%= t.hero[key].title %></h1>
-    <p><%= t.hero[key].body %></p>
+    <% if (key !== 'about') { %><p><%= t.hero[key].body %></p><% } %>
   </section>
 <% } %>
 
@@ -1322,20 +1320,49 @@
 <% } %>
 
 <% function renderAbout() { %>
-  <section class="featured-projects" aria-labelledby="<%= lang %>-about-content-title">
-    <h2 id="<%= lang %>-about-content-title" class="section-title"><%= t.hero.about.title %></h2>
-    <div class="featured-project-grid">
-      <% t.aboutSections.forEach(function(item) { %>
-        <a class="featured-project-card" href="<%= localHref('about') %>">
-          <h3><%= item[0] %></h3>
-          <p><%= item[1] %></p>
-        </a>
+  <%
+    const aboutCopy = {
+      en: {
+        intro: 'Technical notes, project records, and practical experiments.',
+        focus: 'Currently focused on',
+        focusItems: ['Cybersecurity', 'Systems and infrastructure', 'Medical technology'],
+        areas: 'Areas of work',
+        areaItems: ['Security research', 'Web and software systems', 'IoT and embedded systems'],
+        selected: 'Selected projects'
+      },
+      zh: {
+        intro: '技術筆記、專案紀錄與實作實驗。',
+        focus: '目前關注',
+        focusItems: ['資訊安全', '系統與基礎設施', '醫療科技'],
+        areas: '工作領域',
+        areaItems: ['資安研究', '網站與軟體系統', 'IoT 與嵌入式系統'],
+        selected: '精選專案'
+      },
+      ja: {
+        intro: '技術ノート、プロジェクト記録、実践的な実験。',
+        focus: '現在の重点',
+        focusItems: ['サイバーセキュリティ', 'システムとインフラストラクチャ', '医療技術'],
+        areas: '取り組む領域',
+        areaItems: ['セキュリティ研究', 'Web・ソフトウェアシステム', 'IoT・組み込みシステム'],
+        selected: '主なプロジェクト'
+      }
+    }[lang];
+  %>
+  <section class="about-overview" aria-labelledby="<%= lang %>-about-overview-title">
+    <h2 id="<%= lang %>-about-overview-title"><%= aboutCopy.focus %></h2>
+    <p class="about-overview-intro"><%= aboutCopy.intro %></p>
+    <ul><% aboutCopy.focusItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
+  </section>
+  <section class="about-overview" aria-labelledby="<%= lang %>-about-areas-title">
+    <h2 id="<%= lang %>-about-areas-title"><%= aboutCopy.areas %></h2>
+    <ul><% aboutCopy.areaItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
+  </section>
+  <section class="about-overview" aria-labelledby="<%= lang %>-about-projects-title">
+    <h2 id="<%= lang %>-about-projects-title"><%= aboutCopy.selected %></h2>
+    <div class="about-project-links">
+      <% caseStudyCopy.items.forEach(function(project, index) { %>
+        <a href="<%= caseStudyLinks[index] %>"><span><%= project[0] %></span><span aria-hidden="true">→</span></a>
       <% }) %>
-    </div>
-    <div class="cta-actions">
-      <a class="os-button os-button-primary" href="<%= localHref('experience') %>"><%= t.nav.experience %></a>
-      <a class="os-button os-button-secondary" href="<%= localHref('projects') %>"><%= t.nav.projects %></a>
-      <a class="os-button os-button-secondary" href="<%= localHref('labs') %>"><%= t.nav.labs %></a>
     </div>
   </section>
 <% } %>

@@ -1,43 +1,9 @@
-<%
-  const footerPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
-  const footerParts = footerPath.split('/').filter(Boolean);
-  const rawFooterText = strip_html(page.content || page.description || '').replace(/\s+/g, ' ').trim();
-  const footerCjkChars = (rawFooterText.match(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g) || []).length;
-  const footerKanaChars = (rawFooterText.match(/[\u3040-\u30ff]/g) || []).length;
-  const footerLatinChars = (rawFooterText.match(/[A-Za-z]/g) || []).length;
-  const inferredFooterLang = footerKanaChars > 12 ? 'ja' : (footerCjkChars > footerLatinChars ? 'zh' : 'en');
-  const isFooterPostPath = /^\d{4}\/\d{2}\/\d{2}\//.test(footerPath);
-  const footerLang = footerParts[0] === 'zh' ? 'zh' : (footerParts[0] === 'ja' ? 'ja' : (isFooterPostPath ? inferredFooterLang : 'en'));
-  const footerCopy = {
-    en: {
-      label: 'Site footer',
-      title: 'Find Your Polaris.',
-      note: 'Curiosity matters more than rushing to prove yourself.'
-    },
-    zh: {
-      label: '網站頁尾',
-      title: 'Find Your Polaris.',
-      note: '保持好奇，比急著證明自己更重要。'
-    },
-    ja: {
-      label: 'サイトフッター',
-      title: 'Find Your Polaris.',
-      note: '自分を急いで証明することより、好奇心を持ち続けることを大切にしたい。'
-    }
-  }[footerLang];
-%>
-<footer id="contact" class="site-footer polaris-footer" aria-label="<%= footerCopy.label %>">
+<footer class="site-footer polaris-footer" aria-label="Site footer">
   <div class="footer-brand">
     <span aria-hidden="true">S/</span>
-    <div><p class="polaris-footer-title">Seraph</p><p class="polaris-footer-note">Security engineering · research · systems</p></div>
+    <p class="polaris-footer-title">Seraph</p>
   </div>
-  <div class="footer-location"><small>BASED IN</small><strong>Taiwan</strong></div>
-  <nav class="footer-links" aria-label="Footer links">
-    <a href="https://github.com/seraphforge" rel="me noopener">GitHub ↗</a>
-    <a href="mailto:seraphforge@gmail.com">Email / Contact ↗</a>
-  </nav>
   <div class="footer-meta">
     <p class="footer-copy">&copy; <%= date(new Date(), 'YYYY') %> Seraph</p>
-    <p>Built with Hexo · Last updated <%= date(new Date(), 'YYYY') %></p>
   </div>
 </footer>

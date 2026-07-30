@@ -189,7 +189,7 @@
   <div class="brand-row">
     <div class="brand-content">
       <div class="site-title">
-        <a href="<%= url_for(navPath('home')) %>"><b aria-hidden="true">S/</b><span>Seraph</span><small>Research Archive</small></a>
+        <a href="<%= url_for(navPath('home')) %>"><b aria-hidden="true">S/</b><span>Seraph</span></a>
       </div>
 
       <nav class="site-nav" aria-label="Main navigation">
@@ -202,13 +202,6 @@
           <a href="<%= url_for(langPath('zh')) %>" lang="zh-Hant" <%= currentLang === 'zh' ? 'aria-current=true' : '' %>>ZH</a>
           <a href="<%= url_for(langPath('ja')) %>" lang="ja" <%= currentLang === 'ja' ? 'aria-current=true' : '' %>>JA</a>
         </nav>
-        <span class="header-controls-separator" aria-hidden="true"></span>
-
-        <button class="theme-toggle-button" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" title="<%= h.toggleTheme %>">
-          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
-          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
-          <span class="theme-toggle-label"><%= h.toggleTheme %></span>
-        </button>
       </div>
 
       <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
@@ -239,16 +232,6 @@
           </nav>
         </section>
 
-        <span class="mobile-nav-divider" aria-hidden="true"></span>
-
-        <section class="mobile-nav-section mobile-nav-section-appearance" aria-labelledby="mobile-nav-appearance-label">
-          <p id="mobile-nav-appearance-label" class="mobile-nav-label">Appearance</p>
-          <button class="theme-toggle-button theme-toggle-button-mobile" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" title="<%= h.toggleTheme %>">
-            <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
-            <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
-            <span class="theme-toggle-label"><%= h.toggleTheme %></span>
-          </button>
-        </section>
       </nav>
     </div>
   </div>
@@ -271,9 +254,9 @@
     }
 
     try {
-      applyTheme(localStorage.getItem(storageKey) || 'light');
+      applyTheme(localStorage.getItem(storageKey) === 'light' ? 'light' : 'dark');
     } catch (error) {
-      applyTheme('light');
+      applyTheme('dark');
     }
 
     buttons.forEach(function(button) {

@@ -74,6 +74,9 @@
       category: 'Category',
       role: 'Role',
       result: 'Result / Achievement',
+      topic: 'Topic',
+      technologies: 'Technologies',
+      learning: 'Learning',
       skills: 'Skills & Technologies'
     },
     zh: {
@@ -97,6 +100,9 @@
       category: '分類',
       role: '角色',
       result: '成果 / 成就',
+      topic: '主題',
+      technologies: '技術',
+      learning: '收穫',
       skills: '技能與技術'
     },
     ja: {
@@ -120,6 +126,9 @@
       category: 'カテゴリ',
       role: '役割',
       result: '成果 / 実績',
+      topic: 'テーマ',
+      technologies: '技術',
+      learning: '学び',
       skills: 'スキルと技術'
     }
   }[expLang];
@@ -559,108 +568,111 @@
 </article>
 <% } else { %>
 <article class="page-content experience-detail" itemscope itemtype="https://schema.org/CreativeWork">
-  <nav class="tag-cloud-list experience-breadcrumbs" aria-label="Breadcrumbs">
-    <a class="tag-cloud-link" href="<%= url_for(expLang === 'en' ? '/' : '/' + expLang + '/') %>"><%= expText.home %></a>
-    <a class="tag-cloud-link" href="<%= url_for(expBase) %>"><%= expText.experience %></a>
-    <span class="tag-cloud-link" aria-current="page"><%= expTitle %></span>
+  <nav class="experience-breadcrumbs" aria-label="Breadcrumbs">
+    <a href="<%= url_for(expLang === 'en' ? '/' : '/' + expLang + '/') %>"><%= expText.home %></a>
+    <span aria-hidden="true">/</span>
+    <a href="<%= url_for(expBase) %>"><%= expText.experience %></a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page"><%= expTitle %></span>
   </nav>
 
-  <header class="project-page-hero experience-hero">
-    <img src="<%= url_for(expCover) %>" alt="<%= expTitle %> cover image" loading="lazy">
+  <header class="experience-detail-header">
     <h1 itemprop="name"><%= expTitle %></h1>
     <% if (expSummary) { %><p itemprop="description"><%= expSummary %></p><% } %>
     <% if (expTags.length) { %>
-      <div class="featured-project-tags" aria-label="<%= expText.tags %>">
-        <span><%= expText.tags %></span>
-        <% expTags.forEach(function(tag) { %><strong><%= tag %></strong><% }) %>
+      <div class="experience-detail-tags" aria-label="<%= expText.tags %>">
+        <% expTags.forEach(function(tag) { %><span><%= tag %></span><% }) %>
       </div>
     <% } %>
   </header>
 
-  <section class="featured-projects" aria-labelledby="experience-meta-title">
+  <figure class="experience-cover">
+    <img src="<%= url_for(expCover) %>" alt="<%= expTitle %> cover image" loading="lazy">
+  </figure>
+
+  <section class="experience-summary" aria-labelledby="experience-meta-title">
     <h2 id="experience-meta-title" class="section-title"><%= expText.summary %></h2>
-    <div class="featured-project-grid">
+    <dl class="experience-summary-grid">
       <% [
         [expText.title, expTitle],
         [expText.organization, page.organization],
         [expText.date, page.experience_date],
-        [expText.location, page.location],
         [expText.category, page.category],
         [expText.role, page.role],
         [expText.result, page.result]
       ].forEach(function(row) { if (row[1]) { %>
-        <article class="featured-project-card">
-          <h3><%= row[0] %></h3>
-          <p><%= row[1] %></p>
-        </article>
+        <div><dt><%= row[0] %></dt><dd><%= row[1] %></dd></div>
       <% } }) %>
-    </div>
+    </dl>
   </section>
 
-  <section class="os-section os-timeline-section" aria-labelledby="experience-timeline-title">
-    <div class="os-section-header">
-      <p class="os-section-kicker"><%= expText.experience %></p>
-      <h2 id="experience-timeline-title" class="section-title"><%= expText.timeline %></h2>
-    </div>
-    <div class="os-timeline">
-      <article class="timeline-card">
-        <time><%= page.experience_date || '' %></time>
-        <div>
-          <h3><%= expTitle %></h3>
-          <p><%= expSummary || page.result || page.category || '' %></p>
-        </div>
-      </article>
+  <% if (projectCards.length) { %>
+  <section class="experience-records" aria-labelledby="experience-records-title">
+    <h2 id="experience-records-title" class="section-title"><%= expText.experience %></h2>
+    <div class="experience-record-list">
+      <% projectCards.forEach(function(record) { %>
+        <article class="experience-record">
+          <header><h3><%= record.title %></h3><% if (record.year) { %><time><%= record.year %></time><% } %></header>
+          <dl>
+            <% [
+              [expText.organization, record.organization],
+              [expText.location, record.type],
+              [expText.role, record.role],
+              [expText.topic, record.topic],
+              [expText.technologies, record.tags.join(', ')],
+              [expText.result, record.outcome],
+              [expText.learning, record.reflection]
+            ].forEach(function(row) { if (row[1]) { %>
+              <div><dt><%= row[0] %></dt><dd><%= row[1] %></dd></div>
+            <% } }) %>
+          </dl>
+        </article>
+      <% }) %>
     </div>
   </section>
-
+  <% } else { %>
   <section class="page-body" itemprop="text">
     <%- expBody %>
   </section>
+  <% } %>
 
   <% if (expSkills.length || expTechnologies.length) { %>
-    <section class="tag-cloud" aria-labelledby="experience-skills-title">
+    <section class="experience-skills" aria-labelledby="experience-skills-title">
       <h2 id="experience-skills-title" class="section-title"><%= expText.skills %></h2>
-      <div class="tag-cloud-list">
+      <div class="experience-detail-tags">
         <% expSkills.concat(expTechnologies).forEach(function(item) { %>
-          <span class="tag-cloud-link"><%= item %></span>
+          <span><%= item %></span>
         <% }) %>
       </div>
     </section>
   <% } %>
 
-  <section class="featured-projects" aria-labelledby="experience-gallery-title">
+  <% if (expGallery.length) { %>
+  <section class="experience-gallery" aria-labelledby="experience-gallery-title">
     <h2 id="experience-gallery-title" class="section-title"><%= expText.gallery %></h2>
-    <% if (expGallery.length) { %>
-      <div class="featured-project-grid">
+      <div class="experience-gallery-grid">
         <% expGallery.forEach(function(image) { %>
-          <article class="featured-project-card">
-            <img src="<%= url_for(image.src) %>" alt="<%= image.alt || expTitle + ' gallery image' %>" loading="lazy">
-          </article>
+          <img src="<%= url_for(image.src) %>" alt="<%= image.alt || expTitle + ' gallery image' %>" loading="lazy">
         <% }) %>
       </div>
-    <% } else { %>
-      <p><%= expText.noGallery %></p>
-    <% } %>
   </section>
+  <% } %>
 
-  <section class="tag-cloud" aria-labelledby="experience-links-title">
+  <section class="experience-links" aria-labelledby="experience-links-title">
     <h2 id="experience-links-title" class="section-title"><%= expText.links %></h2>
-    <div class="tag-cloud-list">
-      <a class="tag-cloud-link" href="<%= url_for(expBase) %>"><%= expText.back %></a>
-      <% if (expPrev) { %><a class="tag-cloud-link" href="<%= expUrl(expPrev.slug) %>"><%= expText.previous %>: <%= expPrev.title %></a><% } %>
-      <% if (expNext) { %><a class="tag-cloud-link" href="<%= expUrl(expNext.slug) %>"><%= expText.next %>: <%= expNext.title %></a><% } %>
+    <div>
+      <a href="<%= url_for(expBase) %>"><%= expText.back %></a>
+      <% if (expPrev) { %><a href="<%= expUrl(expPrev.slug) %>"><%= expText.previous %>: <%= expPrev.title %></a><% } %>
+      <% if (expNext) { %><a href="<%= expUrl(expNext.slug) %>"><%= expText.next %>: <%= expNext.title %></a><% } %>
     </div>
   </section>
 
   <% if (expRelated.length) { %>
-    <section class="featured-projects" aria-labelledby="experience-related-title">
+    <section class="experience-related" aria-labelledby="experience-related-title">
       <h2 id="experience-related-title" class="section-title"><%= expText.related %></h2>
-      <div class="featured-project-grid">
+      <div>
         <% expRelated.forEach(function(item) { %>
-          <a class="featured-project-card" href="<%= expUrl(item.slug) %>">
-            <h3><%= item.title %></h3>
-            <p><%= item.category %></p>
-          </a>
+          <a href="<%= expUrl(item.slug) %>"><strong><%= item.title %></strong><span><%= item.category %></span></a>
         <% }) %>
       </div>
     </section>
