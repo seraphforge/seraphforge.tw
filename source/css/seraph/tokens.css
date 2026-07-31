@@ -12,9 +12,11 @@
   --seraph-text-strong: #e6ebf2;
   --seraph-muted: #9aa8b8;
   --seraph-muted-2: #718195;
-  --seraph-accent: #7fa9bd;
-  --seraph-accent-2: #9b90b9;
+  --seraph-accent: #6fa8bc;
+  --seraph-accent-2: #7ab7c7;
   --seraph-link: #9fbed0;
+  --seraph-success: #8bbf9f;
+  --seraph-warning: #d0b16f;
   --seraph-focus: rgba(127, 169, 189, 0.42);
   --seraph-code-bg: #0d141f;
   --seraph-code-inline: rgba(127, 169, 189, 0.12);

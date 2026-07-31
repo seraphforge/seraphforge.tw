@@ -1,4 +1,4 @@
-﻿<header class="site-header">
+<header class="site-header">
   <%
     const normalizedPath = String(page.path || '')
       .replace(/index\.html$/, '')
@@ -49,7 +49,6 @@
         home: '/',
         about: '/about/',
         projects: '/experience/projects/',
-        lab: '/labs/',
         experience: '/en/experience/',
         articles: '/archives/',
         contact: '#contact'
@@ -58,7 +57,6 @@
         home: '/zh/',
         about: '/zh/about/',
         projects: '/zh/experience/projects/',
-        lab: '/zh/labs/',
         experience: '/experience/',
         articles: '/zh/archives/',
         contact: '#contact'
@@ -67,7 +65,6 @@
         home: '/ja/',
         about: '/ja/about/',
         projects: '/ja/experience/projects/',
-        lab: '/ja/labs/',
         experience: '/ja/experience/',
         articles: '/ja/archives/',
         contact: '#contact'
@@ -173,12 +170,12 @@
     };
     const h = navLabels[currentLang] || navLabels.zh;
     const navItems = [
-      { key: 'articles', label: 'Journal' },
-      { key: 'projects', label: 'Projects' },
-      { key: 'lab', label: 'Labs' },
-      { key: 'articles', label: 'Notes' },
-      { key: 'experience', label: 'Experience' },
-      { key: 'about', label: 'About' }
+      { key: 'home', label: h.home },
+      { key: 'about', label: h.about },
+      { key: 'projects', label: h.projects },
+      { key: 'experience', label: h.experience },
+      { key: 'articles', label: h.articles },
+      { key: 'contact', label: h.contact }
     ];
     const renderNavLink = function(item) {
       const active = currentSection === item.key ? ' aria-current="page"' : '';
@@ -187,10 +184,16 @@
     };
   %>
   <div class="brand-row">
+    <a class="brand-avatar" href="<%= url_for(navPath('home')) %>" aria-label="<%= h.home %>">
+      <img src="<%= url_for('/images/seraph.png') %>" alt="Seraph avatar">
+    </a>
+
     <div class="brand-content">
       <div class="site-title">
         <a href="<%= url_for(navPath('home')) %>"><span>Seraph</span></a>
       </div>
+
+      <div class="site-subtitle">Find Your Polaris.</div>
 
       <nav class="site-nav" aria-label="Main navigation">
         <% navItems.forEach(function(item) { %><%- renderNavLink(item) %><% }); %>
@@ -202,16 +205,20 @@
           <a href="<%= url_for(langPath('zh')) %>" lang="zh-Hant" <%= currentLang === 'zh' ? 'aria-current=true' : '' %>>ZH</a>
           <a href="<%= url_for(langPath('ja')) %>" lang="ja" <%= currentLang === 'ja' ? 'aria-current=true' : '' %>>JA</a>
         </nav>
+        <span class="header-controls-separator" aria-hidden="true"></span>
+
+        <button class="theme-toggle-button" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" title="<%= h.toggleTheme %>">
+          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
+          <span class="theme-toggle-label"><%= h.toggleTheme %></span>
+        </button>
       </div>
 
-      <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
-        <span class="mobile-menu-label"><%= h.menu %></span>
-        <span class="mobile-menu-icon" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
+    <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      <span class="mobile-menu-label"><%= h.menu %></span>
+      <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
 
       <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
         <section class="mobile-nav-section mobile-nav-section-navigation" aria-labelledby="mobile-nav-navigation-label">
@@ -232,6 +239,16 @@
           </nav>
         </section>
 
+        <span class="mobile-nav-divider" aria-hidden="true"></span>
+
+        <section class="mobile-nav-section mobile-nav-section-appearance" aria-labelledby="mobile-nav-appearance-label">
+          <p id="mobile-nav-appearance-label" class="mobile-nav-label">Appearance</p>
+          <button class="theme-toggle-button theme-toggle-button-mobile" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" title="<%= h.toggleTheme %>">
+            <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
+            <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
+            <span class="theme-toggle-label"><%= h.toggleTheme %></span>
+          </button>
+        </section>
       </nav>
     </div>
   </div>
@@ -242,19 +259,25 @@
     var storageKey = 'seraph-theme';
     var root = document.documentElement;
     var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-toggle]'));
+    var labels = Array.prototype.slice.call(document.querySelectorAll('[data-theme-label]'));
+    var lightLabel = '<%= h.light %>';
+    var darkLabel = '<%= h.dark %>';
 
     function applyTheme(theme) {
-      var nextTheme = theme === 'dark' ? 'dark' : 'light';
+      var nextTheme = theme === 'light' ? 'light' : 'dark';
       root.setAttribute('data-theme', nextTheme);
       buttons.forEach(function(button) {
         button.setAttribute('aria-pressed', String(nextTheme === 'dark'));
-        button.setAttribute('aria-label', '<%= h.toggleTheme %>: ' + (nextTheme === 'light' ? '<%= h.light %>' : '<%= h.dark %>'));
-        button.setAttribute('title', nextTheme === 'light' ? '<%= h.light %>' : '<%= h.dark %>');
+        button.setAttribute('aria-label', '<%= h.toggleTheme %>: ' + (nextTheme === 'light' ? lightLabel : darkLabel));
+        button.setAttribute('title', nextTheme === 'light' ? lightLabel : darkLabel);
+      });
+      labels.forEach(function(label) {
+        label.textContent = nextTheme === 'light' ? lightLabel : darkLabel;
       });
     }
 
     try {
-      applyTheme(localStorage.getItem(storageKey) === 'light' ? 'light' : 'dark');
+      applyTheme(localStorage.getItem(storageKey) || 'light');
     } catch (error) {
       applyTheme('dark');
     }
@@ -272,26 +295,32 @@
     var menuButton = document.querySelector('.mobile-menu-button');
     var menu = document.getElementById('mobile-nav');
     var header = document.querySelector('.site-header');
+
+    function closeMenu() {
+      if (!menuButton || !menu) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
     function updateHeaderState() {
       if (!header) return;
       header.classList.toggle('is-scrolled', window.scrollY > 12);
     }
+
     updateHeaderState();
     window.addEventListener('scroll', updateHeaderState, { passive: true });
 
     if (!menuButton || !menu) return;
-
     menuButton.addEventListener('click', function() {
       var isOpen = menuButton.getAttribute('aria-expanded') === 'true';
       menuButton.setAttribute('aria-expanded', String(!isOpen));
       menu.hidden = isOpen;
     });
-
     menu.addEventListener('click', function(event) {
-      if (event.target && event.target.tagName === 'A') {
-        menuButton.setAttribute('aria-expanded', 'false');
-        menu.hidden = true;
-      }
+      if (event.target && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
     });
   })();
 </script>
