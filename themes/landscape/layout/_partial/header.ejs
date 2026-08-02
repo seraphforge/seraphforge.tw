@@ -1,218 +1,117 @@
+<%
+  const normalizedPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
+  const pathParts = normalizedPath.split('/').filter(Boolean);
+  const normalizeHeaderLang = function(value) {
+    const normalized = String(value || '').toLowerCase();
+    if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh';
+    if (normalized === 'en') return 'en';
+    return '';
+  };
+  const urlLang = ['en', 'zh'].includes(pathParts[0]) ? pathParts[0] : '';
+  const sourcePath = String(page.source || page.full_source || '').replace(/\\/g, '/');
+  const sourceLangMatch = sourcePath.match(/(?:^|\/)(en|zh)\//);
+  const currentLang = urlLang || normalizeHeaderLang(page.site_lang) || (sourceLangMatch ? sourceLangMatch[1] : '') || normalizeHeaderLang(config.language) || 'en';
+  const localPathParts = urlLang ? pathParts.slice(1) : pathParts;
+  const localDetailPath = localPathParts.join('/');
+  const currentSection = (function() {
+    if (!localPathParts.length) return 'home';
+    if (localPathParts[0] === 'systems') return 'systems';
+    if (localPathParts[0] === 'projects') return 'research';
+    if (localPathParts[0] === 'outcomes') return 'evidence';
+    if (localPathParts[0] === 'now') return 'now';
+    if (localPathParts[0] === 'timeline' || localPathParts[0] === 'experience') return 'timeline';
+    if (localPathParts[0] === 'archives' || localPathParts[0] === 'writing') return 'notes';
+    if (localPathParts[0] === 'about') return 'profile';
+    return '';
+  })();
+  const localizedPaths = {
+    en: { home: '/', systems: '/systems/', research: '/projects/', evidence: '/outcomes/', now: '/now/', notes: '/writing/', timeline: '/experience/', profile: '/about/' },
+    zh: { home: '/zh/', systems: '/zh/systems/', research: '/zh/projects/', evidence: '/zh/outcomes/', now: '/zh/now/', notes: '/zh/writing/', timeline: '/zh/experience/', profile: '/zh/about/' }
+  };
+  const labels = {
+    zh: {
+      home: '首頁',
+      systems: '工程系統',
+      research: '研究方向',
+      notes: '研究筆記',
+      timeline: '參賽與研習',
+      profile: '關於',
+      menu: '選單',
+      language: '語言',
+      navigation: '主導覽',
+      appearance: '外觀',
+      light: 'Light',
+      dark: 'Dark',
+      toggleTheme: '切換顯示主題'
+    },
+    en: {
+      home: 'Home',
+      systems: 'Systems',
+      research: 'Research',
+      notes: 'Notes',
+      timeline: 'Experience',
+      profile: 'About',
+      menu: 'Menu',
+      language: 'Language',
+      navigation: 'Navigation',
+      appearance: 'Appearance',
+      light: 'Light',
+      dark: 'Dark',
+      toggleTheme: 'Toggle display theme'
+    }
+  };
+  const navPath = function(key) {
+    const paths = localizedPaths[currentLang] || localizedPaths.en;
+    return paths[key] || paths.home;
+  };
+  const langPath = function(targetLang) {
+    const prefix = targetLang === 'zh' ? '/zh' : '';
+    if (!localDetailPath) return prefix + '/';
+    return prefix + '/' + localDetailPath + '/';
+  };
+  const h = labels[currentLang] || labels.en;
+  const navItems = [
+    { key: 'home', label: h.home },
+    { key: 'research', label: h.research },
+    { key: 'systems', label: h.systems },
+    { key: 'notes', label: h.notes },
+    { key: 'timeline', label: h.timeline },
+    { key: 'profile', label: h.profile }
+  ];
+  const renderNavLink = function(item, index) {
+    const active = currentSection === item.key ? ' aria-current="page"' : '';
+    return '<a class="nav-item" href="' + url_for(navPath(item.key)) + '"' + active + '><span class="nav-item__index">' + String(index + 1).padStart(2, '0') + '</span><span class="nav-item__label">' + item.label + '</span></a>';
+  };
+  const renderLanguageSwitcher = function(className) {
+    return '<nav class="' + className + '" aria-label="' + h.language + '">' +
+      '<a class="language-option' + (currentLang === 'zh' ? ' is-active' : '') + '" href="' + url_for(langPath('zh')) + '" lang="zh-Hant"' + (currentLang === 'zh' ? ' aria-current="page"' : '') + '>繁中</a>' +
+      '<a class="language-option' + (currentLang === 'en' ? ' is-active' : '') + '" href="' + url_for(langPath('en')) + '" lang="en"' + (currentLang === 'en' ? ' aria-current="page"' : '') + '>EN</a>' +
+    '</nav>';
+  };
+%>
 <header class="site-header">
-  <%
-    const normalizedPath = String(page.path || '')
-      .replace(/index\.html$/, '')
-      .replace(/\/$/, '');
-    const pathParts = normalizedPath.split('/').filter(Boolean);
-    const rawHeaderText = strip_html(page.content || page.description || '').replace(/\s+/g, ' ').trim();
-    const headerCjkChars = (rawHeaderText.match(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g) || []).length;
-    const headerKanaChars = (rawHeaderText.match(/[\u3040-\u30ff]/g) || []).length;
-    const headerLatinChars = (rawHeaderText.match(/[A-Za-z]/g) || []).length;
-    const inferredContentLang = headerKanaChars > 12 ? 'ja' : (headerCjkChars > headerLatinChars ? 'zh' : 'en');
-    const isDatedPostPath = /^\d{4}\/\d{2}\/\d{2}\//.test(normalizedPath);
-    const normalizeHeaderLang = function(value) {
-      const normalized = String(value || '').toLowerCase();
-      if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh';
-      if (normalized === 'ja' || normalized === 'jp') return 'ja';
-      if (normalized === 'en') return 'en';
-      return '';
-    };
-    const sourcePath = String(page.source || page.full_source || '').replace(/\\/g, '/');
-    const canonicalPath = String(page.canonical_url || '').replace(/^https?:\/\/[^/]+/, '');
-    const sourceLangMatch = sourcePath.match(/(?:^|\/)(en|zh|ja)\//);
-    const canonicalLangMatch = canonicalPath.match(/\/(en|zh|ja)(?:\/|$)/);
-    const urlLang = ['en', 'zh', 'ja'].includes(pathParts[0]) ? pathParts[0] : '';
-    const canonicalLang = canonicalLangMatch ? canonicalLangMatch[1] : '';
-    const sourceLang = sourceLangMatch ? sourceLangMatch[1] : '';
-    const explicitLang = urlLang || canonicalLang || sourceLang;
-    const currentLang =
-      normalizeHeaderLang(page.site_lang) ||
-      explicitLang ||
-      normalizeHeaderLang(page.lang) ||
-      normalizeHeaderLang(config.language) ||
-      (isDatedPostPath ? inferredContentLang : 'en');
-    const localPathParts = urlLang ? pathParts.slice(1) : pathParts;
-    const localDetailPath = localPathParts.join('/');
-    const currentSection = (function() {
-      if (!localPathParts.length) return 'home';
-      if (localDetailPath === 'experience/projects') return 'projects';
-      if (localPathParts[0] === 'projects') return 'projects';
-      if (localPathParts[0] === 'archives' || localPathParts[0] === 'writing') return 'articles';
-      if (localPathParts[0] === 'labs' || localPathParts[0] === 'lab') return 'lab';
-      if (localPathParts[0] === 'about') return 'about';
-      if (localPathParts[0] === 'experience') return 'experience';
-      if (localPathParts[0] === 'contact') return 'contact';
-      return '';
-    })();
-    const localizedPaths = {
-      en: {
-        home: '/',
-        about: '/about/',
-        projects: '/experience/projects/',
-        experience: '/en/experience/',
-        articles: '/archives/',
-        contact: '#contact'
-      },
-      zh: {
-        home: '/zh/',
-        about: '/zh/about/',
-        projects: '/zh/experience/projects/',
-        experience: '/experience/',
-        articles: '/zh/archives/',
-        contact: '#contact'
-      },
-      ja: {
-        home: '/ja/',
-        about: '/ja/about/',
-        projects: '/ja/experience/projects/',
-        experience: '/ja/experience/',
-        articles: '/ja/archives/',
-        contact: '#contact'
-      }
-    };
-    const trilingualDetails = [
-      'experience/competitions',
-      'experience/awards',
-      'experience/workshops',
-      'experience/speaking',
-      'experience/community',
-      'experience/ctf',
-      'experience/projects',
-      'experience/research',
-      'experience/certifications',
-      'projects/nihs-control-team',
-      'projects/medical-cybersecurity',
-      'projects/autonomous-robot',
-      'labs/esp32-uart-test',
-      'labs/ros2-topic-communication',
-      'labs/web-security',
-      'labs/medical-cybersecurity-research',
-      'labs/ctf-web-practice'
-    ];
-    const detailLangPath = function(lang, detail) {
-      return lang === 'en' ? '/' + detail + '/' : '/' + lang + '/' + detail + '/';
-    };
-    const navPath = function(section) { return localizedPaths[currentLang][section]; };
-    const targetLangPath = function(lang, detail) {
-      const cleanDetail = String(detail || '').replace(/^\/+|\/+$/g, '');
-      return lang === 'en' ? '/' + (cleanDetail ? cleanDetail + '/' : '') : '/' + lang + '/' + (cleanDetail ? cleanDetail + '/' : '');
-    };
-    const targetFieldNotesPath = function(lang) {
-      return targetLangPath(lang, 'archives');
-    };
-    const sitePagePathExists = function(targetPath) {
-      const cleanTarget = String(targetPath || '').replace(/^\/+|\/+$/g, '');
-      if (!cleanTarget) return true;
-      if (site.pages && site.pages.findOne) {
-        const direct = site.pages.findOne({ path: cleanTarget + '/index.html' }) || site.pages.findOne({ path: cleanTarget + '.html' });
-        if (direct) return true;
-      }
-      if (site.posts && site.posts.findOne) {
-        const post = site.posts.findOne({ path: cleanTarget + '/index.html' }) || site.posts.findOne({ path: cleanTarget + '.html' });
-        if (post) return true;
-      }
-      return false;
-    };
-    const langPath = function(lang) {
-      if (!localDetailPath) return localizedPaths[lang].home;
-      if (localDetailPath === 'experience') {
-        return { en: '/en/experience/', zh: '/experience/', ja: '/ja/experience/' }[lang];
-      }
-      if (localDetailPath === 'archives' || localDetailPath.indexOf('archives/') === 0 || localDetailPath === 'writing' || localDetailPath.indexOf('writing/') === 0) {
-        return targetFieldNotesPath(lang);
-      }
-      if (isDatedPostPath) {
-        const translatedPostPath = targetLangPath(lang, localDetailPath);
-        if (sitePagePathExists(translatedPostPath)) return translatedPostPath;
-        if (lang === currentLang) return targetLangPath(explicitLang || 'en', localDetailPath);
-        return targetFieldNotesPath(lang);
-      }
-      if (trilingualDetails.includes(localDetailPath)) return detailLangPath(lang, localDetailPath);
-      return targetLangPath(lang, localDetailPath);
-    };
-    const navLabels = {
-      zh: {
-        home: '首頁',
-        about: '關於',
-        projects: '專案',
-        experience: '經歷',
-        articles: '文章',
-        contact: '聯絡',
-        menu: '選單',
-        light: '淺色',
-        dark: '深色',
-        toggleTheme: '切換色彩主題'
-      },
-      en: {
-        home: 'Home',
-        about: 'About',
-        projects: 'Projects',
-        experience: 'Experience',
-        articles: 'Articles',
-        contact: 'Contact',
-        menu: 'Menu',
-        light: 'Light',
-        dark: 'Dark',
-        toggleTheme: 'Toggle color theme'
-      },
-      ja: {
-        home: 'ホーム',
-        about: 'プロフィール',
-        projects: 'プロジェクト',
-        experience: '経験',
-        articles: '記事',
-        contact: 'お問い合わせ',
-        menu: 'メニュー',
-        light: 'ライト',
-        dark: 'ダーク',
-        toggleTheme: 'カラーテーマを切り替える'
-      }
-    };
-    const h = navLabels[currentLang] || navLabels.zh;
-    const navItems = [
-      { key: 'home', label: h.home },
-      { key: 'about', label: h.about },
-      { key: 'projects', label: h.projects },
-      { key: 'experience', label: h.experience },
-      { key: 'articles', label: h.articles },
-      { key: 'contact', label: h.contact }
-    ];
-    const renderNavLink = function(item) {
-      const active = currentSection === item.key ? ' aria-current="page"' : '';
-      const href = item.key === 'contact' ? navPath(item.key) : url_for(navPath(item.key));
-      return '<a href="' + href + '"' + active + '>' + item.label + '</a>';
-    };
-  %>
-  <div class="brand-row">
-    <a class="brand-avatar" href="<%= url_for(navPath('home')) %>" aria-label="<%= h.home %>">
-      <img src="<%= url_for('/images/seraph.png') %>" alt="Seraph avatar">
+  <div class="site-header__inner">
+    <a class="site-brand" href="<%= url_for(navPath('home')) %>" aria-label="Seraph Research and Engineering Portfolio">
+      <span class="site-brand__text">
+        <strong>SERAPH</strong>
+        <small>Research &amp; Engineering Portfolio</small>
+      </span>
     </a>
 
-    <div class="brand-content">
-      <div class="site-title">
-        <a href="<%= url_for(navPath('home')) %>"><span>Seraph</span></a>
-      </div>
+    <nav class="site-navigation" aria-label="<%= h.navigation %>">
+      <% navItems.forEach(function(item, index) { %><%- renderNavLink(item, index) %><% }); %>
+    </nav>
 
-      <div class="site-subtitle">Find Your Polaris.</div>
-
-      <nav class="site-nav" aria-label="Main navigation">
-        <% navItems.forEach(function(item) { %><%- renderNavLink(item) %><% }); %>
-      </nav>
-
-      <div class="header-controls">
-        <nav class="site-nav language-switcher" aria-label="Language switcher">
-          <a href="<%= url_for(langPath('en')) %>" lang="en" <%= currentLang === 'en' ? 'aria-current=true' : '' %>>EN</a>
-          <a href="<%= url_for(langPath('zh')) %>" lang="zh-Hant" <%= currentLang === 'zh' ? 'aria-current=true' : '' %>>ZH</a>
-          <a href="<%= url_for(langPath('ja')) %>" lang="ja" <%= currentLang === 'ja' ? 'aria-current=true' : '' %>>JA</a>
-        </nav>
-        <span class="header-controls-separator" aria-hidden="true"></span>
-
-        <button class="theme-toggle-button" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" title="<%= h.toggleTheme %>">
-          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
-          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
-          <span class="theme-toggle-label"><%= h.toggleTheme %></span>
-        </button>
-      </div>
+    <div class="site-header__actions">
+      <%- renderLanguageSwitcher('language-switcher') %>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label">
+          <small>Theme</small>
+          <strong data-theme-label><%= h.dark %></strong>
+        </span>
+      </button>
+    </div>
 
     <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
       <span class="mobile-menu-label"><%= h.menu %></span>
@@ -220,38 +119,25 @@
     </button>
   </div>
 
-      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
-        <section class="mobile-nav-section mobile-nav-section-navigation" aria-labelledby="mobile-nav-navigation-label">
-          <p id="mobile-nav-navigation-label" class="mobile-nav-label">Navigation</p>
-          <div class="mobile-nav-links">
-            <% navItems.forEach(function(item) { %><%- renderNavLink(item) %><% }); %>
-          </div>
-        </section>
-
-        <span class="mobile-nav-divider" aria-hidden="true"></span>
-
-        <section class="mobile-nav-section mobile-nav-section-language" aria-labelledby="mobile-nav-language-label">
-          <p id="mobile-nav-language-label" class="mobile-nav-label">Language</p>
-          <nav class="mobile-language-switcher" aria-label="Language switcher">
-            <a href="<%= url_for(langPath('en')) %>" lang="en" <%= currentLang === 'en' ? 'aria-current=true' : '' %>>EN</a>
-            <a href="<%= url_for(langPath('zh')) %>" lang="zh-Hant" <%= currentLang === 'zh' ? 'aria-current=true' : '' %>>ZH</a>
-            <a href="<%= url_for(langPath('ja')) %>" lang="ja" <%= currentLang === 'ja' ? 'aria-current=true' : '' %>>JA</a>
-          </nav>
-        </section>
-
-        <span class="mobile-nav-divider" aria-hidden="true"></span>
-
-        <section class="mobile-nav-section mobile-nav-section-appearance" aria-labelledby="mobile-nav-appearance-label">
-          <p id="mobile-nav-appearance-label" class="mobile-nav-label">Appearance</p>
-          <button class="theme-toggle-button theme-toggle-button-mobile" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" title="<%= h.toggleTheme %>">
-            <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
-            <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
-            <span class="theme-toggle-label"><%= h.toggleTheme %></span>
-          </button>
-        </section>
-      </nav>
-    </div>
-  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-navigation-label">
+      <p id="mobile-nav-navigation-label" class="mobile-nav-label"><%= h.navigation %></p>
+      <div class="mobile-nav-links">
+        <% navItems.forEach(function(item, index) { %><%- renderNavLink(item, index) %><% }); %>
+      </div>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-language-label">
+      <p id="mobile-nav-language-label" class="mobile-nav-label"><%= h.language %></p>
+      <%- renderLanguageSwitcher('mobile-language-switcher') %>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-appearance-label">
+      <p id="mobile-nav-appearance-label" class="mobile-nav-label"><%= h.appearance %></p>
+      <button class="theme-toggle theme-toggle--mobile" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label"><small>Theme</small><strong data-theme-label><%= h.dark %></strong></span>
+      </button>
+    </section>
+  </nav>
 </header>
 
 <script>
@@ -277,7 +163,7 @@
     }
 
     try {
-      applyTheme(localStorage.getItem(storageKey) || 'light');
+      applyTheme(localStorage.getItem(storageKey) || 'dark');
     } catch (error) {
       applyTheme('dark');
     }
@@ -288,7 +174,9 @@
         applyTheme(nextTheme);
         try {
           localStorage.setItem(storageKey, nextTheme);
-        } catch (error) {}
+        } catch (error) {
+          return;
+        }
       });
     });
 

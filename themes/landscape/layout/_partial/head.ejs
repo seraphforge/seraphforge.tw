@@ -17,32 +17,28 @@
     }
     return baseUrl + localPath;
   };
-  const canonicalUrl = page.canonical_url || absoluteUrl(page.path || '/');
-  const canonicalBaseMatch = String(canonicalUrl).match(/^https?:\/\/[^/]+/);
-  const canonicalBaseUrl = canonicalBaseMatch ? canonicalBaseMatch[0] : baseUrl;
+  const canonicalInput = String(page.canonical_url || '');
+  const normalizedCanonicalInput = canonicalInput.replace(/^https?:\/\/seraphforge\.github\.io(?=\/)/, '');
+  const canonicalUrl = normalizedCanonicalInput ? absoluteUrl(normalizedCanonicalInput) : absoluteUrl(page.path || '/');
   const canonicalAbsoluteUrl = function(path) {
-    if (/^https?:\/\//.test(path)) return path;
-    let localPath = url_for(path).replace(/index\.html$/, '');
-    if (rootPath !== '/' && localPath.indexOf(rootPath) === 0) {
-      localPath = localPath.slice(rootPath.length - 1);
-    }
-    return canonicalBaseUrl + localPath;
+    return absoluteUrl(path);
   };
-  const shareImage = absoluteUrl(page.cover || '/images/seraph-og.png');
+  const hasShareImage = Boolean(page.cover);
+  const shareImage = hasShareImage ? absoluteUrl(page.cover) : '';
   const shareImageAlt = page.title ? page.title + ' preview image' : siteTitle + ' preview image';
   const metaType = page.layout === 'post' ? 'article' : 'website';
+  const shouldIndexPage = page.layout === 'post' ? seraph_should_index_post(page) : page.indexing !== false;
   const headPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const headParts = headPath.split('/').filter(Boolean);
   const normalizeHeadLang = function(value) {
     const normalized = String(value || '').toLowerCase();
     if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh';
-    if (normalized === 'ja' || normalized === 'jp') return 'ja';
     if (normalized === 'en') return 'en';
     return '';
   };
-  const explicitHeadLang = ['en', 'zh', 'ja'].includes(headParts[0]) ? headParts[0] : '';
+  const explicitHeadLang = ['en', 'zh'].includes(headParts[0]) ? headParts[0] : '';
   const headLang = explicitHeadLang || normalizeHeadLang(page.site_lang) || 'en';
-  const ogLocales = { en: 'en_US', zh: 'zh_TW', ja: 'ja_JP' };
+  const ogLocales = { en: 'en_US', zh: 'zh_TW' };
   const localHeadParts = explicitHeadLang ? headParts.slice(1) : headParts;
   const firstHeadPart = localHeadParts[0] || '';
   const localHeadPath = localHeadParts.join('/');
@@ -52,7 +48,7 @@
     firstHeadPart === 'dashboard' ? 'dashboard' :
     firstHeadPart === 'works' ? 'projects' :
     firstHeadPart === 'archives' ? 'writing' :
-    ['about', 'experience', 'projects', 'labs', 'writing', 'timeline'].includes(firstHeadPart) && localHeadParts.length === 1 ? firstHeadPart :
+    ['about', 'experience', 'systems', 'projects', 'outcomes', 'now', 'labs', 'writing', 'timeline'].includes(firstHeadPart) && localHeadParts.length === 1 ? firstHeadPart :
     null;
   const trilingualDetailPaths = [
     'experience/competitions',
@@ -67,6 +63,9 @@
     'projects/nihs-control-team',
     'projects/medical-cybersecurity',
     'projects/autonomous-robot',
+    'systems/securecare',
+    'systems/securecare-platform',
+    'systems/home-lab-infrastructure',
     'labs/esp32-uart-test',
     'labs/ros2-topic-communication',
     'labs/web-security',
@@ -75,36 +74,37 @@
   ];
   const detailHreflangPaths = trilingualDetailPaths.includes(localHeadPath) ? {
     en: '/' + localHeadPath + '/',
-    zh: '/zh/' + localHeadPath + '/',
-    ja: '/ja/' + localHeadPath + '/'
+    zh: '/zh/' + localHeadPath + '/'
   } : null;
   const postHreflangPaths = isDatedHeadPost ? {
     en: '/' + localHeadPath + '/',
-    zh: '/zh/' + localHeadPath + '/',
-    ja: '/ja/' + localHeadPath + '/'
+    zh: '/zh/' + localHeadPath + '/'
   } : null;
   const sectionHreflangPaths = headSection ? {
-    home: { en: '/', zh: '/zh/', ja: '/ja/' },
-    dashboard: { en: '/dashboard/', zh: '/zh/dashboard/', ja: '/ja/dashboard/' },
-    about: { en: '/about/', zh: '/zh/about/', ja: '/ja/about/' },
-    experience: { en: '/en/experience/', zh: '/experience/', ja: '/ja/experience/' },
-    projects: { en: '/projects/', zh: '/zh/projects/', ja: '/ja/projects/' },
-    labs: { en: '/labs/', zh: '/zh/labs/', ja: '/ja/labs/' },
-    writing: { en: '/writing/', zh: '/zh/writing/', ja: '/ja/writing/' },
-    timeline: { en: '/timeline/', zh: '/zh/timeline/', ja: '/ja/timeline/' }
+    home: { en: '/', zh: '/zh/' },
+    dashboard: { en: '/dashboard/', zh: '/zh/dashboard/' },
+    about: { en: '/about/', zh: '/zh/about/' },
+    experience: { en: '/en/experience/', zh: '/experience/' },
+    systems: { en: '/systems/', zh: '/zh/systems/' },
+    projects: { en: '/projects/', zh: '/zh/projects/' },
+    outcomes: { en: '/outcomes/', zh: '/zh/outcomes/' },
+    now: { en: '/now/', zh: '/zh/now/' },
+    labs: { en: '/labs/', zh: '/zh/labs/' },
+    writing: { en: '/writing/', zh: '/zh/writing/' },
+    timeline: { en: '/timeline/', zh: '/zh/timeline/' }
   }[headSection] : null;
   const hreflangPaths = detailHreflangPaths || postHreflangPaths || sectionHreflangPaths;
 %>
 
 <title><%= metaTitle %></title>
 <meta name="description" content="<%= metaDescription %>">
+<% if (!shouldIndexPage) { %><meta name="robots" content="noindex, nofollow"><% } %>
 <% if (metaKeywords) { %><meta name="keywords" content="<%= metaKeywords %>"><% } %>
 <meta name="author" content="<%= config.author || '' %>">
 <link rel="canonical" href="<%= canonicalUrl %>">
 <% if (hreflangPaths) { %>
 <link rel="alternate" hreflang="en" href="<%= canonicalAbsoluteUrl(hreflangPaths.en) %>">
 <link rel="alternate" hreflang="zh-TW" href="<%= canonicalAbsoluteUrl(hreflangPaths.zh) %>">
-<link rel="alternate" hreflang="ja" href="<%= canonicalAbsoluteUrl(hreflangPaths.ja) %>">
 <link rel="alternate" hreflang="x-default" href="<%= canonicalAbsoluteUrl(hreflangPaths.en) %>">
 <% } %>
 
@@ -113,8 +113,10 @@
 <meta property="og:description" content="<%= metaDescription %>">
 <meta property="og:type" content="<%= metaType %>">
 <meta property="og:url" content="<%= canonicalUrl %>">
+<% if (hasShareImage) { %>
 <meta property="og:image" content="<%= shareImage %>">
 <meta property="og:image:alt" content="<%= shareImageAlt %>">
+<% } %>
 <meta property="og:locale" content="<%= ogLocales[headLang] %>">
 <% if (page.date) { %>
 <meta property="article:published_time" content="<%= date_xml(page.date) %>">
@@ -123,24 +125,23 @@
 <meta property="article:modified_time" content="<%= date_xml(page.updated) %>">
 <% } %>
 
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="<%= hasShareImage ? 'summary_large_image' : 'summary' %>">
 <meta name="twitter:title" content="<%= metaTitle %>">
 <meta name="twitter:description" content="<%= metaDescription %>">
+<% if (hasShareImage) { %>
 <meta name="twitter:image" content="<%= shareImage %>">
 <meta name="twitter:image:alt" content="<%= shareImageAlt %>">
+<% } %>
 
 <link rel="icon" type="image/svg+xml" href="<%= url_for('/favicon.svg') %>">
 <link rel="shortcut icon" href="<%= url_for('/favicon.svg') %>">
 <script>
   (function() {
     try {
-      document.documentElement.setAttribute('data-theme', localStorage.getItem('seraph-theme') === 'light' ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', localStorage.getItem('seraph-theme') || 'dark');
     } catch (error) {
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   })();
 </script>
-<link rel="stylesheet" href="<%= url_for('/css/custom.css') %>?v=20">
-<link rel="stylesheet" href="<%= url_for('/css/footer-polaris.css') %>?v=1">
-<link rel="stylesheet" href="<%= url_for('/css/projects-engineering.css') %>?v=1">
-<link rel="stylesheet" href="<%= url_for('/css/round2.css') %>?v=1">
+<link rel="stylesheet" href="<%= url_for('/css/custom.css') %>?v=22">

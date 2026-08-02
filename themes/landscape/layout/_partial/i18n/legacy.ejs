@@ -1,0 +1,385 @@
+<% function renderHero() { %>
+  <section class="research-hero" aria-labelledby="<%= lang %>-identity-title">
+    <div class="research-hero__copy">
+      <p class="research-section-kicker">Research &amp; Engineering Identity</p>
+      <h1 id="<%= lang %>-identity-title"><%= String(identity.brand || 'Seraph').toUpperCase() %></h1>
+      <p class="research-hero__subtitle"><%= isZh ? (identity.subtitleZh || identity.subtitle) : identity.subtitle %></p>
+      <p class="research-hero__focus"><%= identity.focusLine %></p>
+      <p class="research-hero__summary"><%= isZh ? identity.summaryZh : identity.summary %></p>
+      <div class="research-hero__actions">
+        <a class="os-button os-button-primary" href="<%= localHref('systems') %>"><%= c.viewSystems %></a>
+        <a class="os-button os-button-secondary" href="<%= localHref('research') %>"><%= c.viewResearch %></a>
+        <a class="os-button os-button-secondary" href="<%= localHref('outcomes') %>"><%= c.viewEvidence %></a>
+        <a class="os-button os-button-secondary" href="<%= localHref('now') %>"><%= c.viewNow %></a>
+        <a class="os-button os-button-secondary" href="<%= localHref('writing') %>"><%= c.readNotes %></a>
+      </div>
+    </div>
+    <aside class="research-hero__meta" aria-label="Portfolio summary">
+      <% renderMetadataList([
+        [c.currentStatus, identity.currentStatus],
+        [c.primaryFocus, identity.primaryFocus],
+        [c.activeSystems, String(featuredSystems.length)],
+        [c.activeProjects, String(projects.filter(function(project) { return ['Ongoing', 'Prototype', 'Planning'].includes(project.status); }).length)],
+        [c.currentStage, identity.currentStage],
+        [c.lastUpdated, data.lastUpdated]
+      ]); %>
+    </aside>
+  </section>
+<% } %>
+
+<% function renderFeaturedSystems() { %>
+  <section class="research-section featured-systems" id="featured-systems" aria-labelledby="<%= lang %>-featured-systems-title">
+    <% renderSectionHeader('Featured Systems', isZh ? '精選工程系統' : 'Featured Systems', isZh ? '先呈現可檢視的系統、個人角色、架構範圍與工程證據。' : 'A fast engineering view of systems, role, scope, architecture, and evidence.'); %>
+    <div class="featured-system-list">
+      <% featuredSystems.forEach(function(project) { %>
+        <article class="featured-system">
+          <div class="featured-system__meta">
+            <span><%= project.systemId || project.id %></span>
+            <% renderStatusBadge(project.currentState || project.status); %>
+          </div>
+          <div class="featured-system__body">
+            <h3><a href="<%= projectHref(project) %>"><%= maybeZh(project, 'title') %></a></h3>
+            <% renderMetadataList([
+              [c.domain, project.domain],
+              [c.problem, maybeZh(project, 'problem')],
+              [c.myRole, project.myRole || project.role],
+              [c.engineeringScope, joinList(project.engineeringScope)],
+              [c.securityScope, joinList(project.securityScope)],
+              [c.evidence, (project.evidence || []).map(function(id) { const ev = evidenceById(id); return ev ? ev.type + ' / ' + ev.verification : id; }).join('<br>')],
+              [c.nextStep, project.nextEngineeringStep || maybeZh(project, 'nextSteps')]
+            ]); %>
+            <% if (project.architecture && project.architecture.nodes) { renderArchitectureSnapshot(project); } %>
+            <% renderTagList(project.technologies); %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderFocusItem(item, compact) { const relatedHref = localizedNowHref(item.relatedPath); %>
+  <article class="current-focus-item">
+    <div class="current-focus-item__meta">
+      <% if (hasText(item.systemId)) { %><span><%= item.systemId %></span><% } %>
+      <% renderStatusBadge(nowText(item, 'status')); %>
+    </div>
+    <div class="current-focus-item__body">
+      <h3><%= nowText(item, 'title') %></h3>
+      <dl class="research-metadata-list">
+        <% [
+          [isZh ? '領域' : 'Domain', nowText(item, 'domain')],
+          [isZh ? '目前目標' : 'Current Goal', nowText(item, 'currentGoal')],
+          [isZh ? '下一個里程碑' : 'Next Milestone', nowText(item, 'nextMilestone')],
+          [isZh ? '證據狀態' : 'Evidence Status', nowText(item, 'evidenceStatus')]
+        ].filter(function(row) { return hasText(row[1]); }).forEach(function(row) { %>
+          <div><dt><%= row[0] %></dt><dd><%= row[1] %></dd></div>
+        <% }) %>
+      </dl>
+      <% if (!compact && relatedHref) { %>
+        <a class="research-inline-link" href="<%= relatedHref %>"><%= isZh ? '查看相關系統' : 'Related System' %></a>
+      <% } %>
+    </div>
+  </article>
+<% } %>
+
+<% function renderCurrentFocus(limit) { const items = nowFocus.slice(0, limit || nowFocus.length); %>
+  <% if (items.length) { %>
+    <section class="research-section current-focus" id="current-focus" aria-labelledby="<%= lang %>-current-focus-title">
+      <% renderSectionHeader('Current Focus', isZh ? '目前重點' : 'Current Focus', isZh ? '目前正在建置、測試、除錯與整理中的系統工作，作為 Now 工程紀錄的摘要。' : 'A short status board for systems currently being built, tested, debugged, and documented.'); %>
+      <div class="current-focus-list">
+        <% items.forEach(function(item) { renderFocusItem(item, true); }); %>
+      </div>
+      <p class="current-focus__all"><a class="research-inline-link" href="<%= localHref('now') %>"><%= isZh ? '查看全部目前進度' : 'View all current work' %></a></p>
+    </section>
+  <% } %>
+<% } %>
+
+<% function renderEngineeringDomains() { %>
+  <section class="research-section engineering-domains" aria-labelledby="<%= lang %>-engineering-domains-title">
+    <% renderSectionHeader('Core Engineering Domains', isZh ? '核心工程領域' : 'Core Engineering Domains', isZh ? '四個工程層說明能建置的系統範圍；醫療資安與 HPC 保留在 Applied Domains 與 Research Focus。' : 'Four engineering layers show what can be built; healthcare security and HPC remain applied domains and research focus areas.'); %>
+    <div class="engineering-domain-list">
+      <% engineeringDomains.forEach(function(domain) { %>
+        <article class="engineering-domain">
+          <div class="engineering-domain__id"><%= domain.id %></div>
+          <div>
+            <div class="research-field-item__title-row">
+              <h3><%= domain.name %></h3>
+              <% renderStatusBadge(domain.currentLevel); %>
+            </div>
+            <p><%= domain.whatIBuild %></p>
+            <% renderMetadataList([[isZh ? 'Related Projects' : 'Related Projects', (domain.relatedProjects || []).map(projectTitle).join('<br>')]]); %>
+            <% renderTagList(domain.technologies); %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderAreas() { %>
+  <section class="research-section" id="research-focus" aria-labelledby="<%= lang %>-research-focus-title">
+    <% renderSectionHeader('Research Focus', isZh ? '研究方向' : 'Research Focus', isZh ? '研究方向保留問題意識、方法、限制與後續探索，不與工程層混在一起。' : 'Research focus keeps the questions, methods, limitations, and future exploration separate from engineering layers.'); %>
+    <div class="research-field-list">
+      <% areas.forEach(function(area) { %>
+        <article class="research-field-item">
+          <div class="research-field-item__id"><%= area.id %></div>
+          <div class="research-field-item__body">
+            <div class="research-field-item__title-row">
+              <h3><%= maybeZh(area, 'name') %></h3>
+              <% renderStatusBadge(area.status); %>
+            </div>
+            <p><%= maybeZh(area, 'description') %></p>
+            <div class="research-tag-list">
+              <span>Related Projects: <strong><%= (area.projectIds || []).length %></strong></span>
+              <% (area.keywords || []).forEach(function(keyword) { %><span><%= keyword %></span><% }) %>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderProjectRow(project) { %>
+  <article class="research-project-row" data-research-project data-fields="<%= (project.fields || []).join(',') %>" data-year="<%= project.year %>" data-status="<%= project.status %>" data-evidence="<%= (project.evidence || []).map(function(id) { const ev = evidenceById(id); return ev ? ev.type : ''; }).join(',') %>">
+    <div class="research-project-row__meta">
+      <span><%= project.id %></span>
+      <% if (project.systemId) { %><span><%= project.systemId %></span><% } %>
+      <time><%= project.year %></time>
+      <% renderStatusBadge(project.status); %>
+    </div>
+    <div class="research-project-row__body">
+      <h3><a href="<%= projectHref(project) %>"><%= maybeZh(project, 'title') %></a></h3>
+      <% renderMetadataList([
+        [c.researchQuestion, maybeZh(project, 'researchQuestion')],
+        [c.problem, maybeZh(project, 'problem')],
+        [c.approach, maybeZh(project, 'approach')],
+        [c.myRole, project.myRole || project.role],
+        [c.evidence, (project.evidence || []).map(function(id) { const ev = evidenceById(id); return ev ? ev.type + ' / ' + ev.verification : id; }).join('<br>')]
+      ]); %>
+      <% renderTagList(project.technologies); %>
+    </div>
+  </article>
+<% } %>
+
+<% function renderFeaturedProjects(limit) { %>
+  <section class="research-section" aria-labelledby="<%= lang %>-featured-projects-title">
+    <% renderSectionHeader('Research Projects', isZh ? '研究專案' : 'Research Projects', isZh ? '以研究問題、方法、證據、限制與下一步補足工程系統背後的推理。' : 'The research view explains the questions, methods, evidence, limitations, and next steps behind the systems.'); %>
+    <div class="research-project-list">
+      <% projects.slice(0, limit || projects.length).forEach(function(project) { renderProjectRow(project); }); %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderCapabilities() { %>
+  <section class="research-section" aria-labelledby="<%= lang %>-capabilities-title">
+    <% renderSectionHeader('Engineering and Research Capabilities', isZh ? '工程與研究能力矩陣' : 'Engineering and Research Capabilities', isZh ? '能力項目以真實專案 ID 作為證據，不使用百分比、星級或技能條。' : 'Each capability links to real project IDs instead of percentages, stars, or progress bars.'); %>
+    <div class="capability-matrix">
+      <% capabilities.forEach(function(group) { %>
+        <article class="capability-group">
+          <h3><%= group.category %></h3>
+          <div class="capability-group__items">
+            <% (group.items || []).forEach(function(item) { %>
+              <div class="capability-item"><strong><%= item.name %></strong><span><%= joinList(item.evidence) %></span></div>
+            <% }) %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderEvidenceList(limit) { %>
+  <section class="research-section" aria-labelledby="<%= lang %>-evidence-title">
+    <% renderSectionHeader('Evidence and Outcomes', isZh ? '證據與成果' : 'Evidence and Outcomes', isZh ? '公開程度明確標示；未公開或尚未整理的項目不偽造成完成成果。' : 'Verification status is explicit; private or unfinished material is not presented as finished results.'); %>
+    <div class="research-evidence-list">
+      <% evidence.slice(0, limit || evidence.length).forEach(function(item) { const project = projectById(item.projectId) || {}; %>
+        <article class="research-evidence-item">
+          <div class="research-evidence-item__type"><%= item.type %></div>
+          <div>
+            <h3><% if (item.url) { %><a href="<%= url_for(item.url) %>"><%= item.title %></a><% } else { %><%= item.title %><% } %></h3>
+            <p><%= item.description %></p>
+            <% renderMetadataList([[c.relatedProject, maybeZh(project, 'title') || item.projectId], ['Date', item.date], [c.verification, statusLabel(item.verification)]]); %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderHowIWork() { %>
+  <section class="research-section how-i-work" aria-labelledby="<%= lang %>-work-title">
+    <% renderSectionHeader('How I Work', isZh ? '我的工程方式' : 'How I Work', isZh ? '用流程描述工程方法，而不是人格形容詞。' : 'A workflow description of engineering practice, not personality claims.'); %>
+    <div class="engineering-process-list">
+      <% engineeringProcess.forEach(function(step) { %>
+        <article class="engineering-process-step">
+          <span><%= step.id %></span>
+          <h3><%= step.title %></h3>
+          <p><%= isZh ? step.descriptionZh : step.description %></p>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderTimeline() { %>
+  <section class="research-section" aria-labelledby="<%= lang %>-timeline-title">
+    <% renderSectionHeader('Technical and Academic Timeline', isZh ? '技術與學習歷程' : 'Technical and Academic Timeline', isZh ? '只記錄日期、類別、輸出與對研究或工程方向的影響。' : 'A factual record of dates, outputs, and effects on research or engineering direction.'); %>
+    <div class="research-timeline">
+      <% timeline.forEach(function(item) { %>
+        <article class="research-timeline-entry">
+          <time><%= item.date %></time>
+          <div><p class="research-section-kicker"><%= item.category %></p><h3><%= item.title %></h3><p><%= isZh ? item.outputZh : item.output %></p><small><%= item.impact %></small></div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% function renderFuture() { const items = isZh ? data.futureDirectionZh : data.futureDirection; %>
+  <section class="research-section research-future" aria-labelledby="<%= lang %>-future-title">
+    <% renderSectionHeader('Current and Future Direction', isZh ? '目前與未來方向' : 'Current and Future Direction', isZh ? '保留正在準備、希望深化與預計探索的語氣。' : 'Written as preparation and planned exploration, not completed professional credentials.'); %>
+    <ul><% (items || []).forEach(function(item) { %><li><%= item %></li><% }) %></ul>
+  </section>
+<% } %>
+
+<% function renderEvidenceChips(items) { const list = safeArray(items); %>
+  <% if (list.length) { %>
+    <div class="now-evidence-list">
+      <% list.forEach(function(item) { %>
+        <div class="now-evidence-item">
+          <% if (hasText(item.type)) { %><span><%= item.type %></span><% } %>
+          <% if (hasText(item.label)) { %><strong><%= item.label %></strong><% } %>
+          <% if (hasText(item.status) || hasText(item.visibility)) { %><small><%= [item.status, item.visibility].filter(Boolean).join(' / ') %></small><% } %>
+          <% if (hasText(item.description)) { %><p><%= item.description %></p><% } %>
+          <% if (hasText(item.url)) { %><a class="research-inline-link" href="<%= url_for(item.url) %>"><%= isZh ? '查看證據' : 'View Evidence' %></a><% } %>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+<% } %>
+
+<% function renderNowLog(log) {
+  const relatedHref = localizedNowHref(log.relatedPath);
+  const detailRows = [
+    [isZh ? '結果' : 'Result', nowText(log, 'result')],
+    [isZh ? '問題' : 'Problem', nowText(log, 'problem')],
+    [isZh ? '調查' : 'Investigation', nowText(log, 'investigation')],
+    [isZh ? '修正' : 'Fix', nowText(log, 'fix')],
+    [isZh ? '學到的事' : 'Lesson', nowText(log, 'lesson')],
+    [isZh ? '下一步' : 'Next Step', nowText(log, 'nextStep')]
+  ].filter(function(row) { return hasText(row[1]); });
+%>
+  <article class="now-log-entry" data-now-log data-type="<%= nowText(log, 'type') %>" data-system="<%= log.systemId || '' %>" data-status="<%= nowText(log, 'status') %>" data-search="<%= [nowText(log, 'title'), nowText(log, 'summary'), log.systemId, safeArray(log.technologies).join(' '), nowText(log, 'result'), nowText(log, 'problem'), nowText(log, 'fix'), nowText(log, 'lesson')].join(' ').toLowerCase() %>">
+    <div class="now-log-entry__aside">
+      <time datetime="<%= log.date || '' %>"><%= formatNowDate(log.date) %></time>
+      <span><%= log.systemId %></span>
+      <% renderStatusBadge(nowText(log, 'type')); %>
+      <% renderStatusBadge(nowText(log, 'status')); %>
+    </div>
+    <div class="now-log-entry__body">
+      <h3><%= nowText(log, 'title') %></h3>
+      <% if (hasText(nowText(log, 'summary'))) { %><p><%= nowText(log, 'summary') %></p><% } %>
+      <% if (safeArray(log.technologies).length) { renderTagList(log.technologies); } %>
+      <% if (detailRows.length || safeArray(log.evidence).length || relatedHref) { %>
+        <details class="now-log-details">
+          <summary><%= isZh ? '查看工程細節' : 'View Engineering Details' %></summary>
+          <% if (detailRows.length) { %>
+            <dl class="research-metadata-list">
+              <% detailRows.forEach(function(row) { %><div><dt><%= row[0] %></dt><dd><%= row[1] %></dd></div><% }) %>
+            </dl>
+          <% } %>
+          <% renderEvidenceChips(log.evidence); %>
+          <% if (relatedHref) { %><a class="research-inline-link" href="<%= relatedHref %>"><%= isZh ? '查看相關頁面' : 'Related Link' %></a><% } %>
+        </details>
+      <% } %>
+    </div>
+  </article>
+<% } %>
+
+<% function renderNowPage() {
+  const systemCount = Array.from(new Set(nowLogs.concat(nowFocus).map(function(item) { return item.systemId; }).filter(Boolean))).length;
+  const currentModes = Array.from(new Set(nowFocus.map(function(item) { return nowText(item, 'status'); }).filter(Boolean)));
+  const types = Array.from(new Set(nowLogs.map(function(item) { return nowText(item, 'type'); }).filter(Boolean)));
+  const systems = Array.from(new Set(nowLogs.map(function(item) { return item.systemId; }).filter(Boolean)));
+  const statuses = Array.from(new Set(nowLogs.map(function(item) { return nowText(item, 'status'); }).filter(Boolean)));
+%>
+  <section class="research-page now-page" aria-labelledby="<%= lang %>-now-title">
+    <header class="research-page-header now-page-header">
+      <p class="research-section-kicker">Now</p>
+      <h1 id="<%= lang %>-now-title"><%= isZh ? '目前進度' : 'Now' %></h1>
+      <p class="now-page-subtitle"><%= isZh ? '工程紀錄' : 'Engineering Log' %></p>
+      <p><%= isZh ? '記錄目前正在建置、測試、除錯與整理中的工程系統與研究工作。' : 'Short records of systems being built, tested, debugged and documented.' %></p>
+      <dl class="now-summary-grid">
+        <div><dt><%= isZh ? '最後更新' : 'Last Updated' %></dt><dd><%= formatNowDate(nowData.updatedAt) %></dd></div>
+        <div><dt><%= isZh ? '進行中項目' : 'Active Focus' %></dt><dd><%= nowFocus.length %></dd></div>
+        <div><dt><%= isZh ? '近期紀錄' : 'Recent Logs' %></dt><dd><%= nowLogs.length %></dd></div>
+        <div><dt><%= isZh ? '涉及系統' : 'Systems' %></dt><dd><%= systemCount %></dd></div>
+        <div><dt><%= isZh ? '目前狀態' : 'Current Modes' %></dt><dd><%= currentModes.join(' / ') || (isZh ? '無資料' : 'No data') %></dd></div>
+      </dl>
+    </header>
+
+    <section class="research-section now-current-focus" aria-labelledby="<%= lang %>-now-focus-title">
+      <% renderSectionHeader('Current Focus', isZh ? '目前重點' : 'Current Focus', isZh ? '所有 visible currentFocus 項目，顯示目前目標、下一個里程碑與證據狀態。' : 'All visible current focus items with current goal, next milestone, and evidence status.'); %>
+      <div class="current-focus-list">
+        <% nowFocus.forEach(function(item) { renderFocusItem(item, false); }); %>
+      </div>
+    </section>
+
+    <section class="research-section now-engineering-log" aria-labelledby="<%= lang %>-engineering-log-title">
+      <% renderSectionHeader('Engineering Log', isZh ? '工程紀錄' : 'Engineering Log', isZh ? '短期 Build、Test、Debug、Failure、Fix 與 Next Step 紀錄；失敗與規劃狀態會保留。' : 'Short-term Build, Test, Debug, Failure, Fix, and Next Step records; failures and planned work remain visible.'); %>
+      <form class="now-filter-bar" aria-label="<%= isZh ? '工程紀錄篩選' : 'Engineering log filters' %>">
+        <label><span><%= isZh ? '搜尋' : 'Search' %></span><input type="search" data-now-search placeholder="<%= isZh ? '搜尋標題、摘要、系統或修正' : 'Search title, summary, system, or fix' %>"></label>
+        <label><span><%= isZh ? '類型' : 'Type' %></span><select data-now-filter="type"><option value=""><%= isZh ? '全部類型' : 'All types' %></option><% types.forEach(function(type) { %><option value="<%= type %>"><%= type %></option><% }) %></select></label>
+        <label><span><%= isZh ? '系統' : 'System' %></span><select data-now-filter="system"><option value=""><%= isZh ? '全部系統' : 'All systems' %></option><% systems.forEach(function(system) { %><option value="<%= system %>"><%= system %></option><% }) %></select></label>
+        <label><span><%= isZh ? '狀態' : 'Status' %></span><select data-now-filter="status"><option value=""><%= isZh ? '全部狀態' : 'All status' %></option><% statuses.forEach(function(status) { %><option value="<%= status %>"><%= status %></option><% }) %></select></label>
+      </form>
+      <p class="research-empty-state" data-now-live aria-live="polite"></p>
+      <div class="now-log-list">
+        <% nowLogs.forEach(function(log) { renderNowLog(log); }); %>
+      </div>
+      <p class="research-empty-state" data-now-empty hidden><%= isZh ? '沒有符合條件的工程紀錄。' : 'No engineering logs match the selected filters.' %></p>
+      <script>
+        (function() {
+          var root = document.currentScript.closest('.now-engineering-log');
+          if (!root) return;
+          var search = root.querySelector('[data-now-search]');
+          var filters = Array.prototype.slice.call(root.querySelectorAll('[data-now-filter]'));
+          var items = Array.prototype.slice.call(root.querySelectorAll('[data-now-log]'));
+          var empty = root.querySelector('[data-now-empty]');
+          var live = root.querySelector('[data-now-live]');
+          function matches(item) {
+            var query = search ? search.value.trim().toLowerCase() : '';
+            if (query && (item.getAttribute('data-search') || '').indexOf(query) === -1) return false;
+            return filters.every(function(filter) {
+              var value = filter.value;
+              if (!value) return true;
+              return (item.getAttribute('data-' + filter.getAttribute('data-now-filter')) || '') === value;
+            });
+          }
+          function apply() {
+            var visible = 0;
+            items.forEach(function(item) {
+              var ok = matches(item);
+              item.hidden = !ok;
+              if (ok) visible += 1;
+            });
+            if (empty) empty.hidden = visible !== 0;
+            if (live) live.textContent = visible + ' <%= isZh ? '筆紀錄顯示中' : 'logs visible' %>';
+          }
+          if (search) search.addEventListener('input', apply);
+          filters.forEach(function(filter) { filter.addEventListener('change', apply); });
+          apply();
+        })();
+      </script>
+    </section>
+  </section>
+<% } %>
+
+<% if (legacySection === 'now') { %>
+  <% renderNowPage(); %>
+<% } else if (legacySection === 'timeline') { %>
+  <% renderTimeline(); %>
+<% } else { %>
+  <% renderHero(); %>
+<% } %>

@@ -1,144 +1,262 @@
 <%
   const expPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const expParts = expPath.split('/').filter(Boolean);
-  const normalizeExperienceLang = function(value) {
-    const normalized = String(value || '').toLowerCase();
-    if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh';
-    if (normalized === 'ja' || normalized === 'jp') return 'ja';
-    if (normalized === 'en') return 'en';
-    return '';
-  };
-  const expLang =
-    normalizeExperienceLang(page.site_lang) ||
-    (expParts[0] === 'en' ? 'en' : (expParts[0] === 'ja' ? 'ja' : (expParts[0] === 'zh' ? 'zh' : 'zh')));
-  const expCopy = (site.data && site.data.experience && site.data.experience[expLang]) || site.data.experience.zh;
-  const expSections = expCopy.sections || {};
-  const expLabels = expCopy.labels || {};
-  const expSectionOrder = ['competitions', 'camps', 'conferences', 'workshops', 'speaking', 'certifications', 'community'];
-  const expRoleLabels = {
-    zh: { camp: '學員', workshop: '參與者', conference: '與會者', contest: '參賽者' },
-    en: { camp: 'Student', workshop: 'Participant', conference: 'Attendee', contest: 'Competitor' },
-    ja: { camp: '受講生', workshop: '参加者', conference: '参加者', contest: '参加者' }
+  const expLang = expParts[0] === 'zh' ? 'zh' : 'en';
+  const isExpZh = expLang === 'zh';
+  const expData = ((site.data && site.data.experience) || {}).en || {};
+  const expSections = (expData && expData.sections) || {};
+
+  const copy = {
+    eyebrow: isExpZh ? '參賽與研習' : 'Competitions & Learning',
+    title: isExpZh ? '參賽與研習紀錄' : 'Competitions and Learning Activities',
+    description: isExpZh
+      ? '整理實際參與過的競賽、研習、營隊、工作坊、講座與社群教學活動。'
+      : 'A record of competitions, camps, workshops, talks, community activities, and learning milestones.',
+    countSuffix: isExpZh ? '筆紀錄' : 'records',
+    details: isExpZh ? '查看詳細紀錄' : 'View Details',
+    competitionRecords: isExpZh ? '競賽紀錄' : 'Competition Records',
+    ctf: isExpZh ? 'CTF 競賽' : 'CTF Competitions',
+    robotics: isExpZh ? '機器人競賽' : 'Robotics Competitions',
+    other: isExpZh ? '其他競賽' : 'Other Competitions',
+    camps: isExpZh ? '研習與營隊' : 'Learning Activities and Camps',
+    workshops: isExpZh ? '工作坊與講座' : 'Workshops and Talks',
+    role: isExpZh ? '身分' : 'Role',
+    team: isExpZh ? '隊伍' : 'Team',
+    topic: isExpZh ? '主題或專案' : 'Topic or Project',
+    result: isExpZh ? '結果或狀態' : 'Result or Status',
+    takeaway: isExpZh ? '收穫' : 'Takeaway'
   };
 
-  const countSectionItems = function(section) {
-    if (!section) return 0;
-    if (Array.isArray(section.items)) return section.items.length;
-    if (Array.isArray(section.groups)) {
-      return section.groups.reduce(function(total, group) {
-        return total + (Array.isArray(group.items) ? group.items.length : 0);
-      }, 0);
+  const roleMap = {
+    Competitor: '參賽者',
+    Student: '學員',
+    Participant: '參與者',
+    Attendee: '參與者'
+  };
+  const resultMap = {
+    Finalist: '決賽入選',
+    'Honorable Mention': '佳作',
+    'High School Division Finalist': '高中職組決賽入圍',
+    'University Division Finalist': '大專組決賽入圍',
+    'University Division Honorable Mention': '大專組佳作',
+    'High School and University Divisions Finalist': '高中職組與大專組決賽入選',
+    'Easter Egg Expert Award': 'Easter Egg Expert Award'
+  };
+  const sectionTypeMap = {
+    camps: isExpZh ? '營隊／研習' : 'Camp / Learning Activity',
+    workshops: isExpZh ? '工作坊／講座' : 'Workshop / Talk',
+    conferences: isExpZh ? '講座／研討會' : 'Conference / Talk'
+  };
+  const safeArray = function(value) {
+    if (Array.isArray(value)) return value.filter(function(item) { return item !== undefined && item !== null && String(item).trim(); });
+    if (value === undefined || value === null || String(value).trim() === '') return [];
+    return [value];
+  };
+  const safeTags = function(value) {
+    if (Array.isArray(value)) return value.map(String).map(function(tag) { return tag.trim(); }).filter(Boolean);
+    if (!value) return [];
+    const text = String(value).trim();
+    const split = text.split(/\s*[,;|/]\s*|\s{2,}/).filter(Boolean);
+    if (split.length > 1) return split;
+    const known = ['Quantum Computing', 'Information Technology', 'Cybersecurity', 'Cryptography', 'Programming', 'Engineering', 'Innovation', 'Robotics', 'Teamwork', 'Physics', 'Quantum', 'Hackathon', 'Competition', 'Creativity', 'Open Source', 'Community', 'Conference', 'CTF', 'FTC', 'FRC', 'MARC', 'AiFRC', 'AI'];
+    const found = [];
+    let rest = text;
+    while (rest.length) {
+      const match = known.find(function(token) { return rest.indexOf(token) === 0; });
+      if (!match) return [text];
+      found.push(match);
+      rest = rest.slice(match.length).trim();
     }
-    return 0;
+    return found;
   };
-
-  const renderTags = function(tags) {
-    if (!Array.isArray(tags) || !tags.length) return '';
-    return '<div class="experience-tags">' + tags.slice(0, 2).map(function(tag) {
-      return '<span>' + tag + '</span>';
-    }).join('') + '</div>';
+  const itemDate = function(item) {
+    return item.date || item.year || item.groupYear || '';
   };
-
-  const plainMeta = function(values) {
-    return values.filter(Boolean).join(' · ');
-  };
-
-  const localizedField = function(value) {
-    if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
-    return value[expLang] || value.en || value.zh || value.ja || '';
-  };
-
-  const roleTypeForItem = function(item, sectionKey) {
-    if (item.roleType) return item.roleType;
-    if (sectionKey === 'camps') return 'camp';
-    if (sectionKey === 'workshops') return 'workshop';
-    if (sectionKey === 'conferences') return 'conference';
-    if (sectionKey === 'competitions') return 'contest';
+  const sortableDate = function(item) {
+    const raw = String(item.date || '').trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    if (/^\d{4}-\d{2}$/.test(raw)) return raw + '-01';
     return '';
   };
-
-  const localizedRole = function(item, sectionKey) {
-    const roleType = roleTypeForItem(item, sectionKey);
-    const roleMap = expRoleLabels[expLang] || expRoleLabels.zh;
-    return roleMap[roleType] || localizedField(item.role);
+  const sortableYear = function(item) {
+    const raw = String(item.year || item.groupYear || item.date || '').trim();
+    const match = raw.match(/\d{4}/);
+    return match ? parseInt(match[0], 10) : NaN;
   };
-
-  const renderStatsSummary = function() {
-    return expCopy.stats.map(function(stat) {
-      return '<span><strong>' + countSectionItems(expSections[stat.key]) + '</strong> ' + stat.label + '</span>';
-    }).join('<span class="experience-stat-separator" aria-hidden="true">·</span>');
+  const itemName = function(item) {
+    return isExpZh ? (item.nameZh || item.name || item.title) : (item.name || item.title);
   };
-
-  const renderExperienceCard = function(item, extraClass, sectionKey) {
-    const classes = ['experience-card'];
-    if (extraClass) classes.push(extraClass);
-
-    const resultValue = localizedField(item.result);
-    const result = Array.isArray(resultValue) ? resultValue.filter(Boolean).join(' / ') : resultValue;
-    const primaryMeta = plainMeta([result, localizedRole(item, sectionKey), localizedField(item.organization)]);
-    const secondaryMeta = plainMeta([localizedField(item.type)]);
-    const itemTitle = localizedField(item.title || item.name);
-    const itemDescription = localizedField(item.description);
-    const tagsHtml = renderTags(item.tags);
-
-    return '<article class="' + classes.join(' ') + '">' +
-      '<div class="experience-card-year seraph-experience-item__year">' + (item.year || '') + '</div>' +
-      '<div class="experience-card-body">' +
-        '<h3 class="seraph-experience-item__title">' + itemTitle + '</h3>' +
-        (primaryMeta ? '<p class="experience-card-line">' + primaryMeta + '</p>' : '') +
-        (itemDescription ? '<p class="experience-card-subline">' + itemDescription + '</p>' : '') +
-        (secondaryMeta ? '<p class="experience-card-subline">' + secondaryMeta + '</p>' : '') +
-      '</div>' +
-      (tagsHtml ? '<div class="experience-card-aside">' + tagsHtml + '</div>' : '') +
-      '</article>';
+  const displayRole = function(item) {
+    const role = isExpZh ? (item.roleZh || roleMap[item.role] || item.role) : item.role;
+    return role || '';
   };
+  const displayResults = function(item) {
+    const zhValues = safeArray(item.resultZh);
+    const values = zhValues.length && isExpZh ? zhValues : safeArray(item.result);
+    return values.map(function(value) {
+      return isExpZh ? (resultMap[value] || value) : value;
+    }).filter(Boolean);
+  };
+  const localHref = function(path) {
+    if (!path) return '';
+    return url_for(isExpZh ? '/zh' + path : path);
+  };
+  const sortByDateDesc = function(items) {
+    return items.slice().sort(function(a, b) {
+      const ad = sortableDate(a);
+      const bd = sortableDate(b);
+      if (ad && bd && ad !== bd) return bd.localeCompare(ad);
+      if (ad && !bd) return -1;
+      if (!ad && bd) return 1;
+      const ay = sortableYear(a);
+      const by = sortableYear(b);
+      if (Number.isNaN(ay) && Number.isNaN(by)) return 0;
+      if (Number.isNaN(ay)) return 1;
+      if (Number.isNaN(by)) return -1;
+      return (by - ay) || ((a.originalIndex || 0) - (b.originalIndex || 0));
+    });
+  };
+  const collectItems = function(keys) {
+    const rows = [];
+    let originalIndex = 0;
+    keys.forEach(function(key) {
+      const section = expSections[key];
+      if (!section) return;
+      if (Array.isArray(section.groups)) {
+        section.groups.forEach(function(group) {
+          safeArray(group.items).forEach(function(item) {
+            rows.push(Object.assign({ sectionKey: key, groupYear: group.year, originalIndex: originalIndex++ }, item));
+          });
+        });
+      } else {
+        safeArray(section.items).forEach(function(item) {
+          rows.push(Object.assign({ sectionKey: key, originalIndex: originalIndex++ }, item));
+        });
+      }
+    });
+    return sortByDateDesc(rows);
+  };
+  const isCtfCompetition = function(item) {
+    const haystack = [item.name, item.nameZh].concat(safeTags(item.tags)).join(' ').toLowerCase();
+    return haystack.includes('ctf') || haystack.includes('crypt') || haystack.includes('hackathon') || haystack.includes('cybersecurity');
+  };
+  const isRoboticsCompetition = function(item) {
+    const haystack = [item.name, item.nameZh].concat(safeTags(item.tags)).join(' ').toLowerCase();
+    return haystack.includes('robot') || haystack.includes('robotics') || haystack.includes('frc') || haystack.includes('ftc') || haystack.includes('marc') || haystack.includes('aifrc') || haystack.includes('automation');
+  };
+  const competitionGroups = [
+    { key: 'ctf', title: copy.ctf, items: [] },
+    { key: 'robotics', title: copy.robotics, items: [] },
+    { key: 'other', title: copy.other, items: [] }
+  ];
+  collectItems(['competitions']).forEach(function(item) {
+    if (isCtfCompetition(item)) {
+      competitionGroups[0].items.push(item);
+    } else if (isRoboticsCompetition(item)) {
+      competitionGroups[1].items.push(item);
+    } else {
+      competitionGroups[2].items.push(item);
+    }
+  });
+  const activitySections = [
+    { key: 'camps', title: copy.camps, items: collectItems(['camps']) },
+    { key: 'workshops', title: copy.workshops, items: collectItems(['workshops', 'conferences']) }
+  ];
 %>
+<article class="experience-page seraph-page seraph-page--experience" lang="<%= isExpZh ? 'zh-Hant' : 'en' %>">
+  <header class="seraph-page__header">
+    <p class="seraph-page__eyebrow"><%= copy.eyebrow %></p>
+    <h1 class="seraph-page__title"><%= copy.title %></h1>
+    <p class="seraph-page__intro"><%= copy.description %></p>
+  </header>
 
-<article class="experience-page experience-page-<%= expLang %> seraph-page seraph-page--experience" lang="<%= expLang === 'zh' ? 'zh-Hant' : expLang %>">
-  <section class="experience-hero seraph-page__header" aria-labelledby="experience-page-title">
-    <p class="experience-kicker seraph-page__eyebrow"><%= expCopy.eyebrow %></p>
-    <h1 id="experience-page-title" class="seraph-page__title"><%= expCopy.title %></h1>
-    <p class="experience-subtitle seraph-page__intro"><%= expCopy.subtitle %></p>
-
-    <div class="experience-stats-summary" aria-label="<%= expCopy.statsLabel %>">
-      <%- renderStatsSummary() %>
-    </div>
+  <section class="activity-section activity-section--competitions" aria-labelledby="activity-competitions-title">
+    <header class="activity-section__header">
+      <h2 id="activity-competitions-title"><%= copy.competitionRecords %></h2>
+    </header>
+    <% competitionGroups.forEach(function(group) {
+      if (!group.items.length) return;
+    %>
+      <section class="activity-subsection" aria-labelledby="activity-competition-<%= group.key %>-title">
+        <header class="activity-subsection__header">
+          <h3 id="activity-competition-<%= group.key %>-title"><%= group.title %></h3>
+          <p><%= group.items.length %> <%= copy.countSuffix %></p>
+        </header>
+        <div class="activity-list">
+          <% group.items.forEach(function(item) {
+            const results = displayResults(item);
+            const tags = safeTags(item.tags).slice(0, 4);
+            const detailHref = item.detailRoute ? localHref(item.detailRoute) : '';
+          %>
+            <article class="activity-card">
+              <div class="activity-card__date"><%= itemDate(item) %></div>
+              <div class="activity-card__body">
+                <p class="activity-card__type"><%= group.title %></p>
+                <h4><%= itemName(item) %></h4>
+                <dl class="activity-card__meta">
+                  <% if (displayRole(item)) { %><div><dt><%= copy.role %></dt><dd><%= displayRole(item) %></dd></div><% } %>
+                  <% if (item.team) { %><div><dt><%= copy.team %></dt><dd><%= item.team %></dd></div><% } %>
+                  <% if (results.length) { %>
+                    <div>
+                      <dt><%= copy.result %></dt>
+                      <dd>
+                        <% if (results.length > 1) { %>
+                          <ul class="activity-result-list">
+                            <% results.forEach(function(result) { %><li><%= result %></li><% }) %>
+                          </ul>
+                        <% } else { %>
+                          <%= results[0] %>
+                        <% } %>
+                      </dd>
+                    </div>
+                  <% } %>
+                </dl>
+                <% if (tags.length) { %>
+                  <div class="experience-tags"><% tags.forEach(function(tag) { %><span><%= tag %></span><% }) %></div>
+                <% } %>
+                <% if (detailHref) { %><a class="activity-card__link" href="<%= detailHref %>"><%= copy.details %></a><% } %>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    <% }) %>
   </section>
 
-  <% expSectionOrder.forEach(function(sectionKey) {
-    const section = expSections[sectionKey];
-    if (!section) return;
+  <% activitySections.forEach(function(section) {
+    if (!section.items.length) return;
   %>
-    <section class="experience-section" aria-labelledby="experience-<%= sectionKey %>-title" data-experience-section="<%= sectionKey %>">
-      <div class="experience-section-header">
-        <h2 id="experience-<%= sectionKey %>-title"><%= section.title %></h2>
-        <p><%= countSectionItems(section) %> <%= section.title %></p>
-      </div>
-
-      <% if (sectionKey === 'speaking') { %>
-        <article class="experience-card experience-muted-card">
-          <h3><%= section.statusTitle %></h3>
-        </article>
-      <% } else if (Array.isArray(section.groups)) { %>
-        <div class="experience-timeline">
-          <% section.groups.forEach(function(group) { %>
-            <div class="experience-year-group">
-              <div class="experience-year"><%= group.year %></div>
-              <div class="experience-year-items">
-                <% (group.items || []).forEach(function(item) { %>
-                  <%- renderExperienceCard(item, 'experience-timeline-card', sectionKey) %>
-                <% }) %>
-              </div>
+    <section class="activity-section" aria-labelledby="activity-<%= section.key %>-title">
+      <header class="activity-section__header">
+        <h2 id="activity-<%= section.key %>-title"><%= section.title %></h2>
+        <p><%= section.items.length %> <%= copy.countSuffix %></p>
+      </header>
+      <div class="activity-list">
+        <% section.items.forEach(function(item) {
+          const results = displayResults(item);
+          const tags = safeTags(item.tags).slice(0, 4);
+          const type = sectionTypeMap[item.sectionKey] || item.sectionKey;
+          const detailHref = item.detailRoute ? localHref(item.detailRoute) : '';
+        %>
+          <article class="activity-card">
+            <div class="activity-card__date"><%= itemDate(item) %></div>
+            <div class="activity-card__body">
+              <p class="activity-card__type"><%= type %></p>
+              <h3><%= itemName(item) %></h3>
+              <dl class="activity-card__meta">
+                <% if (displayRole(item)) { %><div><dt><%= copy.role %></dt><dd><%= displayRole(item) %></dd></div><% } %>
+                <% if (item.topic || item.project) { %><div><dt><%= copy.topic %></dt><dd><%= item.topic || item.project %></dd></div><% } %>
+                <% if (results.length || item.status) { %><div><dt><%= copy.result %></dt><dd><%= results.length ? results.join(' / ') : item.status %></dd></div><% } %>
+                <% if (item.description) { %><div><dt><%= copy.takeaway %></dt><dd><%= item.description %></dd></div><% } %>
+              </dl>
+              <% if (tags.length) { %>
+                <div class="experience-tags"><% tags.forEach(function(tag) { %><span><%= tag %></span><% }) %></div>
+              <% } %>
+              <% if (detailHref) { %><a class="activity-card__link" href="<%= detailHref %>"><%= copy.details %></a><% } %>
             </div>
-          <% }) %>
-        </div>
-      <% } else { %>
-        <div class="experience-grid<%= (section.items || []).length === 1 ? ' experience-grid-single' : '' %>">
-          <% (section.items || []).forEach(function(item) { %>
-            <%- renderExperienceCard(item, '', sectionKey) %>
-          <% }) %>
-        </div>
-      <% } %>
+          </article>
+        <% }) %>
+      </div>
     </section>
   <% }) %>
 </article>

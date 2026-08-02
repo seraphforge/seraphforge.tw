@@ -1,37 +1,44 @@
-<% const footerPath=String(page.path || '' ).replace(/index\.html$/, '' ).replace(/\/$/, '' ); const
-  footerParts=footerPath.split('/').filter(Boolean); const rawFooterText=strip_html(page.content || page.description
-  || '' ).replace(/\s+/g, ' ' ).trim(); const
-  footerCjkChars=(rawFooterText.match(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g) || []).length; const
-  footerKanaChars=(rawFooterText.match(/[\u3040-\u30ff]/g) || []).length; const
-  footerLatinChars=(rawFooterText.match(/[A-Za-z]/g) || []).length; const inferredFooterLang=footerKanaChars> 12 ? 'ja'
-  : (footerCjkChars > footerLatinChars ? 'zh' : 'en');
-  const isFooterPostPath = /^\d{4}\/\d{2}\/\d{2}\//.test(footerPath);
-  const footerLang = footerParts[0] === 'zh' ? 'zh' : (footerParts[0] === 'ja' ? 'ja' : (isFooterPostPath ?
-  inferredFooterLang : 'en'));
+<%
+  const footerPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
+  const footerParts = footerPath.split('/').filter(Boolean);
+  const footerLang = footerParts[0] === 'zh' ? 'zh' : 'en';
+  const researchData = site.data.research || {};
+  const nowData = site.data.now || {};
+  const footerPrefix = footerLang === 'zh' ? '/zh' : '';
   const footerCopy = {
-  en: {
-  label: 'Site footer',
-  title: 'Find Your Polaris.',
-  note: 'Curiosity matters more than rushing to prove yourself.'
-  },
-  zh: {
-  label: '網站頁尾',
-  title: 'Find Your Polaris.',
-  note: '保持好奇，比急著證明自己更重要。'
-  },
-  ja: {
-  label: 'サイトフッター',
-  title: 'Find Your Polaris.',
-  note: '自分を急いで証明することより、好奇心を持ち続けることを大切にしたい。'
-  }
+    en: {
+      label: 'Site footer',
+      title: 'Seraph Research & Engineering Portfolio',
+      note: 'Security, software, embedded systems, infrastructure, and evidence-based research notes.',
+      research: 'Research Directions',
+      systems: 'Engineering Systems',
+      notes: 'Research Notes',
+      learning: 'Competitions & Learning',
+      about: 'About',
+      updated: 'Last updated'
+    },
+    zh: {
+      label: '網站頁尾',
+      title: 'Seraph Research & Engineering Portfolio',
+      note: '記錄資安、軟體、嵌入式系統、基礎設施與可驗證的研究筆記。',
+      research: '研究方向',
+      systems: '工程系統',
+      notes: '研究筆記',
+      learning: '參賽與研習',
+      about: '關於',
+      updated: '最後更新'
+    }
   }[footerLang];
-  %>
-  <footer id="contact" class="site-footer polaris-footer" aria-label="<%= footerCopy.label %>">
-    <p class="polaris-footer-title">
-      <%= footerCopy.title %>
-    </p>
-    <p class="polaris-footer-note">
-      <%= footerCopy.note %>
-    </p>
-    <p class="footer-copy">&copy; 2026 Seraph.</p>
-  </footer>
+%>
+<footer id="contact" class="site-footer polaris-footer" aria-label="<%= footerCopy.label %>">
+  <p class="polaris-footer-title"><%= footerCopy.title %></p>
+  <p class="polaris-footer-note"><%= footerCopy.note %></p>
+  <nav class="footer-links" aria-label="<%= footerCopy.label %>">
+    <a href="<%= url_for(footerPrefix + '/projects/') %>"><%= footerCopy.research %></a>
+    <a href="<%= url_for(footerPrefix + '/systems/') %>"><%= footerCopy.systems %></a>
+    <a href="<%= url_for(footerPrefix + '/writing/') %>"><%= footerCopy.notes %></a>
+    <a href="<%= url_for(footerPrefix + '/experience/') %>"><%= footerCopy.learning %></a>
+    <a href="<%= url_for(footerPrefix + '/about/') %>"><%= footerCopy.about %></a>
+  </nav>
+  <p class="footer-copy"><%= footerCopy.updated %>: <%= nowData.updatedAt || researchData.lastUpdated || '2026-07-31' %> / &copy; 2026 Seraph.</p>
+</footer>

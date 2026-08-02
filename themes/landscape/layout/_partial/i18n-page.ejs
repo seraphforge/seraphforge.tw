@@ -1,1550 +1,361 @@
-﻿<%
+<%
   const i18nPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const i18nParts = i18nPath.split('/').filter(Boolean);
   const lang = i18nParts[0] === 'zh' ? 'zh' : (i18nParts[0] === 'ja' ? 'ja' : 'en');
-  const localParts = lang === 'en' ? i18nParts : i18nParts.slice(1);
-  const firstPart = localParts[0] || '';
-  const section =
-    firstPart === '' ? 'home' :
-    firstPart === 'dashboard' ? 'dashboard' :
-    firstPart === 'works' ? 'projects' :
-    firstPart === 'archives' ? 'writing' :
-    ['about', 'experience', 'projects', 'labs', 'writing', 'timeline'].includes(firstPart) ? firstPart :
-    'home';
+  const localParts = ['en', 'zh', 'ja'].includes(i18nParts[0]) ? i18nParts.slice(1) : i18nParts;
+  const section = (localParts[0] || '') === '' ? 'home' : (localParts[0] === 'archives' ? 'writing' : localParts[0]);
+  const data = site.data.research || {};
+  const nowData = site.data.now || {};
+  const projects = data.projects || [];
+  const areas = data.areas || [];
+  const evidence = data.evidence || [];
+  const outcomes = data.outcomes || [];
+  const capabilities = data.capabilities || [];
+  const timeline = data.timeline || [];
+  const engineeringDomains = data.engineeringDomains || [];
+  const engineeringProcess = data.engineeringProcess || [];
+  const homepageFocus = data.homepageFocus || [];
+  const identity = data.identity || {};
+  const isZh = lang === 'zh';
+  const isJa = lang === 'ja';
+  const pageLangAttr = isZh ? 'zh-Hant' : (isJa ? 'ja' : 'en');
+  const safeArray = function(value) { return Array.isArray(value) ? value.filter(function(item) { return item !== undefined && item !== null && item !== ''; }) : []; };
+  const hasText = function(value) { return typeof value === 'string' && value.trim().length > 0; };
+  const nowText = function(item, key) {
+    if (!item) return '';
+    const zhKey = key + 'Zh';
+    const value = isZh && item[zhKey] !== undefined && item[zhKey] !== null && item[zhKey] !== '' ? item[zhKey] : item[key];
+    if (Array.isArray(value)) return value.filter(Boolean).join(' / ');
+    if (value && typeof value === 'object') return '';
+    return value === undefined || value === null ? '' : String(value);
+  };
+  const nowFocus = safeArray(nowData.currentFocus)
+    .filter(function(item) { return item.visible !== false; })
+    .sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
+  const nowLogs = safeArray(nowData.logs)
+    .filter(function(item) { return item.visible !== false; })
+    .sort(function(a, b) {
+      const dateCompare = String(b.date || '').localeCompare(String(a.date || ''));
+      return dateCompare || ((a.order || 0) - (b.order || 0));
+    });
 
   const paths = {
-    en: { home: '/', dashboard: '/dashboard/', projects: '/projects/', experience: '/experience/', labs: '/labs/', writing: '/writing/', timeline: '/timeline/', search: '/search/', about: '/about/' },
-    zh: { home: '/zh/', dashboard: '/zh/dashboard/', projects: '/zh/projects/', experience: '/zh/experience/', labs: '/zh/labs/', writing: '/zh/writing/', timeline: '/zh/timeline/', search: '/search/', about: '/zh/about/' },
-    ja: { home: '/ja/', dashboard: '/ja/dashboard/', projects: '/ja/projects/', experience: '/ja/experience/', labs: '/ja/labs/', writing: '/ja/writing/', timeline: '/ja/timeline/', search: '/search/', about: '/ja/about/' }
+    en: { home: '/', systems: '/systems/', research: '/projects/', projects: '/projects/', outcomes: '/outcomes/', now: '/now/', timeline: '/timeline/', writing: '/writing/', profile: '/about/', about: '/about/' },
+    zh: { home: '/zh/', systems: '/zh/systems/', research: '/zh/projects/', projects: '/zh/projects/', outcomes: '/zh/outcomes/', now: '/zh/now/', timeline: '/zh/timeline/', writing: '/zh/writing/', profile: '/zh/about/', about: '/zh/about/' },
+    ja: { home: '/ja/', systems: '/ja/systems/', research: '/ja/projects/', projects: '/ja/projects/', outcomes: '/ja/outcomes/', now: '/ja/now/', timeline: '/ja/timeline/', writing: '/ja/writing/', profile: '/ja/about/', about: '/ja/about/' }
   };
-  const withLang = function(slug) {
-    return lang === 'en' ? '/' + slug + '/' : '/' + lang + '/' + slug + '/';
+  const localHref = function(key) { return url_for((paths[lang] && paths[lang][key]) || '/'); };
+  const localizedDetailHref = function(path) {
+    const normalized = String(path || '/').replace(/^\/+/, '/');
+    return url_for(lang === 'zh' ? '/zh' + normalized : (lang === 'ja' ? '/ja' + normalized : normalized));
   };
-
-  const copy = {
-    en: {
-      readMore: 'Read More',
-      viewAll: 'View All',
-      stack: 'Stack',
-      status: 'Status',
-      tags: 'Tags',
-      recentPosts: 'Recent Posts',
-      featuredProjects: 'Featured Projects',
-      labs: 'Lab',
-      guide: 'Explore',
-      readArrow: 'Read ->',
-      openLab: 'Open Lab ->',
-      viewExperience: 'View Experience ->',
-      noPosts: 'No posts yet.',
-      terminalCleared: 'terminal cleared',
-      readTimeSuffix: 'min read',
-      labels: { status: 'Status', role: 'Role', stack: 'Stack', published: 'Published', experiments: 'Experiments', currentlyBuilding: 'Currently Building', awards: 'Awards', workshops: 'Workshops', competitions: 'Competitions', repositories: 'Repositories', progress: 'Progress', difficulty: 'Difficulty', tech: 'Tech' },
-      stats: { projects: 'Projects', articles: 'Articles', labs: 'Labs', awards: 'Awards', workshops: 'Workshops', competitions: 'Competitions', repositories: 'Repositories' },
-      nav: { home: 'Home', projects: 'Projects', experience: 'Experience', labs: 'Lab', writing: 'Blog', about: 'About' },
-      hero: {
-        home: { title: ['Seraph', 'Research • Build • Protect.'] },
-        about: { title: 'About', body: 'I am Seraph. This site is my public engineering notebook for cybersecurity, home lab, medical technology, IoT, and web development.' },
-        experience: { title: 'Experience', body: 'A structured record of competitions, awards, workshops, teaching support, community work, and certifications.' },
-        projects: { title: 'Projects', body: 'Selected projects across Cybersecurity, Medical Cybersecurity, Robotics, full stack development, and embedded systems.' },
-        labs: { title: 'Lab', body: 'Research experiments, prototypes, and notes in progress: ROS2 robots, medical security gateways, CTF notes, and web experiments.' },
-        writing: { title: 'Blog', body: 'Technical articles, tutorials, CTF writeups, and learning notes.' }
-      },
-      brand: { eyebrow: 'Tech Blog · Research Lab · Portfolio', mission: ['Research • Build • Protect.', 'Cybersecurity, home lab, medical technology, IoT, and web development.'] },
-      profile: {
-        title: 'About Seraph',
-        intro: 'I am Seraph, an engineering student building across cybersecurity, home lab, medical technology, IoT, and web development. ',
-        mission: 'This site is a technical blog, research lab, and portfolio: articles for what I learn, projects for what I can show, and Lab for experiments still in progress.',
-        quote: 'If you truly believe this is your path, never give up halfway.'
-      },
-      aboutSections: [
-        ['Intro', 'I am Seraph. I am still growing as an engineering student, and I care more about building honest working systems than writing perfect-looking concepts.'],
-        ['What I Build', 'My current learning path connects Cybersecurity, Web development, Robotics, Embedded systems, and Medical Cybersecurity. I like projects that force hardware, software, security, and real users to meet.'],
-        ['How I Learn', 'I learn by joining competitions, attending workshops, failing, debugging, rebuilding, and writing down the process. The notes are not only success records; they also keep the mistakes visible.'],
-        ['Why This Site Exists', 'This site is my public engineering notebook: a technical blog, research lab, and portfolio for work across cybersecurity, robotics, medical security, and web development.'],
-        ['My Quote', 'If you truly believe this is your path, never give up halfway.']
-      ],
-      timeline: {
-        title: 'Journey Timeline',
-        items: [
-          ['2024', 'Foundation', 'Built programming, electronics, Cybersecurity, and Robotics fundamentals through labs and competitions.'],
-          ['2025', 'Portfolio', 'Expanded into Web, CTF, teaching support, community work, and public writing.'],
-          ['2026', 'Research Portfolio', 'Connecting Cybersecurity, Medical Cybersecurity, ROS2, and full stack systems into a public portfolio.'],
-          ['Future', 'Research Builder', 'Keep building secure systems, autonomous robots, and knowledge resources for global readers.']
-        ]
-      },
-      cta: { title: 'Where to go next', body: 'Pick the section that matches what you want to read or inspect.', projects: 'Explore Projects', experience: 'Experience', writing: 'Read Articles', labs: 'Visit Lab' },
-      experienceCards: [
-        ['Competitions', 'InnoServe, Cybersecurity Hackathon, Robotics competitions, FTC, Programming / AI competitions, and finalist experiences.', 'experience/competitions'],
-        ['Awards', 'A record of merit awards, OSINT recognition, creativity, innovation, and honorable mention results.', 'experience/awards'],
-        ['Workshops', 'HITCON, COSCUP, AWS Summit Taiwan, Build with AI, GDG Taipei, Medical design, Quantum Computing, and Smart Manufacturing learning notes.', 'experience/workshops'],
-        ['Speaking & Training', 'CTF Instructor, Raspberry Pi Instructor, Cybersecurity Teaching Assistant, Workshop Support, and Training Support work.', 'experience/speaking'],
-        ['Community', 'NIHSCEDIWHC White Hat Community, Cybersecurity community building, student representative work, CTF training, and Raspberry Pi teaching.', 'experience/community'],
-        ['Certifications', 'Computer hardware, computer network, lifeguard, and World Taekwondo certification records.', 'experience/certifications']
-      ],
-      projects: [
-        ['NIHS Platform', 'A team platform for organizing competition links, schedules, announcements, portfolio workflows, and CTF operations.', 'In Progress', ['React', 'FastAPI', 'SQLite'], '/projects/nihs-control-team/'],
-        ['Medical Gateway', 'Medical cybersecurity research and gateway concepts around device trust, data validation, privacy, and clinical workflows.', 'Research Notes', ['Security', 'Healthcare', 'Risk'], '/projects/medical-cybersecurity/'],
-        ['ROS2 Robot', 'A hands-on robotics build focused on sensors, motor control, ROS2, LiDAR, SLAM, Navigation2, and autonomous movement.', 'Prototype', ['ROS2', 'Raspberry Pi', 'LiDAR'], '/projects/autonomous-robot/'],
-        ['Discord Bot', 'A practical automation project for community workflows, notifications, and small developer-tool experiments.', 'Concept', ['Bot', 'Automation', 'Web'], '/projects/']
-      ],
-      labsList: [
-        ['2026-06-24', 'Robotics', 'Completed', 'ESP32 UART Test', 'Testing UART communication between ESP32 and edge devices.', 'labs/esp32-uart-test'],
-        ['2026-06-20', 'Robotics', 'In Progress', 'ROS2 Robot', 'Documenting robot base experiments, ROS2 publish / subscribe flows, and control reliability.', 'labs/ros2-topic-communication'],
-        ['2026-06-10', 'Healthcare', 'In Progress', 'Medical Security Gateway', 'Collecting observations around medical device trust, clinical data input, validation, and risk.', 'labs/medical-cybersecurity-research'],
-        ['2026-06-02', 'Security', 'Archived', 'CTF Notes', 'Notes from Web Security, Linux, OSINT, and CTF practice.', 'labs/ctf-web-practice']
-      ]
-    },
-    zh: {
-      readMore: '閱讀更多',
-      viewAll: '查看全部',
-      stack: '技術',
-      status: '狀態',
-      tags: '標籤',
-      recentPosts: '近期文章',
-      featuredProjects: '精選專案',
-      labs: 'Labs',
-      guide: '主要內容導覽',
-      readArrow: '閱讀 ->',
-      openLab: '開啟實驗 ->',
-      viewExperience: '查看經歷 ->',
-      noPosts: '目前沒有文章。',
-      terminalCleared: 'terminal 已清空',
-      readTimeSuffix: '分鐘閱讀',
-      labels: { status: '狀態', role: '角色', stack: '技術', published: '已發布', experiments: '實驗紀錄', currentlyBuilding: '建置中', awards: '獎項', workshops: '研習', competitions: '競賽', repositories: 'Repositories', progress: '進度', difficulty: '難度', tech: '技術' },
-      stats: { projects: '專案', articles: '文章', labs: 'Labs', awards: '獎項', workshops: '研習', competitions: '競賽', repositories: 'Repositories' },
-      nav: { home: '首頁', projects: '專案', experience: '經歷', labs: 'Labs', writing: '文章', about: '關於' },
-      hero: {
-        home: { title: ['Cybersecurity Student', 'Web Developer', 'Robotics Builder'] },
-        about: { title: '關於', body: '我是 Seraph。這個網站是我專注於資安、Home Lab、醫療科技、IoT 與網站開發的 public engineering notebook。' },
-        experience: { title: '經歷', body: '整理競賽、獎項、研習、教學支援、社群參與與證照紀錄。' },
-        projects: { title: '專案', body: '橫跨 Cybersecurity、Medical Cybersecurity、Robotics、full stack development 與 embedded systems 的實作專案。' },
-        labs: { title: 'Labs', body: '把想法做成小實驗、原型與可回顧的技術筆記。' },
-        writing: { title: '文章', body: '技術筆記、競賽反思，以及正在學習與建置路上的紀錄。' }
-      },
-      brand: { eyebrow: 'Seraph', mission: ['Research • Build • Protect.', '專注於資安、Home Lab、醫療科技、IoT 與網站開發。'] },
-      profile: {
-        title: 'Profile Panel',
-        intro: '我從學生 builder 的角度，實作重視安全性的系統、開發工具、Robotics 原型與技術筆記。',
-        mission: '把系統真的做出來，公開記錄學習過程，讓 Cybersecurity 知識變成可以使用的作品。',
-        quote: '如果你真的認為這是你的路，那就不要半途而廢。'
-      },
-      aboutSections: [
-        ['Intro', '我是 Seraph。我還在成長中，比起把概念寫得很漂亮，我更在意能不能把系統真的做出來。'],
-        ['What I Build', '我正在學 Cybersecurity、Web development、Robotics、Embedded systems 與 Medical Cybersecurity。我喜歡會讓硬體、軟體、安全與真實使用情境交會的題目。'],
-        ['How I Learn', '我透過比賽、研習、失敗、debug、重做與紀錄來學習。這些筆記不只放成果，也保留過程中的卡關與修正。'],
-        ['Why This Site Exists', '這個網站是我的 public engineering notebook：技術部落格、研究實驗室與個人作品集，用來整理 Cybersecurity、Robotics、Medical Security 與 Web Development 的學習和實作。'],
-        ['My Quote', '如果你真的認為這是你的路，那就不要半途而廢。']
-      ],
-      timeline: {
-        title: '學習時間線',
-        items: [
-          ['2024', '基礎累積', '透過 lab 與競賽建立 programming、electronics、Cybersecurity 與 Robotics 基礎。'],
-          ['2025', '作品整理', '延伸到 Web、CTF、教學支援、社群參與與公開寫作。'],
-          ['2026', 'Research Portfolio', '把 Cybersecurity、Medical Cybersecurity、ROS2 與 full stack systems 整理成公開 portfolio。'],
-          ['Future', 'Research Builder', '持續建置 secure systems、autonomous robots 與能被更多人使用的知識資源。']
-        ]
-      },
-      cta: { title: '探索 Lab', body: '選一個方向繼續往下看。', projects: '專案', experience: '經歷', writing: '文章', labs: 'Labs' },
-      experienceCards: [
-        ['競賽', 'InnoServe、Cybersecurity Hackathon、Robotics competitions、FTC、Programming / AI competitions 與決賽經驗。', 'experience/competitions'],
-        ['獎項', '整理 Merit Award、OSINT Excellence Award、Creativity Award、Innovation Award 與 Honorable Mention。', 'experience/awards'],
-        ['研習', 'HITCON、COSCUP、AWS Summit Taiwan、Build with AI、GDG Taipei、Medical design、Quantum Computing 與 Smart Manufacturing 研習紀錄。', 'experience/workshops'],
-        ['教學與訓練', 'CTF Instructor、Raspberry Pi Instructor、Cybersecurity Teaching Assistant、Workshop Support 與 Training Support。', 'experience/speaking'],
-        ['社群', 'NIHSCEDIWHC White Hat Community、Cybersecurity 社群建立、學生代表、CTF 訓練與 Raspberry Pi 教學。', 'experience/community'],
-        ['證照', 'Computer Hardware、Computer Network、Certified Lifeguard 與 World Taekwondo 證照紀錄。', 'experience/certifications']
-      ],
-      projects: [
-        ['NIHS Platform', '協助團隊整理競賽連結、時程、公告、portfolio workflow 與 CTFd 操作的平台專案。', '進行中', ['React', 'FastAPI', 'SQLite'], '/projects/nihs-control-team/'],
-        ['Medical Cybersecurity', '圍繞 healthcare systems、medical devices、data validation、privacy 與 clinical workflows 的研究筆記與專案想法。', '研究筆記', ['Security', 'Healthcare', 'Risk'], '/projects/medical-cybersecurity/'],
-        ['Autonomous Robot', '以 ROS2、Raspberry Pi、LiDAR、SLAM、Navigation2 為核心的 Robotics 實作。', '原型', ['ROS2', 'Raspberry Pi', 'LiDAR'], '/projects/autonomous-robot/']
-      ],
-      labsList: [
-        ['2026-06-24', 'Robotics', 'Completed', 'ESP32 UART Test', '測試 ESP32 與 edge devices 之間的 UART communication。', 'labs/esp32-uart-test'],
-        ['2026-06-20', 'Robotics', 'In Progress', 'ROS2 Topic Communication', '記錄 ROS2 publish / subscribe flows。', 'labs/ros2-topic-communication'],
-        ['2026-06-10', 'Healthcare', 'In Progress', 'Medical Cybersecurity Research', '整理 clinical data input、validation 與 risk 的觀察。', 'labs/medical-cybersecurity-research'],
-        ['2026-06-02', 'Security', 'Archived', 'CTF Web Practice', 'Web Security、Linux、OSINT 與 CTF 練習筆記。', 'labs/ctf-web-practice']
-      ]
-    },
-    ja: {
-      readMore: '続きを読む',
-      viewAll: 'すべて見る',
-      stack: '技術',
-      status: '状態',
-      tags: 'タグ',
-      recentPosts: '最近の記事',
-      featuredProjects: '注目プロジェクト',
-      labs: 'Labs',
-      guide: '主要コンテンツ',
-      readArrow: '読む ->',
-      openLab: 'ラボを開く ->',
-      viewExperience: '経歴を見る ->',
-      noPosts: '記事はまだありません。',
-      terminalCleared: 'terminal cleared',
-      readTimeSuffix: '分で読めます',
-      labels: { status: '状態', role: '役割', stack: '技術', published: '公開済み', experiments: '実験', currentlyBuilding: '開発中', awards: '受賞', workshops: 'ワークショップ', competitions: 'コンペティション', repositories: 'Repositories', progress: '進捗', difficulty: '難易度', tech: '技術' },
-      stats: { projects: 'プロジェクト', articles: '記事', labs: 'Labs', awards: '受賞', workshops: 'ワークショップ', competitions: 'コンペティション', repositories: 'Repositories' },
-      nav: { home: 'ホーム', projects: 'プロジェクト', experience: '経歴', labs: 'Labs', writing: '記事', about: 'About' },
-      hero: {
-        home: { title: ['Cybersecurity Student', 'Web Developer', 'Robotics Builder'] },
-        about: { title: 'About', body: 'Seraph です。このサイトはサイバーセキュリティ、Home Lab、医療技術、IoT、Web 開発に取り組むための public engineering notebook です。' },
-        experience: { title: '経歴', body: 'コンペティション、受賞、ワークショップ、教育サポート、コミュニティ活動、資格を整理しています。' },
-        projects: { title: 'プロジェクト', body: 'Cybersecurity、Medical Cybersecurity、Robotics、full stack development、embedded systems の実装プロジェクトです。' },
-        labs: { title: 'Labs', body: 'アイデアを小さな実験、試作、振り返れる技術ノートにする場所です。' },
-        writing: { title: '記事', body: '技術メモ、コンペティションの振り返り、学びながら作る過程の記録です。' }
-      },
-      brand: { eyebrow: 'Seraph', mission: ['Research • Build • Protect.', 'サイバーセキュリティ、Home Lab、医療技術、IoT、Web 開発に取り組んでいます。'] },
-      profile: {
-        title: 'Profile Panel',
-        intro: '学生 builder の視点で、セキュリティを意識したシステム、開発ツール、Robotics 試作、技術ノートを作っています。',
-        mission: '実際に動くものを作り、学びを公開し、Cybersecurity の知識を使える形にしていきます。',
-        quote: 'これが自分の道だと本気で思うなら、途中で諦めるな。'
-      },
-      aboutSections: [
-        ['Intro', 'Seraph です。まだ成長途中の engineering student として、きれいな概念よりも実際に動くシステムを作ることを大切にしています。'],
-        ['What I Build', 'Cybersecurity、Web development、Robotics、Embedded systems、Medical Cybersecurity を学んでいます。hardware、software、security、実際の利用場面が交わるテーマが好きです。'],
-        ['How I Learn', 'コンペティション、ワークショップ、失敗、debug、作り直し、記録を通して学んでいます。成果だけではなく、詰まった点や修正も残します。'],
-        ['Why This Site Exists', 'このサイトは私の public engineering notebook です。技術ブログ、研究ラボ、ポートフォリオとして、Cybersecurity、Robotics、Medical Security、Web Development の学習と制作を整理します。'],
-        ['My Quote', 'これが自分の道だと本気で思うなら、途中で諦めるな。']
-      ],
-      timeline: {
-        title: '学習タイムライン',
-        items: [
-          ['2024', '基礎作り', 'lab とコンペティションを通して programming、electronics、Cybersecurity、Robotics の基礎を作りました。'],
-          ['2025', 'Portfolio', 'Web、CTF、教育サポート、コミュニティ活動、公開 writing に広げました。'],
-          ['2026', 'Research Portfolio', 'Cybersecurity、Medical Cybersecurity、ROS2、full stack systems を public portfolio として整理しています。'],
-          ['Future', 'Research Builder', 'secure systems、autonomous robots、世界の読者に届く知識リソースを作り続けます。']
-        ]
-      },
-      cta: { title: 'Lab を探索', body: '次に見るセクションを選んでください。', projects: 'プロジェクト', experience: '経歴', writing: '記事', labs: 'Labs' },
-      experienceCards: [
-        ['コンペティション', 'InnoServe、Cybersecurity Hackathon、Robotics competitions、FTC、Programming / AI competitions、ファイナリスト経験。', 'experience/competitions'],
-        ['受賞', 'Merit Award、OSINT Excellence Award、Creativity Award、Innovation Award、Honorable Mention の記録。', 'experience/awards'],
-        ['ワークショップ', 'HITCON、COSCUP、AWS Summit Taiwan、Build with AI、GDG Taipei、Medical design、Quantum Computing、Smart Manufacturing の学習記録。', 'experience/workshops'],
-        ['登壇・指導', 'CTF Instructor、Raspberry Pi Instructor、Cybersecurity Teaching Assistant、Workshop Support、Training Support。', 'experience/speaking'],
-        ['コミュニティ', 'NIHSCEDIWHC White Hat Community、Cybersecurity コミュニティ運営、学生代表、CTF トレーニング、Raspberry Pi 指導。', 'experience/community'],
-        ['資格', 'Computer Hardware、Computer Network、Certified Lifeguard、World Taekwondo の資格記録。', 'experience/certifications']
-      ],
-      projects: [
-        ['NIHS Platform', 'コンペティションのリンク、予定、告知、portfolio workflow、CTFd 運用を整理するための team platform project。', '進行中', ['React', 'FastAPI', 'SQLite'], '/projects/nihs-control-team/'],
-        ['Medical Cybersecurity', 'healthcare systems、medical devices、data validation、privacy、clinical workflows に関する研究ノートとプロジェクト案。', '研究ノート', ['Security', 'Healthcare', 'Risk'], '/projects/medical-cybersecurity/'],
-        ['Autonomous Robot', 'ROS2、Raspberry Pi、LiDAR、SLAM、Navigation2 を中心にした Robotics build。', '試作', ['ROS2', 'Raspberry Pi', 'LiDAR'], '/projects/autonomous-robot/']
-      ],
-      labsList: [
-        ['2026-06-24', 'Robotics', 'Completed', 'ESP32 UART Test', 'ESP32 と edge devices 間の UART communication を検証します。', 'labs/esp32-uart-test'],
-        ['2026-06-20', 'Robotics', 'In Progress', 'ROS2 Topic Communication', 'ROS2 の publish / subscribe flows を記録します。', 'labs/ros2-topic-communication'],
-        ['2026-06-10', 'Healthcare', 'In Progress', 'Medical Cybersecurity Research', 'clinical data input、validation、risk に関する観察を整理します。', 'labs/medical-cybersecurity-research'],
-        ['2026-06-02', 'Security', 'Archived', 'CTF Web Practice', 'Web Security、Linux、OSINT、CTF の練習ノート。', 'labs/ctf-web-practice']
-      ]
-    }
+  const localizedNowHref = function(path) {
+    if (!hasText(path)) return '';
+    const normalized = String(path).replace(/^\/+/, '/');
+    if (lang === 'zh' && normalized.indexOf('/zh/') !== 0) return url_for('/zh' + normalized);
+    if (lang === 'ja' && normalized.indexOf('/ja/') !== 0) return url_for('/ja' + normalized);
+    return url_for(normalized);
   };
-
-  const t = copy[lang];
-  let caseStudyCopy = {
-    en: {
-      kicker: 'Case Studies',
-      title: '正在打造的事',
-      read: 'Read Case Study →',
-      items: [
-        ['Seraph', 'How can a personal site stop acting like a portfolio and become a living research notebook?'],
-        ['NIHS Platform', 'How can a student team keep competitions, resources, and collaboration quietly organized?'],
-        ['MedSec', 'Where do device trust, data validation, and clinical workflow risk begin to break down?'],
-        ['Home Lab', 'What kind of learning environment appears when failure can be tested, recorded, and understood safely?']
-      ]
-    },
-    zh: {
-      kicker: 'Case Studies',
-      title: '正在打造的事',
-      read: 'Read Case Study →',
-      items: [
-        ['Seraph', '一座個人網站如何從作品集，變成持續書寫的研究筆記？'],
-        ['NIHS Platform', '一個學生團隊如何安靜地整理競賽、資源與協作流程？'],
-        ['MedSec', '醫療流程中的設備信任、資料驗證與風險，在哪些地方最容易被忽略？'],
-        ['Home Lab', '如果失敗可以被安全地測試與留下，學習環境會長成什麼樣子？']
-      ]
-    },
-    ja: {
-      kicker: 'Case Studies',
-      title: '正在打造的事',
-      read: 'Read Case Study →',
-      items: [
-        ['Seraph', '個人サイトは、どうすればポートフォリオではなく書き続ける研究ノートになれるのか。'],
-        ['NIHS Platform', '学生チームは、競技、資料、協作の流れをどう静かに整理できるのか。'],
-        ['MedSec', '医療現場の機器信頼、データ検証、運用リスクはどこで見落とされやすいのか。'],
-        ['Home Lab', '失敗を安全に試し、記録し、理解できる環境はどんな学びを生むのか。']
-      ]
-    }
-  }[lang];
-  caseStudyCopy = {
-    en: {
-      kicker: 'Case Studies',
-      title: 'What I Am Building',
-      subtitle: 'Every project begins\nwith a question worth thinking about.',
-      read: 'Read Case Study →',
-      items: [
-        ['Seraph', 'If a researcher had a personal studio,\nwhat should it feel like?'],
-        ['NIHS Platform', 'What would an internal platform for a student technical team need to organize well?'],
-        ['MedSec', 'How can data inside clinical workflows become easier to trust?'],
-        ['Home Lab', 'If every idea could be tested immediately,\nwhat kind of lab would I need?']
-      ]
-    },
-    zh: {
-      kicker: '案例研究',
-      title: '正在打造的事',
-      subtitle: '每一個專案，\n都從一個值得思考的問題開始。',
-      read: '閱讀案例 →',
-      items: [
-        ['Seraph', '如果研究者也有自己的工作室，\n它應該長什麼樣子？'],
-        ['NIHS Platform', '如果高中職資訊團隊，\n也能有自己的內部平台？'],
-        ['MedSec', '如何讓醫療流程中的資料，\n更值得信任？'],
-        ['Home Lab', '如果每一個想法都能立即驗證，\n我需要一座什麼樣的實驗室？']
-      ]
-    },
-    ja: {
-      kicker: 'ケーススタディ',
-      title: '作っているもの',
-      subtitle: 'どのプロジェクトも、\n考え続けたい問いから始まります。',
-      read: 'ケースを読む →',
-      items: [
-        ['Seraph', '研究者が自分のスタジオを持つなら、\nどんな場所であるべきか。'],
-        ['NIHS Platform', '学生の技術チームには、どんな内部プラットフォームが必要なのか。'],
-        ['MedSec', '医療ワークフローの中のデータを、どうすればより信頼できるものにできるのか。'],
-        ['Home Lab', 'すべてのアイデアをすぐ検証できるなら、\nどんな実験室が必要になるのか。']
-      ]
-    }
-  }[lang];
-  const labStudioCopy = {
-    en: {
-      kicker: 'Labs',
-      title: 'Current Experiments',
-      labels: { what: 'What', why: 'Why', next: 'Next' },
-      items: [
-        {
-          title: 'Home Lab',
-          what: 'A personal environment for repeated deployment, testing, failure, and recovery.',
-          why: 'It lets networking, systems, and security concepts meet real conditions instead of staying as reading notes.',
-          next: 'Document the base topology, service layers, and logging habits so each experiment can be reviewed later.'
-        },
-        {
-          title: 'ESP32 / M5Stack',
-          what: 'Small-device tests for sensing, communication, data input, and edge-device behavior.',
-          why: 'Embedded devices show how data is created before it enters a larger system, including the risks that appear early.',
-          next: 'Build a steadier data transfer and validation flow, then record failure cases clearly.'
-        },
-        {
-          title: 'ROS2 Robotics',
-          what: 'Experiments with ROS2 topics, node communication, sensor data, and robot control flow.',
-          why: 'Robotics makes software, hardware, and environmental uncertainty visible at the same time.',
-          next: 'Keep breaking down publish / subscribe behavior, sensor integration, and control reliability.'
-        },
-        {
-          title: 'PLC / Industrial Security',
-          what: 'Early exploration of control processes, PLC logic, and security boundaries in industrial environments.',
-          why: 'Industrial risk often lives between workflow, trust, and operating habits, so it needs careful experiments.',
-          next: 'Start from basic control logic and communication observations, then build repeatable notes.'
-        }
-      ]
-    },
-    zh: {
-      kicker: '實驗室',
-      title: '目前的實驗',
-      labels: { what: '內容', why: '原因', next: '下一步' },
-      items: [
-        {
-          title: 'Home Lab',
-          what: '建立一個可以反覆部署、測試、失敗與復原的個人實驗環境。',
-          why: '把網路、系統與安全概念放進真實環境裡驗證，而不是只停在閱讀或想像。',
-          next: '整理基礎拓樸、服務分層與紀錄方式，讓每一次實驗都能被回顧。'
-        },
-        {
-          title: 'ESP32 / M5Stack',
-          what: '用小型裝置測試感測、通訊、資料輸入與邊緣裝置行為。',
-          why: '理解嵌入式設備如何產生資料，也觀察資料在進入系統前可能出現的風險。',
-          next: '建立更穩定的資料傳輸與驗證流程，記錄失敗案例。'
-        },
-        {
-          title: 'ROS2 Robotics',
-          what: '驗證 ROS2 topic、節點通訊、感測資料與機器人控制流程。',
-          why: '把軟體、硬體與環境不確定性放在一起觀察，理解自主系統如何被建構。',
-          next: '持續拆解 publish / subscribe、感測整合與控制可靠性。'
-        },
-        {
-          title: 'PLC / Industrial Security',
-          what: '探索工控流程、PLC 邏輯與工業環境中的安全邊界。',
-          why: '工業系統的風險常藏在流程、信任與操作習慣之間，需要用實驗慢慢釐清。',
-          next: '從基礎控制邏輯與通訊觀察開始，建立可重複驗證的筆記。'
-        }
-      ]
-    },
-    ja: {
-      kicker: '実験室',
-      title: '現在の実験',
-      labels: { what: '内容', why: '理由', next: '次にやること' },
-      items: [
-        {
-          title: 'Home Lab',
-          what: '何度もデプロイし、試し、失敗し、復旧できる個人実験環境を作ります。',
-          why: 'ネットワーク、システム、セキュリティの概念を、読むだけでなく実際の環境で確かめるためです。',
-          next: '基本トポロジー、サービス構成、記録方法を整理し、各実験を後から振り返れるようにします。'
-        },
-        {
-          title: 'ESP32 / M5Stack',
-          what: '小型デバイスでセンシング、通信、データ入力、エッジデバイスの挙動を試します。',
-          why: '組み込み機器がどのようにデータを生み、システムに入る前にどんなリスクがあるかを見るためです。',
-          next: 'より安定したデータ転送と検証の流れを作り、失敗例も記録します。'
-        },
-        {
-          title: 'ROS2 Robotics',
-          what: 'ROS2 topic、ノード通信、センサーデータ、ロボット制御の流れを検証します。',
-          why: 'ソフトウェア、ハードウェア、環境の不確実性を同時に観察し、自律システムの作られ方を理解するためです。',
-          next: 'publish / subscribe、センサー統合、制御の信頼性を引き続き分解して記録します。'
-        },
-        {
-          title: 'PLC / Industrial Security',
-          what: '制御プロセス、PLC ロジック、産業環境のセキュリティ境界を探ります。',
-          why: '産業システムのリスクは、手順、信頼、操作習慣の間に隠れていることが多いからです。',
-          next: '基本的な制御ロジックと通信の観察から始め、再現できるノートを作ります。'
-        }
-      ]
-    }
-  }[lang];
-  const labReadCopy = {
-    en: 'Explore Experiment →',
-    zh: '查看實驗 →',
-    ja: '実験を見る →'
-  }[lang];
-  t.experienceCards = {
-    en: [
-      ['Competitions', 'Competition experience across cybersecurity, robotics, programming, AI, project demos, and finalist preparation.', 'experience/competitions', '2024-2025', 'Competitions', 'Multiple competitions', 'Cybersecurity,CTF,OSINT,Web Security,Linux,Robotics,AI'],
-      ['Awards', 'Award and recognition records from project, cybersecurity, robotics, and technical competition experiences.', 'experience/awards', '2024-2025', 'Awards', 'Multiple competitions', 'OSINT,Web Security,CTF,Presentation'],
-      ['Certifications', 'Certification records covering computer hardware, computer networks, safety training, and long-term martial arts practice.', 'experience/certifications', '2024', 'Certifications', 'Multiple certification bodies', 'Computer hardware,Computer networks,Troubleshooting'],
-      ['Workshops', 'Workshop and learning event records across Cybersecurity, cloud, AI, open source, healthcare design, and smart manufacturing.', 'experience/workshops', '2025', 'Workshops', 'Multiple workshops and community events', 'Cybersecurity,AI,Cloud Run,Open source'],
-      ['Speaking', 'Hands-on teaching and training support experience for CTF, Raspberry Pi, Cybersecurity learning, workshops, and technical training.', 'experience/speaking', '2025', 'Speaking', 'Multiple learning activities', 'CTF,Web Security,Linux,Raspberry Pi,Python'],
-      ['Community', 'Community work around Cybersecurity learning, student coordination, CTF practice, and Raspberry Pi teaching.', 'experience/community', '2025', 'Community', 'NIHSCEDIWHC White Hat Community', 'Cybersecurity,CTF,Web Security,Linux,Raspberry Pi'],
-      ['CTF Experience', 'CTF and Web Security experience from hackathon practice, OSINT recognition, teaching support, and lab notes.', 'experience/ctf', '2025-2026', 'CTF Experience', 'Cybersecurity Hackathon and learning activities', 'CTF,OSINT,Web Security,Linux'],
-      ['Projects', 'Project experience across team platforms, medical cybersecurity research, and autonomous robotics.', 'experience/projects', '2025-2026', 'Projects', 'Personal and team projects', 'React,FastAPI,SQLite,ROS2,Raspberry Pi'],
-      ['Research', 'Research-oriented learning around Medical Cybersecurity, healthcare workflows, clinical data validation, and system risk.', 'experience/research', '2026', 'Research', 'Personal research notes', 'Medical Cybersecurity,Healthcare,Risk analysis']
-    ],
-    zh: [
-      ['競賽', '整理 Cybersecurity、機器人、程式設計、AI、專題展示與決賽準備相關競賽經歷。', 'experience/competitions', '2024-2025', '競賽', '多項競賽', 'Cybersecurity,CTF,OSINT,Web Security,Linux,Robotics,AI'],
-      ['獎項', '整理專題、Cybersecurity、機器人與技術競賽中的獲獎與入選紀錄。', 'experience/awards', '2024-2025', '獎項', '多項競賽', 'OSINT,Web Security,CTF,簡報'],
-      ['證照', '整理電腦硬體、電腦網路、安全訓練與長期跆拳道訓練相關證照。', 'experience/certifications', '2024', '證照', '多個證照單位', '電腦硬體,電腦網路,故障排除'],
-      ['研習', '整理 Cybersecurity、雲端、AI、開源、醫療設計與智慧製造相關研習紀錄。', 'experience/workshops', '2025', '研習', '多場研習與社群活動', 'Cybersecurity,AI,Cloud Run,開源'],
-      ['教學與分享', '整理 CTF、Raspberry Pi、Cybersecurity 學習、研習與技術訓練的實作教學支援經歷。', 'experience/speaking', '2025', '教學與分享', '多項學習活動', 'CTF,Web Security,Linux,Raspberry Pi,Python'],
-      ['社群', '整理 Cybersecurity 學習社群、學生協調、CTF 練習與 Raspberry Pi 教學支援。', 'experience/community', '2025', '社群', 'NIHSCEDIWHC 白帽社群', 'Cybersecurity,CTF,Web Security,Linux,Raspberry Pi'],
-      ['CTF 經歷', '整理 Cybersecurity Hackathon、OSINT 獎項、教學支援與 Web Security 練習紀錄。', 'experience/ctf', '2025-2026', 'CTF 經歷', 'Cybersecurity Hackathon 與學習活動', 'CTF,OSINT,Web Security,Linux'],
-      ['專案', '整理團隊平台、Medical Cybersecurity 研究與自主機器人相關專案經歷。', 'experience/projects', '2025-2026', '專案', '個人與團隊專案', 'React,FastAPI,SQLite,ROS2,Raspberry Pi'],
-      ['研究', '整理 Medical Cybersecurity、醫療流程、臨床資料驗證與系統風險相關研究型學習。', 'experience/research', '2026', '研究', '個人研究筆記', 'Medical Cybersecurity,醫療系統,風險分析']
-    ],
-    ja: [
-      ['コンペティション', 'Cybersecurity、ロボット、プログラミング、AI、プロジェクト発表、ファイナリスト準備に関する競技経験をまとめています。', 'experience/competitions', '2024-2025', 'コンペティション', '複数の競技', 'Cybersecurity,CTF,OSINT,Web Security,Linux,Robotics,AI'],
-      ['受賞歴', 'プロジェクト、Cybersecurity、ロボット、技術競技に関する受賞と評価の記録です。', 'experience/awards', '2024-2025', '受賞歴', '複数の競技', 'OSINT,Web Security,CTF,発表'],
-      ['資格', 'コンピュータハードウェア、ネットワーク、安全訓練、継続的なテコンドー練習に関する資格記録です。', 'experience/certifications', '2024', '資格', '複数の認定機関', 'コンピュータハードウェア,ネットワーク,トラブルシューティング'],
-      ['ワークショップ', 'Cybersecurity、クラウド、AI、オープンソース、医療デザイン、スマート製造に関する学習イベントの記録です。', 'experience/workshops', '2025', 'ワークショップ', '複数のワークショップとコミュニティイベント', 'Cybersecurity,AI,Cloud Run,オープンソース'],
-      ['登壇・指導', 'CTF、Raspberry Pi、Cybersecurity 学習、ワークショップ、技術研修に関する実践的な指導支援の経験です。', 'experience/speaking', '2025', '登壇・指導', '複数の学習活動', 'CTF,Web Security,Linux,Raspberry Pi,Python'],
-      ['コミュニティ', 'Cybersecurity 学習、学生間の調整、CTF 練習、Raspberry Pi 指導に関するコミュニティ活動です。', 'experience/community', '2025', 'コミュニティ', 'NIHSCEDIWHC ホワイトハットコミュニティ', 'Cybersecurity,CTF,Web Security,Linux,Raspberry Pi'],
-      ['CTF 経験', 'Cybersecurity Hackathon、OSINT の評価、指導支援、Web Security 練習記録をまとめています。', 'experience/ctf', '2025-2026', 'CTF 経験', 'Cybersecurity Hackathon と学習活動', 'CTF,OSINT,Web Security,Linux'],
-      ['プロジェクト', 'チーム向けプラットフォーム、Medical Cybersecurity 研究、自律ロボットに関するプロジェクト経験です。', 'experience/projects', '2025-2026', 'プロジェクト', '個人およびチームプロジェクト', 'React,FastAPI,SQLite,ROS2,Raspberry Pi'],
-      ['研究', 'Medical Cybersecurity、医療ワークフロー、臨床データ検証、システムリスクに関する研究型の学習記録です。', 'experience/research', '2026', '研究', '個人研究ノート', 'Medical Cybersecurity,医療システム,リスク分析']
-    ]
-  }[lang];
-  Object.assign(t.nav, {
-    dashboard: t.nav.dashboard || (lang === 'zh' ? '儀表板' : (lang === 'ja' ? 'ダッシュボード' : 'Dashboard')),
-    writing: lang === 'zh' ? '文章' : (lang === 'ja' ? '記事' : 'Articles'),
-    labs: lang === 'zh' ? '實驗室' : (lang === 'ja' ? 'ラボ' : 'Lab'),
-    timeline: t.nav.timeline || (lang === 'zh' ? '時間軸' : (lang === 'ja' ? 'タイムライン' : 'Timeline')),
-    search: t.nav.search || (lang === 'zh' ? '搜尋' : (lang === 'ja' ? '検索' : 'Search'))
-  });
-  if (!t.labsList.some(function(lab) { return lab[5] === 'labs/web-security'; })) {
-    t.labsList.splice(2, 0, lang === 'zh' ? ['2026-06-16', '安全', '已完成', 'Web Security 筆記', '記錄 Web Security 基礎、request flows 與常見弱點練習。', 'labs/web-security'] : (lang === 'ja' ? ['2026-06-16', 'セキュリティ', '完了', 'Web Security メモ', 'Web Security の基礎、request flows、一般的な脆弱性練習を記録します。', 'labs/web-security'] : ['2026-06-16', 'Security', 'Completed', 'Web Security Notes', 'Recording Web Security basics, request flows, and common vulnerability practice.', 'labs/web-security']));
-  }
-  const href = function(targetLang, key) { return url_for(paths[targetLang || lang][key]); };
-  const localHref = function(key) { return url_for(paths[lang][key]); };
-  const detailHref = function(slug) { return url_for(withLang(slug)); };
-  const labExperimentLinks = [
-    localHref('labs'),
-    detailHref('labs/esp32-uart-test'),
-    detailHref('labs/ros2-topic-communication'),
-    detailHref('labs/medical-cybersecurity-research')
-  ];
-  const projectHref = function(projectPath) {
-    const normalizedProjectPath = String(projectPath || '').replace(/^\/+|\/+$/g, '');
-    return url_for(withLang(normalizedProjectPath));
+  const formatNowDate = function(value) {
+    const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) return isZh ? '日期不可用' : 'Date unavailable';
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    if (!year || !month || !day) return isZh ? '日期不可用' : 'Date unavailable';
+    if (isZh) return year + ' 年 ' + month + ' 月 ' + day + ' 日';
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[month - 1] + ' ' + day + ', ' + year;
   };
-  const caseStudyLinks = [
-    localHref('home'),
-    projectHref('/projects/nihs-control-team/'),
-    projectHref('/projects/medical-cybersecurity/'),
-    localHref('labs')
-  ];
-  const recentPosts = [];
-  const allPosts = [];
-  if (site.posts && site.posts.length) {
-    site.posts.toArray().sort(function(a, b) { return b.date - a.date; }).forEach(function(post, index) {
-      const postLang = detect_post_language(post);
-      if (postLang !== lang) return;
-      allPosts.push(post);
-      if (recentPosts.length < 4) recentPosts.push(post);
-    });
-  }
-  const tagMap = {};
-  allPosts.forEach(function(post) {
-    if (!post.tags || !post.tags.length) return;
-    const tags = post.tags.toArray ? post.tags.toArray() : post.tags.data || [];
-    tags.forEach(function(tag) {
-      if (!tag || !tag.name) return;
-      if (!tagMap[tag.name]) tagMap[tag.name] = { name: tag.name, path: tag.path, length: 0 };
-      tagMap[tag.name].length += 1;
-    });
-  });
-  const tagList = Object.keys(tagMap).map(function(name) { return tagMap[name]; });
-  const tagCounts = tagList.map(function(tag) { return tag.length || 0; });
-  const minTagCount = tagCounts.length ? Math.min.apply(null, tagCounts) : 0;
-  const maxTagCount = tagCounts.length ? Math.max.apply(null, tagCounts) : 0;
-  const tagSize = function(count) {
-    if (maxTagCount === minTagCount) return '1rem';
-    return (0.9 + ((count - minTagCount) / (maxTagCount - minTagCount)) * 0.65).toFixed(2) + 'rem';
+  const projectHref = function(project) {
+    const map = {
+      'securecare': '/systems/securecare/',
+      'home-lab-infrastructure': '/systems/home-lab-infrastructure/',
+      'embedded-secure-device': '/systems/embedded-secure-device/',
+      'hpc-teaching-transfer': '/systems/hpc-teaching-transfer/',
+      'nihs-control-team': '/systems/nihs-control-team/',
+      'medical-cybersecurity': '/projects/medical-cybersecurity/',
+      'autonomous-robot': '/projects/autonomous-robot/'
+    };
+    return localizedDetailHref(map[project.slug] || '/projects/');
   };
-  const awards = ['InnoServe Merit', 'OSINT Excellence', 'Creativity Award', 'Innovation Award', 'Honorable Mention'];
-  const stats = [
-    [String(t.projects.length).padStart(2, '0'), t.stats.projects, t.labels.currentlyBuilding, 'projects'],
-    [String(allPosts.length).padStart(2, '0'), t.stats.articles, t.labels.published, 'writing'],
-    [String(t.labsList.length).padStart(2, '0'), t.stats.labs, t.labels.experiments, 'labs'],
-    [String(awards.length).padStart(2, '0'), t.stats.awards, t.labels.awards, 'experience/awards'],
-    ['10', t.stats.workshops, t.labels.workshops, 'experience/workshops'],
-    ['06', t.stats.competitions, t.labels.competitions, 'experience/competitions'],
-    [String(t.projects.length + t.labsList.length).padStart(2, '0'), t.stats.repositories, t.labels.repositories, 'projects']
-  ];
-  const latestPost = recentPosts[0];
-  const latestPostTitle = latestPost ? latestPost.title : t.noPosts;
-  const latestLab = t.labsList.slice().sort(function(a, b) { return String(b[0]).localeCompare(String(a[0])); })[0];
-  const latestLabTitle = latestLab ? latestLab[3] : 'No labs yet';
-  const projectRoles = ['Full Stack Developer', 'Researcher', 'Robotics Developer'];
+  const maybeZh = function(item, key) {
+    const zhKey = key + 'Zh';
+    const jaKey = key + 'Ja';
+    if (isZh && item && item[zhKey]) return item[zhKey];
+    if (isJa && item && item[jaKey]) return item[jaKey];
+    return (item && item[key]) || '';
+  };
+  const joinList = function(items) { return (items || []).filter(Boolean).join(' / '); };
+  const projectById = function(id) { return projects.find(function(project) { return project.id === id; }); };
+  const evidenceById = function(id) { return evidence.find(function(item) { return item.id === id; }); };
+  const projectTitle = function(id) {
+    const project = projectById(id);
+    return project ? (project.id + ' ' + maybeZh(project, 'title')) : id;
+  };
+  const statusLabel = function(status) {
+    const map = {
+      Ongoing: isZh ? '進行中' : 'Ongoing',
+      Prototype: isZh ? '原型' : 'Prototype',
+      Completed: isZh ? '已完成' : 'Completed',
+      Archived: isZh ? '已封存' : 'Archived',
+      Planning: isZh ? '規劃中' : 'Planning',
+      Current: isZh ? '目前' : 'Current',
+      Exploring: isZh ? '探索中' : 'Exploring',
+      Applied: isZh ? '已應用' : 'Applied',
+      Integrated: isZh ? '已整合' : 'Integrated',
+      Learning: isZh ? '學習中' : 'Learning',
+      Private: isZh ? '未公開' : 'Private',
+      Public: isZh ? '公開' : 'Public',
+      Planned: isZh ? '規劃中' : 'Planned',
+      'In Progress': isZh ? '整理中' : 'In Progress',
+      'Available on Request': isZh ? '可依需求提供' : 'Available on Request',
+      'Working Prototype': isZh ? '可運作原型' : 'Working Prototype',
+      'Learning / Records': isZh ? '學習／紀錄' : 'Learning / Records'
+    };
+    return map[status] || status || '';
+  };
+  const c = {
+    viewNow: isZh ? '查看目前工作' : 'View Current Work',
+    viewSystems: isZh ? '查看工程系統' : 'View Systems',
+    viewResearch: isZh ? '查看研究專案' : 'View Research Projects',
+    viewEvidence: isZh ? '查看成果' : 'View Evidence',
+    readNotes: isZh ? '閱讀研究筆記' : 'Read Notes',
+    currentStatus: isZh ? '目前狀態' : 'Current Status',
+    primaryFocus: isZh ? '主要焦點' : 'Primary Focus',
+    activeSystems: isZh ? '精選系統' : 'Featured Systems',
+    activeProjects: isZh ? '進行中專案' : 'Active Projects',
+    currentStage: isZh ? '目前階段' : 'Current Stage',
+    lastUpdated: isZh ? '最後更新' : 'Last Updated',
+    systemId: isZh ? '系統 ID' : 'System ID',
+    domain: isZh ? '領域' : 'Domain',
+    problem: isZh ? '問題' : 'Problem',
+    myRole: isZh ? '我的角色' : 'My Role',
+    engineeringScope: isZh ? '工程範圍' : 'Engineering Scope',
+    architecture: isZh ? '架構' : 'Architecture',
+    securityScope: isZh ? '安全範圍' : 'Security Scope',
+    technologies: isZh ? '技術' : 'Technologies',
+    currentState: isZh ? '目前狀態' : 'Current State',
+    evidence: isZh ? '證據' : 'Evidence',
+    nextStep: isZh ? '下一步' : 'Next Step',
+    researchQuestion: isZh ? '研究問題' : 'Research Question',
+    approach: isZh ? '方法' : 'Approach',
+    role: isZh ? '角色' : 'Role',
+    year: isZh ? '年份' : 'Year',
+    verification: isZh ? '驗證狀態' : 'Verification',
+    relatedProject: isZh ? '相關專案' : 'Related Project',
+    viewFullSystem: isZh ? '查看完整系統' : 'View Full System',
+    fullSystemHint: isZh ? '查看系統架構、工作流程、實作、目前問題與參考資料。' : 'Explore the architecture, workflow, implementation, current issues, and references.'
+  };
+  const strip = function(value) { return strip_html(String(value || '')).replace(/\s+/g, ' ').trim(); };
+  const allPosts = site.posts.sort('-date').toArray ? site.posts.sort('-date').toArray() : [];
+  const postLang = function(post) {
+    const explicit = String(post.site_lang || '').toLowerCase();
+    if (explicit.indexOf('zh') === 0) return 'zh';
+    if (explicit.indexOf('ja') === 0) return 'ja';
+    if (explicit.indexOf('en') === 0) return 'en';
+    const source = String(post.source || post.full_source || post.path || '').toLowerCase();
+    if (source.indexOf('.ja.') >= 0 || source.indexOf('/ja/') >= 0) return 'ja';
+    if (source.indexOf('.en.') >= 0 || source.indexOf('/en/') >= 0) return 'en';
+    return /[\u4e00-\u9fff]/.test(post.title || '') ? 'zh' : 'en';
+  };
+  const notes = allPosts.filter(function(post) {
+    return postLang(post) === lang;
+  }).slice(0, section === 'writing' ? 60 : 5);
+  const postSummary = function(post) {
+    const text = strip(post.description || post.excerpt || post.content || '');
+    return text.length > 150 ? text.slice(0, 150).replace(/\s+\S*$/, '') + '...' : text;
+  };
   const readingMinutes = function(post) {
-    const raw = strip_html(post.content || post.excerpt || '').replace(/\s+/g, ' ').trim();
+    const raw = strip(post.content || post.excerpt || '');
     const cjk = (raw.match(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g) || []).length;
     const words = raw.replace(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g, ' ').split(/\s+/).filter(Boolean).length;
     return Math.max(1, Math.ceil((words + cjk / 2) / 220));
   };
   const firstTag = function(post) {
-    if (!post.tags || !post.tags.length) return 'Note';
-    const tags = post.tags.toArray ? post.tags.toArray() : post.tags.data || [];
-    return tags.length ? tags[0].name : 'Note';
+    const tags = post.tags && post.tags.toArray ? post.tags.toArray() : [];
+    return tags.length ? tags[0].name : (isZh ? '研究筆記' : 'Research Note');
   };
-  const postTags = function(post) {
-    if (!post.tags || !post.tags.length) return [];
-    const tags = post.tags.toArray ? post.tags.toArray() : post.tags.data || [];
-    return tags.map(function(tag) { return tag.name; }).filter(Boolean);
-  };
-  const postCategory = function(post) {
-    if (!post.categories || !post.categories.length) return lang === 'zh' ? '筆記' : (lang === 'ja' ? 'メモ' : 'Notes');
-    const categories = post.categories.toArray ? post.categories.toArray() : post.categories.data || [];
-    const rawCategory = categories.length ? categories[0].name : '';
-    const localizedCategories = {
-      zh: {
-        Cybersecurity: '資訊安全',
-        Thoughts: '隨筆',
-        Personal: '個人',
-        'Personal Story': '個人故事',
-        'Medical Security': '醫療資安'
-      },
-      ja: {
-        Cybersecurity: 'サイバーセキュリティ',
-        Thoughts: '考察',
-        Personal: '個人',
-        'Personal Story': '個人ストーリー',
-        'Medical Security': '医療セキュリティ'
-      }
-    };
-    return (localizedCategories[lang] && localizedCategories[lang][rawCategory]) ||
-      rawCategory ||
-      (lang === 'zh' ? '筆記' : (lang === 'ja' ? 'メモ' : 'Notes'));
-  };
-  const postSummary = function(post) {
-    const raw = post.description || post.excerpt || post.content || '';
-    const text = strip_html(String(raw)).replace(/\s+/g, ' ').trim();
-    return text.length > 150 ? text.slice(0, 150).replace(/\s+\S*$/, '') + '...' : text;
-  };
-  const writingCopy = {
-    en: { all: 'All Articles', viewAll: 'View All Articles', date: 'Date', category: 'Category', tags: 'Tags', read: 'Read ->', empty: 'No articles yet.' },
-    zh: { all: '全部文章', viewAll: '查看全部文章', date: '日期', category: '分類', tags: '標籤', read: '閱讀 ->', empty: '目前沒有文章。' },
-    ja: { all: 'すべての記事', viewAll: 'すべての記事を見る', date: '日付', category: '分類', tags: 'タグ', read: '読む ->', empty: '記事はまだありません。' }
-  }[lang];
-  const spaceGuideCopy = {
+  const featuredSystems = projects.filter(function(project) { return project.featured; });
+  const selectedHomeSystems = projects.filter(function(project) {
+    return ['SYS-001', 'SYS-002'].includes(project.systemId);
+  }).slice(0, 2);
+  const entryCopy = {
     en: {
-      kicker: 'Site Guide',
-      title: 'Start Reading From Here',
-      body: 'Think of this site as a quiet library and research studio. Each room has a different role in Seraph\'s public notebook.',
-      items: [
-        ['Home', 'Main Hall', 'The first place to understand what this site is.'],
-        ['About', 'Author Profile', 'Learn Seraph\'s starting point, story, and working philosophy.'],
-        ['Field Notes', 'Bookshelf', 'Organized technical notes and understanding gathered along the way.'],
-        ['Projects', 'Case Studies', 'Records of turning ideas into working pieces.'],
-        ['Labs', 'Laboratory', 'Experiments, tests, and debugging notes currently in progress.'],
-        ['Research', 'Research Room', 'Directions and questions to explore next.']
-      ]
+      systemResearch: 'SERAPH / SYSTEMS RESEARCH',
+      heroTitle: 'Building practical systems across cloud communication, cybersecurity, healthcare, and experimental computing.',
+      heroDescription: 'Independent engineering portfolio documenting systems, infrastructure, research, and field experiments.',
+      exploreSystems: 'Explore Systems',
+      readJournal: 'Read Journal',
+      statusLabel: 'Current status',
+      meta: [['Current focus', 'HPC & Cloud Communication'], ['Based in', 'Taiwan'], ['Updated', '2026']],
+      selectedSystems: 'Selected Systems',
+      selectedSystemsBody: 'A small entry point into the systems that best represent the current engineering direction.',
+      viewSystem: 'View System',
+      viewAllSystems: 'View all systems',
+      currentFocus: 'Current Focus',
+      currentFocusBody: 'Current work is moving toward HPC, cloud communication, and systems infrastructure, with cybersecurity supporting architecture, network boundaries, and reliability.',
+      selectedWriting: 'Selected Writing',
+      selectedWritingBody: 'Recent research notes and technical records. The full archive remains in Writing.',
+      readArticle: 'Read article',
+      viewAllWriting: 'View all writing',
+      shortAbout: 'Short About',
+      aboutOne: 'I build and document practical systems that connect infrastructure, communication, cybersecurity, and healthcare.',
+      aboutTwo: 'My work is developed through home labs, technical experiments, student research, and long-term engineering projects.',
+      moreAbout: 'More about Seraph'
     },
     zh: {
-      kicker: '網站空間導覽',
-      title: '這裡像一座研究工作室',
-      body: '把這個網站想成一座安靜的圖書館 / 研究工作室。每個頁面都有自己的角色，放著 Seraph 不同階段的筆記、作品與問題。',
-      items: [
-        ['首頁', '大廳', '第一次認識這個地方。'],
-        ['關於', '作者介紹', '了解 Seraph 的起點、故事與理念。'],
-        ['探索筆記', '書架', '整理一路上的技術筆記與理解。'],
-        ['案例研究', '案例研究', '記錄把想法做成作品的過程。'],
-        ['實驗室', '實驗室', '放正在進行中的實驗、測試與踩坑紀錄。'],
-        ['研究', '研究室', '整理未來想探索的方向與問題。']
-      ]
+      systemResearch: 'SERAPH / SYSTEMS RESEARCH',
+      heroTitle: '建置橫跨雲端通訊、資安、醫療與實驗運算的實用系統。',
+      heroDescription: '獨立工程作品集，記錄系統、基礎設施、研究與實地實驗。',
+      exploreSystems: '探索系統',
+      readJournal: '閱讀 Journal',
+      statusLabel: '目前狀態',
+      meta: [['Current focus', 'HPC 與雲端通訊'], ['Based in', 'Taiwan'], ['Updated', '2026']],
+      selectedSystems: '精選系統',
+      selectedSystemsBody: '以少量入口呈現最能代表目前工程方向的系統。',
+      viewSystem: '查看系統',
+      viewAllSystems: '查看全部系統',
+      currentFocus: '目前焦點',
+      currentFocusBody: '目前工作逐步轉向 HPC、雲端通訊與系統基礎設施，資安則支援架構、網路邊界與可靠性。',
+      selectedWriting: '精選文章',
+      selectedWritingBody: '近期研究筆記與技術紀錄；完整文章保留在 Writing。',
+      readArticle: '閱讀文章',
+      viewAllWriting: '查看全部文章',
+      shortAbout: '簡短介紹',
+      aboutOne: '我建置並記錄連結基礎設施、通訊、資安與醫療的實用系統。',
+      aboutTwo: '我的工作透過 Home Lab、技術實驗、學生研究與長期工程專案累積。',
+      moreAbout: '更多關於 Seraph'
     },
     ja: {
-      kicker: 'サイト空間ガイド',
-      title: 'ここから読み始める',
-      body: 'このサイトは静かな図書館 / 研究スタジオのような場所です。それぞれのページに役割があり、Seraph のノート、作品、問いを分けて置いています。',
-      items: [
-        ['ホーム', 'ホール', 'この場所を最初に知るための入口です。'],
-        ['プロフィール', '作者プロフィール', 'Seraph の出発点、ストーリー、考え方を知る場所です。'],
-        ['記事', '本棚', 'これまでの技術メモと理解を整理する場所です。'],
-        ['ケーススタディ', 'ケーススタディ', 'アイデアを作品にしていく過程を記録します。'],
-        ['ラボ', 'ラボ', '進行中の実験、テスト、つまずきの記録を置きます。'],
-        ['プロジェクト', 'プロジェクト', 'これから探りたい方向と問いを整理します。']
-      ]
+      systemResearch: 'SERAPH / SYSTEMS RESEARCH',
+      heroTitle: 'クラウド通信、サイバーセキュリティ、医療技術、実験的コンピューティングを横断する実践的なシステムを構築しています。',
+      heroDescription: 'システム、インフラ、研究課題、フィールド実験を記録する、研究主導のエンジニアリングポートフォリオです。',
+      exploreSystems: 'システムを見る',
+      readJournal: 'Journal を読む',
+      statusLabel: '現在の状況',
+      meta: [['Current focus', 'HPC とクラウド通信'], ['Based in', 'Taiwan'], ['Updated', '2026']],
+      selectedSystems: 'Selected Systems',
+      selectedSystemsBody: '現在のエンジニアリングの方向性を代表する少数のシステムだけを入口として示します。',
+      viewSystem: 'システムを見る',
+      viewAllSystems: 'すべてのシステムを見る',
+      currentFocus: 'Current Focus',
+      currentFocusBody: '現在は HPC、クラウド通信、システム基盤を中心に学び、セキュリティの考え方を設計、ネットワーク境界、信頼性の支援に使っています。',
+      selectedWriting: 'Selected Writing',
+      selectedWritingBody: '最近の研究ノートと技術記録です。完全な一覧は Writing に残しています。',
+      readArticle: '記事を読む',
+      viewAllWriting: 'すべての文章を見る',
+      shortAbout: 'Short About',
+      aboutOne: 'インフラ、通信、サイバーセキュリティ、医療をつなぐ実践的なシステムを構築し、記録しています。',
+      aboutTwo: 'Home Lab、技術実験、学生研究、長期的なエンジニアリングプロジェクトを通して取り組んでいます。',
+      moreAbout: 'Seraph について'
     }
-  }[lang];
-  const spaceGuideLinks = [
-    localHref('home'),
-    localHref('about'),
-    localHref('writing'),
-    localHref('projects'),
-    localHref('labs'),
-    detailHref('experience/research')
-  ];
-  const homeV1Copy = {
-    en: {
-      heroSummary: 'Curiosity matters more than rushing to prove yourself.',
-      startReading: 'Start Reading',
-      exploreNotes: 'Read Notes',
-      whyTitle: 'Before the First Page',
-      whyLink: 'Keep Reading ->',
-      why: [
-        'If you are reading this,',
-        'maybe you are also looking for a direction worth following.',
-        'I am not the best test taker, and I am not the strongest engineer.',
-        'I simply stepped into technology because of curiosity.',
-        'Later, I learned that what changed me was not one tool or one skill.',
-        'It was the habit of exploring, building, and sharing what I understood along the way.',
-        'So Seraph is not a resume.',
-        'It is more like a research notebook that is still being written.',
-        'I hope one day, when someone else feels unsure,',
-        'this place can help them start their first project.',
-        'If that day comes,',
-        'that is why Seraph exists.'
-      ],
-      areasTitle: 'Areas of Exploration',
-      areas: [
-        ['Cybersecurity', 'Understand risk and build trust.'],
-        ['Web Systems', 'Turn ideas into things people can actually use.'],
-        ['Medical Technology', 'Use technology to improve real lives.'],
-        ['Networking', 'Understand how the world connects.']
-      ],
-      selectedTitle: 'Things I Keep Building',
-      selectedLink: 'Open note ->',
-      selected: [
-        ['Seraph', 'A research studio that keeps being written.'],
-        ['NIHS Platform', 'A platform for organizing competition, community, and learning resources.'],
-        ['MedSec', 'A research system exploring clinical workflow, device trust, and security risk.'],
-        ['Home Lab', 'An environment for testing, failing, and validating ideas freely.']
-      ],
-      latestTitle: 'Latest Exploration Notes',
-      latestLink: 'Read all notes ->',
-      currentTitle: 'Currently Exploring',
-      current: [
-        ['CCNA', 'Building a stronger networking foundation.'],
-        ['Home Lab', 'Building an environment for testing, failing, and validating ideas freely.'],
-        ['M5Stack / ESP32', 'Using small devices to explore security and embedded systems.'],
-        ['Medical Device Security', 'Thinking about device trust, data validation, and clinical workflow risk.']
-      ],
-      epilogueTitle: 'Epilogue',
-      epilogue: [
-        'Thank you for reading this far.',
-        'I hope the next time we meet,',
-        'we both understand this world',
-        'a little more than we do today.'
-      ]
-    },
-    zh: {
-      heroSummary: '保持好奇，比急著證明自己更重要。',
-      startReading: '開始閱讀',
-      exploreNotes: '閱讀筆記',
-      whyTitle: '寫在開始之前',
-      whyLink: '繼續閱讀 ->',
-      why: [
-        '如果你正在閱讀這段文字，',
-        '或許你也和曾經的我一樣，正在尋找一個值得投入的方向。',
-        '我不是最會考試的人，也不是最厲害的工程師。',
-        '我只是因為一次好奇，開始走進技術的世界。',
-        '後來我發現，真正改變我的，不是某一個工具，也不是某一門技術。',
-        '而是持續探索、持續實作，以及願意把一路上的理解分享給別人。',
-        '所以，Seraph 並不是一份履歷。',
-        '它更像一本持續書寫中的研究筆記。',
-        '我希望有一天，當另一個人也正在迷惘時，',
-        '能因為這裡，而勇敢開始自己的第一個專案。',
-        '如果真的有那一天，',
-        '那就是 Seraph 存在的意義。'
-      ],
-      areasTitle: '探索領域',
-      areas: [
-        ['資訊安全', '理解風險，建立信任。'],
-        ['網站系統', '把想法，變成真正可以使用的產品。'],
-        ['醫療科技', '讓技術真正改善人的生活。'],
-        ['網路技術', '理解世界如何彼此連結。']
-      ],
-      selectedTitle: '一直在打造的事',
-      selectedLink: '閱讀紀錄 ->',
-      selected: [
-        ['Seraph', '一座持續書寫中的研究工作室。'],
-        ['NIHS Platform', '讓競賽、社群與學習資源更容易被管理的平台。'],
-        ['MedSec', '探索醫療流程、設備信任與資安風險的研究型系統。'],
-        ['Home Lab', '建立一個可以自由測試、失敗與驗證想法的實驗環境。']
-      ],
-      latestTitle: '最近寫下的探索筆記',
-      latestLink: '閱讀所有筆記 ->',
-      currentTitle: '目前正在探索',
-      current: [
-        ['CCNA', '建立更扎實的網路基礎。'],
-        ['Home Lab', '建立可以自由測試、失敗與驗證想法的環境。'],
-        ['M5Stack / ESP32', '用小型裝置探索資訊安全與嵌入式系統。'],
-        ['醫療設備安全', '思考設備信任、資料驗證與醫療流程風險。']
-      ],
-      epilogueTitle: '後記',
-      epilogue: [
-        '謝謝你讀到這裡。',
-        '希望下次見面的時候，',
-        '我們都比今天，',
-        '更理解這個世界一點。'
-      ]
-    },
-    ja: {
-      heroSummary: '自分を急いで証明することより、好奇心を持ち続けることを大切にしたい。',
-      startReading: '読み始める',
-      exploreNotes: 'ノートを読む',
-      whyTitle: '最初のページの前に',
-      whyLink: '続きを読む ->',
-      why: [
-        'ここまで読んでいるあなたも、',
-        'もしかすると、かつての私と同じように進む方向を探しているのかもしれません。',
-        '私は試験が一番得意な人でも、最も優れたエンジニアでもありません。',
-        'ただ一つの好奇心から、技術の世界に入りました。',
-        '後になって気づいたのは、私を変えたのは一つの道具や一つの技術ではなかったということです。',
-        '探り続け、作り続け、その途中で理解したことを共有する姿勢でした。',
-        'だから Seraph は履歴書ではありません。',
-        '今も書き続けている研究ノートに近い場所です。',
-        'いつか、迷っている誰かがここを読んだとき、',
-        '自分の最初のプロジェクトを始めるきっかけになればと思っています。',
-        'もし本当にその日が来るなら、',
-        'それが Seraph の存在理由です。'
-      ],
-      areasTitle: '探索領域',
-      areas: [
-        ['情報セキュリティ', 'リスクを理解し、信頼を作る。'],
-        ['Web システム', 'アイデアを実際に使えるものにする。'],
-        ['医療技術', '技術で人の生活を少し良くする。'],
-        ['ネットワーク技術', '世界がどうつながっているかを理解する。']
-      ],
-      selectedTitle: '作り続けているもの',
-      selectedLink: '記録を読む ->',
-      selected: [
-        ['Seraph', '書き続けている研究スタジオ。'],
-        ['NIHS Platform', '競技、コミュニティ、学習リソースを整理するためのプラットフォーム。'],
-        ['MedSec', '医療ワークフロー、デバイス信頼、セキュリティリスクを探る研究型システム。'],
-        ['Home Lab', '自由に試し、失敗し、考えを検証するための実験環境。']
-      ],
-      latestTitle: '最近の記事',
-      latestLink: 'すべてのノートを読む ->',
-      currentTitle: '現在探索していること',
-      current: [
-        ['CCNA', 'より堅実なネットワーク基礎を作る。'],
-        ['Home Lab', '自由に試し、失敗し、考えを検証できる環境を作る。'],
-        ['M5Stack / ESP32', '小型デバイスで情報セキュリティと組み込みシステムを探る。'],
-        ['医療機器セキュリティ', 'デバイス信頼、データ検証、医療ワークフローのリスクを考える。']
-      ],
-      epilogueTitle: 'あとがき',
-      epilogue: [
-        'ここまで読んでくれて、ありがとうございます。',
-        '次に会うときには、',
-        '私たちが今日よりも少しだけ、',
-        'この世界を理解できていますように。'
-      ]
-    }
-  }[lang];
-  homeV1Copy.selectedLink = {
-    en: 'Read Case Study →',
-    zh: '閱讀案例 →',
-    ja: 'ケーススタディを読む →'
-  }[lang];
-  homeV1Copy.selected = {
-    en: [
-      ['NIHS Control Team', 'A case study about organizing competition links, schedules, and team context.'],
-      ['Medical Cybersecurity', 'A case study about clinical workflow, device trust, and data validation risk.'],
-      ['Autonomous Robot', 'A case study about learning robotics through sensors, ROS2, and physical debugging.']
-    ],
-    zh: [
-      ['NIHS Control Team', '整理競賽連結、時程與團隊脈絡的案例研究。'],
-      ['Medical Cybersecurity', '關於臨床流程、設備信任與資料驗證風險的案例研究。'],
-      ['Autonomous Robot', '透過感測器、ROS2 與實體除錯學習機器人的案例研究。']
-    ],
-    ja: [
-      ['NIHS Control Team', 'コンテストのリンク、予定、チームの文脈を整理するケーススタディ。'],
-      ['Medical Cybersecurity', '臨床ワークフロー、デバイス信頼、データ検証リスクを考えるケーススタディ。'],
-      ['Autonomous Robot', 'センサー、ROS2、物理的なデバッグを通してロボットを学ぶケーススタディ。']
-    ]
-  }[lang];
-  const uiCopy = {
-    en: {
-      statsLabel: 'Site statistics',
-      whyKicker: 'Why Seraph Exists',
-      areasKicker: 'Areas of Exploration',
-      selectedKicker: 'Selected Works',
-      latestKicker: 'Latest Field Notes',
-      currentKicker: 'Currently Exploring',
-      epilogueKicker: 'Epilogue',
-      profileKicker: 'Profile',
-      imageAlt: 'Seraph profile',
-      labLabels: { what: 'What', why: 'Why', next: 'Next' },
-      timelineKicker: 'Timeline',
-      nextKicker: 'Next'
-    },
-    zh: {
-      statsLabel: '網站統計',
-      whyKicker: '為什麼會有 Seraph',
-      areasKicker: '探索領域',
-      selectedKicker: '精選作品',
-      latestKicker: '最新探索筆記',
-      currentKicker: '目前正在探索',
-      epilogueKicker: '後記',
-      profileKicker: '作者',
-      imageAlt: 'Seraph 個人照片',
-      labLabels: { what: '內容', why: '原因', next: '下一步' },
-      timelineKicker: '時間軸',
-      nextKicker: '下一步'
-    },
-    ja: {
-      statsLabel: 'サイト統計',
-      whyKicker: 'Seraph が存在する理由',
-      areasKicker: '探索領域',
-      selectedKicker: '選んだ作品',
-      latestKicker: '最新の記事',
-      currentKicker: '現在探索していること',
-      epilogueKicker: 'あとがき',
-      profileKicker: 'プロフィール',
-      imageAlt: 'Seraph のプロフィール写真',
-      labLabels: { what: '内容', why: '理由', next: '次にやること' },
-      timelineKicker: 'タイムライン',
-      nextKicker: '次へ'
-    }
-  }[lang];
-%>
+  };
+  const ec = entryCopy[lang] || entryCopy.en;
 
-<% function renderHomeHero() { %>
-  <section class="home-positioning-hero" aria-labelledby="<%= lang %>-home-hero-title">
-    <div class="home-positioning-copy">
-      <h1 id="<%= lang %>-home-hero-title">Seraph</h1>
-      <p class="home-positioning-subtitle">Find Your Polaris.</p>
-      <p class="home-positioning-summary"><%= homeV1Copy.heroSummary %></p>
-      <div class="cta-actions home-primary-actions">
-        <a class="os-button os-button-primary" href="<%= localHref('writing') %>"><%= homeV1Copy.startReading %></a>
-        <a class="os-button os-button-secondary" href="<%= localHref('writing') %>"><%= homeV1Copy.exploreNotes %></a>
-      </div>
-    </div>
-  </section>
+  function renderSectionHeader(kicker, title, body) {
+%>
+  <header class="research-section-header">
+    <p class="research-section-kicker"><%= kicker %></p>
+    <h2><%= title %></h2>
+    <% if (body) { %><p><%= body %></p><% } %>
+  </header>
 <% } %>
 
-<%
-  const redesignCopy = {
-    en: {
-      eyebrow: 'TECHNICAL BLOG',
-      statement: 'Technical articles, projects, and notes.',
-      supplement: 'Cybersecurity, systems, medical technology, and engineering practice.',
-      projects: 'Explore Projects',
-      journal: 'Read the Journal',
-      selected: 'Selected Work',
-      selectedIntro: 'Systems, research, and infrastructure selected from the working archive.',
-      viewProject: 'View project',
-      recent: 'Recent Journal',
-      recentIntro: 'Notes from current research, field work, and systems practice.',
-      viewArticle: 'View article',
-      allJournal: 'All journal entries',
-      research: 'Research Areas',
-      researchIntro: 'Five connected fields shaping the work.',
-      lab: 'Lab Status',
-      labIntro: 'A live index of systems and experiments currently on the bench.',
-      about: 'About Seraph',
-      aboutBody: 'I build and document practical systems at the intersection of cybersecurity, infrastructure, and healthcare technology.',
-      aboutLink: 'More about Seraph',
-      language: 'English',
-      online: 'Online',
-      active: 'Active Development',
-      running: 'Running',
-      progress: 'In Progress'
-    },
-    zh: {
-      eyebrow: '技術部落格',
-      statement: '技術文章、專案與筆記。',
-      supplement: '記錄資安研究、系統實驗、醫療科技與工程實作。',
-      projects: '探索專案',
-      journal: '閱讀 Journal',
-      selected: '精選作品',
-      selectedIntro: '從持續進行的研究、系統與基礎設施工作中選出的案例。',
-      viewProject: '查看專案',
-      recent: '近期 Journal',
-      recentIntro: '來自研究、實作現場與系統工程的最新筆記。',
-      viewArticle: '閱讀文章',
-      allJournal: '查看所有文章',
-      research: '研究領域',
-      researchIntro: '五個彼此連結、持續塑造目前工作的領域。',
-      lab: 'Lab 狀態',
-      labIntro: '目前在線、運行與開發中的系統實驗索引。',
-      about: '關於 Seraph',
-      aboutBody: 'I build and document practical systems at the intersection of cybersecurity, infrastructure, and healthcare technology.',
-      aboutLink: '進一步了解 Seraph',
-      language: '中文',
-      online: 'Online',
-      active: 'Active Development',
-      running: 'Running',
-      progress: 'In Progress'
-    },
-    ja: {
-      eyebrow: '技術ブログ',
-      statement: '技術記事、プロジェクト、ノート。',
-      supplement: 'サイバーセキュリティ、システム実験、医療技術、エンジニアリングの実践を記録します。',
-      projects: 'プロジェクトを見る',
-      journal: 'Journal を読む',
-      selected: 'Selected Work',
-      selectedIntro: '進行中の研究、システム、インフラストラクチャから選んだケースです。',
-      viewProject: 'プロジェクトを見る',
-      recent: 'Recent Journal',
-      recentIntro: '研究、フィールドワーク、システム実践からの最新ノート。',
-      viewArticle: '記事を読む',
-      allJournal: 'すべての記事',
-      research: 'Research Areas',
-      researchIntro: '現在の仕事を形づくる、相互につながった五つの領域。',
-      lab: 'Lab Status',
-      labIntro: '現在稼働・開発中のシステムと実験のインデックス。',
-      about: 'About Seraph',
-      aboutBody: 'I build and document practical systems at the intersection of cybersecurity, infrastructure, and healthcare technology.',
-      aboutLink: 'Seraph について',
-      language: '日本語',
-      online: 'Online',
-      active: 'Active Development',
-      running: 'Running',
-      progress: 'In Progress'
-    }
-  }[lang];
-  const redesignProjects = [
-    ['01', 'Medical Security', 'SecureCare', 'A secure healthcare technology concept connecting clinical workflows, trusted data, and practical risk controls.', ['Healthcare', 'Security', 'Risk'], '2026', projectHref('/projects/medical-cybersecurity/')],
-    ['02', 'Infrastructure', 'Home Lab Infrastructure', 'A resilient environment for networking, observability, deployment, and repeatable security experiments.', ['Linux', 'Networking', 'Raspberry Pi'], '2026', localHref('labs')],
-    ['03', 'Research Platform', 'Seraph Research Platform', 'The publishing and research system behind this multilingual technical journal.', ['Hexo', 'Research', 'Web'], '2026', localHref('about')]
-  ];
-  const redesignAreas = ['Cybersecurity', 'Medical Security', 'Infrastructure', 'IoT and Embedded Systems', 'High Performance Computing'];
-  const redesignLabs = [
-    ['Raspberry Pi Lab', redesignCopy.online],
-    ['SecureCare Demo', redesignCopy.active],
-    ['Home Lab Network', redesignCopy.running],
-    ['HPC Notes', redesignCopy.progress]
-  ];
+<% function renderStatusBadge(status) {
+  const positiveStatuses = ['Ongoing', 'Current', 'Public', 'Applied', 'Integrated', 'Completed', 'Working Prototype'];
+  const warningStatuses = ['Planning', 'Planned', 'In Progress', 'Learning', 'Exploring'];
+  const tone = positiveStatuses.indexOf(status) >= 0 ? 'good' : (warningStatuses.indexOf(status) >= 0 ? 'warn' : 'neutral');
 %>
-
-<% function renderHomeRound2() { %>
-  <section class="r2-hero" aria-labelledby="<%= lang %>-r2-hero-title">
-    <div class="r2-hero-grid" aria-hidden="true"></div>
-    <div class="r2-hero-main">
-      <p class="r2-eyebrow"><%= redesignCopy.eyebrow %></p>
-      <p class="r2-serial">SERAPH / 001</p>
-      <h1 id="<%= lang %>-r2-hero-title">Seraph</h1>
-      <p class="r2-hero-statement"><%= redesignCopy.statement %></p>
-      <p class="r2-hero-supplement"><%= redesignCopy.supplement %></p>
-      <div class="r2-actions">
-        <a class="r2-button r2-button-primary" href="<%= localHref('projects') %>"><%= redesignCopy.projects %><span aria-hidden="true">↗</span></a>
-        <a class="r2-button" href="<%= localHref('writing') %>"><%= redesignCopy.journal %><span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section id="selected-work" class="r2-section r2-selected reveal-section" aria-labelledby="<%= lang %>-r2-selected">
-    <header class="r2-section-header">
-      <p>01 / WORK</p><div><h2 id="<%= lang %>-r2-selected"><%= redesignCopy.selected %></h2><p><%= redesignCopy.selectedIntro %></p></div>
-    </header>
-    <div class="r2-project-grid">
-      <% redesignProjects.forEach(function(project, index) { %>
-        <article class="r2-project <%= index === 0 ? 'r2-project-featured' : '' %>">
-          <div class="r2-project-top"><span><%= project[0] %> · <%= project[1] %></span><time><%= project[5] %></time></div>
-          <div><h3><%= project[2] %></h3><p><%= project[3] %></p></div>
-          <ul aria-label="Technology tags"><% project[4].forEach(function(tag) { %><li><%= tag %></li><% }) %></ul>
-          <a href="<%= project[6] %>"><%= redesignCopy.viewProject %><span aria-hidden="true">↗</span></a>
-        </article>
-      <% }) %>
-    </div>
-  </section>
-
-  <section class="r2-section r2-journal reveal-section" aria-labelledby="<%= lang %>-r2-journal">
-    <header class="r2-section-header">
-      <p>02 / JOURNAL</p><div><h2 id="<%= lang %>-r2-journal"><%= redesignCopy.recent %></h2><p><%= redesignCopy.recentIntro %></p></div>
-    </header>
-    <div class="r2-journal-grid">
-      <% recentPosts.forEach(function(post, index) { %>
-        <article class="r2-journal-item <%= index === 0 ? 'r2-journal-featured' : '' %>">
-          <div class="r2-journal-meta"><time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY.MM.DD') %></time><span><%= postCategory(post) %></span></div>
-          <h3><a href="<%= url_for(post.path) %>"><%= post.title %></a></h3>
-          <% if (postSummary(post)) { %><p><%= postSummary(post) %></p><% } %>
-          <div class="r2-journal-foot"><span><%= readingMinutes(post) %> <%= t.readTimeSuffix %> · <%= redesignCopy.language %></span><a href="<%= url_for(post.path) %>"><%= redesignCopy.viewArticle %> →</a></div>
-        </article>
-      <% }) %>
-    </div>
-    <a class="r2-index-link" href="<%= localHref('writing') %>"><%= redesignCopy.allJournal %><span aria-hidden="true">→</span></a>
-  </section>
-
-  <section class="r2-section r2-lab reveal-section" aria-labelledby="<%= lang %>-r2-lab">
-    <header class="r2-section-header">
-      <p>04 / SYSTEM</p><div><h2 id="<%= lang %>-r2-lab"><%= redesignCopy.lab %></h2><p><%= redesignCopy.labIntro %></p></div>
-    </header>
-    <div class="r2-status-panel">
-      <div class="r2-status-head"><span>seraph@lab:~$ status --all</span><time><%= date(new Date(), 'YYYY-MM-DD') %></time></div>
-      <% redesignLabs.forEach(function(item, index) { %><div class="r2-status-row"><span><%= String(index + 1).padStart(2, '0') %></span><strong><%= item[0] %></strong><em><i aria-hidden="true"></i><%= item[1] %></em></div><% }) %>
-    </div>
-  </section>
-
+  <span class="research-status-badge" data-status-tone="<%= tone %>"><%= statusLabel(status) %></span>
 <% } %>
 
-<% function renderStats() { %>
-  <section class="terminal-stats-grid" aria-label="<%= uiCopy.statsLabel %>">
-    <% stats.forEach(function(stat) { %>
-      <a class="terminal-stat-card" href="<%= detailHref(stat[3]) %>">
-        <div class="terminal-stat-number"><%= stat[0] %></div>
-        <div class="terminal-stat-label"><%= stat[1] %></div>
-        <div class="terminal-stat-caption"><%= stat[2] %></div>
-      </a>
+<% function renderMetadataList(items) { %>
+  <dl class="research-metadata-list">
+    <% items.filter(function(item) { return item[1] || item[1] === 0; }).forEach(function(item) { %>
+      <div><dt><%= item[0] %></dt><dd><%- item[1] %></dd></div>
     <% }) %>
-  </section>
+  </dl>
 <% } %>
 
-<% function renderSpaceGuide() { %>
-  <section class="site-space-guide" aria-labelledby="<%= lang %>-space-guide-title">
-    <div class="site-space-guide-intro">
-      <p class="site-space-guide-kicker"><%= spaceGuideCopy.kicker %></p>
-      <h2 id="<%= lang %>-space-guide-title" class="section-title"><%= spaceGuideCopy.title %></h2>
-      <p><%= spaceGuideCopy.body %></p>
-    </div>
-    <nav class="site-space-guide-list" aria-label="<%= spaceGuideCopy.kicker %>">
-      <% spaceGuideCopy.items.forEach(function(item, index) { %>
-        <a class="site-space-guide-row" href="<%= spaceGuideLinks[index] %>">
-          <span class="site-space-guide-number"><%= String(index + 1).padStart(2, '0') %></span>
-          <span class="site-space-guide-room"><%= item[0] %></span>
-          <strong><%= item[1] %></strong>
-          <span class="site-space-guide-desc"><%= item[2] %></span>
-        </a>
-      <% }) %>
-    </nav>
-  </section>
+<% function renderTagList(items) { %>
+  <div class="research-tag-list">
+    <% (items || []).forEach(function(item) { %><span><%= item %></span><% }) %>
+  </div>
 <% } %>
 
-<% function renderWhySeraphExists() { %>
-  <section class="why-seraph-exists" aria-labelledby="<%= lang %>-why-seraph-title">
-    <div class="why-seraph-inner">
-      <header class="why-seraph-header">
-        <p class="why-seraph-kicker"><%= uiCopy.whyKicker %></p>
-        <h2 id="<%= lang %>-why-seraph-title"><%= homeV1Copy.whyTitle %></h2>
-      </header>
-      <div class="why-seraph-body">
-        <% homeV1Copy.why.forEach(function(line) { %><p><%= line %></p><% }) %>
-      </div>
-      <a class="why-seraph-link" href="<%= localHref('about') %>"><%= homeV1Copy.whyLink %></a>
-    </div>
-  </section>
-<% } %>
-
-<% function renderExplorationAreas() { %>
-  <section class="exploration-areas" aria-labelledby="<%= lang %>-exploration-title">
-    <div class="exploration-areas-inner">
-      <header class="exploration-areas-header">
-        <p class="exploration-areas-kicker"><%= uiCopy.areasKicker %></p>
-        <h2 id="<%= lang %>-exploration-title"><%= homeV1Copy.areasTitle %></h2>
-      </header>
-      <div class="exploration-areas-list">
-        <% homeV1Copy.areas.forEach(function(item, index) { %>
-          <article class="exploration-area-item">
-            <span><%= String(index + 1).padStart(2, '0') %></span>
-            <h3><%= item[0] %></h3>
-            <p><%= item[1] %></p>
-          </article>
+<% function renderArchitectureSnapshot(project) { const architecture = project.architecture || {}; const nodes = architecture.nodes || []; %>
+  <% if (nodes.length) { %>
+    <div class="architecture-snapshot" aria-label="Architecture snapshot">
+      <div class="architecture-flow">
+        <% nodes.forEach(function(node, index) { %>
+          <div class="architecture-node">
+            <span><%= node.type %></span>
+            <strong><%= node.label %></strong>
+          </div>
+          <% if (index < nodes.length - 1) { %><span class="architecture-arrow" aria-hidden="true">&rarr;</span><% } %>
         <% }) %>
       </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderSelectedWorks() { %>
-  <section class="selected-works" aria-labelledby="<%= lang %>-selected-works-title">
-    <div class="selected-works-inner">
-      <header class="selected-works-header">
-        <p class="selected-works-kicker"><%= uiCopy.selectedKicker %></p>
-        <h2 id="<%= lang %>-selected-works-title"><%= homeV1Copy.selectedTitle %></h2>
-      </header>
-      <div class="selected-works-list">
-        <% const selectedLinks = [projectHref('/projects/nihs-control-team/'), projectHref('/projects/medical-cybersecurity/'), projectHref('/projects/autonomous-robot/')]; %>
-        <% homeV1Copy.selected.forEach(function(item, index) { %>
-          <article class="selected-work-item">
-            <h3><%= item[0] %></h3>
-            <p><%= item[1] %></p>
-            <a href="<%= selectedLinks[index] %>"><%= homeV1Copy.selectedLink %></a>
-          </article>
-        <% }) %>
-      </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderLatestFieldNotes() { %>
-  <section class="latest-field-notes" aria-labelledby="<%= lang %>-latest-notes-title">
-    <div class="latest-field-notes-inner">
-      <header class="latest-field-notes-header">
-        <p class="latest-field-notes-kicker"><%= uiCopy.latestKicker %></p>
-        <h2 id="<%= lang %>-latest-notes-title"><%= homeV1Copy.latestTitle %></h2>
-      </header>
-      <% if (recentPosts.length) { %>
-        <div class="latest-field-notes-list">
-          <% recentPosts.slice(0, 3).forEach(function(post) { %>
-            <article class="latest-field-note-item">
-              <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
-              <h3><a href="<%= url_for(post.path) %>"><%= post.title %></a></h3>
-              <% if (postSummary(post)) { %><p><%= postSummary(post) %></p><% } %>
-            </article>
-          <% }) %>
+      <% if ((architecture.security || []).length) { %>
+        <div class="architecture-security">
+          <span>Security</span>
+          <% renderTagList(architecture.security); %>
         </div>
-      <% } else { %>
-        <p class="latest-field-notes-empty"><%= t.noPosts %></p>
       <% } %>
-      <a class="latest-field-notes-link" href="<%= localHref('writing') %>"><%= homeV1Copy.latestLink %></a>
     </div>
-  </section>
-<% } %>
-
-<% function renderCurrentlyExploring() { %>
-  <section class="currently-exploring" aria-labelledby="<%= lang %>-currently-exploring-title">
-    <div class="currently-exploring-inner">
-      <header class="currently-exploring-header">
-        <p class="currently-exploring-kicker"><%= uiCopy.currentKicker %></p>
-        <h2 id="<%= lang %>-currently-exploring-title"><%= homeV1Copy.currentTitle %></h2>
-      </header>
-      <div class="currently-exploring-list">
-        <% homeV1Copy.current.forEach(function(item) { %>
-          <article class="currently-exploring-item">
-            <h3><%= item[0] %></h3>
-            <p><%= item[1] %></p>
-          </article>
-        <% }) %>
-      </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderHomeEpilogue() { %>
-  <section class="home-epilogue" aria-labelledby="<%= lang %>-epilogue-title">
-    <div class="home-epilogue-inner">
-      <header class="home-epilogue-header">
-        <p class="home-epilogue-kicker"><%= uiCopy.epilogueKicker %></p>
-        <h2 id="<%= lang %>-epilogue-title"><%= homeV1Copy.epilogueTitle %></h2>
-      </header>
-      <div class="home-epilogue-body">
-        <% homeV1Copy.epilogue.forEach(function(line) { %><p><%= line %></p><% }) %>
-        <p class="home-epilogue-closing">Find Your Polaris.</p>
-      </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderProfilePanel() { %>
-  <section class="os-section os-profile-panel" aria-labelledby="<%= lang %>-profile-title">
-    <div class="os-section-header">
-      <p class="os-section-kicker"><%= uiCopy.profileKicker %></p>
-      <h2 id="<%= lang %>-profile-title" class="section-title"><%= t.profile.title %></h2>
-    </div>
-    <div class="profile-panel-grid">
-      <div class="profile-photo-wrap"><img class="profile-photo" src="<%= url_for('/images/seraph.png') %>" alt="<%= uiCopy.imageAlt %>"></div>
-      <div class="profile-panel-body">
-        <p><%= t.profile.intro %></p>
-        <p><%= t.profile.mission %></p>
-        <blockquote class="profile-quote">"<%= t.profile.quote %>"</blockquote>
-      </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderPageHero(key) { %>
-  <section class="project-page-hero" aria-labelledby="<%= lang %>-<%= key %>-hero-title">
-    <h1 id="<%= lang %>-<%= key %>-hero-title"><%= t.hero[key].title %></h1>
-    <% if (key !== 'about') { %><p><%= t.hero[key].body %></p><% } %>
-  </section>
-<% } %>
-
-<% function renderProjects() { %>
-  <section class="case-study-index" aria-labelledby="<%= lang %>-case-study-title">
-    <div class="case-study-index-inner">
-      <header class="case-study-index-header">
-        <p><%= caseStudyCopy.kicker %></p>
-        <h1 id="<%= lang %>-case-study-title"><%= caseStudyCopy.title %></h1>
-        <div class="case-study-index-subtitle">
-          <% caseStudyCopy.subtitle.split('\n').forEach(function(line) { %>
-            <span><%= line %></span>
-          <% }) %>
-        </div>
-      </header>
-      <div class="case-study-list" aria-label="<%= caseStudyCopy.kicker %>">
-        <% caseStudyCopy.items.forEach(function(project, index) { %>
-          <a class="case-study-item" href="<%= caseStudyLinks[index] %>">
-            <h2><%= project[0] %></h2>
-            <p><%= project[1] %></p>
-            <span><%= caseStudyCopy.read %></span>
-          </a>
-        <% }) %>
-      </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderRecentPosts() { %>
-  <section aria-labelledby="<%= lang %>-recent-posts-title">
-    <h2 id="<%= lang %>-recent-posts-title" class="section-title"><%= t.recentPosts %></h2>
-    <% if (recentPosts.length) { %>
-      <div class="writing-list">
-        <% recentPosts.forEach(function(post) { %>
-          <a class="writing-item post-command-card" href="<%= url_for(post.path) %>">
-            <div class="writing-date"><%= date(post.date, 'YYYY-MM-DD') %></div>
-            <div class="writing-title">
-              <span><%= post.title %></span>
-              <div class="post-card-meta"><span><%= readingMinutes(post) %> <%= t.readTimeSuffix %></span><span><%= firstTag(post) %></span></div>
-              <span class="post-read-link"><%= t.readArrow %></span>
-            </div>
-          </a>
-        <% }) %>
-      </div>
-    <% } else { %><p><%= t.noPosts %></p><% } %>
-    <p><a class="featured-project-link" href="<%= localHref('writing') %>"><%= writingCopy.viewAll %></a></p>
-  </section>
-<% } %>
-
-<% function renderAllPosts() { %>
-  <section class="featured-projects writing-index-section" aria-labelledby="<%= lang %>-all-posts-title">
-    <h2 id="<%= lang %>-all-posts-title" class="section-title"><%= writingCopy.all %></h2>
-    <% if (allPosts.length) { %>
-      <div class="writing-all-list">
-        <% allPosts.forEach(function(post) { const tags = postTags(post); %>
-          <a class="writing-all-card" href="<%= url_for(post.path) %>">
-            <div class="writing-all-date"><span><%= writingCopy.date %></span><time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time></div>
-            <div class="writing-all-body">
-              <h3><%= post.title %></h3>
-              <% if (postSummary(post)) { %><p><%= postSummary(post) %></p><% } %>
-              <div class="writing-all-meta">
-                <span><%= writingCopy.category %>: <strong><%= postCategory(post) %></strong></span>
-                <span><%= writingCopy.tags %>: <strong><%= tags.length ? tags.join(', ') : firstTag(post) %></strong></span>
-              </div>
-              <span class="post-read-link"><%= writingCopy.read %></span>
-            </div>
-          </a>
-        <% }) %>
-      </div>
-    <% } else { %>
-      <p><%= writingCopy.empty %></p>
-    <% } %>
-  </section>
-<% } %>
-
-<% function renderLabs() { %>
-  <section class="lab-studio-index" aria-labelledby="<%= lang %>-lab-studio-title">
-    <div class="lab-studio-index-inner">
-      <header class="lab-studio-header">
-        <p><%= labStudioCopy.kicker %></p>
-        <h1 id="<%= lang %>-lab-studio-title"><%= labStudioCopy.title %></h1>
-      </header>
-      <div class="lab-experiment-list" aria-label="<%= labStudioCopy.title %>">
-        <% labStudioCopy.items.forEach(function(item, index) { %>
-          <article class="lab-experiment-item">
-            <span class="lab-experiment-index"><%= String(index + 1).padStart(2, '0') %></span>
-            <h2><%= item.title %></h2>
-            <dl>
-              <div>
-                <dt><%= labStudioCopy.labels.what %></dt>
-                <dd><%= item.what %></dd>
-              </div>
-              <div>
-                <dt><%= labStudioCopy.labels.why %></dt>
-                <dd><%= item.why %></dd>
-              </div>
-              <div>
-                <dt><%= labStudioCopy.labels.next %></dt>
-                <dd><%= item.next %></dd>
-              </div>
-            </dl>
-            <a href="<%= labExperimentLinks[index] || localHref('labs') %>"><%= labReadCopy %></a>
-          </article>
-        <% }) %>
-      </div>
-    </div>
-  </section>
-<% } %>
-
-<% function renderGuide() { %>
-  <section class="tag-cloud" aria-labelledby="<%= lang %>-guide-title">
-    <h2 id="<%= lang %>-guide-title" class="section-title"><%= t.guide %></h2>
-    <div class="tag-cloud-list">
-      <a class="tag-cloud-link" href="<%= localHref('projects') %>"><%= t.nav.projects %></a>
-      <a class="tag-cloud-link" href="<%= localHref('experience') %>"><%= t.nav.experience %></a>
-      <a class="tag-cloud-link" href="<%= localHref('labs') %>"><%= t.nav.labs %></a>
-      <a class="tag-cloud-link" href="<%= localHref('writing') %>"><%= t.nav.writing %></a>
-      <a class="tag-cloud-link" href="<%= localHref('timeline') %>"><%= t.nav.timeline %></a>
-      <a class="tag-cloud-link" href="<%= localHref('search') %>"><%= t.nav.search %></a>
-      <a class="tag-cloud-link" href="<%= localHref('about') %>"><%= t.nav.about %></a>
-    </div>
-  </section>
-<% } %>
-
-<% function renderTagCloud() { %>
-  <% if (tagList.length) { %>
-    <section class="tag-cloud" aria-labelledby="<%= lang %>-tags-title">
-      <h2 id="<%= lang %>-tags-title" class="section-title"><%= t.tags %></h2>
-      <div class="tag-cloud-list">
-        <% tagList.sort(function(a, b) { return String(a.name).localeCompare(String(b.name)); }).forEach(function(tag) { %>
-          <a class="tag-cloud-link" href="<%= url_for(tag.path) %>" style="font-size: <%= tagSize(tag.length || 0) %>" aria-label="<%= tag.name %>, <%= tag.length %>"><%= tag.name %></a>
-        <% }) %>
-      </div>
-    </section>
+  <% } else { %>
+    <p class="research-empty-state"><%= isZh ? 'Architecture content being organized.' : 'Architecture content being organized.' %></p>
   <% } %>
 <% } %>
 
-<% function renderAbout() { %>
-  <%
-    const aboutCopy = {
-      en: {
-        home: 'Home',
-        title: 'About',
-        intro: [
-          'I do not like defining myself with a single title.',
-          'Some people know me through cybersecurity. Others know me through web development, home labs, robotics, medical technology, or teaching.',
-          'They may look like different fields, but to me they come from the same habit:',
-          'Break down a complicated problem, understand how it works, and try to make it better.',
-          'I prefer building things myself, and I usually document the failures, revisions, and final results along the way.',
-          'This website is not a formal résumé or a polished portfolio.',
-          'It is a continuously updated technical notebook for what I am learning, building, and still trying to understand.'
-        ],
-        current: 'Currently working on',
-        currentItems: ['Cybersecurity and Web Security', 'Home Lab, Linux, and systems experiments', 'Medical technology and device security', 'Web and platform development', 'FRC robotics and control systems', 'HPC and parallel computing'],
-        method: 'How I work',
-        methodBody: [
-          'I usually do not wait until I understand everything before starting.',
-          'I build a working version first, then improve it through errors, limitations, and actual use.',
-          'More than presenting a finished result, I care about explaining the process, making experiments repeatable, and helping my future self avoid the same mistakes.'
-        ],
-        contents: 'What you will find here',
-        contentItems: ['Technical notes', 'Project records', 'Experiments and debugging', 'Security observations', 'Learning summaries', 'Thoughts worth keeping']
-      },
-      zh: {
-        home: '首頁',
-        title: '關於我',
-        intro: [
-          '我不太喜歡用單一的身分定義自己。',
-          '有人因為資訊安全認識我，也有人因為網站、Home Lab、機器人、醫療科技或教學活動認識我。',
-          '看起來是不同領域，但對我來說，其實都是同一件事：',
-          '把一個複雜的問題拆開，理解它怎麼運作，再試著把它做得更好。',
-          '我喜歡實際動手做，也習慣把失敗、修改和最後的結果記錄下來。',
-          '這個網站不是一份正式履歷，也不是用來包裝自己的作品集。',
-          '它比較像是我持續更新的技術筆記，記錄我目前在學什麼、做什麼，以及哪些問題值得繼續研究。'
-        ],
-        current: '目前在做',
-        currentItems: ['資訊安全與 Web Security', 'Home Lab、Linux 與系統實驗', '醫療科技與裝置安全', '網站與平台開發', 'FRC 機器人與控制系統', 'HPC 與平行運算學習'],
-        method: '我做事的方式',
-        methodBody: [
-          '我通常不是先把所有東西學完才開始。',
-          '我會先做出一個能運作的版本，再從錯誤、限制與實際使用中慢慢修正。',
-          '比起只留下最後成果，我更重視能不能把過程說清楚、讓實驗重做，以及讓下一次的自己少走一點冤枉路。'
-        ],
-        contents: '這裡會放什麼',
-        contentItems: ['技術筆記', '專案紀錄', '實驗與除錯過程', '資安觀察', '學習整理', '偶爾值得留下來的想法']
-      },
-      ja: {
-        home: 'ホーム',
-        title: 'About',
-        intro: [
-          '私は自分を一つの肩書きだけで定義することが好きではありません。',
-          '情報セキュリティを通して私を知った人もいれば、Web 開発、Home Lab、ロボティクス、医療技術、教育活動を通して知った人もいます。',
-          '異なる分野に見えますが、私にとっては同じ考え方から始まっています。',
-          '複雑な問題を分解し、仕組みを理解し、より良い形にできないか試してみることです。',
-          '私は実際に手を動かして作ることが好きで、失敗、修正、結果まで記録するようにしています。',
-          'このサイトは正式な履歴書でも、完成された作品集でもありません。',
-          '今学んでいること、作っているもの、まだ理解しようとしていることを記録する、更新し続ける技術ノートです。'
-        ],
-        current: '現在取り組んでいること',
-        currentItems: ['情報セキュリティと Web Security', 'Home Lab、Linux、システム実験', '医療技術とデバイスセキュリティ', 'Web とプラットフォーム開発', 'FRC ロボットと制御システム', 'HPC と並列計算'],
-        method: '取り組み方',
-        methodBody: [
-          '私はすべてを理解してから始めるタイプではありません。',
-          'まず動くものを作り、エラー、制限、実際の使用を通して少しずつ改善します。',
-          '完成した成果だけを見せるよりも、過程を説明できること、実験を再現できること、次の自分が同じ失敗を繰り返さないことを大切にしています。'
-        ],
-        contents: 'このサイトにあるもの',
-        contentItems: ['技術ノート', 'プロジェクト記録', '実験とデバッグ', 'セキュリティに関する観察', '学習の整理', '残しておきたい考え']
-      }
-    }[lang];
-  %>
-  <section class="about-page-v2" aria-labelledby="<%= lang %>-about-title">
-    <nav class="about-breadcrumbs" aria-label="Breadcrumbs">
-      <a href="<%= localHref('home') %>"><%= aboutCopy.home %></a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page"><%= aboutCopy.title %></span>
-    </nav>
-    <header class="about-header">
-      <h1 id="<%= lang %>-about-title"><%= aboutCopy.title %></h1>
-      <div class="about-intro"><% aboutCopy.intro.forEach(function(paragraph) { %><p><%= paragraph %></p><% }) %></div>
-    </header>
-    <section class="about-section" aria-labelledby="<%= lang %>-about-current">
-      <h2 id="<%= lang %>-about-current"><%= aboutCopy.current %></h2>
-      <ul><% aboutCopy.currentItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
-    </section>
-    <section class="about-section" aria-labelledby="<%= lang %>-about-method">
-      <h2 id="<%= lang %>-about-method"><%= aboutCopy.method %></h2>
-      <div class="about-section-copy"><% aboutCopy.methodBody.forEach(function(paragraph) { %><p><%= paragraph %></p><% }) %></div>
-    </section>
-    <section class="about-section" aria-labelledby="<%= lang %>-about-contents">
-      <h2 id="<%= lang %>-about-contents"><%= aboutCopy.contents %></h2>
-      <ul><% aboutCopy.contentItems.forEach(function(item) { %><li><%= item %></li><% }) %></ul>
-    </section>
-  </section>
-<% } %>
+<% function localizedField(item, key) {
+  return maybeZh(item, key);
+} %>
 
-<% function renderExperienceCards() { %>
-  <section class="featured-projects" aria-labelledby="<%= lang %>-experience-cards-title">
-    <h2 id="<%= lang %>-experience-cards-title" class="section-title"><%= t.hero.experience.title %></h2>
-    <div class="search-box-wrap" role="search" aria-label="Filter experience">
-      <input id="<%= lang %>-experience-search" class="search-input" type="search" placeholder="Search experience" autocomplete="off" data-exp-search>
-      <div class="tag-cloud-list" aria-label="Experience filters">
-        <select class="search-input" data-exp-filter="year" aria-label="Filter by year">
-          <option value="">All years</option>
-          <% Array.from(new Set(t.experienceCards.map(function(card) { return card[3]; }))).forEach(function(year) { %><option value="<%= year %>"><%= year %></option><% }) %>
-        </select>
-        <select class="search-input" data-exp-filter="category" aria-label="Filter by category">
-          <option value="">All categories</option>
-          <% Array.from(new Set(t.experienceCards.map(function(card) { return card[4]; }))).forEach(function(category) { %><option value="<%= category %>"><%= category %></option><% }) %>
-        </select>
-        <select class="search-input" data-exp-filter="organization" aria-label="Filter by organization">
-          <option value="">All organizations</option>
-          <% Array.from(new Set(t.experienceCards.map(function(card) { return card[5]; }))).forEach(function(org) { %><option value="<%= org %>"><%= org %></option><% }) %>
-        </select>
-        <select class="search-input" data-exp-filter="skills" aria-label="Filter by skills">
-          <option value="">All skills</option>
-          <% Array.from(new Set(t.experienceCards.flatMap(function(card) { return String(card[6] || '').split(','); }).map(function(skill) { return skill.trim(); }).filter(Boolean))).forEach(function(skill) { %><option value="<%= skill %>"><%= skill %></option><% }) %>
-        </select>
-      </div>
-    </div>
-    <div class="os-timeline" aria-label="Experience timeline">
-      <% t.experienceCards.forEach(function(card) { %>
-        <article class="timeline-card" data-exp-item data-year="<%= card[3] %>" data-category="<%= card[4] %>" data-organization="<%= card[5] %>" data-skills="<%= card[6] %>">
-          <time><%= card[3] %></time>
-          <div>
-            <h3><a href="<%= detailHref(card[2]) %>"><%= card[0] %></a></h3>
-            <p><%= card[1] %></p>
-          </div>
-        </article>
-      <% }) %>
-    </div>
-    <div class="featured-project-grid">
-      <% t.experienceCards.forEach(function(card) { %>
-        <a class="featured-project-card" href="<%= detailHref(card[2]) %>" data-exp-item data-year="<%= card[3] %>" data-category="<%= card[4] %>" data-organization="<%= card[5] %>" data-skills="<%= card[6] %>">
-          <h3><%= card[0] %></h3>
-          <p><%= card[1] %></p>
-          <div class="featured-project-tags" aria-label="Experience metadata">
-            <span><%= card[4] %></span>
-            <strong><%= card[3] %></strong>
-            <strong><%= card[5] %></strong>
-          </div>
-          <span class="featured-project-link"><%= t.viewExperience %></span>
-        </a>
-      <% }) %>
-    </div>
-    <script>
-      (function() {
-        var root = document.currentScript.closest('.featured-projects');
-        if (!root) return;
-        var input = root.querySelector('[data-exp-search]');
-        var filters = Array.prototype.slice.call(root.querySelectorAll('[data-exp-filter]'));
-        var items = Array.prototype.slice.call(root.querySelectorAll('[data-exp-item]'));
-        function matches(item) {
-          var text = item.textContent.toLowerCase();
-          var query = input ? input.value.trim().toLowerCase() : '';
-          if (query && text.indexOf(query) === -1) return false;
-          return filters.every(function(filter) {
-            var value = filter.value;
-            if (!value) return true;
-            var key = filter.getAttribute('data-exp-filter');
-            var data = item.getAttribute('data-' + key) || '';
-            return data.indexOf(value) >= 0;
-          });
-        }
-        function applyFilters() {
-          items.forEach(function(item) {
-            item.hidden = !matches(item);
-          });
-        }
-        if (input) input.addEventListener('input', applyFilters);
-        filters.forEach(function(filter) { filter.addEventListener('change', applyFilters); });
-      })();
-    </script>
-  </section>
-<% } %>
+<% function homeSystemTitle(project) {
+  return localizedField(project, 'homeTitle') || localizedField(project, 'title');
+} %>
 
-<% function renderTimeline() { %>
-  <section class="os-section os-timeline-section" aria-labelledby="<%= lang %>-timeline-title">
-    <div class="os-section-header">
-      <p class="os-section-kicker"><%= uiCopy.timelineKicker %></p>
-      <h2 id="<%= lang %>-timeline-title" class="section-title"><%= t.timeline.title %></h2>
-    </div>
-    <div class="os-timeline">
-      <% t.timeline.items.forEach(function(item) { %>
-        <article class="timeline-card"><time><%= item[0] %></time><div><h3><%= item[1] %></h3><p><%= item[2] %></p></div></article>
-      <% }) %>
-    </div>
-  </section>
-<% } %>
+<% function homeSystemSummary(project) {
+  return localizedField(project, 'summary') || localizedField(project, 'description') || localizedField(project, 'problem');
+} %>
 
-<% function renderCTA() { %>
-  <section class="os-section os-cta" aria-labelledby="<%= lang %>-cta-title">
-    <div>
-      <p class="os-section-kicker"><%= uiCopy.nextKicker %></p>
-      <h2 id="<%= lang %>-cta-title" class="section-title"><%= t.cta.title %></h2>
-      <p><%= t.cta.body %></p>
-    </div>
-    <div class="cta-actions">
-      <a class="os-button os-button-primary" href="<%= localHref('writing') %>"><%= t.cta.writing %></a>
-      <a class="os-button os-button-secondary" href="<%= localHref('projects') %>"><%= t.cta.projects %></a>
-      <a class="os-button os-button-secondary" href="<%= localHref('labs') %>"><%= t.cta.labs %></a>
-    </div>
-  </section>
-<% } %>
+<% function listingSummary(project) {
+  const value = localizedField(project, 'listingSummary') || localizedField(project, 'summary') || localizedField(project, 'approach');
+  if (Array.isArray(value)) return value;
+  return String(value || '').split(/\n+/).map(function(line) { return line.trim(); }).filter(Boolean);
+} %>
 
-<section class="home-page i18n-page i18n-page-<%= section %>" lang="<%= lang === 'zh' ? 'zh-Hant' : lang %>">
+<% function systemCardTags(project) {
+  return safeArray(project.listingTags || project.technologies).slice(0, 5);
+} %>
+
+<%
+  const context = {
+    lang, isZh, isJa, section, pageLangAttr, c, ec,
+    data, nowData, projects, areas, evidence, outcomes, capabilities, timeline, engineeringDomains, engineeringProcess, homepageFocus, identity,
+    nowFocus, nowLogs, notes, featuredSystems, selectedHomeSystems,
+    safeArray, hasText, nowText, localHref, localizedDetailHref, localizedNowHref, formatNowDate, projectHref, maybeZh, joinList, projectById, evidenceById, projectTitle, statusLabel, strip, postSummary, readingMinutes, firstTag, localizedField, homeSystemTitle, homeSystemSummary, listingSummary, systemCardTags
+  };
+%>
+<section class="home-page research-portfolio-page i18n-page i18n-page-<%= section %>" lang="<%= pageLangAttr %>">
   <% if (section === 'home' || section === 'dashboard') { %>
-    <% renderHomeRound2(); %>
-  <% } else if (section === 'about') { %>
-    <% renderAbout(); %>
-  <% } else if (section === 'experience') { %>
-    <% renderPageHero('experience'); %>
-    <% renderExperienceCards(); %>
-  <% } else if (section === 'projects') { %>
-    <% renderProjects(); %>
-  <% } else if (section === 'labs') { %>
-    <% renderLabs(); %>
-  <% } else if (section === 'writing') { %>
-    <% renderPageHero('writing'); %>
-    <% renderAllPosts(); %>
-    <% renderTagCloud(); %>
+    <%- partial('_partial/i18n/home', Object.assign({}, context, { renderStatusBadge })) %>
+  <% } else if (section === 'systems') { %>
+    <%- partial('_partial/i18n/systems', Object.assign({}, context, { renderStatusBadge, renderTagList })) %>
+  <% } else if (section === 'projects' || section === 'research') { %>
+    <%- partial('_partial/i18n/research-directions', Object.assign({}, context, { renderTagList })) %>
+  <% } else if (section === 'outcomes') { %>
+    <%- partial('_partial/i18n/outcomes', context) %>
+  <% } else if (section === 'now') { %>
+    <%- partial('_partial/i18n/legacy', Object.assign({}, context, { legacySection: 'now', renderSectionHeader, renderStatusBadge, renderMetadataList, renderTagList })) %>
+  <% } else if (section === 'writing' || section === 'archives') { %>
+    <%- partial('_partial/i18n/research-notes', Object.assign({}, context, { limit: 0, renderSectionHeader })) %>
+  <% } else if (section === 'about' || section === 'profile') { %>
+    <%- partial('_partial/i18n/about', Object.assign({}, context, { renderMetadataList, renderTagList })) %>
   <% } else if (section === 'timeline') { %>
-    <% renderTimeline(); %>
-    <% renderGuide(); %>
+    <%- partial('_partial/i18n/legacy', Object.assign({}, context, { legacySection: 'timeline', renderSectionHeader, renderStatusBadge, renderMetadataList, renderTagList })) %>
+  <% } else { %>
+    <%- partial('_partial/i18n/legacy', Object.assign({}, context, { legacySection: 'hero', renderSectionHeader, renderStatusBadge, renderMetadataList, renderTagList })) %>
   <% } %>
 </section>

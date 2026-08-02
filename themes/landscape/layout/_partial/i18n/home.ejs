@@ -1,0 +1,144 @@
+<% function renderEntrySectionHeader(kicker, title, body) { %>
+  <header class="entry-home-section__header">
+    <p class="entry-home-eyebrow"><%= kicker %></p>
+    <h2><%= title %></h2>
+    <% if (body) { %><p><%= body %></p><% } %>
+  </header>
+<% } %>
+
+<% function renderEntryHomeHero() {
+  const heroMeta = isZh
+    ? [['目前重點', 'HPC 與雲端通訊'], ['所在地', 'Taiwan'], ['更新', '2026']]
+    : (isJa
+      ? [['現在の焦点', 'HPC とクラウド通信'], ['拠点', 'Taiwan'], ['更新', '2026']]
+      : safeArray(ec.meta).slice(0, 3));
+%>
+  <section class="entry-home-hero" aria-labelledby="<%= lang %>-entry-home-title">
+    <div class="entry-home-hero__copy">
+      <p class="entry-home-eyebrow"><%= ec.systemResearch %></p>
+      <h1 id="<%= lang %>-entry-home-title"><%= ec.heroTitle %></h1>
+      <p class="entry-home-hero__summary"><%= ec.heroDescription %></p>
+      <div class="entry-home-hero__actions">
+        <a class="os-button os-button-primary" href="<%= localHref('systems') %>"><%= ec.exploreSystems %></a>
+        <a class="os-button os-button-secondary" href="<%= localHref('writing') %>"><%= ec.readJournal %></a>
+      </div>
+    </div>
+    <% if (heroMeta.length) { %>
+      <dl class="entry-home-hero__meta" aria-label="<%= ec.statusLabel %>">
+        <% heroMeta.forEach(function(item) { %><div><dt><%= item[0] %></dt><dd><%= item[1] %></dd></div><% }) %>
+      </dl>
+    <% } %>
+  </section>
+<% } %>
+
+<% function renderEntrySelectedSystems() { %>
+  <% if (selectedHomeSystems.length) { %>
+    <section class="entry-home-section entry-home-systems" aria-labelledby="<%= lang %>-entry-systems-title">
+      <% renderEntrySectionHeader('Selected Systems', ec.selectedSystems, ec.selectedSystemsBody); %>
+      <div class="entry-home-system-grid">
+        <% selectedHomeSystems.forEach(function(project) {
+          const fields = safeArray(project.fields).filter(Boolean).slice(0, 3);
+          const href = projectHref(project);
+          const title = homeSystemTitle(project);
+          const summary = homeSystemSummary(project);
+          const state = project.currentState || project.status;
+        %>
+          <article class="entry-home-system-card">
+            <div class="entry-home-card__meta">
+              <% if (project.systemId || project.id) { %><span><%= project.systemId || project.id %></span><% } %>
+              <% if (state) { %><span><%= statusLabel(state) %></span><% } %>
+            </div>
+            <% if (title) { %><h3><%= title %></h3><% } %>
+            <% if (summary) { %><p><%= summary %></p><% } %>
+            <% if (fields.length) { %>
+              <div class="entry-home-system-card__fields">
+                <% fields.forEach(function(field) { %><span><%= field %></span><% }) %>
+              </div>
+            <% } %>
+            <% if (href) { %><a class="entry-home-link" href="<%= href %>"><%= ec.viewSystem %></a><% } %>
+          </article>
+        <% }) %>
+      </div>
+      <a class="entry-home-more-link" href="<%= localHref('systems') %>"><%= ec.viewAllSystems %> &rarr;</a>
+    </section>
+  <% } %>
+<% } %>
+
+<% function renderEntryCurrentFocus() {
+  const focusItems = safeArray(homepageFocus).filter(function(item) {
+    return item && (localizedField(item, 'title') || localizedField(item, 'description'));
+  });
+%>
+  <% if (focusItems.length) { %>
+    <section class="entry-home-section entry-home-focus" aria-labelledby="<%= lang %>-entry-focus-title">
+      <% renderEntrySectionHeader('Current Focus', ec.currentFocus, ec.currentFocusBody); %>
+      <div class="entry-home-focus-list">
+        <% focusItems.forEach(function(item) {
+          const focusTitle = localizedField(item, 'title');
+          const focusDescription = localizedField(item, 'description');
+          const focusStatus = localizedField(item, 'status') || item.status;
+        %>
+          <article class="entry-home-focus-item">
+            <div class="entry-home-card__meta">
+              <% if (item.id) { %><span><%= item.id %></span><% } %>
+              <% if (focusStatus) { %><span><%= focusStatus %></span><% } %>
+            </div>
+            <% if (focusTitle) { %><h3><%= focusTitle %></h3><% } %>
+            <% if (focusDescription) { %><p><%= focusDescription %></p><% } %>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+<% } %>
+
+<% function renderEntrySelectedWriting(limit) {
+  const items = notes.slice(0, limit || 3);
+%>
+  <% if (items.length) { %>
+    <section class="entry-home-section entry-home-writing" aria-labelledby="<%= lang %>-entry-writing-title">
+      <% renderEntrySectionHeader('Selected Writing', ec.selectedWriting, ec.selectedWritingBody); %>
+      <div class="entry-home-writing-list">
+        <% items.forEach(function(post) {
+          const href = post && post.path ? url_for(post.path) : '';
+          const summary = postSummary(post);
+        %>
+          <article class="entry-home-writing-item">
+            <div class="entry-home-card__meta">
+              <% if (post.date) { %><time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time><% } %>
+              <% if (firstTag(post)) { %><span><%= firstTag(post) %></span><% } %>
+            </div>
+            <% if (href && post.title) { %><h3><a href="<%= href %>"><%= post.title %></a></h3><% } %>
+            <% if (summary) { %><p><%= summary %></p><% } %>
+            <% if (href) { %><a class="entry-home-link" href="<%= href %>"><%= ec.readArticle %></a><% } %>
+          </article>
+        <% }) %>
+      </div>
+      <a class="entry-home-more-link" href="<%= localHref('writing') %>"><%= ec.viewAllWriting %> &rarr;</a>
+    </section>
+  <% } %>
+<% } %>
+
+<% function renderEntryShortAbout() { %>
+  <section class="entry-home-section entry-home-about" aria-labelledby="<%= lang %>-entry-about-title">
+    <% renderEntrySectionHeader('Short About', ec.shortAbout, '') %>
+    <div class="entry-home-about__body">
+      <p><%= ec.aboutOne %></p>
+      <p><%= ec.aboutTwo %></p>
+      <a class="entry-home-more-link" href="<%= localHref('profile') %>"><%= ec.moreAbout %> &rarr;</a>
+    </div>
+  </section>
+<% } %>
+
+<% function renderEntryHome() { %>
+  <div class="entry-home">
+    <% renderEntryHomeHero(); %>
+    <% renderEntrySelectedSystems(); %>
+    <% renderEntryCurrentFocus(); %>
+    <% renderEntrySelectedWriting(3); %>
+    <% renderEntryShortAbout(); %>
+  </div>
+<% } %>
+
+
+<% renderEntryHome(); %>

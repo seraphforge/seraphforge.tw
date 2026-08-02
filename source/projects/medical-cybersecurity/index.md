@@ -1,15 +1,9 @@
 ---
 title: Medical Cybersecurity
 description: A case study about learning where trust, data validation, and workflow risk appear in healthcare systems.
+summary: A case study about asking better questions before proposing security solutions for healthcare systems.
+type: project
 ---
-
-<section class="project-page-hero">
-
-# Medical Cybersecurity
-
-A case study about asking better questions before proposing security solutions for healthcare systems.
-
-</section>
 
 ## Why This Project
 

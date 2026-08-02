@@ -1,15 +1,11 @@
-﻿---
-title: 經歷 Experience
-description: 記錄 Seraph 的競賽、營隊、研討會、工作坊、證照與社群參與經歷。
-summary: 記錄 Seraph 的競賽、營隊、研討會、工作坊、證照與社群參與經歷。
-keywords: 經歷, 競賽, 營隊, 研討會, 工作坊, 證照, 社群參與, Cybersecurity, CTF
+---
+title: 參賽與研習紀錄
+description: 記錄 Seraph 的參賽、研習、工作坊、講座與社群教學活動。
+summary: 記錄 Seraph 的參賽、研習、工作坊、講座與社群教學活動。
+keywords: 參賽, 研習, 工作坊, 講座, 社群教學, Cybersecurity, CTF
 cover: /images/seraph-og.png
-site_lang: zh-TW
+site_lang: zh
 translation_key: experience
 slug: experience
-canonical_url: https://seraphforge.github.io/experience/
+canonical_url: https://seraphforge.github.io/zh/experience/
 ---
-
-# 經歷 Experience
-
-記錄競賽、營隊、研討會、工作坊、證照與社群參與經歷。

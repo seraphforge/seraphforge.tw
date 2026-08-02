@@ -3,6 +3,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   min-height: 42px;
   padding: 0.55rem 0.9rem;
   color: var(--seraph-text);
@@ -19,7 +20,20 @@
   border-color: var(--seraph-border-strong);
 }
 
+.os-button:focus-visible,
+.os-button:active {
+  color: var(--seraph-text-strong);
+}
+
 .os-button-primary {
+  color: var(--seraph-bg);
+  background: var(--seraph-text-strong);
+  border-color: var(--seraph-text-strong);
+}
+
+.os-button-primary:hover,
+.os-button-primary:focus-visible,
+.os-button-primary:active {
   color: var(--seraph-bg);
   background: var(--seraph-text-strong);
   border-color: var(--seraph-text-strong);

@@ -1,0 +1,424 @@
+<%
+  const detailPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
+  const detailParts = detailPath.split('/').filter(Boolean);
+  const detailLang = detailParts[0] === 'zh' ? 'zh' : 'en';
+  const isDetailZh = detailLang === 'zh';
+  const detailLocalParts = ['en', 'zh'].includes(detailParts[0]) ? detailParts.slice(1) : detailParts;
+  const detailSlug = String(page.system || page.system_slug || page.slug || detailLocalParts[1] || '').toLowerCase();
+  const researchData = site.data.research || {};
+  const detailProjects = researchData.projects || [];
+  const detailEvidence = researchData.evidence || [];
+  const detailSystems = detailProjects.filter(function(project) { return project.systemId && project.featured; });
+  const detailRoutes = {
+    securecare: '/systems/securecare/',
+    'home-lab-infrastructure': '/systems/home-lab-infrastructure/',
+    'embedded-secure-device': '/systems/embedded-secure-device/',
+    'hpc-teaching-transfer': '/systems/hpc-teaching-transfer/',
+    'nihs-control-team': '/systems/nihs-control-team/'
+  };
+  const systemProject = detailProjects.find(function(project) {
+    return project.systemId === page.system_id ||
+      project.systemId === page.systemId ||
+      String(project.slug || '').toLowerCase() === detailSlug ||
+      String(project.systemKey || '').toLowerCase() === detailSlug;
+  }) || {};
+  const hasProject = Boolean(systemProject.id);
+  const systemIndex = detailSystems.findIndex(function(project) { return project.id === systemProject.id; });
+  const detailNavSystems = detailSystems.filter(function(project) { return detailRoutes[project.slug]; });
+  const navIndex = detailNavSystems.findIndex(function(project) { return project.id === systemProject.id; });
+  const previousSystem = navIndex > 0 ? detailNavSystems[navIndex - 1] : null;
+  const nextSystem = navIndex >= 0 && navIndex < detailNavSystems.length - 1 ? detailNavSystems[navIndex + 1] : null;
+
+  const l = {
+    systemDetail: isDetailZh ? '工程系統詳情' : 'System Detail',
+    backSystems: isDetailZh ? '返回系統列表' : 'Back to Systems',
+    researchView: isDetailZh ? '研究方向' : 'Research Projects',
+    previous: isDetailZh ? '上一個系統' : 'Previous System',
+    next: isDetailZh ? '下一個系統' : 'Next System',
+    systemId: 'System ID',
+    title: isDetailZh ? '標題' : 'Title',
+    domain: isDetailZh ? '領域' : 'Domain',
+    projectType: isDetailZh ? '專案類型' : 'Project Type',
+    currentState: isDetailZh ? '目前狀態' : 'Current State',
+    year: isDetailZh ? '年份' : 'Year',
+    teamContext: isDetailZh ? '團隊脈絡' : 'Team Context',
+    role: isDetailZh ? '我的角色' : 'My Role',
+    technologies: isDetailZh ? '使用的系統、程式語言與裝置' : 'Systems, Languages, and Devices',
+    problem: isDetailZh ? '為什麼開始做' : 'Why It Started',
+    context: isDetailZh ? '系統簡介' : 'System Overview',
+    goals: isDetailZh ? '初步構想' : 'Initial Direction',
+    nonGoals: isDetailZh ? '非目標' : 'Non-goals',
+    architecture: isDetailZh ? '系統流程圖' : 'System Workflow',
+    trustBoundaries: isDetailZh ? '詳細架構' : 'Detailed Architecture',
+    layers: isDetailZh ? '系統層級' : 'System Layers',
+    security: isDetailZh ? '資安設計' : 'Security Design',
+    testing: isDetailZh ? '目前完成內容' : 'Current Implementation',
+    failureCases: isDetailZh ? '現在遇到的問題' : 'Current Issues',
+    evidence: isDetailZh ? '證據與紀錄' : 'Evidence and Records',
+    decisions: isDetailZh ? '已有解決方案' : 'Existing Solutions',
+    challenges: isDetailZh ? '尚未解決的問題' : 'Unresolved Issues',
+    lessons: isDetailZh ? '學到的內容' : 'Lessons Learned',
+    limitations: isDetailZh ? '限制' : 'Limitations',
+    researchPerspective: isDetailZh ? '研究觀點' : 'Research Perspective',
+    documentation: isDetailZh ? 'HackMD / 實驗紀錄' : 'HackMD / Experiment Records',
+    references: isDetailZh ? '參考資料' : 'References',
+    nextStep: isDetailZh ? '下一步' : 'Next Step',
+    purpose: isDetailZh ? '目的' : 'Purpose',
+    components: isDetailZh ? '組成' : 'Components',
+    consideration: isDetailZh ? '資安考量' : 'Security Consideration',
+    currentApproach: isDetailZh ? '目前做法' : 'Current Approach',
+    state: isDetailZh ? '狀態' : 'State',
+    limitation: isDetailZh ? '限制' : 'Limitation',
+    test: isDetailZh ? '測試' : 'Test',
+    visibility: isDetailZh ? '可見性' : 'Evidence Visibility',
+    type: isDetailZh ? '類型' : 'Type',
+    status: isDetailZh ? '狀態' : 'Status',
+    relatedLayer: isDetailZh ? '相關層級' : 'Related Layer',
+    reason: isDetailZh ? '原因' : 'Reason',
+    tradeoff: isDetailZh ? '取捨' : 'Trade-off',
+    question: isDetailZh ? '研究 / 工程問題' : 'Research / Engineering Question',
+    subQuestions: isDetailZh ? '子問題' : 'Sub-questions',
+    futureWork: isDetailZh ? '後續工作' : 'Future Work',
+    investigation: isDetailZh ? '排查' : 'Investigation',
+    response: isDetailZh ? '處理方式' : 'Response',
+    currentVerification: isDetailZh ? '目前驗證' : 'Current Verification',
+    lesson: isDetailZh ? '學到的內容' : 'Lesson',
+    date: isDetailZh ? '日期' : 'Date',
+    description: isDetailZh ? '說明' : 'Description',
+    contentPending: isDetailZh ? '內容整理中' : 'Content being organized',
+    noData: isDetailZh ? '找不到對應的工程系統資料。' : 'No matching engineering system data was found.'
+  };
+
+  function hasText(value) {
+    return typeof value === 'string' ? value.trim().length > 0 : Boolean(value);
+  }
+
+  function safeArray(value) {
+    return Array.isArray(value) ? value.filter(function(item) { return item !== null && item !== undefined && item !== ''; }) : [];
+  }
+
+  function hasItems(value) {
+    return safeArray(value).length > 0;
+  }
+
+  function localizedText(item, key) {
+    const zhKey = key + 'Zh';
+    return isDetailZh && item && hasText(item[zhKey]) ? item[zhKey] : (item && item[key]) || '';
+  }
+
+  function localizedValue(item, key) {
+    const zhKey = key + 'Zh';
+    if (isDetailZh && item && (hasText(item[zhKey]) || hasItems(item[zhKey]) || (item[zhKey] && typeof item[zhKey] === 'object'))) return item[zhKey];
+    return item ? item[key] : undefined;
+  }
+
+  function localizedItems(item, key) {
+    return safeArray(localizedValue(item, key));
+  }
+
+  function localizedObject(item, key) {
+    const value = localizedValue(item, key);
+    return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  }
+
+  function systemTitle(project) {
+    return localizedText(project, 'title') || page.title || 'System Detail';
+  }
+
+  function systemHref(project) {
+    const route = project && detailRoutes[project.slug];
+    if (!route) return '';
+    return url_for(isDetailZh ? '/zh' + route : route);
+  }
+
+  function evidenceById(id) {
+    return detailEvidence.find(function(item) { return item.id === id; });
+  }
+
+  function joinList(items) {
+    return safeArray(items).join(' / ');
+  }
+
+  function detailLinks(project, key) {
+    const keys = key === 'documentation'
+      ? ['documentation', 'hackmd', 'evidenceLinks', 'externalLinks']
+      : ['references', 'sources'];
+    const links = [];
+    keys.forEach(function(linkKey) {
+      safeArray(project[linkKey]).forEach(function(item) {
+        if (typeof item === 'string') return;
+        const url = item && (item.url || item.href || item.link);
+        const title = item && (localizedText(item, 'label') || localizedText(item, 'title') || item.name);
+        if (hasText(url) && hasText(title)) links.push({ title: title, url: url });
+      });
+    });
+    return links;
+  }
+%>
+
+<% function renderMetadata(items) {
+  const visible = safeArray(items).filter(function(item) { return hasText(item[1]); });
+%>
+  <% if (visible.length) { %>
+    <dl class="system-detail-metadata">
+      <% visible.forEach(function(item) { %>
+        <div>
+          <dt><%= item[0] %></dt>
+          <dd><%- item[1] %></dd>
+        </div>
+      <% }) %>
+    </dl>
+  <% } %>
+<% } %>
+
+<% function renderTags(items) { %>
+  <% if (hasItems(items)) { %>
+    <div class="research-tag-list">
+      <% safeArray(items).forEach(function(item) { %>
+        <% if (typeof item === 'string') { %>
+          <span><%= item %></span>
+        <% } else { %>
+          <span><%= localizedText(item, 'name') || localizedText(item, 'label') || localizedText(item, 'title') %><% if (localizedText(item, 'state')) { %> / <%= localizedText(item, 'state') %><% } %></span>
+        <% } %>
+      <% }) %>
+    </div>
+  <% } %>
+<% } %>
+
+<% function renderList(items) { %>
+  <% if (hasItems(items)) { %>
+    <ul class="system-detail-list">
+      <% safeArray(items).forEach(function(item) { %><li><%= item %></li><% }) %>
+    </ul>
+  <% } %>
+<% } %>
+
+<% function renderSection(title, shouldRender, bodyRenderer) { %>
+  <% if (shouldRender) { %>
+    <section class="system-detail-section">
+      <h2><%= title %></h2>
+      <% bodyRenderer(); %>
+    </section>
+  <% } %>
+<% } %>
+
+<% function renderArchitecture(project) {
+  const architecture = localizedObject(project, 'architecture');
+  const flowNodes = safeArray(localizedValue(project, 'flowNodes'));
+  const nodes = flowNodes.length ? flowNodes : safeArray(architecture.nodes);
+%>
+  <% if (nodes.length) { %>
+    <div class="architecture-snapshot system-detail-architecture" aria-label="Architecture snapshot">
+      <div class="architecture-flow">
+        <% nodes.forEach(function(node, index) { %>
+          <div class="architecture-node">
+            <span><%= localizedText(node, 'type') %><% if (localizedText(node, 'state')) { %> / <%= localizedText(node, 'state') %><% } %></span>
+            <strong><%= localizedText(node, 'label') %></strong>
+          </div>
+          <% if (index < nodes.length - 1) { %><span class="architecture-arrow" aria-hidden="true">&rarr;</span><% } %>
+        <% }) %>
+      </div>
+      <% if (hasItems(architecture.security)) { %>
+        <div class="architecture-security">
+          <span><%= isDetailZh ? '資安標籤' : 'Security Tags' %></span>
+          <% renderTags(architecture.security); %>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+<% } %>
+
+<% function renderLinkList(items) { %>
+  <% if (hasItems(items)) { %>
+    <div class="system-detail-link-list">
+      <% safeArray(items).forEach(function(item) { %>
+        <a href="<%= item.url %>" rel="noopener noreferrer" target="_blank"><%= item.title %></a>
+      <% }) %>
+    </div>
+  <% } %>
+<% } %>
+
+<% function renderObjectCards(items, className, titleKey, renderer) { %>
+  <% if (hasItems(items)) { %>
+    <div class="<%= className %>">
+      <% safeArray(items).forEach(function(item) { %>
+        <article class="system-detail-card">
+          <h3><%= localizedText(item, titleKey) || localizedText(item, 'name') || localizedText(item, 'title') || localizedText(item, 'decision') || localizedText(item, 'failure') || localizedText(item, 'test') || localizedText(item, 'type') %></h3>
+          <% renderer(item); %>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+<% } %>
+
+<article class="system-detail" lang="<%= isDetailZh ? 'zh-Hant' : 'en' %>">
+  <header class="system-detail__hero">
+    <div>
+      <p class="research-section-kicker"><%= l.systemDetail %></p>
+      <h1><%= systemTitle(systemProject) %></h1>
+      <% if (hasText(localizedText(systemProject, 'systemSubtitle'))) { %>
+        <p class="system-detail__subtitle"><%= localizedText(systemProject, 'systemSubtitle') %></p>
+      <% } %>
+      <% if (hasText(localizedText(systemProject, 'systemPositioning')) || hasText(localizedText(systemProject, 'summary'))) { %>
+        <p><%= localizedText(systemProject, 'systemPositioning') || localizedText(systemProject, 'summary') %></p>
+      <% } %>
+      <div class="system-detail__actions">
+        <a class="os-button os-button-secondary" href="<%= url_for(isDetailZh ? '/zh/systems/' : '/systems/') %>"><%= l.backSystems %></a>
+        <a class="os-button os-button-secondary" href="<%= url_for(isDetailZh ? '/zh/projects/' : '/projects/') %>"><%= l.researchView %></a>
+      </div>
+    </div>
+    <aside>
+      <% renderMetadata([
+        [l.systemId, systemProject.systemId || page.system_id],
+        [l.domain, systemProject.domain],
+        [l.projectType, systemProject.projectType],
+        [l.currentState, systemProject.currentState || systemProject.status],
+        [l.year, systemProject.year],
+        [l.teamContext, systemProject.teamContext]
+      ]); %>
+    </aside>
+  </header>
+
+  <% if (!hasProject) { %>
+    <section class="system-detail-section">
+      <h2><%= l.contentPending %></h2>
+      <p class="research-empty-state"><%= l.noData %></p>
+    </section>
+  <% } else { %>
+    <section class="system-detail-section system-detail-section--overview">
+      <% if (hasText(localizedText(systemProject, 'problemDefinition')) || hasText(localizedText(systemProject, 'problem'))) { %>
+        <div><h2><%= l.problem %></h2><p><%= localizedText(systemProject, 'problemDefinition') || localizedText(systemProject, 'problem') %></p></div>
+      <% } %>
+      <% if (hasText(localizedText(systemProject, 'context'))) { %>
+        <div><h2><%= l.context %></h2><p><%= localizedText(systemProject, 'context') %></p></div>
+      <% } %>
+      <% if (hasText(systemProject.myRole || systemProject.role)) { %>
+        <div><h2><%= l.role %></h2><p><%= systemProject.myRole || systemProject.role %></p></div>
+      <% } %>
+      <% if (hasItems(localizedValue(systemProject, 'engineeringScope'))) { %>
+        <div><h2><%= l.layers %></h2><% renderTags(localizedItems(systemProject, 'engineeringScope')); %></div>
+      <% } %>
+    </section>
+
+    <% renderSection(l.context, hasText(localizedText(systemProject, 'systemPositioning')) || hasText(localizedText(systemProject, 'summary')), function() { %>
+      <p><%= localizedText(systemProject, 'systemPositioning') || localizedText(systemProject, 'summary') %></p>
+    <% }); %>
+
+    <% renderSection(l.technologies, hasItems(localizedValue(systemProject, 'mainTechnologies')) || hasItems(systemProject.technologies) || hasItems(systemProject.software) || hasItems(systemProject.hardware), function() { %>
+      <% renderTags(localizedItems(systemProject, 'mainTechnologies').length ? localizedItems(systemProject, 'mainTechnologies') : safeArray(systemProject.technologies).concat(safeArray(systemProject.software), safeArray(systemProject.hardware)).filter(function(item, index, arr) { return arr.indexOf(item) === index; })); %>
+    <% }); %>
+    <% renderSection(l.goals, hasItems(localizedValue(systemProject, 'goals')), function() { renderList(localizedItems(systemProject, 'goals')); }); %>
+    <% renderSection(l.nonGoals, hasItems(localizedValue(systemProject, 'nonGoals')), function() { renderList(localizedItems(systemProject, 'nonGoals')); }); %>
+    <% renderSection(l.architecture, hasItems(localizedValue(systemProject, 'flowNodes')) || hasItems((localizedObject(systemProject, 'architecture') || {}).nodes), function() { renderArchitecture(systemProject); }); %>
+
+    <% renderSection(l.trustBoundaries, hasItems(localizedValue(systemProject, 'trustBoundaries')), function() { %>
+      <% renderObjectCards(localizedItems(systemProject, 'trustBoundaries'), 'system-detail-card-grid system-detail-card-grid--zones', 'name', function(item) { %>
+        <% renderMetadata([[l.purpose, localizedText(item, 'purpose')], [l.components, joinList(localizedItems(item, 'components'))], [l.consideration, localizedText(item, 'securityConsideration')]]); %>
+      <% }); %>
+    <% }); %>
+
+    <% renderSection(l.layers, hasItems(localizedValue(systemProject, 'systemLayers')), function() { %>
+      <% renderObjectCards(localizedItems(systemProject, 'systemLayers'), 'system-detail-card-grid', 'name', function(item) { %>
+        <% renderMetadata([[l.state, localizedText(item, 'state')]]); %>
+        <% renderTags(localizedItems(item, 'items')); %>
+      <% }); %>
+    <% }); %>
+
+    <% renderSection(l.security, hasItems(localizedValue(systemProject, 'securityConsiderations')) || hasItems(localizedValue(systemProject, 'securityScope')), function() { %>
+      <% if (hasItems(localizedValue(systemProject, 'securityConsiderations'))) { %>
+        <% renderObjectCards(localizedItems(systemProject, 'securityConsiderations'), 'system-detail-card-grid', 'name', function(item) { %>
+          <% renderMetadata([[l.purpose, localizedText(item, 'purpose')], [l.currentApproach, localizedText(item, 'currentApproach')], [l.state, localizedText(item, 'state')], [l.limitation, localizedText(item, 'limitation')]]); %>
+        <% }); %>
+      <% } else { %>
+        <% renderList(localizedItems(systemProject, 'securityScope')); %>
+      <% } %>
+    <% }); %>
+
+    <% renderSection(l.testing, hasItems(localizedValue(systemProject, 'validationChecks')) || hasItems(localizedValue(systemProject, 'testing')), function() { %>
+      <% if (hasItems(localizedValue(systemProject, 'validationChecks'))) { %>
+        <% renderObjectCards(localizedItems(systemProject, 'validationChecks'), 'system-detail-card-grid', 'test', function(item) { %>
+          <% renderMetadata([[l.purpose, localizedText(item, 'purpose')], [l.currentState, localizedText(item, 'currentState')], [l.visibility, localizedText(item, 'evidenceVisibility')]]); %>
+        <% }); %>
+      <% } else { %>
+        <% renderList(localizedItems(systemProject, 'testing')); %>
+      <% } %>
+    <% }); %>
+
+    <% renderSection(l.failureCases, hasItems(localizedValue(systemProject, 'failureCaseDetails')) || hasItems(localizedValue(systemProject, 'failureCases')), function() { %>
+      <% if (hasItems(localizedValue(systemProject, 'failureCaseDetails'))) { %>
+        <% renderObjectCards(localizedItems(systemProject, 'failureCaseDetails'), 'system-detail-card-grid', 'failure', function(item) { %>
+          <% renderMetadata([[l.context, localizedText(item, 'context')], [l.investigation, localizedText(item, 'investigation')], [l.response, localizedText(item, 'response')], [l.currentVerification, localizedText(item, 'currentVerification')], [l.lesson, localizedText(item, 'lesson')]]); %>
+        <% }); %>
+      <% } else { %>
+        <% renderList(localizedItems(systemProject, 'failureCases')); %>
+      <% } %>
+    <% }); %>
+
+    <% renderSection(l.evidence, hasItems(localizedValue(systemProject, 'evidenceRegistry')) || hasItems(systemProject.evidence), function() { %>
+      <% if (hasItems(localizedValue(systemProject, 'evidenceRegistry'))) { %>
+        <% renderObjectCards(localizedItems(systemProject, 'evidenceRegistry'), 'system-detail-card-grid', 'title', function(item) { %>
+          <% renderMetadata([[l.type, localizedText(item, 'type')], [l.status, localizedText(item, 'status')], [l.visibility, localizedText(item, 'visibility')], [l.relatedLayer, localizedText(item, 'relatedLayer')], [l.description, localizedText(item, 'description')]]); %>
+        <% }); %>
+      <% } else { %>
+        <div class="system-detail-evidence-list">
+          <% safeArray(systemProject.evidence).forEach(function(id) { const item = evidenceById(id); %>
+            <% if (item) { %>
+              <article class="system-detail-evidence-item">
+                <span><%= item.type %></span>
+                <strong><% if (hasText(item.url)) { %><a href="<%= url_for(item.url) %>"><%= item.title %></a><% } else { %><%= item.title %><% } %></strong>
+                <% renderMetadata([[l.date, item.date], [l.status, item.verification], [l.description, item.description]]); %>
+              </article>
+            <% } %>
+          <% }) %>
+        </div>
+      <% } %>
+    <% }); %>
+
+    <% renderSection(l.decisions, hasItems(localizedValue(systemProject, 'engineeringDecisions')) || hasItems(localizedValue(systemProject, 'keyDecisions')), function() { %>
+      <% if (hasItems(localizedValue(systemProject, 'engineeringDecisions'))) { %>
+        <% renderObjectCards(localizedItems(systemProject, 'engineeringDecisions'), 'system-detail-card-grid', 'decision', function(item) { %>
+          <% renderMetadata([[l.reason, localizedText(item, 'reason')], [l.tradeoff, localizedText(item, 'tradeoff')]]); %>
+        <% }); %>
+      <% } else { %>
+        <% renderList(localizedItems(systemProject, 'keyDecisions')); %>
+      <% } %>
+    <% }); %>
+
+    <% renderSection(l.challenges, hasItems(localizedValue(systemProject, 'challenges')), function() { renderList(localizedItems(systemProject, 'challenges')); }); %>
+    <% renderSection(l.limitations, hasItems(localizedValue(systemProject, 'limitationsDetailed')) || hasText(localizedText(systemProject, 'limitations')), function() { %>
+      <% if (hasItems(localizedValue(systemProject, 'limitationsDetailed'))) { renderList(localizedItems(systemProject, 'limitationsDetailed')); } else { %><p><%= localizedText(systemProject, 'limitations') %></p><% } %>
+    <% }); %>
+    <% renderSection(l.lessons, hasItems(localizedValue(systemProject, 'lessonsDetailed')) || hasItems(localizedValue(systemProject, 'lessons')), function() { renderList(localizedItems(systemProject, 'lessonsDetailed').length ? localizedItems(systemProject, 'lessonsDetailed') : localizedItems(systemProject, 'lessons')); }); %>
+
+    <% const perspective = localizedObject(systemProject, 'researchPerspective'); %>
+    <% const perspectiveQuestion = perspective.question || localizedText(systemProject, 'researchQuestion'); %>
+    <% const perspectiveSubQuestions = safeArray(perspective.subQuestions).length ? safeArray(perspective.subQuestions) : localizedItems(systemProject, 'subQuestions'); %>
+    <% const perspectiveFutureWork = safeArray(perspective.futureWork).length ? safeArray(perspective.futureWork) : localizedItems(systemProject, 'futureResearch'); %>
+    <% renderSection(l.researchPerspective, hasText(perspectiveQuestion) || hasItems(perspectiveSubQuestions) || hasItems(perspectiveFutureWork), function() { %>
+      <% renderMetadata([[l.question, perspectiveQuestion]]); %>
+      <% if (hasItems(perspectiveSubQuestions)) { %><h3><%= l.subQuestions %></h3><% renderList(perspectiveSubQuestions); %><% } %>
+      <% if (hasItems(perspectiveFutureWork)) { %><h3><%= l.futureWork %></h3><% renderTags(perspectiveFutureWork); %><% } %>
+    <% }); %>
+
+    <% const documentationLinks = detailLinks(systemProject, 'documentation'); %>
+    <% renderSection(l.documentation, hasItems(documentationLinks), function() { renderLinkList(documentationLinks); }); %>
+
+    <% const referenceLinks = detailLinks(systemProject, 'references'); %>
+    <% renderSection(l.references, hasItems(referenceLinks), function() { renderLinkList(referenceLinks); }); %>
+
+    <% renderSection(l.nextStep, hasText(localizedText(systemProject, 'nextEngineeringStep') || localizedText(systemProject, 'nextSteps')), function() { %>
+      <p><%= localizedText(systemProject, 'nextEngineeringStep') || localizedText(systemProject, 'nextSteps') %></p>
+    <% }); %>
+
+    <% if (previousSystem || nextSystem) { %>
+      <nav class="system-detail-nav" aria-label="System detail navigation">
+        <% if (previousSystem) { %>
+          <a href="<%= systemHref(previousSystem) %>"><span><%= l.previous %></span><strong><%= systemTitle(previousSystem) %></strong></a>
+        <% } %>
+        <% if (nextSystem) { %>
+          <a href="<%= systemHref(nextSystem) %>"><span><%= l.next %></span><strong><%= systemTitle(nextSystem) %></strong></a>
+        <% } %>
+      </nav>
+    <% } %>
+  <% } %>
+</article>

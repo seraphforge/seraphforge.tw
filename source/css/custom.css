@@ -5,7 +5,9 @@
 @import url("./seraph/layout.css");
 @import url("./seraph/header.css");
 @import url("./seraph/home.css");
+@import url("./seraph/home-entry.css");
 @import url("./seraph/pages.css");
+@import url("./seraph/project-detail.css");
 @import url("./seraph/archive.css");
 @import url("./seraph/article.css");
 @import url("./seraph/components.css");

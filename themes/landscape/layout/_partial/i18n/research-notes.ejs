@@ -1,0 +1,25 @@
+<section class="research-page research-notes-page" aria-labelledby="<%= lang %>-notes-title">
+  <header class="research-page-header">
+    <p class="research-section-kicker">Research Notes</p>
+    <h1 id="<%= lang %>-notes-title"><%= isZh ? '研究筆記' : 'Research Notes' %></h1>
+    <p><%= isZh ? '記錄研究問題、技術閱讀、實驗觀察與系統設計思考。' : 'Notes on research questions, technical reading, experiment observations, and system design decisions.' %></p>
+  </header>
+
+  <% if (notes.length) { %>
+    <div class="research-note-list">
+      <% notes.slice(0, limit || notes.length).forEach(function(post) { %>
+        <article class="research-note-row">
+          <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+          <div class="research-note-row__body">
+            <p class="research-note-meta"><%= firstTag(post) %> / <%= readingMinutes(post) %> <%= isZh ? '分鐘閱讀' : 'min read' %> / <%= isZh ? '已發布' : 'Published' %></p>
+            <h2><a href="<%= url_for(post.path) %>"><%= post.title %></a></h2>
+            <% if (postSummary(post)) { %><p class="research-note-summary"><%= postSummary(post) %></p><% } %>
+            <a class="research-note-cta" href="<%= url_for(post.path) %>"><%= isZh ? '閱讀文章' : 'Read Note' %></a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="research-empty-state"><%= isZh ? '目前沒有可顯示的研究筆記。' : 'No research notes available yet.' %></p>
+  <% } %>
+</section>

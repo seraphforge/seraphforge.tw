@@ -31,6 +31,7 @@
               { "name": "AIS3 MyFirstCTF 2026", "year": "2026", "role": "參賽者", "tags": ["CTF", "Cybersecurity"] },
               { "name": "AIS3 EOF CTF 2026", "year": "2026", "role": "參賽者", "tags": ["CTF", "Cybersecurity"] },
               { "name": "國立宜蘭大學程式設計暨資訊及 AI 應用競賽", "year": "2026", "result": ["入圍決賽", "榮獲佳作"], "tags": ["Programming", "AI", "Competition"] },
+              { "name": "台灣選拔賽 MARC 機器人競賽", "year": "2026", "role": "參賽者", "result": ["入選 12 強"], "tags": ["Robotics", "Engineering", "MARC"] },
               { "name": "FIRST Tech Challenge", "year": "2026", "role": "參賽者", "tags": ["Robotics", "Engineering", "FTC"] },
               { "name": "智慧鐵人創意競賽", "year": "2026", "role": "參賽者", "tags": ["Creativity", "Engineering", "Teamwork"] }
             ]
@@ -55,7 +56,7 @@
       "conferences": {
         "title": "研討會與年會",
         "items": [
-          { "name": "InfoSec Taiwan 2026", "year": "2026", "role": "與會者", "tags": ["Cybersecurity", "Community"] },
+          { "name": "InfoSec Taiwan 2026", "year": "2026", "date": "2026-07-07", "role": "與會者", "tags": ["Cybersecurity", "Community"] },
           { "name": "Bak3 C00kie", "year": "2026", "role": "與會者", "tags": ["Cybersecurity", "Community"] },
           { "name": "HITCON Conference 2025", "year": "2025", "role": "與會者", "tags": ["Cybersecurity", "Conference"] },
           { "name": "COSCUP 開源人年會 2025", "year": "2025", "role": "與會者", "tags": ["Open Source", "Community"] },
@@ -119,16 +120,24 @@
               { "name": "Grodno::CTF 2026", "year": "2026", "role": "Competitor", "tags": ["CTF", "Cybersecurity"] },
               { "name": "AIS3 MyFirstCTF 2026", "year": "2026", "role": "Competitor", "tags": ["CTF", "Cybersecurity"] },
               { "name": "AIS3 EOF CTF 2026", "year": "2026", "role": "Competitor", "tags": ["CTF", "Cybersecurity"] },
-              { "name": "National Ilan University Programming, Information and AI Application Competition", "year": "2026", "result": ["Finalist", "Honorable Mention"], "tags": ["Programming", "AI", "Competition"] },
+              { "name": "National Ilan University Programming, Information and AI Application Competition", "nameZh": "國立宜蘭大學程式設計、資訊與人工智慧應用競賽", "year": "2026", "result": ["Finalist"], "resultZh": ["決賽入選"], "tags": ["Programming", "AI", "Competition"] },
+              { "name": "Taiwan Selection MARC Robotics Competition", "nameZh": "台灣選拔賽 MARC 機器人競賽", "year": "2026", "role": "Competitor", "result": ["Top 12 selection"], "resultZh": ["入選 12 強"], "tags": ["Robotics", "Engineering", "MARC"] },
               { "name": "FIRST Tech Challenge", "year": "2026", "role": "Competitor", "tags": ["Robotics", "Engineering", "FTC"] },
-              { "name": "Intelligent Ironman Creativity Contest", "year": "2026", "role": "Competitor", "tags": ["Creativity", "Engineering", "Teamwork"] }
+              { "name": "Intelligent Ironman Creativity Contest", "year": "2026", "role": "Competitor", "roleZh": "參賽者", "tags": ["Creativity", "Engineering", "Teamwork"] }
             ]
           },
           {
             "year": "2025",
             "items": [
-              { "name": "Information Service Innovation Application Competition", "year": "2025", "result": ["High School and University Divisions Finalist", "University Division Honorable Mention"], "tags": ["Information Technology", "Innovation", "Competition"] },
+              { "name": "Information Service Innovation Application Competition", "nameZh": "資訊服務創新應用競賽", "year": "2025", "result": ["High School Division Finalist", "University Division Finalist", "University Division Honorable Mention"], "resultZh": ["高中職組決賽入圍", "大專組決賽入圍", "大專組佳作"], "tags": ["Information Technology", "Innovation", "Competition"] },
               { "name": "High School Program Security Hackathon", "year": "2025", "result": ["Easter Egg Expert Award"], "tags": ["Cybersecurity", "Programming", "Hackathon"] }
+            ]
+          },
+          {
+            "year": "",
+            "items": [
+              { "name": "Youth Volunteer Action Competition - Youth Volunteer Award", "nameZh": "青年志工行動競賽－青志獎", "result": ["Honorable Mention"], "resultZh": ["佳作"], "tags": ["Volunteer", "Action", "Competition"] },
+              { "name": "Asia Eastern University National Senior High School AI and Information Life Application Innovation Competition", "nameZh": "亞東科技大學全國高中職人工智慧與資訊生活應用創新競賽", "result": ["Honorable Mention"], "resultZh": ["佳作"], "tags": ["AI", "Innovation", "Competition"] }
             ]
           }
         ]
@@ -144,7 +153,7 @@
       "conferences": {
         "title": "Conferences",
         "items": [
-          { "name": "InfoSec Taiwan 2026", "year": "2026", "role": "Attendee", "tags": ["Cybersecurity", "Community"] },
+          { "name": "InfoSec Taiwan 2026", "year": "2026", "date": "2026-07-07", "role": "Attendee", "tags": ["Cybersecurity", "Community"] },
           { "name": "Bak3 C00kie", "year": "2026", "role": "Attendee", "tags": ["Cybersecurity", "Community"] },
           { "name": "HITCON Conference 2025", "year": "2025", "role": "Attendee", "tags": ["Cybersecurity", "Conference"] },
           { "name": "COSCUP 2025", "year": "2025", "role": "Attendee", "tags": ["Open Source", "Community"] },
@@ -233,7 +242,7 @@
       "conferences": {
         "title": "カンファレンス",
         "items": [
-          { "name": "InfoSec Taiwan 2026", "year": "2026", "role": "参加者", "tags": ["Cybersecurity", "Community"] },
+          { "name": "InfoSec Taiwan 2026", "year": "2026", "date": "2026-07-07", "role": "参加者", "tags": ["Cybersecurity", "Community"] },
           { "name": "Bak3 C00kie", "year": "2026", "role": "参加者", "tags": ["Cybersecurity", "Community"] },
           { "name": "HITCON Conference 2025", "year": "2025", "role": "参加者", "tags": ["Cybersecurity", "Conference"] },
           { "name": "COSCUP 2025", "year": "2025", "role": "参加者", "tags": ["Open Source", "Community"] },

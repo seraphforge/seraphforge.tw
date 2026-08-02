@@ -1,15 +1,9 @@
 ---
 title: Autonomous Robot
 description: A case study about learning robotics by building, testing, and debugging a physical system.
+summary: A case study about learning how software, hardware, sensors, and uncertainty meet inside one robot.
+type: project
 ---
-
-<section class="project-page-hero">
-
-# Autonomous Robot
-
-A case study about learning how software, hardware, sensors, and uncertainty meet inside one robot.
-
-</section>
 
 ## Why This Project
 

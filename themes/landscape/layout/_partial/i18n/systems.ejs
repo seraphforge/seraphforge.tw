@@ -1,0 +1,56 @@
+<section class="research-page research-page--systems systems-page" aria-labelledby="<%= lang %>-systems-title">
+  <%
+    const statusTone = function(status) {
+      const positiveStatuses = ['Ongoing', 'Current', 'Public', 'Applied', 'Integrated', 'Completed', 'Working Prototype'];
+      const warningStatuses = ['Planning', 'Planned', 'In Progress', 'Learning', 'Exploring'];
+      return positiveStatuses.indexOf(status) >= 0 ? 'good' : (warningStatuses.indexOf(status) >= 0 ? 'warn' : 'neutral');
+    };
+    const sortedSystems = featuredSystems.map(function(project, index) {
+      return Object.assign({ _originalIndex: index }, project);
+    }).sort(function(a, b) {
+      const priorityDiff = (Number(b.priority) || 0) - (Number(a.priority) || 0);
+      return priorityDiff || (a._originalIndex - b._originalIndex);
+    });
+  %>
+  <header class="research-page-header">
+    <p class="research-section-kicker"><%= isZh ? '工程系統' : 'Engineering Systems' %></p>
+    <h1 id="<%= lang %>-systems-title"><%= isZh ? '工程系統' : 'Engineering Systems' %></h1>
+    <p><%= isZh ? '每個系統的精簡入口：它是什麼、主要技術、啟動原因與目前方向。完整架構、工作流程、問題、解法、證據與參考資料保留在各系統詳情頁。' : 'A compact entry point for each system: what it is, the main technologies, why it started, and the current direction. Full architecture, workflows, issues, solutions, evidence, and references live on each system detail page.' %></p>
+  </header>
+
+  <div class="system-index-list">
+    <% sortedSystems.forEach(function(project) {
+      const href = projectHref(project);
+      const summaryLines = listingSummary(project).slice(0, 4);
+      const tags = systemCardTags(project).slice(0, 5);
+    %>
+      <article class="system-index-item">
+        <aside class="system-index-item__aside">
+          <span class="system-index-id"><%= project.systemId || project.id %></span>
+          <% const status = project.currentState || project.status; %>
+          <% if (status) { %><span class="research-status-badge" data-status-tone="<%= statusTone(status) %>"><%= statusLabel(status) %></span><% } %>
+        </aside>
+        <div class="system-index-item__main">
+          <h2><a href="<%= href %>"><%= maybeZh(project, 'title') %></a></h2>
+          <% if (project.domain) { %><p class="system-index-domain"><%= project.domain %></p><% } %>
+          <% if (summaryLines.length) { %>
+            <div class="system-index-summary">
+              <% summaryLines.forEach(function(line) { %><p><%= line %></p><% }) %>
+            </div>
+          <% } %>
+          <% if (tags.length) { %>
+            <div class="research-tag-list">
+              <% tags.forEach(function(tag) { %><span><%= tag %></span><% }) %>
+            </div>
+          <% } %>
+          <% if (href) { %>
+            <div class="system-card-cta">
+              <p><%= c.fullSystemHint %></p>
+              <a class="os-button os-button-primary" href="<%= href %>"><%= c.viewFullSystem %></a>
+            </div>
+          <% } %>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>

@@ -314,18 +314,8 @@ cdn:
 
 injector:
   head_end: |
-    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/seraphforge.tw/css/custom.css">
     <style>
-      html,
-      body {
-        background: #12161d !important;
-        color: #e8edf5 !important;
-      }
-
-      html {
-        color-scheme: dark !important;
-      }
-
       a[href*="friend"],
       a[href*="friend/"],
       a[href*="/friend"],
@@ -337,73 +327,4 @@ injector:
       }
     </style>
 
-  body_end: |
-    <script>
-      (function () {
-        function forceDarkMode() {
-          document.documentElement.classList.add("dark");
-          document.documentElement.setAttribute("data-theme", "dark");
-          document.body.classList.add("dark");
-
-          localStorage.setItem("theme", "dark");
-          localStorage.setItem("darkmode", "true");
-          localStorage.setItem("color-scheme", "dark");
-        }
-
-        function removeFriendMenu() {
-          document.querySelectorAll("a, li, .menu-item, .nav-item").forEach(function (el) {
-            const text = (el.textContent || "").trim();
-            const href = el.getAttribute && el.getAttribute("href");
-
-            const isFriend =
-              text.includes("友鏈") ||
-              text.includes("友链") ||
-              text.toLowerCase().includes("friend") ||
-              (href && href.toLowerCase().includes("friend"));
-
-            if (isFriend) {
-              const target = el.closest("li, .menu-item, .nav-item") || el;
-              target.remove();
-            }
-          });
-        }
-
-        function removeThemeToggle() {
-          document.querySelectorAll("a, button, i, span, div").forEach(function (el) {
-            const cls = (el.className || "").toString().toLowerCase();
-            const title = (el.getAttribute("title") || "").toLowerCase();
-            const aria = (el.getAttribute("aria-label") || "").toLowerCase();
-
-            const isThemeToggle =
-              cls.includes("moon") ||
-              cls.includes("sun") ||
-              cls.includes("theme") ||
-              cls.includes("dark") ||
-              cls.includes("light") ||
-              title.includes("theme") ||
-              title.includes("dark") ||
-              title.includes("light") ||
-              aria.includes("theme") ||
-              aria.includes("dark") ||
-              aria.includes("light");
-
-            if (isThemeToggle) {
-              const target = el.closest("a, button, li") || el;
-              target.remove();
-            }
-          });
-        }
-
-        function runFixes() {
-          forceDarkMode();
-          removeFriendMenu();
-          removeThemeToggle();
-        }
-
-        document.addEventListener("DOMContentLoaded", runFixes);
-        window.addEventListener("load", runFixes);
-        setTimeout(runFixes, 300);
-        setTimeout(runFixes, 1000);
-        setTimeout(runFixes, 2000);
-      })();
-    </script>
+  body_end:

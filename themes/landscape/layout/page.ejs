@@ -1,45 +1,50 @@
-<%
+﻿<%
   const normalizedPagePath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const pageParts = normalizedPagePath.split('/').filter(Boolean);
   const normalizePageLang = function(value) {
     const normalized = String(value || '').toLowerCase();
     if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh';
-    if (normalized === 'ja' || normalized === 'jp') return 'ja';
     if (normalized === 'en') return 'en';
     return '';
   };
-  const explicitPageLang = ['en', 'zh', 'ja'].includes(pageParts[0]) ? pageParts[0] : '';
+  const explicitPageLang = ['en', 'zh'].includes(pageParts[0]) ? pageParts[0] : '';
   const pageLang = explicitPageLang || normalizePageLang(page.site_lang) || 'en';
   const localPageParts = explicitPageLang ? pageParts.slice(1) : pageParts;
   const pageSection = localPageParts[0] || 'home';
+  const pageType = String(page.type || '').toLowerCase();
+  const isSystemDetail = pageType === 'system' || pageType === 'system-detail' || Boolean(page.system) || (pageSection === 'systems' && localPageParts.length === 2);
+  const isProjectDetail = String(page.type || '').toLowerCase() === 'project' || (pageSection === 'projects' && localPageParts.length === 2);
   const isExperienceLanding = pageSection === 'experience' && localPageParts.length === 1;
   const isExperienceDetail = pageSection === 'experience' && localPageParts.length === 2;
+  const isContactLanding = pageSection === 'contact' && localPageParts.length === 1;
   const i18nPagePaths = [
     '',
     'dashboard',
-    'experience',
+    'about',
+    'systems',
     'projects',
+    'outcomes',
+    'now',
     'labs',
     'writing',
     'timeline',
-    'about',
+    'en',
+    'en/about',
+    'en/systems',
+    'en/projects',
+    'en/outcomes',
+    'en/now',
     'en/experience',
     'zh',
     'zh/dashboard',
-    'zh/experience',
+    'zh/about',
+    'zh/systems',
     'zh/projects',
+    'zh/outcomes',
+    'zh/now',
     'zh/labs',
     'zh/writing',
-    'zh/timeline',
-    'zh/about',
-    'ja',
-    'ja/dashboard',
-    'ja/experience',
-    'ja/projects',
-    'ja/labs',
-    'ja/writing',
-    'ja/timeline',
-    'ja/about'
+    'zh/timeline'
   ];
   const isI18nPage = i18nPagePaths.includes(normalizedPagePath);
   const pageCopy = {
@@ -52,49 +57,128 @@
       untitled: 'Untitled'
     },
     zh: {
-      pageKicker: '筆記頁',
-      searchPlaceholder: '搜尋文章...',
-      searchLoadFailed: '搜尋索引載入失敗。',
-      searchHint: '輸入關鍵字開始搜尋。',
-      searchEmpty: '找不到符合的文章。',
-      untitled: '未命名'
-    },
-    ja: {
-      pageKicker: 'ノートページ',
-      searchPlaceholder: '記事を検索...',
-      searchLoadFailed: '検索インデックスを読み込めませんでした。',
-      searchHint: 'キーワードを入力して検索してください。',
-      searchEmpty: '一致する記事は見つかりませんでした。',
-      untitled: '無題'
+      pageKicker: '?',
+      searchPlaceholder: '????...',
+      searchLoadFailed: '?⊥?頛??蝝Ｗ???,
+      searchHint: '頛詨?摮?憪?撠?,
+      searchEmpty: '?曆??啁泵??????,
+      untitled: '?芸??
     }
-  }[pageLang];
+  }[pageLang] || {
+    pageKicker: 'Notebook Page',
+    searchPlaceholder: 'Search posts...',
+    searchLoadFailed: 'Failed to load search index.',
+    searchHint: 'Type something to search.',
+    searchEmpty: 'No matching posts found.',
+    untitled: 'Untitled'
+  };
+
+  const projectFactLabels = {
+    en: { year: 'Year', period: 'Period', status: 'Status', role: 'Role', category: 'Category', repository: 'Repository', demo: 'Demo' },
+    zh: { year: '撟港遢', period: '??', status: '???, role: '閫', category: '??', repository: 'Repository', demo: 'Demo' }
+  }[pageLang] || {};
+
+  const projectFacts = [
+    ['year', page.year],
+    ['period', page.period],
+    ['status', page.status],
+    ['role', page.role],
+    ['category', page.category],
+    ['repository', page.repository],
+    ['demo', page.demo]
+  ].filter(function(item) { return item[1]; });
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function textFromHtml(markup) {
+    return String(markup || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  function stripDuplicateProjectLead(markup, title) {
+    let next = String(markup || '').trimStart();
+    next = next.replace(/^<section\s+class="project-page-hero"[^>]*>[\s\S]*?<\/section>\s*/i, '');
+    next = next.replace(/^<h1\b[^>]*>[\s\S]*?<\/h1>\s*/i, function(match) {
+      return textFromHtml(match) === String(title || '').trim() ? '' : match;
+    });
+    return next;
+  }
+
+  function renderProjectFactValue(key, value) {
+    const text = escapeHtml(value);
+    if ((key === 'repository' || key === 'demo') && /^https?:\/\//i.test(String(value || ''))) {
+      return '<a href="' + text + '" rel="noopener noreferrer">' + text + '</a>';
+    }
+    return text;
+  }
+
+  function transformProjectTechList(markup) {
+    return String(markup || '').replace(/(<h2\b[^>]*>[\s\S]*?(?:Built with|雿輻?銵?[\s\S]*?<\/h2>)\s*<p>([^<]+)<\/p>/gi, function(match, heading, rawTech) {
+      const items = textFromHtml(rawTech)
+        .split(/\s+蝜s+|\s+\|\s+|\s*,\s*/)
+        .map(function(item) { return item.trim(); })
+        .filter(Boolean);
+      if (!items.length) return match;
+      return heading + '<ul class="project-tech-list">' + items.map(function(item) {
+        return '<li>' + escapeHtml(item) + '</li>';
+      }).join('') + '</ul>';
+    });
+  }
+
+  const projectBody = transformProjectTechList(stripDuplicateProjectLead(page.content, page.title));
 %>
 
 <% if (isExperienceLanding) { %>
   <%- partial('_partial/experience-page') %>
+<% } else if (isContactLanding) { %>
+  <%- page.content %>
 <% } else if (isExperienceDetail) { %>
   <%- partial('_partial/experience-detail') %>
+<% } else if (isSystemDetail) { %>
+  <%- partial('_partial/system-detail') %>
+<% } else if (isProjectDetail) { %>
+  <article class="project-detail" lang="<%= pageLang === 'zh' ? 'zh-Hant' : 'en' %>">
+    <header class="project-detail__hero">
+      <p class="project-detail__eyebrow">PROJECT CASE STUDY</p>
+      <h1 class="project-detail__title"><%= page.title %></h1>
+      <% if (page.summary || page.description) { %>
+        <p class="project-detail__summary"><%= page.summary || page.description %></p>
+      <% } %>
+      <% if (projectFacts.length) { %>
+        <dl class="project-detail__facts">
+          <% projectFacts.forEach(function(fact) { %>
+            <div>
+              <dt><%= projectFactLabels[fact[0]] || fact[0] %></dt>
+              <dd><%- renderProjectFactValue(fact[0], fact[1]) %></dd>
+            </div>
+          <% }) %>
+        </dl>
+      <% } %>
+    </header>
+
+    <div class="project-detail__body">
+      <%- projectBody %>
+    </div>
+  </article>
 <% } else if (isI18nPage) { %>
   <%- partial('_partial/i18n-page') %>
 <% } else { %>
-  <article class="page-content notebook-page<%= pageSection === 'about' ? ' about-page' : '' %>">
-    <% if (pageSection !== 'projects') { %>
-      <header class="page-header">
-        <div class="page-kicker"><%= pageCopy.pageKicker %></div>
-        <h1 class="section-title"><%= page.title %></h1>
-      </header>
-    <% } %>
+  <article class="page-content notebook-page">
+    <header class="page-header">
+      <div class="page-kicker"><%= pageCopy.pageKicker %></div>
+      <h1 class="section-title"><%= page.title %></h1>
+    </header>
 
     <div class="page-body">
       <% if (page.title === 'Search') { %>
         <div class="search-box-wrap">
-          <input
-            id="local-search-input"
-            class="search-input"
-            type="text"
-            placeholder="<%= pageCopy.searchPlaceholder %>"
-            autocomplete="off"
-          />
+          <input id="local-search-input" class="search-input" type="text" placeholder="<%= pageCopy.searchPlaceholder %>" autocomplete="off" />
           <div id="local-search-results" class="search-results"></div>
         </div>
 
@@ -102,7 +186,6 @@
           (async function () {
             const input = document.getElementById('local-search-input');
             const results = document.getElementById('local-search-results');
-
             let posts = [];
 
             try {
@@ -114,7 +197,7 @@
             }
 
             function escapeHtml(str) {
-              return str
+              return String(str || '')
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
@@ -169,13 +252,11 @@
 
             input.addEventListener('input', function () {
               const keyword = this.value.toLowerCase().trim();
-
               const matched = posts.filter(post => {
                 const title = (post.title || '').toLowerCase();
                 const content = stripHtml(post.content || '').toLowerCase();
                 return title.includes(keyword) || content.includes(keyword);
               });
-
               renderResults(matched, this.value.trim());
             });
 

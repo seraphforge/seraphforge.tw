@@ -1,0 +1,130 @@
+<%
+  const hasCorruption = function(value) {
+    return typeof value === 'string' && (/[\uE000-\uF8FF]|\?{2,}/.test(value));
+  };
+  const directionZh = {
+    'Healthcare Cybersecurity': {
+      name: '醫療資安',
+      description: '整理醫療資訊系統、臨床流程、身分驗證、裝置可信度與稽核紀錄，並思考如何把風險轉成可以測試的系統設計。'
+    },
+    'Infrastructure Security': {
+      name: '系統基礎設施安全',
+      description: '以 Home Lab、Linux、Docker、OpenWrt、網路拓樸與服務監控為核心，記錄部署、維護、故障復原與安全邊界。'
+    },
+    'Embedded and IoT Security': {
+      name: '嵌入式與 IoT 資安',
+      description: '使用 ESP32、MQTT 與本地網路環境，研究裝置通訊、訊息驗證、重放攻擊、裝置信任與網路邊界。'
+    },
+    'Applied Web Security': {
+      name: '應用 Web 資安',
+      description: '聚焦 Web 攻擊面、身分驗證、權限管理、安全 API 與平台設計，讓工程系統在實作時就能保留安全假設。'
+    },
+    'High Performance Computing': {
+      name: '高效能運算',
+      description: '目前正在學習 Linux 叢集、MPI、SPECFEM3D 與基本平行運算流程，並思考如何整理成高中生可以理解的體驗課程。'
+    }
+  };
+  const directionName = function(area) {
+    const value = maybeZh(area, 'name');
+    if (isZh && hasCorruption(value)) return (directionZh[area.name] || {}).name || area.name;
+    return value;
+  };
+  const directionDescription = function(area) {
+    const value = maybeZh(area, 'description');
+    if (isZh && hasCorruption(value)) return (directionZh[area.name] || {}).description || area.description;
+    return value;
+  };
+  const currentFocus = function(area, relatedSystems) {
+    const names = safeArray(relatedSystems).map(function(project) {
+      return maybeZh(project, 'title');
+    }).filter(Boolean);
+    if (!names.length) return '';
+    return names.join(isZh ? '、' : ', ');
+  };
+  const sortedAreas = areas.map(function(area, index) {
+    return Object.assign({ _originalIndex: index }, area);
+  }).sort(function(a, b) {
+    const priorityDiff = (Number(b.priority) || 0) - (Number(a.priority) || 0);
+    return priorityDiff || (a._originalIndex - b._originalIndex);
+  });
+%>
+<section class="research-page research-page--projects research-directions-page" aria-labelledby="<%= lang %>-projects-title">
+  <header class="research-page-header">
+    <p class="research-section-kicker"><%= isZh ? '研究方向' : 'Research Directions' %></p>
+    <h1 id="<%= lang %>-projects-title"><%= isZh ? '研究方向' : 'Research Directions' %></h1>
+    <p><%= isZh ? '以研究問題作為入口，整理目前正在探索的方向，並連到相關工程系統與最近工程紀錄。' : 'A research-first index linking each direction to related engineering systems, recent engineering logs, and research notes.' %></p>
+  </header>
+
+  <div class="research-direction-list">
+    <% sortedAreas.forEach(function(area) {
+      const areaProjects = safeArray(area.projectIds).map(projectById).filter(Boolean);
+      const relatedSystems = areaProjects.filter(function(project) { return project.systemId; });
+      const relatedLogs = nowLogs.filter(function(log) {
+        const project = projects.find(function(item) { return item.systemId === log.systemId || item.slug === log.systemSlug; });
+        return project && safeArray(area.projectIds).indexOf(project.id) >= 0;
+      }).slice(0, 3);
+      const ctaProject = relatedSystems[0];
+    %>
+      <article class="research-direction-item">
+        <div class="research-direction-main">
+          <p class="research-section-kicker"><%= area.id || 'Research' %> / <%= statusLabel(area.status) %></p>
+          <h2><%= directionName(area) %></h2>
+          <% if (directionDescription(area)) { %><p><%= directionDescription(area) %></p><% } %>
+          <% if (currentFocus(area, relatedSystems)) { %>
+            <div class="research-direction-focus">
+              <h3><%= isZh ? '目前方向' : 'Current Focus' %></h3>
+              <p><%= currentFocus(area, relatedSystems) %></p>
+            </div>
+          <% } %>
+          <% const directionTags = safeArray(area.keywords).slice(0, 5); %>
+          <% if (directionTags.length) { %>
+            <div class="research-tag-list">
+              <% directionTags.forEach(function(tag) { %><span><%= tag %></span><% }) %>
+            </div>
+          <% } %>
+        </div>
+
+        <% if (relatedSystems.length) { %>
+          <section class="research-direction-related">
+            <h3><%= isZh ? '相關工程系統' : 'Related Engineering Systems' %></h3>
+            <div class="research-direction-link-list">
+              <% relatedSystems.forEach(function(project) { %>
+                <a href="<%= projectHref(project) %>"><%= project.systemId || project.id %> <%= maybeZh(project, 'title') %></a>
+              <% }) %>
+            </div>
+          </section>
+        <% } %>
+
+        <% if (relatedLogs.length) { %>
+          <section class="research-direction-related">
+            <h3><%= isZh ? '最近工程紀錄' : 'Recent Engineering Logs' %></h3>
+            <div class="research-direction-log-cards">
+              <% relatedLogs.forEach(function(log) { %>
+                <article class="research-direction-log-card">
+                  <div class="research-direction-log-card__body">
+                    <h4><%= nowText(log, 'title') || log.systemId || (isZh ? '工程紀錄' : 'Engineering Log') %></h4>
+                    <% if (nowText(log, 'summary')) { %><p><%= nowText(log, 'summary') %></p><% } %>
+                    <% if (nowText(log, 'status')) { %><span><%= nowText(log, 'status') %></span><% } %>
+                  </div>
+                  <% if (hasText(log.relatedPath)) { %>
+                    <a href="<%= localizedNowHref(log.relatedPath) %>"><%= isZh ? '查看相關系統' : 'View Related System' %></a>
+                  <% } %>
+                </article>
+              <% }) %>
+            </div>
+          </section>
+        <% } %>
+
+        <% if (ctaProject || relatedLogs.length) { %>
+          <div class="research-direction-cta">
+            <% if (ctaProject) { %>
+              <a class="os-button os-button-primary" href="<%= projectHref(ctaProject) %>"><%= isZh ? '查看相關系統' : 'View Related System' %></a>
+            <% } else { %>
+              <a class="os-button os-button-primary" href="<%= localHref('now') %>"><%= isZh ? '查看此方向的工程紀錄' : 'View Engineering Logs' %></a>
+            <% } %>
+          </div>
+        <% } %>
+      </article>
+    <% }) %>
+  </div>
+</section>

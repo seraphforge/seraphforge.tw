@@ -1,0 +1,92 @@
+<%
+  const techTags = ['Linux', 'Docker', 'FastAPI', 'MQTT', 'ESP32', 'OpenWrt', 'MPI', 'SPECFEM3D', 'SecureCare'];
+  const profileCopy = {
+    zh: {
+      eyebrow: '關於',
+      title: '關於 Seraph',
+      description: '我是 Seraph，目前以資安、系統基礎設施、通訊與實驗運算為主軸，透過實作系統與公開紀錄整理自己的學習。'
+    },
+    en: {
+      eyebrow: 'About',
+      title: 'About / Profile',
+      description: 'I am Seraph, a student builder working across security, systems infrastructure, communication, and experimental computing through practical systems and public notes.'
+    }
+  }[isZh ? 'zh' : 'en'];
+  const processTitleMap = {
+    'Understand the Problem': '理解問題',
+    'Define the System': '定義系統',
+    'Build a Small Prototype': '建立小型原型',
+    'Test Failure Cases': '測試失敗情境',
+    'Document Decisions': '記錄決策',
+    'Improve with Evidence': '依證據改善'
+  };
+  const processDescriptionMap = {
+    'Understand the Problem': '了解使用者、需求、限制、環境與安全風險。',
+    'Define the System': '拆分裝置、通訊、後端、前端、儲存與安全邊界。',
+    'Build a Small Prototype': '建立可以實際運作並被檢查的小型原型。',
+    'Test Failure Cases': '測試錯誤權限、異常輸入、重放封包、服務中斷與離線裝置。',
+    'Document Decisions': '記錄架構、指令、錯誤、修正、限制與尚未解決的問題。',
+    'Improve with Evidence': '依照測試結果、系統紀錄與使用者回饋改善。'
+  };
+%>
+<section class="research-page about-page research-profile" aria-labelledby="<%= lang %>-profile-title">
+  <header class="research-page-header">
+    <p class="research-section-kicker"><%= profileCopy.eyebrow %></p>
+    <h1 id="<%= lang %>-profile-title"><%= profileCopy.title %></h1>
+    <p><%= profileCopy.description %></p>
+  </header>
+
+  <div class="about-section-list">
+    <section class="about-section-card">
+      <h2><%= isZh ? '簡介' : 'Intro' %></h2>
+      <p><%= isZh ? '我目前把學習重心放在能被測試、能被記錄、能逐步改善的工程系統。這個網站用來放研究方向、工程系統、研究筆記與可公開的成果紀錄。' : 'I focus on engineering systems that can be tested, documented, and improved over time. This site collects research directions, engineering systems, research notes, and public outcome records.' %></p>
+    </section>
+
+    <section class="about-section-card">
+      <h2><%= isZh ? '目前方向' : 'Current Direction' %></h2>
+      <p><%= isZh ? '目前主要方向是 HPC、雲端通訊、系統基礎設施、通訊資安、醫療資安與 Home Lab。重點不是把原型包裝成完成品，而是清楚記錄問題、限制、證據與下一步。' : 'Current directions include HPC, cloud communication, systems infrastructure, communication security, healthcare cybersecurity, and Home Lab work. The emphasis is on documenting problems, limitations, evidence, and next steps clearly.' %></p>
+      <% const areaTags = areas.map(function(area) { return maybeZh(area, 'name'); }).filter(Boolean).slice(0, 6); %>
+      <% if (areaTags.length) { %>
+        <div class="research-tag-list">
+          <% areaTags.forEach(function(tag) { %><span><%= tag %></span><% }) %>
+        </div>
+      <% } %>
+    </section>
+
+    <section class="about-section-card">
+      <h2><%= isZh ? '我如何工作' : 'How I Work' %></h2>
+      <ul>
+        <% engineeringProcess.slice(0, 4).forEach(function(step) { %>
+          <li><strong><%= isZh ? (processTitleMap[step.title] || step.title) : step.title %></strong>: <%= isZh ? (processDescriptionMap[step.title] || step.description) : step.description %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <section class="about-section-card">
+      <h2><%= isZh ? '精選工程系統' : 'Selected Engineering Systems' %></h2>
+      <div class="about-link-list">
+        <% featuredSystems.slice(0, 5).forEach(function(project) { %>
+          <a href="<%= projectHref(project) %>"><span><%= project.systemId || project.id %></span><%= maybeZh(project, 'title') %></a>
+        <% }) %>
+      </div>
+    </section>
+
+    <section class="about-section-card">
+      <h2><%= isZh ? '學習目標' : 'Learning Goals' %></h2>
+      <p><%= isZh ? '接下來會繼續補強 Linux、網路、作業系統、平行運算與資安研究方法，並把工程紀錄整理成能被回顧與驗證的文件。' : 'Next, I am strengthening Linux, networking, operating systems, parallel computing, and security research methods while turning engineering records into reviewable documentation.' %></p>
+      <div class="research-tag-list">
+        <% techTags.forEach(function(tag) { %><span><%= tag %></span><% }) %>
+      </div>
+    </section>
+
+    <section class="about-section-card about-contact-card">
+      <h2><%= isZh ? '聯絡' : 'Contact' %></h2>
+      <p><%= isZh ? '有技術合作、研究交流、演講或專案問題，可以透過 Email 與我聯繫。' : 'For technical collaboration, research exchange, talks, or project questions, contact me by email.' %></p>
+      <div class="about-card-actions">
+        <a class="os-button os-button-primary" href="<%= localizedDetailHref('/contact/') %>"><%= isZh ? '前往聯絡頁' : 'Go to Contact' %></a>
+        <a class="os-button os-button-secondary" href="<%= localHref('systems') %>"><%= isZh ? '查看工程系統' : 'View Systems' %></a>
+        <a class="os-button os-button-secondary" href="<%= localizedDetailHref('/experience/') %>"><%= isZh ? '查看參賽與研習' : 'View Experience' %></a>
+      </div>
+    </section>
+  </div>
+</section>

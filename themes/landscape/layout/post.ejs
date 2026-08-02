@@ -9,63 +9,149 @@
     : String(futureSelfRaw || '').split(/\r?\n/).map(function(line) { return line.trim(); }).filter(Boolean);
   const kanaPostChars = (rawPostText.match(/[\u3040-\u30ff]/g) || []).length;
   const latinPostChars = (rawPostText.match(/[A-Za-z]/g) || []).length;
-  const postLang = kanaPostChars > 12 ? 'ja' : (cjkPostChars > latinPostChars ? 'zh' : 'en');
-  const postCategories = page.categories && page.categories.length
-    ? (page.categories.toArray ? page.categories.toArray() : (page.categories.data || []))
-    : [];
-  const postCategory = postCategories.length ? postCategories[0].name : (postLang === 'zh' ? '筆記' : (postLang === 'ja' ? 'ノート' : 'Notes'));
-  const postLanguageLabel = { en: 'English', zh: '繁體中文', ja: '日本語' }[postLang];
+  const postLang = String(page.site_lang || '').indexOf('zh') === 0 ? 'zh' : (kanaPostChars > 12 ? 'ja' : (cjkPostChars > latinPostChars ? 'zh' : 'en'));
   const postCopy = {
     en: {
-      kicker: 'Field Note',
+      kicker: 'Research Note',
       readTimeSuffix: 'min read',
+      outline: 'Article Outline',
       futureSelf: 'Note to my future self',
-      top: 'Top'
+      top: 'Top',
+      related: 'Related Research and Systems',
+      back: 'Back to Research Notes'
     },
     zh: {
-      kicker: '探索筆記',
+      kicker: '研究筆記',
       readTimeSuffix: '分鐘閱讀',
-      futureSelf: '給未來的自己',
-      top: '回到頂端'
+      outline: '本文大綱',
+      futureSelf: '寫給未來自己的註記',
+      top: '回到頂端',
+      related: '相關研究方向與工程系統',
+      back: '返回研究筆記'
     },
     ja: {
-      kicker: '探索ノート',
-      readTimeSuffix: '分で読めます',
-      futureSelf: '未来の自分へ',
-      top: '上へ'
+      kicker: 'Research Note',
+      readTimeSuffix: 'min read',
+      outline: 'Article Outline',
+      futureSelf: 'Note to my future self',
+      top: 'Top',
+      related: 'Related Research and Systems',
+      back: 'Back to Research Notes'
     }
   }[postLang];
+  const relatedRaw = [].concat(page.research_directions || [], page.researchDirections || [], page.systems || [], page.system_ids || [], page.systemIds || []).filter(Boolean);
+  const backHref = postLang === 'zh' ? '/zh/writing/' : '/writing/';
 %>
 
 <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
 
-<article class="post-content field-note-page os-reading-layout">
-  <header class="post-header field-note-header">
+<article class="post-content field-note-page os-reading-layout article-reading-layout" lang="<%= postLang === 'zh' ? 'zh-Hant' : postLang %>">
+  <header class="post-header field-note-header article-reading-header">
     <div class="post-kicker"><%= postCopy.kicker %></div>
     <h1 class="post-title"><%= page.title %></h1>
 
     <div class="post-meta">
-      <span><small>Published</small><time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY-MM-DD') %></time></span>
-      <span><small>Filed under</small><b><%= postCategory %></b></span>
-      <span><small>Reading time</small><b><%= postMinutes %> <%= postCopy.readTimeSuffix %></b></span>
-      <span><small>Language</small><b><%= postLanguageLabel %></b></span>
+      <time><%= date(page.date, 'YYYY-MM-DD') %></time>
+      <span><%= postMinutes %> <%= postCopy.readTimeSuffix %></span>
     </div>
   </header>
 
-  <div class="post-body">
-    <%- page.content %>
-  </div>
+  <details class="article-mobile-toc" data-article-toc-mobile hidden>
+    <summary><%= postCopy.outline %></summary>
+    <nav aria-label="<%= postCopy.outline %>"><ol data-article-toc-mobile-list></ol></nav>
+  </details>
 
-  <% if (futureSelfLines.length) { %>
-    <section class="future-self-note" aria-labelledby="future-self-title">
-      <h2 id="future-self-title"><%= postCopy.futureSelf %></h2>
-      <% futureSelfLines.forEach(function(line) { %>
-        <p><%= line %></p>
-      <% }) %>
-    </section>
-  <% } %>
+  <div class="article-reading-grid">
+    <aside class="article-toc" data-article-toc hidden>
+      <p><%= postCopy.outline %></p>
+      <nav aria-label="<%= postCopy.outline %>"><ol data-article-toc-list></ol></nav>
+    </aside>
+
+    <div class="article-reading-main">
+      <div class="post-body" data-article-body>
+        <%- page.content %>
+      </div>
+
+      <% if (relatedRaw.length) { %>
+        <section class="article-related" aria-labelledby="article-related-title">
+          <h2 id="article-related-title"><%= postCopy.related %></h2>
+          <ul>
+            <% relatedRaw.forEach(function(item) { %><li><%= item %></li><% }) %>
+          </ul>
+        </section>
+      <% } %>
+
+      <% if (futureSelfLines.length) { %>
+        <section class="future-self-note" aria-labelledby="future-self-title">
+          <h2 id="future-self-title"><%= postCopy.futureSelf %></h2>
+          <% futureSelfLines.forEach(function(line) { %>
+            <p><%= line %></p>
+          <% }) %>
+        </section>
+      <% } %>
+
+      <p class="article-back-link"><a class="os-button" href="<%= url_for(backHref) %>"><%= postCopy.back %></a></p>
+    </div>
+  </div>
 </article>
 
 <button class="back-to-top-button" type="button" data-back-top hidden><%= postCopy.top %></button>
+
+<script>
+  (function() {
+    var body = document.querySelector('[data-article-body]');
+    var desktop = document.querySelector('[data-article-toc]');
+    var desktopList = document.querySelector('[data-article-toc-list]');
+    var mobile = document.querySelector('[data-article-toc-mobile]');
+    var mobileList = document.querySelector('[data-article-toc-mobile-list]');
+    if (!body || !desktop || !desktopList || !mobile || !mobileList) return;
+
+    var used = {};
+    function slugify(text) {
+      var base = String(text || '').trim().toLowerCase()
+        .replace(/<[^>]+>/g, '')
+        .replace(/[^\w\u4e00-\u9fff\u3040-\u30ff-]+/g, '-')
+        .replace(/^-+|-+$/g, '') || 'section';
+      var slug = base;
+      var index = 2;
+      while (used[slug]) {
+        slug = base + '-' + index;
+        index += 1;
+      }
+      used[slug] = true;
+      return slug;
+    }
+
+    var headings = Array.prototype.slice.call(body.querySelectorAll('h2, h3')).filter(function(heading) {
+      return heading.textContent.trim();
+    });
+    var h2Count = headings.filter(function(heading) { return heading.tagName.toLowerCase() === 'h2'; }).length;
+    if (!h2Count) return;
+
+    headings.forEach(function(heading) {
+      if (!heading.id) heading.id = slugify(heading.textContent);
+      var level = heading.tagName.toLowerCase() === 'h3' ? ' article-toc-link--h3' : '';
+      var html = '<li><a class="article-toc-link' + level + '" href="#' + heading.id + '">' + heading.textContent + '</a></li>';
+      desktopList.insertAdjacentHTML('beforeend', html);
+      mobileList.insertAdjacentHTML('beforeend', html);
+    });
+
+    desktop.hidden = false;
+    mobile.hidden = false;
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('.article-toc-link'));
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function(link) {
+            link.classList.toggle('is-active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: 0.01 });
+      headings.forEach(function(heading) { observer.observe(heading); });
+    }
+  })();
+</script>
 
 <%- partial('_partial/os-post-tools') %>

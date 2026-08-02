@@ -1,0 +1,81 @@
+<%
+  const outcomeLabel = function(value) {
+    if (!isZh) return value;
+    const map = {
+      Prototype: '原型',
+      'Working Prototype': '可運作原型',
+      Camp: '營隊／研習',
+      'Technical Report': '技術報告',
+      'Technical Documentation': '技術文件',
+      Project: '專案',
+      'Experiment Logs': '實驗紀錄',
+      'Research and implementation': '研究與實作',
+      Student: '學員',
+      'Research notes': '研究筆記',
+      'Research Notes': '研究筆記',
+      'Full-stack implementation': '全端實作',
+      'Experiment design': '實驗設計',
+      'Healthcare Cybersecurity': '醫療資安',
+      'High Performance Computing': '高效能運算',
+      'Embedded and IoT Security': '嵌入式與 IoT 資安',
+      'Applied Web Security': '應用 Web 資安',
+      Private: '未公開',
+      Public: '公開',
+      'Available on Request': '可依需求提供',
+      'In Progress': '進行中',
+      Planned: '規劃中'
+    };
+    return map[value] || statusLabel(value);
+  };
+  const hasRealLink = function(value) {
+    return typeof value === 'string' && value.trim().length > 0 && value.trim() !== '#';
+  };
+  const metaRow = function(label, value) {
+    if (!value) return '';
+    return '<div><dt>' + label + '</dt><dd>' + value + '</dd></div>';
+  };
+  const outcomeTitle = function(item) {
+    if (!isZh) return item.title;
+    const map = {
+      'SecureCare prototype': 'SecureCare 原型',
+      'HPC learning notes': 'HPC 學習筆記',
+      'ESP32 communication security experiment logs': 'ESP32 通訊資安實驗紀錄',
+      'Home Lab infrastructure record': 'Home Lab 基礎設施紀錄'
+    };
+    return item.titleZh || map[item.title] || item.title;
+  };
+%>
+<section class="research-page outcomes-page" aria-labelledby="<%= lang %>-outcomes-title">
+  <header class="research-page-header">
+    <p class="research-section-kicker"><%= isZh ? '成果紀錄' : 'Outcomes' %></p>
+    <h1 id="<%= lang %>-outcomes-title"><%= isZh ? '成果紀錄' : 'Evidence and Outcomes' %></h1>
+    <p><%= isZh ? '整理可公開驗證的成果與紀錄，包含原型、技術報告、實驗紀錄、教學材料、競賽成果與可公開文件。' : 'A record of public or verifiable outcomes across prototypes, technical reports, experiment logs, teaching material, competition results, and public documentation.' %></p>
+  </header>
+
+  <% if (outcomes.length) { %>
+    <div class="outcome-list">
+      <% outcomes.forEach(function(item) {
+        const project = projectById(item.projectId) || {};
+        const link = hasRealLink(item.link) ? localizedDetailHref(item.link) : '';
+        const title = outcomeTitle(item);
+      %>
+        <article class="outcome-card">
+          <div class="outcome-card__type"><%= outcomeLabel(item.typeZh || item.type) %></div>
+          <div class="outcome-card__body">
+            <h2><% if (link) { %><a href="<%= link %>"><%= title %></a><% } else { %><%= title %><% } %></h2>
+            <dl class="outcome-card__meta">
+              <%- metaRow(isZh ? '日期' : 'Date', item.date) %>
+              <%- metaRow(isZh ? '我的角色' : 'My Role', outcomeLabel(item.roleZh || item.role)) %>
+              <%- metaRow(isZh ? '領域' : 'Field', outcomeLabel(item.fieldZh || item.field)) %>
+              <%- metaRow(isZh ? '關聯系統' : 'Related System', maybeZh(project, 'title') || item.projectId) %>
+              <%- metaRow(isZh ? '驗證狀態' : 'Verification', outcomeLabel(item.verification)) %>
+            </dl>
+            <% if (link) { %><a class="outcome-card__link" href="<%= link %>"><%= isZh ? '查看公開頁面' : 'View Public Page' %></a><% } %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="research-empty-state"><%= isZh ? '目前沒有可顯示的成果紀錄。' : 'No outcomes available yet.' %></p>
+  <% } %>
+</section>

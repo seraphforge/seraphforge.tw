@@ -9,3 +9,11 @@ _multiconfig.yml
 backup_posts/
 backup_source/
 qa-screenshots/
+private-archive/*
+!private-archive/README.md
+!private-archive/languages/
+!private-archive/languages/ja/
+!private-archive/languages/ja/**
+!private-archive/articles/
+!private-archive/articles/taiwan-security-students/
+!private-archive/articles/taiwan-security-students/**

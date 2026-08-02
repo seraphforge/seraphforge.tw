@@ -1,0 +1,992 @@
+{
+  "lastUpdated": "2026-07-31",
+  "identity": {
+    "brand": "Seraph",
+    "subtitle": "Research & Engineering Portfolio",
+    "subtitleZh": "研究與工程作品集",
+    "focusLine": "Security × Software × Embedded × Infrastructure",
+    "summary": "A student research and engineering portfolio centered on security, software systems, embedded devices, communication flows, and Linux infrastructure. The work emphasizes testable prototypes, system records, security considerations, and evidence-based iteration.",
+    "summaryZh": "以資安為核心，整合軟體、嵌入式裝置、通訊與 Linux 基礎設施，將真實問題轉化為可測試、可記錄與可持續改善的系統原型。",
+    "currentStatus": "Student Researcher",
+    "primaryFocus": "Applied Cybersecurity",
+    "currentStage": "Undergraduate Admission Preparation"
+  },
+  "homepageFocus": [
+    {
+      "id": "HF-01",
+      "title": "High Performance Computing",
+      "titleJa": "高性能計算",
+      "titleZh": "高效能運算",
+      "description": "Learning HPC workflows through Linux, MPI, GPU experiments, and scientific computing records, with a focus on making complex environments reproducible and explainable.",
+      "descriptionJa": "Linux、MPI、GPU 実験、科学計算の記録を通じて HPC のワークフローを学び、複雑な環境を再現し説明できる形に整理しています。",
+      "descriptionZh": "透過 Linux、MPI、GPU 實驗與科學計算紀錄學習 HPC 流程，重點放在讓複雜環境可重現、可解釋。",
+      "status": "Active",
+      "statusJa": "Active",
+      "statusZh": "進行中"
+    },
+    {
+      "id": "HF-02",
+      "title": "Cloud Communication",
+      "titleJa": "クラウド通信",
+      "titleZh": "雲端通訊",
+      "description": "Exploring how devices, services, notifications, and remote access can communicate reliably without exposing sensitive data or unnecessary attack surface.",
+      "descriptionJa": "デバイス、サービス、通知、リモートアクセスを、安全で不要な攻撃面を増やさない形でつなぐ方法を探索しています。",
+      "descriptionZh": "探索裝置、服務、通知與遠端存取如何可靠通訊，同時避免暴露敏感資料與不必要攻擊面。",
+      "status": "Exploring",
+      "statusJa": "Exploring",
+      "statusZh": "探索中"
+    },
+    {
+      "id": "HF-03",
+      "title": "Systems Infrastructure",
+      "titleJa": "システム基盤",
+      "titleZh": "系統基礎設施",
+      "description": "Building a personal lab around Linux services, Docker, routing, monitoring, recovery notes, and operational failure records.",
+      "descriptionJa": "Linux サービス、Docker、ルーティング、監視、復旧記録、運用上の失敗記録を中心に個人実験環境を構築しています。",
+      "descriptionZh": "以 Linux 服務、Docker、路由、監控、恢復筆記與操作失敗紀錄建立個人實驗環境。",
+      "status": "Active",
+      "statusJa": "Active",
+      "statusZh": "進行中"
+    },
+    {
+      "id": "HF-04",
+      "title": "Cybersecurity as a Supporting Discipline",
+      "titleJa": "支援領域としてのサイバーセキュリティ",
+      "titleZh": "作為支撐能力的資安",
+      "description": "Using security thinking to support identity, authorization, network boundaries, service exposure, audit records, and system reliability.",
+      "descriptionJa": "認証、認可、ネットワーク境界、サービス公開範囲、監査記録、システム信頼性を支えるためにセキュリティの考え方を使っています。",
+      "descriptionZh": "以資安思維支援身分、授權、網路邊界、服務暴露、稽核紀錄與系統可靠性設計。",
+      "status": "Supporting",
+      "statusJa": "Supporting",
+      "statusZh": "支撐能力"
+    }
+  ],
+  "areas": [
+    {
+      "id": "RA-01",
+      "name": "Healthcare Cybersecurity",
+      "nameZh": "醫療資訊安全",
+      "description": "Healthcare information systems, clinical workflows, identity verification, device trust, and audit records.",
+      "descriptionZh": "醫療資訊系統、臨床流程、身分驗證、裝置可信度與稽核紀錄。",
+      "keywords": ["Healthcare", "Workflow", "Device Trust", "Audit Log"],
+      "status": "Current",
+      "projectIds": ["RC-001", "RC-003"]
+    },
+    {
+      "id": "RA-02",
+      "name": "Infrastructure Security",
+      "nameZh": "基礎設施安全",
+      "description": "Home lab, Linux, Docker, OpenWrt, network topology, monitoring, and defensive operations.",
+      "descriptionZh": "Home Lab、Linux、Docker、OpenWrt、網路架構、服務監控與防禦。",
+      "keywords": ["Linux", "Docker", "OpenWrt", "Monitoring"],
+      "status": "Current",
+      "projectIds": ["RC-002", "RC-004"]
+    },
+    {
+      "id": "RA-03",
+      "name": "Embedded and IoT Security",
+      "nameZh": "嵌入式與 IoT 安全",
+      "description": "ESP32, Raspberry Pi, BLE, MQTT, device reporting, firmware behavior, and communication security.",
+      "descriptionZh": "ESP32、Raspberry Pi、BLE、MQTT、裝置回報、韌體與通訊安全。",
+      "keywords": ["ESP32", "Raspberry Pi", "MQTT", "BLE"],
+      "status": "Exploring",
+      "projectIds": ["RC-001", "RC-005"]
+    },
+    {
+      "id": "RA-04",
+      "name": "Applied Web Security",
+      "nameZh": "應用 Web 安全",
+      "description": "Web attack surfaces, authentication, authorization, secure APIs, and platform design.",
+      "descriptionZh": "Web 攻擊面、身分驗證、權限管理、安全 API 與平台設計。",
+      "keywords": ["FastAPI", "JWT", "RBAC", "REST API"],
+      "status": "Current",
+      "projectIds": ["RC-001", "RC-004"]
+    },
+    {
+      "id": "RA-05",
+      "name": "High Performance Computing",
+      "nameZh": "高效能運算",
+      "description": "Linux, MPI, GPU basics, parallel computing, and scientific simulation workflows.",
+      "descriptionZh": "Linux、MPI、GPU、平行運算與科學模擬的學習與教學轉化。",
+      "keywords": ["Linux", "MPI", "GPU", "Simulation"],
+      "status": "Exploring",
+      "priority": 10,
+      "projectIds": ["RC-006"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "RC-001",
+      "slug": "securecare",
+      "title": "SecureCare",
+      "titleZh": "SecureCare",
+      "homeTitle": "SecureCare Platform",
+      "homeTitleZh": "SecureCare Platform",
+      "summary": "A healthcare cybersecurity prototype focused on identity, device trust, audit logs, and abnormal event reporting.",
+      "summaryZh": "以身分驗證、裝置可信度、稽核紀錄與異常回報為核心的醫療資安原型。",
+      "listingSummary": ["Built with FastAPI, MQTT, SQLite, and ESP32-style device communication for healthcare information and device integration.", "The idea comes from the need to manage clinical records, device events, and account permissions more reliably.", "The current prototype covers backend APIs, device communication, audit records, and basic security flows."],
+      "listingSummaryZh": ["使用 FastAPI、MQTT、SQLite 與 ESP32 建立的醫療資訊與裝置整合系統。", "這個想法來自臨床紀錄、裝置事件與帳號權限需要更可靠的管理。", "目前先完成後端、裝置通訊、稽核紀錄與基本安全流程。"],
+      "researchQuestion": "How can nursing record workload be reduced while preserving identity verification, device trust, auditability, and abnormal event reporting?",
+      "researchQuestionZh": "如何在降低護理紀錄負擔的同時，保留身分驗證、裝置可信度、稽核與異常回報能力？",
+      "problem": "Clinical data and device events need trust boundaries that remain usable under time pressure.",
+      "problemZh": "臨床資料與裝置事件需要可信邊界，但同時必須適應醫療現場的時間壓力。",
+      "approach": "FastAPI, JWT, RBAC, MQTT, HMAC signing, replay protection, and audit log design.",
+      "approachZh": "FastAPI、JWT、RBAC、MQTT、HMAC 簽章、Replay Protection 與 Audit Log 設計。",
+      "status": "Prototype",
+      "year": "2026",
+      "fields": ["Healthcare Cybersecurity", "Embedded and IoT Security", "Applied Web Security"],
+      "technologies": ["FastAPI", "JWT", "RBAC", "MQTT", "HMAC", "Audit Log"],
+      "listingTags": ["FastAPI", "MQTT", "SQLite", "ESP32", "HMAC"],
+      "role": "Research and implementation",
+      "evidence": ["EV-001", "EV-002", "EV-003"],
+      "limitations": "Prototype stage; clinical deployment, user testing, and formal security evaluation are not complete.",
+      "limitationsZh": "目前仍為原型階段，尚未完成臨床部署、使用者測試與正式安全評估。",
+      "nextSteps": "Organize system architecture, document threat assumptions, and separate public evidence from private implementation details.",
+      "nextStepsZh": "整理系統架構、威脅假設，並區分可公開證據與私有實作細節。",
+      "systemId": "SYS-001",
+      "domain": "Healthcare Security / Full-system Prototype",
+      "myRole": "System design, backend implementation, security workflow, and device integration",
+      "teamContext": "Personal prototype and research preparation",
+      "engineeringScope": ["Frontend", "Backend", "Device Communication", "Authentication", "Audit Logging"],
+      "flowNodes": [
+        { "type": "Input", "label": "Nursing / clinical input" },
+        { "type": "Device", "label": "ESP32 or medical device" },
+        { "type": "Communication", "label": "MQTT + HMAC" },
+        { "type": "Backend", "label": "FastAPI backend" },
+        { "type": "Storage", "label": "SQLite / Audit Log" },
+        { "type": "Interface", "label": "React nursing interface" }
+      ],
+      "flowNodesZh": [
+        { "type": "輸入", "label": "護理人員／臨床輸入" },
+        { "type": "裝置", "label": "ESP32 或醫療裝置" },
+        { "type": "通訊", "label": "MQTT + HMAC" },
+        { "type": "後端", "label": "FastAPI 後端" },
+        { "type": "儲存", "label": "SQLite / Audit Log" },
+        { "type": "介面", "label": "React 護理介面" }
+      ],
+      "architecture": {
+        "nodes": [
+          { "type": "Input", "label": "User / clinical input" },
+          { "type": "Device", "label": "ESP32 or device workflow" },
+          { "type": "Communication", "label": "MQTT + HMAC" },
+          { "type": "Backend", "label": "FastAPI backend" },
+          { "type": "Storage", "label": "SQLite / Audit Log" },
+          { "type": "Interface", "label": "React interface" }
+        ],
+        "security": ["JWT", "RBAC", "Replay Protection", "Audit Log", "Device Trust"]
+      },
+      "hardware": ["ESP32 or device workflow"],
+      "firmware": ["Device reporting flow being organized"],
+      "software": ["FastAPI", "React", "SQLite"],
+      "communication": ["MQTT", "HMAC-signed messages"],
+      "securityScope": ["JWT", "RBAC", "Replay Protection", "Audit Log", "Device Trust"],
+      "keyDecisions": ["Separate user identity from device trust", "Keep auditability visible in the prototype"],
+      "challenges": ["Clinical workflow assumptions need careful validation", "Private implementation details must be sanitized before public release"],
+      "testing": ["API behavior and device flow tests are being organized"],
+      "failureCases": ["Wrong permission", "Replay attempt", "Device offline", "Invalid message signature"],
+      "lessons": ["Security controls must fit time-constrained workflows"],
+      "contextZh": "此系統以醫療紀錄與裝置事件流程作為原型情境，用來整理身分驗證、權限控制、裝置信任、稽核紀錄與異常回報之間的關係；目前仍屬個人研究準備與工程原型，不代表正式臨床部署。",
+      "myRoleZh": "系統架構規劃、後端實作、安全流程設計、裝置通訊整合與文件整理",
+      "engineeringScopeZh": ["前端介面", "後端 API", "裝置通訊", "身分驗證", "權限控制", "稽核紀錄", "異常事件回報"],
+      "architectureZh": {
+        "nodes": [
+          { "type": "輸入", "label": "使用者／臨床輸入" },
+          { "type": "裝置", "label": "ESP32 或裝置回報流程" },
+          { "type": "通訊", "label": "MQTT + HMAC 簽章" },
+          { "type": "後端", "label": "FastAPI 後端" },
+          { "type": "儲存", "label": "SQLite / 稽核紀錄" },
+          { "type": "介面", "label": "React 介面" }
+        ],
+        "security": ["JWT", "RBAC", "重送防護", "稽核紀錄", "裝置信任"]
+      },
+      "trustBoundariesZh": [
+        { "name": "使用者身分區域", "purpose": "處理登入、身分驗證與使用者操作脈絡。", "components": ["使用者帳號", "JWT", "角色資訊"], "securityConsideration": "身分驗證與授權不可混在一起，必須分開檢查。" },
+        { "name": "後端 API 區域", "purpose": "集中處理資料驗證、權限控制與稽核紀錄。", "components": ["FastAPI", "RBAC", "REST API"], "securityConsideration": "API 必須避免未授權存取與不完整的輸入驗證。" },
+        { "name": "裝置通訊區域", "purpose": "接收裝置事件與狀態回報。", "components": ["ESP32", "MQTT", "HMAC"], "securityConsideration": "裝置訊息需要簽章、時間或序號假設，避免簡單重送。" },
+        { "name": "稽核與儲存區域", "purpose": "保留可追蹤的操作與異常紀錄。", "components": ["SQLite", "Audit Log"], "securityConsideration": "稽核紀錄必須避免被任意修改，且不能公開敏感內容。" }
+      ],
+      "systemLayersZh": [
+        { "name": "前端介面層", "state": "原型", "items": ["React 介面", "操作流程", "狀態顯示"] },
+        { "name": "後端服務層", "state": "原型", "items": ["FastAPI", "REST API", "SQLite"] },
+        { "name": "身分與權限層", "state": "原型", "items": ["JWT", "RBAC", "授權檢查"] },
+        { "name": "裝置通訊層", "state": "整理中", "items": ["MQTT", "HMAC 簽章", "裝置狀態回報"] },
+        { "name": "稽核與證據層", "state": "整理中", "items": ["Audit Log", "異常事件紀錄", "測試證據"] }
+      ],
+      "securityConsiderationsZh": [
+        { "name": "身分驗證", "purpose": "確認使用者身分並建立可追蹤的操作脈絡。", "currentApproach": "使用 JWT 作為原型階段的身分驗證機制。", "state": "原型", "limitation": "尚未完成正式臨床使用情境的身分管理驗證。" },
+        { "name": "授權／權限控制", "purpose": "限制不同角色可執行的操作。", "currentApproach": "以 RBAC 概念整理 API 權限。", "state": "原型", "limitation": "角色模型仍需要與真實流程比對。" },
+        { "name": "裝置信任", "purpose": "降低偽造裝置訊息或不可信回報的風險。", "currentApproach": "使用 HMAC 簽章與重送防護假設整理裝置訊息。", "state": "整理中", "limitation": "尚未完成正式韌體與金鑰管理設計。" },
+        { "name": "稽核紀錄", "purpose": "保留可追蹤的操作、異常與系統事件。", "currentApproach": "在原型中整理 Audit Log 欄位與事件流程。", "state": "原型", "limitation": "尚未完成防竄改與長期保存機制。" }
+      ],
+      "failureCaseDetailsZh": [
+        { "failure": "錯誤權限", "context": "使用者嘗試執行不符合角色權限的操作。", "investigation": "檢查 API 權限檢查與 RBAC 規則。", "response": "將權限失敗納入測試與稽核紀錄。", "currentVerification": "部分完成", "lesson": "權限錯誤應被明確拒絕並留下可追蹤紀錄。" },
+        { "failure": "訊息重送", "context": "裝置或攻擊者重送先前的有效訊息。", "investigation": "檢查簽章、時間或序號假設。", "response": "將重送防護列為裝置通訊設計重點。", "currentVerification": "整理中", "lesson": "簽章只能證明來源假設，仍需處理重送情境。" },
+        { "failure": "裝置離線", "context": "裝置中斷連線後無法即時回報狀態。", "investigation": "檢查 MQTT 流程與裝置狀態回報。", "response": "將離線狀態列入後續測試。", "currentVerification": "需要更多測試", "lesson": "裝置可信度包含連線狀態與失敗處理，不只是通訊成功。" },
+        { "failure": "無效訊息簽章", "context": "後端收到簽章不符合預期的裝置訊息。", "investigation": "檢查 HMAC 驗證與訊息格式。", "response": "拒絕訊息並保留異常紀錄。", "currentVerification": "部分完成", "lesson": "安全控制必須同時考慮拒絕策略與可觀察性。" }
+      ],
+      "validationChecksZh": [
+        { "test": "API 行為檢查", "purpose": "確認後端在正常與異常請求下的回應。", "currentState": "整理中", "evidenceVisibility": "Private" },
+        { "test": "權限控制檢查", "purpose": "確認角色不應執行的操作會被拒絕。", "currentState": "部分完成", "evidenceVisibility": "Available on Request" },
+        { "test": "裝置訊息驗證", "purpose": "確認裝置訊息格式、簽章與重送情境。", "currentState": "整理中", "evidenceVisibility": "Private" },
+        { "test": "稽核紀錄檢查", "purpose": "確認關鍵操作與異常事件會被記錄。", "currentState": "原型", "evidenceVisibility": "Private" }
+      ],
+      "evidenceRegistryZh": [
+        { "type": "原型", "title": "SecureCare API 與裝置流程原型", "status": "Private", "visibility": "Private", "relatedLayer": "後端／裝置通訊", "description": "原型證據存在，但公開前需要移除內部細節。" },
+        { "type": "技術文件", "title": "SecureCare 架構與安全假設", "status": "In Progress", "visibility": "Private", "relatedLayer": "架構／安全控制", "description": "正在整理架構、威脅假設、限制與下一步。" },
+        { "type": "訪談／觀察紀錄", "title": "醫療流程觀察筆記", "status": "Private", "visibility": "Private", "relatedLayer": "問題定義", "description": "為避免公開個人或敏感脈絡，相關筆記不公開。" }
+      ],
+      "engineeringDecisionsZh": [
+        { "decision": "分離使用者身分與裝置信任", "reason": "使用者登入成功不代表裝置訊息可信。", "tradeoff": "需要額外設計裝置簽章、金鑰與重送防護。" },
+        { "decision": "保留稽核紀錄", "reason": "醫療與安全情境需要能追蹤誰在何時做了什麼。", "tradeoff": "必須控制紀錄內容，避免保存過多敏感資料。" },
+        { "decision": "先做可運作原型", "reason": "原型能用來驗證流程與安全假設。", "tradeoff": "不能把原型描述成正式產品或臨床部署。" }
+      ],
+      "limitationsDetailedZh": ["目前是工程原型，不是正式醫療系統。", "尚未完成臨床部署、使用者測試與正式資安評估。", "裝置金鑰管理與韌體安全仍需深化。", "稽核紀錄尚未完成防竄改與長期保存設計。", "公開文件需要移除內部實作與敏感脈絡。"],
+      "lessonsDetailedZh": ["安全控制必須符合時間壓力下的使用流程。", "身分驗證、授權、裝置信任與稽核紀錄需要分層設計。", "原型可以驗證假設，但不能取代正式測試。", "公開成果需要清楚區分證據、限制與未完成項目。"],
+      "subQuestionsZh": ["如何在不增加過多操作負擔下保留身分驗證與稽核紀錄？", "如何判斷裝置回報是否可信？", "如何處理重送訊息、錯誤權限與裝置離線？", "哪些資料可以公開作為證據，哪些必須保持 private？"],
+      "futureResearchZh": ["整理威脅模型", "補齊測試證據", "設計更清楚的裝置信任流程", "區分公開文件與 private implementation details", "探索醫療資訊安全與臨床流程的交界"],
+      "nextEngineeringStepZh": "整理可公開的架構文件、威脅假設與測試證據，並分離 private implementation details。",
+      "currentState": "Working Prototype",
+      "nextEngineeringStep": "Publish sanitized architecture notes and organize test evidence",
+      "featured": true,
+      "relatedNotes": ["護理師讓我重新思考醫療資安"]
+    },
+    {
+      "id": "RC-002",
+      "slug": "home-lab-infrastructure",
+      "title": "Home Lab Infrastructure",
+      "titleZh": "Home Lab Infrastructure",
+      "homeTitle": "Home Lab Infrastructure",
+      "homeTitleZh": "Home Lab Infrastructure",
+      "summary": "A personal infrastructure environment for repeatable deployment, monitoring, failure recovery, and security experiments.",
+      "summaryZh": "用於反覆部署、監控、故障復原與安全實驗的個人基礎設施環境。",
+      "listingSummary": ["Built with Raspberry Pi, Linux, Docker, OpenWrt, and MQTT as a personal lab environment.", "It is used to test networking, services, remote access, device communication, and security design.", "Topology notes, service records, and troubleshooting workflows are still being organized."],
+      "listingSummaryZh": ["使用 Raspberry Pi、Linux、Docker、OpenWrt 與 MQTT 建立的個人實驗環境。", "主要用來測試網路、服務、遠端連線、裝置通訊與資安設計。", "目前持續整理拓樸、服務紀錄與故障排查流程。"],
+      "researchQuestion": "What learning environment is needed to repeatedly test networking, system, and security assumptions?",
+      "researchQuestionZh": "需要什麼樣的學習環境，才能反覆驗證網路、系統與安全假設？",
+      "problem": "Reading notes alone cannot expose operational failure modes in networks and services.",
+      "problemZh": "只有閱讀筆記無法看見網路與服務在實際運作中的失效模式。",
+      "approach": "Linux services, Docker isolation, OpenWrt routing, monitoring habits, and written experiment logs.",
+      "approachZh": "Linux 服務、Docker 隔離、OpenWrt 路由、監控習慣與實驗紀錄。",
+      "status": "Ongoing",
+      "year": "2026",
+      "fields": ["Infrastructure Security"],
+      "technologies": ["Linux", "Docker", "OpenWrt", "Networking", "Monitoring"],
+      "listingTags": ["Raspberry Pi", "Linux", "Docker", "OpenWrt", "MQTT"],
+      "role": "Infrastructure builder",
+      "evidence": ["EV-004"],
+      "limitations": "Topology and internal service details are private until sanitized.",
+      "limitationsZh": "拓樸與內部服務細節在整理與去識別前不公開。",
+      "nextSteps": "Publish a sanitized architecture summary and experiment index.",
+      "nextStepsZh": "公開去識別後的架構摘要與實驗索引。",
+      "systemId": "SYS-002",
+      "domain": "Infrastructure / Networking / Security Lab",
+      "systemSubtitle": "Personal Infrastructure and Security Lab",
+      "systemSubtitleZh": "個人基礎設施與資安實驗環境",
+      "systemPositioning": "A personal infrastructure and security lab for experimenting with Linux services, network architecture, device communication, remote access, service recovery and security boundaries.",
+      "systemPositioningZh": "用於 Linux 服務、網路架構、裝置通訊、遠端管理、服務恢復與安全邊界實驗的個人基礎設施環境。",
+      "projectType": "Personal Engineering Lab",
+      "myRole": "Architecture planning, Linux configuration, network configuration, service deployment, device integration, remote access exploration, monitoring, troubleshooting, and documentation",
+      "teamContext": "Personal lab environment",
+      "engineeringScope": ["Device", "Network", "Infrastructure", "Services", "Communication", "Security", "Monitoring"],
+      "flowNodes": [
+        { "type": "User", "label": "User / Administrator" },
+        { "type": "Access", "label": "SSH / WireGuard / Tailscale" },
+        { "type": "Router", "label": "OpenWrt / ASUS Router" },
+        { "type": "Host", "label": "Raspberry Pi" },
+        { "type": "Services", "label": "Docker Services" },
+        { "type": "Operations", "label": "MQTT / Node-RED / Monitoring" }
+      ],
+      "flowNodesZh": [
+        { "type": "使用者", "label": "使用者／管理者" },
+        { "type": "連線", "label": "SSH / WireGuard / Tailscale" },
+        { "type": "路由", "label": "OpenWrt / ASUS Router" },
+        { "type": "主機", "label": "Raspberry Pi" },
+        { "type": "服務", "label": "Docker Services" },
+        { "type": "維運", "label": "MQTT / Node-RED / Monitoring" }
+      ],
+      "architecture": {
+        "nodes": [
+          { "type": "Client", "label": "Client / Administrator", "state": "Applied" },
+          { "type": "Remote Access", "label": "SSH / XRDP / Tailscale or WireGuard exploration", "state": "Exploring" },
+          { "type": "Router", "label": "OpenWrt / ASUS Router / Xiaomi Router environment", "state": "Applied" },
+          { "type": "Linux Host", "label": "Raspberry Pi", "state": "Applied" },
+          { "type": "Services", "label": "Docker services", "state": "Applied" },
+          { "type": "Automation", "label": "MQTT Broker / Node-RED", "state": "Experimenting" },
+          { "type": "Device", "label": "ESP32 / M5StickC / lab devices", "state": "Experimenting" }
+        ],
+        "security": ["Private remote access exploration", "Network boundary review", "Credential separation", "Non-sensitive notifications only"]
+      },
+      "hardware": ["Raspberry Pi 4", "Raspberry Pi Zero 2", "Existing routers", "ESP32 / M5StickC lab devices"],
+      "software": ["Linux", "Docker", "MQTT Broker", "Node-RED", "SSH", "XRDP"],
+      "communication": ["MQTT", "Router management", "Service integration", "Remote access exploration"],
+      "securityScope": ["Network segmentation exploration", "Service exposure control", "Remote access hardening", "Credential separation", "Sensitive data boundary", "Recovery documentation"],
+      "mainTechnologies": [
+        { "name": "Raspberry Pi", "state": "Applied" },
+        { "name": "Linux", "state": "Applied" },
+        { "name": "Docker", "state": "Applied" },
+        { "name": "MQTT", "state": "Experimenting" },
+        { "name": "Node-RED", "state": "Experimenting" },
+        { "name": "OpenWrt", "state": "Applied" },
+        { "name": "Tailscale", "state": "Exploring" },
+        { "name": "WireGuard", "state": "Exploring" },
+        { "name": "SSH", "state": "Applied" },
+        { "name": "XRDP", "state": "Applied" },
+        { "name": "Router configuration", "state": "Applied" }
+      ],
+      "problemDefinition": "A repeatable environment is needed to understand Linux host and service deployment, IoT device reporting, MQTT message flow, router and subnet configuration, remote access, fixed IP behavior, connection failures after network changes, service interruption and recovery, device offline states, and separation between sensitive data and non-sensitive notifications.",
+      "context": "Built with Raspberry Pi and existing routers for personal learning and project validation. It remains logically and operationally separated from healthcare prototypes such as SecureCare while network architecture, monitoring and recovery practices are still being organized.",
+      "goals": ["Build a stable Linux experiment host", "Deploy Docker services", "Set up MQTT Broker", "Integrate Node-RED", "Receive ESP32 or other device messages", "Understand OpenWrt network configuration", "Set fixed IP and service addressing", "Explore safer remote access", "Record failures and recovery steps", "Plan non-sensitive Telegram notifications"],
+      "nonGoals": ["Not an enterprise infrastructure environment", "No 24/7 availability commitment", "No formal healthcare data storage", "No public exposure of all internal services", "Telegram is not used as a sensitive data transport", "No claim of complete zero-trust architecture", "No claim of enterprise-grade redundancy", "No claim of formal security audit completion"],
+      "trustBoundaries": [
+        { "name": "External Client Zone", "purpose": "Remote administration.", "components": ["Administrator client", "Remote access client"], "securityConsideration": "Avoid exposing unnecessary services directly to the public network." },
+        { "name": "Router / Gateway Zone", "purpose": "Routing, wireless access and network boundary control.", "components": ["OpenWrt", "ASUS router", "Xiaomi router environment"], "securityConsideration": "Configuration errors can interrupt management access or expose services." },
+        { "name": "Internal Network Zone", "purpose": "Separate lab services and devices from unrelated networks where possible.", "components": ["LAN configuration", "Fixed IP planning", "Wi-Fi configuration"], "securityConsideration": "Topology changes need documentation and recovery paths." },
+        { "name": "Linux Host Zone", "purpose": "Run persistent services for experiments.", "components": ["Raspberry Pi", "Linux"], "securityConsideration": "Host access, service accounts and updates need continued management." },
+        { "name": "Container / Service Zone", "purpose": "Isolate services and make deployment more repeatable.", "components": ["Docker", "MQTT Broker", "Node-RED"], "securityConsideration": "Container networking and credentials must be documented." },
+        { "name": "Device Zone", "purpose": "Receive telemetry and status from lab devices.", "components": ["ESP32", "M5StickC", "Other lab devices"], "securityConsideration": "Offline, reconnect and message validation behavior need further testing." }
+      ],
+      "systemLayers": [
+        { "name": "Hardware Layer", "state": "Applied", "items": ["Raspberry Pi 4", "Raspberry Pi Zero 2", "Existing routers", "ESP32 / M5StickC lab devices"] },
+        { "name": "Operating System Layer", "state": "Applied", "items": ["Linux", "Ubuntu where applicable", "Raspberry Pi environment"] },
+        { "name": "Network Layer", "state": "Ongoing", "items": ["OpenWrt", "Router topology", "Fixed IP", "LAN configuration", "Wi-Fi configuration", "Network segmentation exploration"] },
+        { "name": "Service Layer", "state": "Applied", "items": ["Docker", "MQTT Broker", "Node-RED", "Remote desktop", "SSH"] },
+        { "name": "Device Communication Layer", "state": "Experimenting", "items": ["MQTT", "Device status", "Sensor or telemetry reports", "Offline state", "Reconnect planning"] },
+        { "name": "Remote Access Layer", "state": "Exploring", "items": ["SSH", "XRDP", "Tailscale observed or used", "WireGuard exploration", "Termius client where appropriate"] },
+        { "name": "Monitoring and Notification Layer", "state": "Planning", "items": ["Node-RED flows", "Device heartbeat or availability", "Telegram Bot planning", "Non-sensitive reports only"] }
+      ],
+      "securityConsiderations": [
+        { "name": "Network Segmentation", "purpose": "Separate lab devices, infrastructure services and unrelated networks where possible.", "currentApproach": "Use router and LAN configuration experiments while documenting topology.", "state": "Exploring", "limitation": "Complete segmentation verification is not finished." },
+        { "name": "Service Exposure", "purpose": "Avoid exposing internal dashboards or brokers unnecessarily.", "currentApproach": "Prefer local or private access to internal services.", "state": "Ongoing", "limitation": "Exposure review must be repeated after topology changes." },
+        { "name": "Remote Access", "purpose": "Prefer authenticated private access over direct public exposure.", "currentApproach": "Compare SSH, XRDP, Tailscale and WireGuard-style approaches.", "state": "Exploring", "limitation": "A final remote access pattern is still being evaluated." },
+        { "name": "Credentials", "purpose": "Separate passwords, keys and service credentials.", "currentApproach": "Keep credentials out of public documentation.", "state": "Ongoing", "limitation": "Secret management practice still needs deeper organization." },
+        { "name": "Sensitive Data Handling", "purpose": "Keep sensitive information inside the local environment.", "currentApproach": "Use the lab for learning and non-sensitive system state only.", "state": "Applied", "limitation": "No formal sensitive-data workflow is claimed." },
+        { "name": "Notification Boundary", "purpose": "Only send non-sensitive status summaries through Telegram.", "currentApproach": "Telegram notification is planned for minimized status summaries.", "state": "Planning", "limitation": "Message content policy and implementation are not complete." },
+        { "name": "Router Security", "purpose": "Review outdated firmware, management interfaces and unnecessary services.", "currentApproach": "Document router environment and configuration risk during experiments.", "state": "Ongoing", "limitation": "Some older router firmware may stop receiving security updates." },
+        { "name": "Logging", "purpose": "Retain enough records to understand failures and service behavior.", "currentApproach": "Use experiment notes and service status checks.", "state": "Ongoing", "limitation": "Centralized logging is future work." },
+        { "name": "Recovery", "purpose": "Document how to restore access after router or service configuration errors.", "currentApproach": "Record recovery steps after configuration failures.", "state": "Applied", "limitation": "Recovery procedures still need a cleaner public index." }
+      ],
+      "failureCaseDetails": [
+        { "failure": "Remote connection unavailable outside the home network", "context": "External environments cannot directly reach the Home Lab.", "investigation": "Checked network location, remote access method and routing assumptions.", "response": "Exploring private remote access through Tailscale or WireGuard-style approaches.", "currentVerification": "In Progress", "lesson": "Remote access must be designed together with recovery and exposure control." },
+        { "failure": "OpenWrt GUI became unreachable", "context": "Router settings changes made the management interface unavailable.", "investigation": "Checked network interfaces, IP and LAN configuration.", "response": "Recovered a manageable state before continuing configuration changes.", "currentVerification": "Partial", "lesson": "Keep a recovery path before changing network configuration." },
+        { "failure": "SSH host key changed", "context": "After reinstalling or replacing a device, SSH reported a host key mismatch.", "investigation": "Confirmed the device identity before modifying local SSH records.", "response": "Removed the old known_hosts record and reconnected after verification.", "currentVerification": "Applied", "lesson": "Do not ignore host key warnings before confirming host identity." },
+        { "failure": "Node-RED initial deployment issue", "context": "Initial flows.json or service deployment did not take effect as expected.", "investigation": "Checked service status, flow file placement and redeployment method.", "response": "Adjusted deployment process and recorded the issue.", "currentVerification": "Partial", "lesson": "Automation flows need deployment notes, not only visual flow design." },
+        { "failure": "Device offline or unable to reconnect", "context": "Devices may stop reporting after network changes, service interruption or restart.", "investigation": "Reviewing reconnect, buffering and retry behavior.", "response": "Planning reconnect and possible message buffering mechanisms.", "currentVerification": "Needs Further Testing", "lesson": "A successful device connection is not the same as reliable device behavior." },
+        { "failure": "Router configuration interrupted network access", "context": "OpenWrt, ASUS or Xiaomi router topology changes can interrupt access.", "investigation": "Checked topology, management IP and recovery steps.", "response": "Record topology and restore steps before further changes.", "currentVerification": "Partial", "lesson": "Router, host, container and device issues must be debugged layer by layer." }
+      ],
+      "validationChecks": [
+        { "test": "SSH connectivity", "purpose": "Confirm host administration path.", "currentState": "Applied", "evidenceVisibility": "Private / Available on Request" },
+        { "test": "Local service access", "purpose": "Confirm services are reachable inside the lab network.", "currentState": "Ongoing", "evidenceVisibility": "Private" },
+        { "test": "Router management access", "purpose": "Confirm management interface remains recoverable.", "currentState": "Partial", "evidenceVisibility": "Private" },
+        { "test": "Docker container status", "purpose": "Confirm service runtime status.", "currentState": "Applied", "evidenceVisibility": "Available on Request" },
+        { "test": "MQTT broker availability", "purpose": "Confirm message broker can receive device data.", "currentState": "Experimenting", "evidenceVisibility": "Private" },
+        { "test": "Node-RED availability", "purpose": "Confirm automation flow service is available.", "currentState": "Experimenting", "evidenceVisibility": "Private" },
+        { "test": "Device publishes message", "purpose": "Confirm lab devices can report status or telemetry.", "currentState": "Experimenting", "evidenceVisibility": "Private" },
+        { "test": "External private access", "purpose": "Evaluate remote administration without direct public exposure.", "currentState": "Exploring", "evidenceVisibility": "Private" },
+        { "test": "Service restart", "purpose": "Validate recovery after service interruption.", "currentState": "Ongoing", "evidenceVisibility": "Available on Request" },
+        { "test": "Sensitive notification boundary", "purpose": "Keep Telegram messages limited to non-sensitive summaries.", "currentState": "Planning", "evidenceVisibility": "Not Public" }
+      ],
+      "evidenceRegistry": [
+        { "type": "Architecture", "title": "Network topology notes", "status": "In Progress", "visibility": "Private", "relatedLayer": "Network Layer", "description": "Sanitized topology notes are being organized without internal addresses." },
+        { "type": "Architecture", "title": "Router relationship documentation", "status": "In Progress", "visibility": "Private", "relatedLayer": "Router / Gateway Zone", "description": "Documents how existing routers are used in the lab environment." },
+        { "type": "Configuration", "title": "Docker service configuration", "status": "Available on Request", "visibility": "Private", "relatedLayer": "Service Layer", "description": "Container setup notes can be shared after removing sensitive paths and secrets." },
+        { "type": "Configuration", "title": "MQTT and Node-RED configuration notes", "status": "In Progress", "visibility": "Private", "relatedLayer": "Communication and Automation", "description": "Tracks broker and automation setup without exposing credentials." },
+        { "type": "Operation", "title": "Service status output", "status": "Available on Request", "visibility": "Private", "relatedLayer": "Service Layer", "description": "Used as operational evidence for service checks." },
+        { "type": "Operation", "title": "Device message reports", "status": "In Progress", "visibility": "Private", "relatedLayer": "Device Communication Layer", "description": "Records whether lab devices publish and recover after interruption." },
+        { "type": "Troubleshooting", "title": "Router recovery notes", "status": "In Progress", "visibility": "Private", "relatedLayer": "Router / Gateway Zone", "description": "Records recovery from router configuration mistakes." },
+        { "type": "Troubleshooting", "title": "SSH host key fix", "status": "Documented", "visibility": "Available on Request", "relatedLayer": "Remote Access Layer", "description": "Records the correct response to host key mismatch after confirming device identity." },
+        { "type": "Documentation", "title": "Security boundaries and recovery procedures", "status": "In Progress", "visibility": "Private", "relatedLayer": "Security / Recovery", "description": "Organizes boundaries, recovery steps and non-sensitive notification planning." }
+      ],
+      "engineeringDecisions": [
+        { "decision": "Raspberry Pi", "reason": "Low-cost, low-power Linux platform suitable for persistent experiments.", "tradeoff": "Limited resources compared with a full server." },
+        { "decision": "Docker", "reason": "Separate services and simplify repeatable deployment.", "tradeoff": "Adds container networking and storage complexity." },
+        { "decision": "MQTT", "reason": "Lightweight communication for device telemetry and status.", "tradeoff": "Requires authentication, access control and reconnect handling." },
+        { "decision": "Node-RED", "reason": "Quickly connect device messages, automation and notifications.", "tradeoff": "Flows need documentation and controlled credential handling." },
+        { "decision": "OpenWrt", "reason": "Provides visibility and control over lab network configuration.", "tradeoff": "Incorrect configuration can interrupt network access." },
+        { "decision": "Private Remote Access", "reason": "Reduce direct public exposure of internal services.", "tradeoff": "Requires additional identity, routing and recovery planning." },
+        { "decision": "Telegram Notification", "reason": "Deliver non-sensitive system summaries to a phone.", "tradeoff": "Sensitive data must remain local and message content must be minimized." }
+      ],
+      "limitationsDetailed": ["Personal learning lab environment only", "No enterprise-grade redundancy", "No continuous availability commitment", "Monitoring and alerting are still being built", "Network topology may still change", "Remote access approach is still being compared or tested", "Some older router firmware may stop receiving security updates", "Key and credential management still needs deeper work", "Complete network segmentation verification is not finished", "No formal vulnerability scanning or penetration test is complete", "Device offline buffering is not fully implemented", "Telegram notification remains planned or early-stage", "No formal medical or sensitive data is processed"],
+      "lessonsDetailed": ["Network changes need a recovery path before modification", "Fixed IP, service naming and topology documentation reduce debugging cost", "A successful device connection is not the same as service reliability", "Remote access must consider both security and recoverability", "Router, host, container and device issues need layered troubleshooting", "Sensitive data and notification summaries must be separated", "The value of a Home Lab is not only running services, but recording failures and repairs", "Automation flows also need permission and credential management"],
+      "researchPerspective": {
+        "question": "How can a low-cost personal environment provide a repeatable, observable, recoverable and basically bounded platform for device and service experiments?",
+        "subQuestions": ["How can internal services be managed safely from outside?", "How can router configuration mistakes avoid causing long disconnection?", "How can devices reconnect or resend data after interruption?", "How can sensitive data be separated from status summaries that leave the local environment?", "How can service and device health be recorded?", "How can limited hardware support a repeatable teaching environment?"],
+        "futureWork": ["Telegram Bot status reporting", "Device reconnect and message buffering", "Service health monitoring", "Network segmentation", "Configuration backup", "Recovery documentation", "Centralized logging", "Secret management", "Safer remote access", "High school infrastructure learning environment"]
+      },
+      "problemDefinitionZh": "需要建立一個可重複實驗的環境，用來理解 Linux 主機與服務部署、IoT 裝置回報、MQTT 訊息流程、路由器與子網路設定、遠端存取、固定 IP、網路切換後的連線問題、服務中斷與恢復、裝置離線，以及敏感資料與非敏感通知的分離。",
+      "contextZh": "此環境使用 Raspberry Pi 與既有路由器建立，主要用於個人學習與專案驗證。它與 SecureCare 等醫療原型保持邏輯與環境分離，網路架構、服務監控與復原方式仍在逐步整理。",
+      "myRoleZh": "架構規劃、Linux 設定、網路設定、服務部署、裝置整合、遠端存取探索、監控、故障排除與文件整理",
+      "engineeringScopeZh": ["裝置", "網路", "基礎設施", "服務", "通訊", "安全", "監控"],
+      "architectureZh": {
+        "nodes": [
+          { "type": "用戶端", "label": "Client / Administrator", "state": "已應用" },
+          { "type": "遠端存取", "label": "SSH / XRDP / Tailscale 或 WireGuard 探索", "state": "探索中" },
+          { "type": "路由器", "label": "OpenWrt / ASUS Router / Xiaomi Router 環境", "state": "已應用" },
+          { "type": "Linux 主機", "label": "Raspberry Pi", "state": "已應用" },
+          { "type": "服務", "label": "Docker services", "state": "已應用" },
+          { "type": "自動化", "label": "MQTT Broker / Node-RED", "state": "實驗中" },
+          { "type": "裝置", "label": "ESP32 / M5StickC / lab devices", "state": "實驗中" }
+        ],
+        "security": ["Private remote access exploration", "網路邊界檢視", "憑證分離", "只傳送非敏感通知"]
+      },
+      "goalsZh": ["建立穩定的 Linux 實驗主機", "部署 Docker services", "建立 MQTT Broker", "整合 Node-RED", "接收 ESP32 或其他裝置訊息", "理解 OpenWrt 網路設定", "建立固定 IP 與服務定位", "探索較安全的遠端存取", "記錄故障與修復流程", "規劃非敏感 Telegram 通知"],
+      "nonGoalsZh": ["不作為企業級基礎設施", "不承諾 24/7 可用性", "不存放正式醫療資料", "不公開暴露所有內部服務", "不將 Telegram 作為敏感資料傳輸管道", "不宣稱完成完整零信任架構", "不宣稱企業級備援", "不宣稱已完成正式資安稽核"],
+      "trustBoundariesZh": [
+        { "name": "外部用戶端區域", "purpose": "遠端管理與維護。", "components": ["管理者用戶端", "遠端存取工具"], "securityConsideration": "避免將不必要的服務直接暴露到公開網路。" },
+        { "name": "路由器／閘道區域", "purpose": "處理路由、無線網路與網路邊界控制。", "components": ["OpenWrt", "ASUS router", "Xiaomi router environment"], "securityConsideration": "設定錯誤可能造成管理介面失聯或服務暴露。" },
+        { "name": "內部網路區域", "purpose": "在可行範圍內分離實驗服務、裝置與無關網路。", "components": ["LAN 設定", "固定 IP 規劃", "Wi-Fi 設定"], "securityConsideration": "拓撲變更需要文件與復原路徑。" },
+        { "name": "Linux 主機區域", "purpose": "執行長時間運作的實驗服務。", "components": ["Raspberry Pi", "Linux"], "securityConsideration": "主機存取、服務帳號與更新需要持續管理。" },
+        { "name": "容器／服務區域", "purpose": "隔離服務並提高部署可重複性。", "components": ["Docker", "MQTT Broker", "Node-RED"], "securityConsideration": "容器網路與服務憑證必須被文件化。" },
+        { "name": "裝置區域", "purpose": "接收實驗裝置的遙測與狀態回報。", "components": ["ESP32", "M5StickC", "其他實驗裝置"], "securityConsideration": "離線、重連與訊息驗證行為仍需要更多測試。" }
+      ],
+      "systemLayersZh": [
+        { "name": "硬體層", "state": "已應用", "items": ["Raspberry Pi 4", "Raspberry Pi Zero 2", "既有路由器", "ESP32 / M5StickC 實驗裝置"] },
+        { "name": "作業系統層", "state": "已應用", "items": ["Linux", "適用情境下的 Ubuntu", "Raspberry Pi environment"] },
+        { "name": "網路層", "state": "進行中", "items": ["OpenWrt", "Router topology", "固定 IP", "LAN 設定", "Wi-Fi 設定", "網路分區探索"] },
+        { "name": "服務層", "state": "已應用", "items": ["Docker", "MQTT Broker", "Node-RED", "Remote desktop", "SSH"] },
+        { "name": "裝置通訊層", "state": "實驗中", "items": ["MQTT", "Device status", "Sensor or telemetry reports", "Offline state", "Reconnect planning"] },
+        { "name": "遠端存取層", "state": "探索中", "items": ["SSH", "XRDP", "Tailscale observed or used", "WireGuard exploration", "適用情境下的 Termius client"] },
+        { "name": "監控與通知層", "state": "規劃中", "items": ["Node-RED flows", "Device heartbeat or availability", "Telegram Bot planning", "只傳送非敏感摘要"] }
+      ],
+      "securityConsiderationsZh": [
+        { "name": "網路分區", "purpose": "在可行範圍內分離實驗裝置、基礎設施服務與無關網路。", "currentApproach": "透過路由器與 LAN 設定實驗，同時記錄拓撲。", "state": "探索中", "limitation": "完整分區驗證尚未完成。" },
+        { "name": "服務暴露", "purpose": "避免不必要地暴露內部 dashboard 或 broker。", "currentApproach": "優先使用本地或 private access 存取內部服務。", "state": "進行中", "limitation": "拓撲變更後需要重新檢查暴露面。" },
+        { "name": "遠端存取", "purpose": "優先使用經驗證的 private access，而不是直接公開服務。", "currentApproach": "比較 SSH、XRDP、Tailscale 與 WireGuard 類型的方式。", "state": "探索中", "limitation": "最終遠端存取模式仍在評估。" },
+        { "name": "憑證管理", "purpose": "分離密碼、金鑰與服務憑證。", "currentApproach": "避免在公開文件中放入憑證。", "state": "進行中", "limitation": "Secret management 仍需要更完整整理。" },
+        { "name": "敏感資料處理", "purpose": "將敏感資訊保留在本地環境。", "currentApproach": "Home Lab 只處理學習與非敏感系統狀態。", "state": "已應用", "limitation": "不宣稱已建立正式敏感資料處理流程。" },
+        { "name": "通知邊界", "purpose": "Telegram 只傳送非敏感狀態摘要。", "currentApproach": "規劃最小化訊息內容的 Telegram notification。", "state": "規劃中", "limitation": "訊息內容政策與實作尚未完成。" },
+        { "name": "路由器安全", "purpose": "檢視舊韌體、管理介面與不必要服務。", "currentApproach": "在實驗中記錄路由器環境與設定風險。", "state": "進行中", "limitation": "部分舊路由器韌體可能停止取得安全更新。" },
+        { "name": "紀錄與復原", "purpose": "保留足夠紀錄以理解故障與服務行為。", "currentApproach": "使用實驗筆記與服務狀態檢查。", "state": "進行中", "limitation": "集中式 logging 是未來工作。" }
+      ],
+      "failureCaseDetailsZh": [
+        { "failure": "外部網路無法連回 Home Lab", "context": "在外部環境無法直接連回 Home Lab。", "investigation": "檢查網路位置、遠端存取方式與路由假設。", "response": "探索透過 Tailscale 或 WireGuard 類型方式建立 private remote access。", "currentVerification": "進行中", "lesson": "遠端存取必須同時考慮復原能力與暴露面控制。" },
+        { "failure": "OpenWrt GUI 無法連線", "context": "修改路由器設定後，管理介面無法正常連線。", "investigation": "檢查網路介面、IP 與 LAN 設定。", "response": "先恢復可管理狀態，再繼續調整設定。", "currentVerification": "部分完成", "lesson": "修改網路設定前必須保留復原路徑。" },
+        { "failure": "SSH host key changed", "context": "重新安裝或更換裝置後，SSH 顯示 host key mismatch。", "investigation": "先確認裝置身分，再修改本機 SSH 記錄。", "response": "確認後移除舊 known_hosts 記錄並重新連線。", "currentVerification": "已應用", "lesson": "不可在未確認主機身分時直接忽略 host key 警告。" },
+        { "failure": "Node-RED 初次部署問題", "context": "首次部署 flows.json 或服務時未如預期生效。", "investigation": "檢查服務狀態、流程檔案位置與重新部署方式。", "response": "調整部署流程並記錄問題。", "currentVerification": "部分完成", "lesson": "自動化流程需要部署紀錄，不只是視覺化 flow 設計。" },
+        { "failure": "裝置離線或無法重新連線", "context": "網路切換、服務中斷或重新啟動後，裝置可能停止回報。", "investigation": "檢視 reconnect、buffering 與 retry 行為。", "response": "規劃重連與可能的訊息暫存機制。", "currentVerification": "需要更多測試", "lesson": "裝置曾經連線成功，不等於系統具備可靠性。" },
+        { "failure": "路由器設定造成網路中斷", "context": "調整 OpenWrt、ASUS 或 Xiaomi router 拓撲時可能造成連線中斷。", "investigation": "檢查拓撲、管理 IP 與復原步驟。", "response": "在後續修改前先記錄拓撲與回復步驟。", "currentVerification": "部分完成", "lesson": "路由器、主機、容器與裝置問題需要分層排查。" }
+      ],
+      "validationChecksZh": [
+        { "test": "SSH connectivity", "purpose": "確認主機管理路徑可用。", "currentState": "已應用", "evidenceVisibility": "Private / Available on Request" },
+        { "test": "Local service access", "purpose": "確認服務可在實驗網路內被存取。", "currentState": "進行中", "evidenceVisibility": "Private" },
+        { "test": "Router management access", "purpose": "確認管理介面仍可復原。", "currentState": "部分完成", "evidenceVisibility": "Private" },
+        { "test": "Docker container status", "purpose": "確認服務執行狀態。", "currentState": "已應用", "evidenceVisibility": "Available on Request" },
+        { "test": "MQTT broker availability", "purpose": "確認 broker 可以接收裝置資料。", "currentState": "實驗中", "evidenceVisibility": "Private" },
+        { "test": "Node-RED availability", "purpose": "確認自動化 flow 服務可用。", "currentState": "實驗中", "evidenceVisibility": "Private" },
+        { "test": "Device publishes message", "purpose": "確認實驗裝置能回報狀態或遙測資料。", "currentState": "實驗中", "evidenceVisibility": "Private" },
+        { "test": "External private access", "purpose": "評估不直接公開服務的遠端管理方式。", "currentState": "探索中", "evidenceVisibility": "Private" },
+        { "test": "Service restart", "purpose": "驗證服務中斷後的恢復流程。", "currentState": "進行中", "evidenceVisibility": "Available on Request" },
+        { "test": "Sensitive notification boundary", "purpose": "確認 Telegram 只傳送非敏感摘要。", "currentState": "規劃中", "evidenceVisibility": "Not Public" }
+      ],
+      "evidenceRegistryZh": [
+        { "type": "架構", "title": "網路拓撲筆記", "status": "In Progress", "visibility": "Private", "relatedLayer": "網路層", "description": "正在整理不包含內部 IP 的拓撲摘要。" },
+        { "type": "架構", "title": "路由器關係文件", "status": "In Progress", "visibility": "Private", "relatedLayer": "路由器／閘道區域", "description": "記錄既有路由器如何被用於實驗環境。" },
+        { "type": "設定", "title": "Docker service configuration", "status": "Available on Request", "visibility": "Private", "relatedLayer": "服務層", "description": "移除敏感路徑與 secrets 後，可作為部署證據。" },
+        { "type": "設定", "title": "MQTT 與 Node-RED 設定筆記", "status": "In Progress", "visibility": "Private", "relatedLayer": "通訊與自動化", "description": "記錄 broker 與自動化設定，不公開憑證。" },
+        { "type": "操作", "title": "服務狀態輸出", "status": "Available on Request", "visibility": "Private", "relatedLayer": "服務層", "description": "作為服務檢查的操作證據。" },
+        { "type": "故障排除", "title": "路由器復原筆記", "status": "In Progress", "visibility": "Private", "relatedLayer": "路由器／閘道區域", "description": "記錄路由器設定錯誤後的復原流程。" },
+        { "type": "故障排除", "title": "SSH host key fix", "status": "Documented", "visibility": "Available on Request", "relatedLayer": "遠端存取層", "description": "記錄確認裝置身分後處理 host key mismatch 的方式。" }
+      ],
+      "engineeringDecisionsZh": [
+        { "decision": "Raspberry Pi", "reason": "低成本、低功耗，適合長時間執行 Linux 實驗。", "tradeoff": "效能與資源比完整伺服器有限。" },
+        { "decision": "Docker", "reason": "分離服務並提高部署可重複性。", "tradeoff": "增加容器網路與儲存設定複雜度。" },
+        { "decision": "MQTT", "reason": "適合裝置遙測與狀態回報的輕量通訊。", "tradeoff": "需要處理身分驗證、存取控制與重連機制。" },
+        { "decision": "Node-RED", "reason": "能快速串接裝置訊息、自動化與通知。", "tradeoff": "Flow 需要文件化，憑證也需要控管。" },
+        { "decision": "OpenWrt", "reason": "提供較高的網路設定可見度與控制能力。", "tradeoff": "設定錯誤可能造成網路失聯。" },
+        { "decision": "Private Remote Access", "reason": "降低內部服務直接公開的風險。", "tradeoff": "需要額外處理身分、路由與復原規劃。" },
+        { "decision": "Telegram Notification", "reason": "將非敏感系統摘要傳送到手機。", "tradeoff": "敏感資料必須留在本地，訊息內容要最小化。" }
+      ],
+      "limitationsDetailedZh": ["目前是個人學習實驗環境。", "不具備企業級備援。", "不承諾持續可用性。", "監控與告警仍在逐步建立。", "網路拓撲仍可能調整。", "遠端存取方案仍在比較或測試。", "部分舊路由器可能停止取得安全更新。", "金鑰與憑證管理仍需深化。", "尚未完成完整網路分區驗證。", "尚未完成正式弱點掃描與滲透測試。", "裝置離線補送機制尚未完整實作。", "Telegram 通知仍為規劃或初期實作。", "不處理正式醫療或敏感資料。"],
+      "lessonsDetailedZh": ["網路修改前必須先設計恢復路徑。", "固定 IP、服務名稱與拓撲文件能降低除錯成本。", "裝置連線成功不代表服務具備可靠性。", "遠端存取必須同時考慮安全與可恢復性。", "路由器、主機、容器與裝置問題需要分層排查。", "敏感資料與通知摘要需要分開處理。", "Home Lab 的價值不只是運行服務，而是記錄失敗與修復方式。", "自動化流程同樣需要權限與憑證管理。"],
+      "researchPerspectiveZh": {
+        "question": "如何在低成本個人環境中，建立可重複、可觀察、可恢復且具基本安全邊界的裝置與服務實驗平台？",
+        "subQuestions": ["如何安全地從外部管理內部服務？", "如何降低路由設定錯誤造成的失聯風險？", "如何讓裝置在中斷後重新連線或補送資料？", "如何區分敏感資料與可外送的狀態摘要？", "如何記錄服務與裝置的健康狀態？", "如何用有限硬體設計可重複的教學環境？"],
+        "futureWork": ["Telegram Bot status reporting", "Device reconnect and message buffering", "Service health monitoring", "Network segmentation", "Configuration backup", "Recovery documentation", "Centralized logging", "Secret management", "Safer remote access", "高中基礎設施學習環境"]
+      },
+      "nextEngineeringStepZh": "整理不含內部位址與敏感資訊的網路拓撲、服務檢查與故障復原索引。",
+      "currentState": "Ongoing",
+      "nextEngineeringStep": "Prepare a sanitized topology and experiment index",
+      "featured": true,
+      "relatedNotes": []
+    },
+    {
+      "id": "RC-003",
+      "slug": "medical-cybersecurity",
+      "title": "Medical Cybersecurity Research Track",
+      "titleZh": "Medical Cybersecurity Research Track",
+      "summary": "A research track for mapping healthcare workflow risk before proposing technical controls.",
+      "summaryZh": "在提出技術控制前，先整理醫療流程風險的研究型學習軌跡。",
+      "researchQuestion": "Where do device trust, data validation, and workflow risk begin to break down in healthcare systems?",
+      "researchQuestionZh": "醫療系統中的裝置信任、資料驗證與流程風險，在哪些地方開始失效？",
+      "problem": "Healthcare systems combine computers, devices, people, privacy, and time pressure.",
+      "problemZh": "醫療系統同時包含電腦、裝置、人、隱私與時間壓力。",
+      "approach": "Scenario notes, workflow mapping, risk analysis, and careful problem definition.",
+      "approachZh": "情境筆記、流程盤點、風險分析與問題定義。",
+      "status": "Ongoing",
+      "year": "2026",
+      "fields": ["Healthcare Cybersecurity"],
+      "technologies": ["Security Research", "Healthcare Workflow", "Risk Analysis", "Documentation"],
+      "role": "Research notes and problem framing",
+      "evidence": ["EV-005"],
+      "limitations": "Mostly notes and early concepts; not a finished tool.",
+      "limitationsZh": "目前主要是筆記與早期概念，尚不是完成工具。",
+      "nextSteps": "Connect notes to SecureCare prototype assumptions and evidence.",
+      "nextStepsZh": "將筆記連結到 SecureCare 原型的假設與證據。",
+      "relatedNotes": ["護理師讓我重新思考醫療資安"]
+    },
+    {
+      "id": "RC-004",
+      "slug": "nihs-control-team",
+      "title": "NIHS Control Team Platform",
+      "titleZh": "NIHS Control Team Platform",
+      "summary": "An internal platform concept for organizing student team links, schedules, announcements, and handoff context.",
+      "summaryZh": "整理學生團隊連結、時程、公告與交接脈絡的內部平台概念。",
+      "listingSummary": ["A small internal web platform built with React, FastAPI, and SQLite for student team coordination.", "It started from the problem that team links, schedules, announcements, and handoff context were scattered across tools.", "The current direction is to keep the workflow reusable while separating private team information from public notes."],
+      "listingSummaryZh": ["使用 React、FastAPI 與 SQLite 建立的學生團隊內部協作平台。", "這個想法來自連結、時程、公告與交接脈絡分散在不同工具中。", "目前方向是整理可重用的流程，同時分離不能公開的團隊資料。"],
+      "researchQuestion": "How can a student technical team reduce context loss during competitions and collaboration?",
+      "researchQuestionZh": "學生技術團隊如何降低競賽與協作中的脈絡遺失？",
+      "problem": "Competition information often spreads across chats, documents, and personal memory.",
+      "problemZh": "競賽資訊常散落在聊天、文件與個人記憶中。",
+      "approach": "Dashboard flow, resource collection, schedule notes, announcements, and handoff context.",
+      "approachZh": "Dashboard flow、資源收藏、時程紀錄、公告與交接脈絡。",
+      "status": "Prototype",
+      "year": "2026",
+      "fields": ["Applied Web Security", "Infrastructure Security"],
+      "technologies": ["React", "FastAPI", "SQLite", "GitHub Pages"],
+      "listingTags": ["React", "FastAPI", "SQLite", "REST API"],
+      "role": "Full-stack implementation and workflow analysis",
+      "evidence": ["EV-006"],
+      "limitations": "Internal team details and repositories may not be publicly available.",
+      "limitationsZh": "內部團隊細節與 Repository 可能不公開。",
+      "nextSteps": "Separate reusable workflow findings from private team information.",
+      "nextStepsZh": "將可重用的流程觀察與私人團隊資訊分離。",
+      "systemId": "SYS-005",
+      "domain": "Internal Security Platform / Web System",
+      "myRole": "Full-stack implementation and workflow analysis",
+      "teamContext": "Student technical team support",
+      "engineeringScope": ["Frontend", "Backend", "Data Modeling", "Team Workflow", "Resource Indexing"],
+      "software": ["React", "FastAPI", "SQLite"],
+      "communication": ["REST API"],
+      "securityScope": ["Authentication and authorization planning", "Internal information separation"],
+      "keyDecisions": ["Keep implementation small while testing workflow structure", "Separate public case study from private team details"],
+      "challenges": ["Avoid exposing internal team repositories or operational details"],
+      "testing": ["Dashboard and resource-flow checks"],
+      "failureCases": ["Missing context", "Stale link", "Unclear ownership"],
+      "lessons": ["A team platform is useful only when context is visible at the right time"],
+      "currentState": "Prototype",
+      "nextEngineeringStep": "Document reusable workflow findings without private team data",
+      "featured": true,
+      "relatedNotes": ["from-nihscsed-to-control-team"]
+    },
+    {
+      "id": "RC-005",
+      "slug": "embedded-secure-device",
+      "title": "ESP32 Communication and Network Security Experiments",
+      "titleZh": "ESP32 通訊資安與網路安全實驗",
+      "summary": "Experiments with ESP32, MQTT, and a local network environment for device communication security, message verification, replay protection, device trust, and network boundaries.",
+      "summaryZh": "使用 ESP32、MQTT 與本地網路環境，研究裝置通訊、訊息驗證、重放攻擊、裝置信任與網路邊界等問題。",
+      "listingSummary": ["Uses ESP32, MQTT, and a local network environment to study device communication security.", "The focus is message verification, replay protection, device trust, and network boundaries.", "The notes are still being organized, so this remains an experiment and research direction rather than a finished product."],
+      "listingSummaryZh": ["使用 ESP32、MQTT 與本地網路環境，研究裝置通訊、訊息驗證、重放攻擊、裝置信任與網路邊界等問題。", "重點不是一般嵌入式練習，而是裝置訊息如何被驗證、如何避免重放，以及裝置該如何被信任。", "目前仍在整理實驗紀錄與驗證假設。"],
+      "researchQuestion": "How can edge devices report data in a way that is observable, verifiable, and resistant to simple replay assumptions?",
+      "researchQuestionZh": "邊緣裝置如何以可觀察、可驗證並避免簡單重放假設的方式回報資料？",
+      "problem": "ESP32 devices need clearer assumptions around message authenticity, replay behavior, local network boundaries, and device trust.",
+      "problemZh": "ESP32 裝置通訊需要釐清訊息真實性、重放行為、本地網路邊界與裝置信任假設。",
+      "approach": "ESP32 and MQTT experiments with HMAC-style message validation, replay-aware design notes, local network observation, and failure records.",
+      "approachZh": "以 ESP32 與 MQTT 實驗為基礎，整理 HMAC 訊息驗證、重放防護、本地網路觀察與失敗紀錄。",
+      "status": "Planning",
+      "year": "2026",
+      "fields": ["通訊資安", "IoT 網路安全", "嵌入式安全", "訊息驗證", "裝置信任"],
+      "technologies": ["ESP32", "MQTT", "HMAC", "Replay Protection", "Network Segmentation"],
+      "listingTags": ["ESP32", "MQTT", "HMAC", "Replay Protection", "Network Segmentation"],
+      "role": "Experiment design and implementation",
+      "evidence": ["EV-007"],
+      "limitations": "Experiment notes are incomplete and still being organized.",
+      "limitationsZh": "實驗筆記尚未完整整理。",
+      "nextSteps": "Document device message format and validation assumptions.",
+      "nextStepsZh": "整理裝置訊息格式與驗證假設。",
+      "systemId": "SYS-003",
+      "domain": "ESP32 Communication and Network Security",
+      "myRole": "Experiment design and implementation",
+      "teamContext": "Personal embedded systems experiments",
+      "engineeringScope": ["Device Communication", "Message Verification", "Replay Protection", "Device Trust", "Network Boundary Observation"],
+      "hardware": ["ESP32", "Raspberry Pi"],
+      "firmware": ["UART/MQTT message flow being organized"],
+      "communication": ["MQTT", "Local network communication"],
+      "securityScope": ["Message verification", "Replay protection", "Device trust assumptions", "Network segmentation", "Local network boundary review"],
+      "keyDecisions": ["Start from observable device messages before claiming a security model"],
+      "challenges": ["Experiment notes are incomplete", "Hardware and firmware details need clearer separation"],
+      "testing": ["MQTT message checks", "Message format observations", "Replay-aware validation planning", "Local network behavior notes"],
+      "failureCases": ["Device offline", "Invalid payload", "Replay attempt", "Network boundary mismatch", "Communication interruption"],
+      "lessons": ["Device-side trust needs observable message behavior"],
+      "currentState": "Planning",
+      "nextEngineeringStep": "Document MQTT message format, HMAC validation assumptions, replay-protection notes, and local network boundaries",
+      "featured": true,
+      "relatedNotes": []
+    },
+    {
+      "id": "RC-006",
+      "slug": "hpc-teaching-transfer",
+      "title": "HPC Learning and Teaching Transfer",
+      "titleZh": "HPC 學習與教學轉化",
+      "summary": "A learning record from first operating Linux, MPI, and SPECFEM3D in the National Center for High-performance Computing cluster environment, with a planned high-school-level course outline as the next step.",
+      "summaryZh": "第一次在國網叢集環境操作 Linux、MPI 與 SPECFEM3D 的學習紀錄，下一步是整理成高中生可以理解的課程規劃。",
+      "listingSummary": ["This records my first operation of Linux, MPI, and SPECFEM3D in the National Center for High-performance Computing cluster environment.", "So far I have completed login-node operation, Mesher execution, error troubleshooting, and reading output records.", "The next step is to turn the workflow into high-school-level lessons on Linux, VIM, MPI, small parallel programs, and result visualization."],
+      "listingSummaryZh": ["我第一次在國網的叢集環境操作 Linux、MPI 與 SPECFEM3D。", "目前已完成登入節點操作、Mesher 執行、錯誤排查與輸出紀錄閱讀。", "下一步是把 HPC 操作拆成高中生可以理解的課程：Linux、VIM、MPI、小型平行運算與結果視覺化。"],
+      "researchQuestion": "How can HPC camp learning be converted into a high-school level experience course without overstating expertise?",
+      "researchQuestionZh": "如何將 HPC 營隊學習轉化為高中體驗課程，同時不誇大自身能力？",
+      "problem": "HPC workflows are hard to teach honestly without showing login-node operation, command-line habits, MPI basics, errors, and output records.",
+      "problemZh": "HPC 流程若不說明登入節點、命令列操作、MPI 基礎、錯誤排查與輸出紀錄，就很難被高中生真正理解。",
+      "approach": "Record login-node usage, Linux and VIM operation, MPI basics, SPECFEM3D Mesher execution, error troubleshooting, output reading, and a future teaching outline.",
+      "approachZh": "紀錄登入節點、Linux 與 VIM 操作、MPI 基礎、SPECFEM3D Mesher 執行、錯誤排查、輸出閱讀與後續教案規劃。",
+      "status": "Planning",
+      "year": "2026",
+      "fields": ["High Performance Computing"],
+      "technologies": ["Linux", "MPI", "GPU", "SPECFEM3D"],
+      "listingTags": ["Linux", "VIM", "MPI", "SPECFEM3D", "HPC"],
+      "role": "Student and teaching-plan organizer",
+      "evidence": ["EV-008"],
+      "limitations": "Based on camp learning; not a research publication.",
+      "limitationsZh": "基於營隊學習，並非研究發表。",
+      "nextSteps": "Organize public notes and clearly mark prerequisites.",
+      "nextStepsZh": "整理公開筆記並明確標示先備知識。",
+      "systemId": "SYS-004",
+      "domain": "HPC / Scientific Computing Workflow",
+      "myRole": "Student and teaching-plan organizer",
+      "teamContext": "Camp learning and teaching transfer planning",
+      "engineeringScope": ["Linux Login Node Operation", "VIM Basics", "MPI Basics", "SPECFEM3D Mesher Execution", "Teaching Material Planning"],
+      "software": ["Linux", "MPI", "SPECFEM3D"],
+      "communication": ["Parallel computing workflow notes"],
+      "securityScope": ["Not a security system; documented as computing workflow learning"],
+      "keyDecisions": ["Mark HPC as learning and teaching transfer, not research publication"],
+      "challenges": ["Prerequisites and environment setup must be explained honestly"],
+      "testing": ["Login-node operation records", "Mesher execution records", "Error troubleshooting notes", "Output record reading"],
+      "failureCases": ["Environment setup mismatch", "Missing prerequisites", "Command-line workflow confusion", "Simulation output interpretation limits"],
+      "lessons": ["Advanced computing topics need reproducible environment notes"],
+      "currentState": "Learning / Records",
+      "nextEngineeringStep": "Break HPC operations into high-school-level lessons covering Linux, VIM, MPI, small parallel programs, and result visualization",
+      "priority": 10,
+      "featured": true,
+      "relatedNotes": []
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-001",
+      "type": "Working Prototype",
+      "title": "SecureCare API and device flow prototype",
+      "date": "2026-07",
+      "projectId": "RC-001",
+      "verification": "Private",
+      "url": "",
+      "description": "Prototype evidence exists but is not publicly available until internal details are sanitized."
+    },
+    {
+      "id": "EV-002",
+      "type": "Technical Documentation",
+      "title": "SecureCare architecture and security assumptions",
+      "date": "2026-07",
+      "projectId": "RC-001",
+      "verification": "In Progress",
+      "url": "",
+      "description": "Architecture and assumptions are being organized."
+    },
+    {
+      "id": "EV-003",
+      "type": "User Interview",
+      "title": "Healthcare workflow observation notes",
+      "date": "2026-07",
+      "projectId": "RC-001",
+      "verification": "Private",
+      "url": "",
+      "description": "Notes are kept private to avoid exposing personal or sensitive context."
+    },
+    {
+      "id": "EV-004",
+      "type": "Experiment Logs",
+      "title": "Home lab deployment and monitoring notes",
+      "date": "2026",
+      "projectId": "RC-002",
+      "verification": "Available on Request",
+      "url": "",
+      "description": "Sanitized summaries can be prepared from private operational notes."
+    },
+    {
+      "id": "EV-005",
+      "type": "Research Notes",
+      "title": "Medical cybersecurity problem framing",
+      "date": "2026",
+      "projectId": "RC-003",
+      "verification": "Public",
+      "url": "/projects/medical-cybersecurity/",
+      "description": "Public case study page with current framing and limitations."
+    },
+    {
+      "id": "EV-006",
+      "type": "Prototype",
+      "title": "NIHS Control Team platform case study",
+      "date": "2026",
+      "projectId": "RC-004",
+      "verification": "Public",
+      "url": "/projects/nihs-control-team/",
+      "description": "Public case study page; internal implementation details may remain private."
+    },
+    {
+      "id": "EV-007",
+      "type": "Experiment Logs",
+      "title": "ESP32 UART and device communication notes",
+      "date": "2026-06",
+      "projectId": "RC-005",
+      "verification": "In Progress",
+      "url": "/labs/esp32-uart-test/",
+      "description": "Experiment notes exist and still need stronger research framing."
+    },
+    {
+      "id": "EV-008",
+      "type": "Teaching Material",
+      "title": "HPC AI Summer Camp learning transfer plan",
+      "date": "2026-07",
+      "projectId": "RC-006",
+      "verification": "Planned",
+      "url": "",
+      "description": "A teaching conversion plan is being prepared from camp learning records."
+    }
+  ],
+  "engineeringDomains": [
+    {
+      "id": "ED-01",
+      "name": "Software Engineering",
+      "whatIBuild": "Frontend/backend prototypes, APIs, authentication flows, and data-backed internal tools.",
+      "technologies": ["React", "TypeScript", "Python", "FastAPI", "REST API", "Authentication", "Data modeling"],
+      "relatedProjects": ["RC-001", "RC-004"],
+      "currentLevel": "Applied"
+    },
+    {
+      "id": "ED-02",
+      "name": "Embedded and Device Systems",
+      "whatIBuild": "Small-device experiments around communication, sensing, device state, and reporting behavior.",
+      "technologies": ["ESP32", "Raspberry Pi", "BLE", "MQTT", "I2C", "OLED", "Sensors", "Device state"],
+      "relatedProjects": ["RC-001", "RC-005"],
+      "currentLevel": "Ongoing"
+    },
+    {
+      "id": "ED-03",
+      "name": "Infrastructure and Systems",
+      "whatIBuild": "Linux-based lab environments, service integration, network experiments, and repeatable deployment records.",
+      "technologies": ["Linux", "Docker", "OpenWrt", "Networking", "Home Lab", "Node-RED", "Remote access"],
+      "relatedProjects": ["RC-002", "RC-006"],
+      "currentLevel": "Integrated"
+    },
+    {
+      "id": "ED-04",
+      "name": "Cybersecurity Engineering",
+      "whatIBuild": "Security controls and analysis around identity, authorization, signed messages, replay assumptions, auditability, and device trust.",
+      "technologies": ["Attack surface analysis", "JWT", "RBAC", "HMAC", "Replay protection", "Audit logging", "Device trust", "Network segmentation"],
+      "relatedProjects": ["RC-001", "RC-002", "RC-003", "RC-004", "RC-005"],
+      "currentLevel": "Applied"
+    }
+  ],
+  "engineeringProcess": [
+    {
+      "id": "WP-01",
+      "title": "Understand the Problem",
+      "description": "Understand users, requirements, limitations, environment, and security risks.",
+      "descriptionZh": "了解使用者、需求、限制、環境與安全風險。"
+    },
+    {
+      "id": "WP-02",
+      "title": "Define the System",
+      "description": "Separate devices, communication, backend, frontend, storage, and security boundaries.",
+      "descriptionZh": "拆分裝置、通訊、後端、前端、儲存與安全邊界。"
+    },
+    {
+      "id": "WP-03",
+      "title": "Build a Small Prototype",
+      "description": "Build the smallest prototype that can actually run and be checked.",
+      "descriptionZh": "先完成可以實際運作和驗證的最小原型。"
+    },
+    {
+      "id": "WP-04",
+      "title": "Test Failure Cases",
+      "description": "Test wrong permissions, abnormal inputs, replayed packets, service interruption, and offline devices.",
+      "descriptionZh": "測試錯誤權限、異常輸入、封包重送、服務中斷與裝置離線。"
+    },
+    {
+      "id": "WP-05",
+      "title": "Document Decisions",
+      "description": "Record architecture, commands, errors, fixes, limitations, and unresolved problems.",
+      "descriptionZh": "記錄架構、指令、錯誤、修正方式、限制與尚未解決的問題。"
+    },
+    {
+      "id": "WP-06",
+      "title": "Improve with Evidence",
+      "description": "Improve based on test results, system records, and user feedback.",
+      "descriptionZh": "根據測試結果、系統紀錄與使用者回饋持續改善。"
+    }
+  ],
+  "capabilities": [
+    {
+      "category": "Problem Layer",
+      "items": [
+        { "name": "Requirement analysis", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "Workflow analysis", "evidence": ["RC-001 SecureCare", "RC-003 Medical Cybersecurity"] },
+        { "name": "Problem definition", "evidence": ["RC-003 Medical Cybersecurity", "RC-006 HPC Teaching Transfer"] },
+        { "name": "Scope control", "evidence": ["RC-004 NIHS Control Team", "RC-005 Embedded Device Experiments"] },
+        { "name": "Threat modeling", "evidence": ["RC-001 SecureCare", "RC-003 Medical Cybersecurity"] }
+      ]
+    },
+    {
+      "category": "Application Layer",
+      "items": [
+        { "name": "React", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "TypeScript", "evidence": ["RC-004 NIHS Control Team"] },
+        { "name": "FastAPI", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "REST API", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "SQLite", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "Authentication and authorization", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] }
+      ]
+    },
+    {
+      "category": "System Layer",
+      "items": [
+        { "name": "Linux", "evidence": ["RC-002 Home Lab", "RC-006 HPC Workflow"] },
+        { "name": "Docker", "evidence": ["RC-002 Home Lab"] },
+        { "name": "Networking", "evidence": ["RC-002 Home Lab"] },
+        { "name": "OpenWrt", "evidence": ["RC-002 Home Lab"] },
+        { "name": "MQTT", "evidence": ["RC-001 SecureCare", "RC-005 Embedded Device Experiments"] },
+        { "name": "Service integration", "evidence": ["RC-002 Home Lab", "RC-004 NIHS Control Team"] }
+      ]
+    },
+    {
+      "category": "Device Layer",
+      "items": [
+        { "name": "ESP32", "evidence": ["RC-001 SecureCare", "RC-005 Embedded Device Experiments"] },
+        { "name": "Raspberry Pi", "evidence": ["RC-005 Embedded Device Experiments"] },
+        { "name": "BLE", "evidence": ["RC-005 Embedded Device Experiments"] },
+        { "name": "I2C", "evidence": ["RC-005 Embedded Device Experiments"] },
+        { "name": "OLED", "evidence": ["RC-005 Embedded Device Experiments"] },
+        { "name": "Device communication", "evidence": ["RC-001 SecureCare", "RC-005 Embedded Device Experiments"] }
+      ]
+    },
+    {
+      "category": "Security Layer",
+      "items": [
+        { "name": "JWT", "evidence": ["RC-001 SecureCare"] },
+        { "name": "RBAC", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "HMAC", "evidence": ["RC-001 SecureCare", "RC-005 Embedded Device Experiments"] },
+        { "name": "Replay protection", "evidence": ["RC-001 SecureCare"] },
+        { "name": "Audit logging", "evidence": ["RC-001 SecureCare"] },
+        { "name": "Device trust", "evidence": ["RC-001 SecureCare", "RC-005 Embedded Device Experiments"] },
+        { "name": "Attack surface analysis", "evidence": ["RC-003 Medical Cybersecurity"] }
+      ]
+    },
+    {
+      "category": "Engineering Practice",
+      "items": [
+        { "name": "Git", "evidence": ["RC-004 NIHS Control Team", "RC-001 SecureCare"] },
+        { "name": "Debugging", "evidence": ["RC-002 Home Lab", "RC-005 Embedded Device Experiments"] },
+        { "name": "Documentation", "evidence": ["RC-003 Medical Cybersecurity", "RC-006 HPC Workflow"] },
+        { "name": "Testing", "evidence": ["RC-001 SecureCare", "RC-002 Home Lab"] },
+        { "name": "Architecture design", "evidence": ["RC-001 SecureCare", "RC-004 NIHS Control Team"] },
+        { "name": "Failure recording", "evidence": ["RC-002 Home Lab", "RC-005 Embedded Device Experiments"] },
+        { "name": "Reproducible setup", "evidence": ["RC-002 Home Lab", "RC-006 HPC Workflow"] }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026.07",
+      "category": "HPC AI Summer Camp",
+      "title": "HPC learning and teaching transfer planning",
+      "output": "Completed Linux, MPI, GPU, and SPECFEM3D operations; started planning a high-school experience course.",
+      "outputZh": "完成 Linux、MPI、GPU 與 SPECFEM3D 操作，開始規劃轉化為高中體驗課程。",
+      "impact": "Opened an exploratory HPC direction while keeping claims limited to learning and teaching transfer."
+    },
+    {
+      "date": "2026.07",
+      "category": "SecureCare Prototype",
+      "title": "Healthcare security prototype organization",
+      "output": "Organized FastAPI, JWT, RBAC, MQTT signing, replay protection, and audit log prototype evidence.",
+      "outputZh": "整理 FastAPI、JWT、RBAC、MQTT 簽章、Replay Protection 與稽核紀錄原型證據。",
+      "impact": "Connected healthcare workflow concerns with concrete security engineering work."
+    },
+    {
+      "date": "2026.06",
+      "category": "Research Planning",
+      "title": "Research direction consolidation",
+      "output": "Grouped current work into healthcare security, infrastructure security, embedded systems, applied web security, and HPC.",
+      "outputZh": "將目前工作整理為醫療資安、基礎設施安全、嵌入式系統、應用 Web 安全與 HPC。",
+      "impact": "Made the portfolio easier to review for admission and research collaboration."
+    },
+    {
+      "date": "2026",
+      "category": "Project Case Studies",
+      "title": "Public project pages",
+      "output": "Published case study pages for NIHS Control Team, Medical Cybersecurity, and Autonomous Robot.",
+      "outputZh": "建立 NIHS Control Team、Medical Cybersecurity 與 Autonomous Robot 的公開案例頁。",
+      "impact": "Preserved real project context without presenting prototypes as finished products."
+    }
+  ],
+  "outcomes": [
+    {
+      "type": "Prototype",
+      "title": "SecureCare prototype",
+      "date": "2026-07",
+      "role": "Research and implementation",
+      "field": "Healthcare Cybersecurity",
+      "projectId": "RC-001",
+      "verification": "Private",
+      "link": ""
+    },
+    {
+      "type": "Camp",
+      "title": "HPC AI Summer Camp",
+      "date": "2026-07",
+      "role": "Student",
+      "field": "High Performance Computing",
+      "projectId": "RC-006",
+      "verification": "Available on Request",
+      "link": ""
+    },
+    {
+      "type": "Technical Report",
+      "title": "Medical Cybersecurity case study",
+      "date": "2026",
+      "role": "Research notes",
+      "field": "Healthcare Cybersecurity",
+      "projectId": "RC-003",
+      "verification": "Public",
+      "link": "/projects/medical-cybersecurity/"
+    },
+    {
+      "type": "Project",
+      "title": "NIHS Control Team platform",
+      "date": "2026",
+      "role": "Full-stack implementation",
+      "field": "Applied Web Security",
+      "projectId": "RC-004",
+      "verification": "Public",
+      "link": "/projects/nihs-control-team/"
+    },
+    {
+      "type": "Experiment Logs",
+      "title": "ESP32 UART and communication experiments",
+      "date": "2026-06",
+      "role": "Experiment design",
+      "field": "Embedded and IoT Security",
+      "projectId": "RC-005",
+      "verification": "In Progress",
+      "link": "/labs/esp32-uart-test/"
+    }
+  ],
+  "futureDirection": [
+    "Deepen applied cybersecurity research methodology and avoid treating prototypes as final products.",
+    "Strengthen computer science, networking, operating systems, and security fundamentals during university study.",
+    "Explore healthcare information security, industrial and embedded systems, and secure infrastructure in a lab setting.",
+    "Prepare clearer public documentation that separates evidence, assumptions, limitations, and next steps."
+  ],
+  "futureDirectionZh": [
+    "深化應用資安研究方法，避免把原型包裝成完成產品。",
+    "在大學階段補強計算機科學、網路、作業系統與安全基礎。",
+    "希望在實驗室環境中探索醫療資訊安全、工業與嵌入式系統、可信基礎設施。",
+    "持續整理公開文件，清楚區分證據、假設、限制與下一步。"
+  ]
+}

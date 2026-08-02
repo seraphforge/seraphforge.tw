@@ -24,9 +24,11 @@
 .archive-page,
 .i18n-page-writing,
 .i18n-page-projects,
+.i18n-page-outcomes,
 .i18n-page-experience,
 .i18n-page-labs,
-.i18n-page-timeline {
+.i18n-page-timeline,
+.i18n-page-about {
   width: min(100%, var(--seraph-list-width));
 }
 
@@ -34,8 +36,7 @@
   width: min(100%, var(--seraph-reading-width));
 }
 
-.page-content,
-.i18n-page-about {
+.page-content {
   width: min(100%, var(--seraph-about-width));
 }
 

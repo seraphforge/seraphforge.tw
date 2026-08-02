@@ -9,6 +9,8 @@
   };
   const explicitHtmlLang = htmlParts[0] === 'zh' ? 'zh-Hant' : (htmlParts[0] === 'en' ? 'en' : '');
   const htmlLang = explicitHtmlLang || normalizeHtmlLang(page.site_lang) || 'en';
+  const localHtmlParts = explicitHtmlLang ? htmlParts.slice(1) : htmlParts;
+  const isProjectDetailPage = String(page.type || '').toLowerCase() === 'project' || (localHtmlParts[0] === 'projects' && localHtmlParts.length === 2);
 %>
 <!DOCTYPE html>
 <html lang="<%= htmlLang %>">
@@ -19,29 +21,34 @@
   <div class="site-wrapper">
     <%- partial('_partial/header') %>
 
-    <main class="main-container">
+    <main class="main-container<%= isProjectDetailPage ? ' project-detail-page' : '' %>">
       <%- body %>
     </main>
 
     <%- partial('_partial/footer') %>
   </div>
   <script>
-    (function () {
-      var sections = document.querySelectorAll('.reveal-section');
-      if (!sections.length) return;
-      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        sections.forEach(function (section) { section.classList.add('is-visible'); });
-        return;
-      }
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+    (function() {
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+      copyButtons.forEach(function(button) {
+        var originalText = button.textContent;
+        button.addEventListener('click', function() {
+          var email = button.getAttribute('data-copy-email') || '';
+          var status = button.parentElement ? button.parentElement.querySelector('[data-copy-email-status]') : null;
+          if (!email || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          navigator.clipboard.writeText(email).then(function() {
+            var isZh = document.documentElement.lang === 'zh-Hant';
+            button.textContent = isZh ? '已複製' : 'Copied';
+            if (status) status.textContent = isZh ? '已複製' : 'Copied';
+            window.setTimeout(function() {
+              button.textContent = originalText;
+              if (status) status.textContent = '';
+            }, 1800);
+          }).catch(function() {
+            return;
+          });
         });
-      }, { threshold: 0.08 });
-      sections.forEach(function (section) { observer.observe(section); });
+      });
     })();
   </script>
 </body>
