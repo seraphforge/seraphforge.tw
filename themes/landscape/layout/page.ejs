@@ -1,4 +1,4 @@
-﻿<%
+<%
   const normalizedPagePath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const pageParts = normalizedPagePath.split('/').filter(Boolean);
   const normalizePageLang = function(value) {
@@ -57,12 +57,12 @@
       untitled: 'Untitled'
     },
     zh: {
-      pageKicker: '?',
-      searchPlaceholder: '????...',
-      searchLoadFailed: '?⊥?頛??蝝Ｗ???,
-      searchHint: '頛詨?摮?憪?撠?,
-      searchEmpty: '?曆??啁泵??????,
-      untitled: '?芸??
+      pageKicker: '頁面',
+      searchPlaceholder: '搜尋文章...',
+      searchLoadFailed: '無法載入搜尋索引。',
+      searchHint: '輸入關鍵字開始搜尋。',
+      searchEmpty: '找不到符合的文章。',
+      untitled: '未命名'
     }
   }[pageLang] || {
     pageKicker: 'Notebook Page',
@@ -75,7 +75,7 @@
 
   const projectFactLabels = {
     en: { year: 'Year', period: 'Period', status: 'Status', role: 'Role', category: 'Category', repository: 'Repository', demo: 'Demo' },
-    zh: { year: '撟港遢', period: '??', status: '???, role: '閫', category: '??', repository: 'Repository', demo: 'Demo' }
+    zh: { year: '年份', period: '期間', status: '狀態', role: '角色', category: '分類', repository: 'Repository', demo: 'Demo' }
   }[pageLang] || {};
 
   const projectFacts = [
@@ -119,9 +119,9 @@
   }
 
   function transformProjectTechList(markup) {
-    return String(markup || '').replace(/(<h2\b[^>]*>[\s\S]*?(?:Built with|雿輻?銵?[\s\S]*?<\/h2>)\s*<p>([^<]+)<\/p>/gi, function(match, heading, rawTech) {
+    return String(markup || '').replace(/(<h2\b[^>]*>[\s\S]*?(?:Built with|使用技術)[\s\S]*?<\/h2>)\s*<p>([^<]+)<\/p>/gi, function(match, heading, rawTech) {
       const items = textFromHtml(rawTech)
-        .split(/\s+蝜s+|\s+\|\s+|\s*,\s*/)
+        .split(/\s+繚\s+|\s+\|\s+|\s*,\s*/)
         .map(function(item) { return item.trim(); })
         .filter(Boolean);
       if (!items.length) return match;
