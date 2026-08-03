@@ -74,12 +74,6 @@ comments: true
     <h2 id="zh-writing-title" class="section-title">文章</h2>
     <div class="writing-list">
       <article class="writing-item">
-        <div class="writing-date">2026-06-25</div>
-        <div class="writing-title">
-          <a href="../2026/06/25/我再也不相信-Codex-但我還是會繼續用它/">我再也不相信 Codex，但我還是會繼續用它</a>
-        </div>
-      </article>
-      <article class="writing-item">
         <div class="writing-date">2026-06-23</div>
         <div class="writing-title">
           <a href="../2026/06/23/護理師讓我重新思考醫療資安/">護理師讓我重新思考醫療資安</a>
