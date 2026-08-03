@@ -11,6 +11,7 @@
   const htmlLang = explicitHtmlLang || normalizeHtmlLang(page.site_lang) || 'en';
   const localHtmlParts = explicitHtmlLang ? htmlParts.slice(1) : htmlParts;
   const isProjectDetailPage = String(page.type || '').toLowerCase() === 'project' || (localHtmlParts[0] === 'projects' && localHtmlParts.length === 2);
+  const isPostPage = page.layout === 'post';
 %>
 <!DOCTYPE html>
 <html lang="<%= htmlLang %>">
@@ -21,7 +22,7 @@
   <div class="site-wrapper">
     <%- partial('_partial/header') %>
 
-    <main class="main-container<%= isProjectDetailPage ? ' project-detail-page' : '' %>">
+    <main class="main-container<%= isProjectDetailPage ? ' project-detail-page' : '' %><%= isPostPage ? ' post-page' : '' %>">
       <%- body %>
     </main>
 
