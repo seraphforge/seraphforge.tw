@@ -1,1 +1,73 @@
-<%- partial('_partial/i18n-page') %>
+<section class="entry-home seraph-current-home" aria-labelledby="seraph-home-title" lang="zh-Hant">
+  <section class="entry-home-hero">
+    <div class="entry-home-hero__copy">
+      <p class="entry-home-eyebrow">SERAPH</p>
+      <h1 id="seraph-home-title">Security / Embedded / Infrastructure</h1>
+      <p class="entry-home-hero__summary">我目前主要做 Medical IoT Security、Embedded Security 與 Infrastructure / Home Lab。這個網站記錄我正在做的系統、研究中的問題，以及它們一路改變的過程。</p>
+      <div class="entry-home-hero__actions">
+        <a class="os-button os-button-primary" href="<%= url_for('/research/') %>">研究方向</a>
+        <a class="os-button os-button-secondary" href="<%= url_for('/systems/') %>">工程系統</a>
+      </div>
+    </div>
+    <dl class="entry-home-hero__meta" aria-label="目前技術方向">
+      <div><dt>目前研究</dt><dd>Medical IoT Trust</dd></div>
+      <div><dt>目前系統</dt><dd>MedTrust</dd></div>
+      <div><dt>最新結案</dt><dd>Evidence Integrity Phase</dd></div>
+    </dl>
+  </section>
+
+  <section class="entry-home-section">
+    <header class="entry-home-section__header">
+      <p class="entry-home-eyebrow">目前研究</p>
+      <h2>Medical IoT Trust</h2>
+      <p>我目前在研究醫療 IoT 裝置產生的資料，如何在 Gateway 端被驗證、辨識 Replay，並保留下可以再次驗證的實驗證據。</p>
+    </header>
+    <a class="entry-home-more-link" href="<%= url_for('/research/') %>">看研究問題 &rarr;</a>
+  </section>
+
+  <section class="entry-home-section">
+    <header class="entry-home-section__header">
+      <p class="entry-home-eyebrow">目前系統</p>
+      <h2>MedTrust</h2>
+      <p>Medical IoT Trust &amp; Evidence System。重點是 Gateway Verification、Attack Validation、Replay Protection 與 Evidence Integrity。</p>
+    </header>
+    <div class="entry-home-system-grid">
+      <article class="entry-home-system-card">
+        <div class="entry-home-card__meta"><span>CURRENT</span><span>Medical IoT</span></div>
+        <h3><a href="<%= url_for('/systems/medtrust/') %>">MedTrust</a></h3>
+        <p>ESP32-S3、FastAPI Gateway、React Dashboard、Experiment Batch、Evidence Package、Offline Verification 與 Tamper Detection。</p>
+      </article>
+      <article class="entry-home-system-card">
+        <div class="entry-home-card__meta"><span>CURRENT</span><span>Infrastructure</span></div>
+        <h3><a href="<%= url_for('/systems/home-lab/') %>">Home Lab</a></h3>
+        <p>Ubuntu Server、Docker、Tailscale、OpenWrt、MQTT、Node-RED 與自架服務環境。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="entry-home-section">
+    <header class="entry-home-section__header">
+      <p class="entry-home-eyebrow">最新結案</p>
+      <h2>MedTrust / Evidence Integrity Phase</h2>
+      <p>2026.08 / CLOSED / pytest: 76 passed</p>
+    </header>
+    <a class="entry-home-more-link" href="<%= url_for('/archive/') %>">看結案紀錄 &rarr;</a>
+  </section>
+
+  <section class="entry-home-section">
+    <header class="entry-home-section__header">
+      <p class="entry-home-eyebrow">最新紀錄</p>
+      <h2>MedTrust Series</h2>
+      <p>00｜我為什麼開始做 MedTrust / Draft</p>
+    </header>
+    <a class="entry-home-more-link" href="<%= url_for('/journal/series/medtrust/00/') %>">開啟 Draft &rarr;</a>
+  </section>
+
+  <nav class="seraph-home-nav" aria-label="主要區域">
+    <a href="<%= url_for('/research/') %>">研究方向</a>
+    <a href="<%= url_for('/systems/') %>">工程系統</a>
+    <a href="<%= url_for('/journal/') %>">研究筆記</a>
+    <a href="<%= url_for('/archive/') %>">結案紀錄</a>
+    <a href="<%= url_for('/about/') %>">關於</a>
+  </nav>
+</section>

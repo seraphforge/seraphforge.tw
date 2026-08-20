@@ -1,44 +1,47 @@
 <%
   const footerPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const footerParts = footerPath.split('/').filter(Boolean);
-  const footerLang = footerParts[0] === 'zh' ? 'zh' : 'en';
-  const researchData = site.data.research || {};
-  const nowData = site.data.now || {};
-  const footerPrefix = footerLang === 'zh' ? '/zh' : '';
+  const footerLang = footerParts[0] === 'en' ? 'en' : 'zh';
   const footerCopy = {
-    en: {
-      label: 'Site footer',
-      title: 'Seraph Research & Engineering Portfolio',
-      note: 'Security, software, embedded systems, infrastructure, and evidence-based research notes.',
-      research: 'Research Directions',
-      systems: 'Engineering Systems',
-      notes: 'Research Notes',
-      learning: 'Competitions & Learning',
-      about: 'About',
-      updated: 'Last updated'
-    },
     zh: {
-      label: '網站頁尾',
-      title: 'Seraph Research & Engineering Portfolio',
-      note: '記錄資安、軟體、嵌入式系統、基礎設施與可驗證的研究筆記。',
+      label: '頁尾',
+      title: 'Seraph',
+      note: 'Security / Embedded / Infrastructure.',
+      home: '首頁',
       research: '研究方向',
       systems: '工程系統',
-      notes: '研究筆記',
-      learning: '參賽與研習',
+      journal: '研究筆記',
+      archive: '結案紀錄',
       about: '關於',
-      updated: '最後更新'
+      updated: 'Last updated'
+    },
+    en: {
+      label: 'Site footer',
+      title: 'Seraph',
+      note: 'Security / Embedded / Infrastructure.',
+      home: 'Home',
+      research: 'Research',
+      systems: 'Systems',
+      journal: 'Journal',
+      archive: 'Archive',
+      about: 'About',
+      updated: 'Last updated'
     }
   }[footerLang];
+  const pathFor = function(path) {
+    return footerLang === 'en' ? '/en' + path : path;
+  };
 %>
 <footer id="contact" class="site-footer polaris-footer" aria-label="<%= footerCopy.label %>">
   <p class="polaris-footer-title"><%= footerCopy.title %></p>
   <p class="polaris-footer-note"><%= footerCopy.note %></p>
   <nav class="footer-links" aria-label="<%= footerCopy.label %>">
-    <a href="<%= url_for(footerPrefix + '/projects/') %>"><%= footerCopy.research %></a>
-    <a href="<%= url_for(footerPrefix + '/systems/') %>"><%= footerCopy.systems %></a>
-    <a href="<%= url_for(footerPrefix + '/writing/') %>"><%= footerCopy.notes %></a>
-    <a href="<%= url_for(footerPrefix + '/experience/') %>"><%= footerCopy.learning %></a>
-    <a href="<%= url_for(footerPrefix + '/about/') %>"><%= footerCopy.about %></a>
+    <a href="<%= url_for(pathFor('/')) %>"><%= footerCopy.home %></a>
+    <a href="<%= url_for(pathFor('/research/')) %>"><%= footerCopy.research %></a>
+    <a href="<%= url_for(pathFor('/systems/')) %>"><%= footerCopy.systems %></a>
+    <a href="<%= url_for(pathFor('/journal/')) %>"><%= footerCopy.journal %></a>
+    <a href="<%= url_for(pathFor('/archive/')) %>"><%= footerCopy.archive %></a>
+    <a href="<%= url_for(pathFor('/about/')) %>"><%= footerCopy.about %></a>
   </nav>
-  <p class="footer-copy"><%= footerCopy.updated %>: <%= nowData.updatedAt || researchData.lastUpdated || '2026-07-31' %> / &copy; 2026 Seraph.</p>
+  <p class="footer-copy"><%= footerCopy.updated %>: 2026-08 / &copy; 2026 Seraph.</p>
 </footer>

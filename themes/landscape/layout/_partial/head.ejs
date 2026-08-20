@@ -37,7 +37,7 @@
     return '';
   };
   const explicitHeadLang = ['en', 'zh'].includes(headParts[0]) ? headParts[0] : '';
-  const headLang = explicitHeadLang || normalizeHeadLang(page.site_lang) || 'en';
+  const headLang = explicitHeadLang || normalizeHeadLang(page.site_lang) || normalizeHeadLang(config.language) || 'zh';
   const ogLocales = { en: 'en_US', zh: 'zh_TW' };
   const localHeadParts = explicitHeadLang ? headParts.slice(1) : headParts;
   const firstHeadPart = localHeadParts[0] || '';

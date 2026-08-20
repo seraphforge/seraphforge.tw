@@ -1,9 +1,9 @@
 title: Seraph
-subtitle: Research • Build • Protect.
-description: Cybersecurity, home lab, medical technology, IoT, and web development.
-keywords: 資安, CTF, Web, Robotics, IoT
+subtitle: Security / Embedded / Infrastructure
+description: Medical IoT security, embedded security, infrastructure, and engineering iteration records.
+keywords: Security, Embedded, Infrastructure, Medical IoT, MedTrust
 author: Seraph
-language: en
+language: zh-TW
 timezone: Asia/Taipei
 
 url: https://seraphforge.github.io/seraphforge.tw

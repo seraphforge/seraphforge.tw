@@ -1,0 +1,77 @@
+<%
+  const seriesSlug = page.series || 'medtrust';
+  const series = site.data && site.data.series && site.data.series[seriesSlug];
+  const articles = series ? (series.articles || []) : [];
+  const articleNumber = String(page.article || '').padStart(2, '0');
+  const articleIndex = articles.findIndex(function(item) {
+    return String(item.number) === articleNumber;
+  });
+  const article = articleIndex >= 0 ? articles[articleIndex] : null;
+  const previousArticle = articleIndex > 0 ? articles[articleIndex - 1] : null;
+  const nextArticle = articleIndex >= 0 && articleIndex < articles.length - 1 ? articles[articleIndex + 1] : null;
+  const title = page.article_title || (article && article.title) || page.title;
+  const total = articles.length;
+
+  function statusClass(status) {
+    return String(status || 'draft').toLowerCase();
+  }
+
+  function statusLabel(status) {
+    const value = statusClass(status);
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  function renderArticleNavItem(label, item, direction) {
+    if (!item) return '';
+    const arrowPrefix = direction === 'previous' ? '&larr; ' : '';
+    const arrowSuffix = direction === 'next' ? ' &rarr;' : '';
+    if (!item.exists || !item.path) {
+      return '<div class="series-nav-link series-nav-link--' + direction + ' series-nav-link--disabled" aria-disabled="true"><span>' + label + '</span><strong>' + arrowPrefix + item.number + ' | ' + item.title + arrowSuffix + '</strong><em>' + statusLabel(item.status) + '</em></div>';
+    }
+    return '<a class="series-nav-link series-nav-link--' + direction + '" href="' + url_for(item.path) + '"><span>' + label + '</span><strong>' + arrowPrefix + item.number + ' | ' + item.title + arrowSuffix + '</strong></a>';
+  }
+%>
+
+<article class="post-content field-note-page os-reading-layout article-reading-layout series-article-page" lang="zh-Hant">
+  <header class="post-header field-note-header article-reading-header series-article-header">
+    <div class="post-kicker"><%= series ? series.title.toUpperCase() : 'MEDTRUST' %> SERIES</div>
+    <h1 class="post-title"><%= title %></h1>
+    <div class="post-meta">
+      <span><%= articleNumber %> / <%= total ? String(total - 1).padStart(2, '0') : '00' %></span>
+      <span class="article-status article-status--<%= statusClass(page.status || (article && article.status)) %>"><%= statusLabel(page.status || (article && article.status)) %></span>
+      <% if (page.date) { %><time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY-MM-DD') %></time><% } %>
+    </div>
+  </header>
+
+  <div class="article-reading-main series-article-main">
+    <dl class="series-article-facts">
+      <div>
+        <dt>Series</dt>
+        <dd><%= series ? series.title : seriesSlug %></dd>
+      </div>
+      <div>
+        <dt>Article</dt>
+        <dd><%= articleNumber %> / <%= total ? String(total - 1).padStart(2, '0') : '00' %></dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd><%= statusLabel(page.status || (article && article.status)) %></dd>
+      </div>
+    </dl>
+
+    <div class="post-body" data-article-body>
+      <%- page.content %>
+    </div>
+
+    <nav class="series-article-nav" aria-label="Series article navigation">
+      <%- renderArticleNavItem('Previous Article', previousArticle, 'previous') %>
+      <% if (series) { %>
+        <a class="series-nav-link series-nav-link--index" href="<%= url_for('/journal/series/' + series.slug + '/') %>">
+          <span>Back to</span>
+          <strong><%= series.title %> Series</strong>
+        </a>
+      <% } %>
+      <%- renderArticleNavItem('Next Article', nextArticle, 'next') %>
+    </nav>
+  </div>
+</article>

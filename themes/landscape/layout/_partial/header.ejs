@@ -1,40 +1,30 @@
 <%
   const normalizedPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const pathParts = normalizedPath.split('/').filter(Boolean);
-  const normalizeHeaderLang = function(value) {
-    const normalized = String(value || '').toLowerCase();
-    if (normalized === 'zh' || normalized === 'zh-tw' || normalized === 'zh-hant') return 'zh';
-    if (normalized === 'en') return 'en';
-    return '';
-  };
-  const urlLang = ['en', 'zh'].includes(pathParts[0]) ? pathParts[0] : '';
-  const sourcePath = String(page.source || page.full_source || '').replace(/\\/g, '/');
-  const sourceLangMatch = sourcePath.match(/(?:^|\/)(en|zh)\//);
-  const currentLang = urlLang || normalizeHeaderLang(page.site_lang) || (sourceLangMatch ? sourceLangMatch[1] : '') || normalizeHeaderLang(config.language) || 'en';
+  const urlLang = pathParts[0] === 'en' ? 'en' : (pathParts[0] === 'zh' ? 'zh' : '');
+  const currentLang = urlLang === 'en' ? 'en' : 'zh';
   const localPathParts = urlLang ? pathParts.slice(1) : pathParts;
   const localDetailPath = localPathParts.join('/');
   const currentSection = (function() {
     if (!localPathParts.length) return 'home';
+    if (localPathParts[0] === 'research') return 'research';
     if (localPathParts[0] === 'systems') return 'systems';
-    if (localPathParts[0] === 'projects') return 'research';
-    if (localPathParts[0] === 'outcomes') return 'evidence';
-    if (localPathParts[0] === 'now') return 'now';
-    if (localPathParts[0] === 'timeline' || localPathParts[0] === 'experience') return 'timeline';
-    if (localPathParts[0] === 'archives' || localPathParts[0] === 'writing') return 'notes';
+    if (localPathParts[0] === 'journal' || localPathParts[0] === 'writing') return 'journal';
+    if (localPathParts[0] === 'archive' || localPathParts[0] === 'archives' || localPathParts[0] === 'outcomes' || localPathParts[0] === 'timeline') return 'archive';
     if (localPathParts[0] === 'about') return 'profile';
     return '';
   })();
   const localizedPaths = {
-    en: { home: '/', systems: '/systems/', research: '/projects/', evidence: '/outcomes/', now: '/now/', notes: '/writing/', timeline: '/experience/', profile: '/about/' },
-    zh: { home: '/zh/', systems: '/zh/systems/', research: '/zh/projects/', evidence: '/zh/outcomes/', now: '/zh/now/', notes: '/zh/writing/', timeline: '/zh/experience/', profile: '/zh/about/' }
+    zh: { home: '/', research: '/research/', systems: '/systems/', journal: '/journal/', archive: '/archive/', profile: '/about/' },
+    en: { home: '/en/', research: '/en/research/', systems: '/en/systems/', journal: '/en/journal/', archive: '/en/archive/', profile: '/en/about/' }
   };
   const labels = {
     zh: {
       home: '首頁',
-      systems: '工程系統',
       research: '研究方向',
-      notes: '研究筆記',
-      timeline: '參賽與研習',
+      systems: '工程系統',
+      journal: '研究筆記',
+      archive: '結案紀錄',
       profile: '關於',
       menu: '選單',
       language: '語言',
@@ -42,14 +32,14 @@
       appearance: '外觀',
       light: 'Light',
       dark: 'Dark',
-      toggleTheme: '切換顯示主題'
+      toggleTheme: '切換顯示模式'
     },
     en: {
       home: 'Home',
-      systems: 'Systems',
       research: 'Research',
-      notes: 'Notes',
-      timeline: 'Experience',
+      systems: 'Systems',
+      journal: 'Journal',
+      archive: 'Archive',
       profile: 'About',
       menu: 'Menu',
       language: 'Language',
@@ -61,21 +51,28 @@
     }
   };
   const navPath = function(key) {
-    const paths = localizedPaths[currentLang] || localizedPaths.en;
+    const paths = localizedPaths[currentLang] || localizedPaths.zh;
     return paths[key] || paths.home;
   };
   const langPath = function(targetLang) {
-    const prefix = targetLang === 'zh' ? '/zh' : '';
-    if (!localDetailPath) return prefix + '/';
-    return prefix + '/' + localDetailPath + '/';
+    const corePaths = ['', 'research', 'systems', 'systems/medtrust', 'systems/home-lab', 'journal', 'archive', 'about'];
+    const seriesPaths = ['journal/series', 'journal/series/medtrust', 'journal/series/medtrust/00'];
+    if (targetLang === 'en') {
+      if (corePaths.indexOf(localDetailPath) >= 0) return '/en' + (localDetailPath ? '/' + localDetailPath : '') + '/';
+      if (seriesPaths.indexOf(localDetailPath) >= 0) return '/en/journal/';
+      return '/en/';
+    }
+    if (corePaths.indexOf(localDetailPath) >= 0) return '/' + (localDetailPath ? localDetailPath + '/' : '');
+    if (seriesPaths.indexOf(localDetailPath) >= 0) return '/journal/';
+    return '/';
   };
-  const h = labels[currentLang] || labels.en;
+  const h = labels[currentLang] || labels.zh;
   const navItems = [
     { key: 'home', label: h.home },
     { key: 'research', label: h.research },
     { key: 'systems', label: h.systems },
-    { key: 'notes', label: h.notes },
-    { key: 'timeline', label: h.timeline },
+    { key: 'journal', label: h.journal },
+    { key: 'archive', label: h.archive },
     { key: 'profile', label: h.profile }
   ];
   const renderNavLink = function(item, index) {
@@ -91,10 +88,10 @@
 %>
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-brand" href="<%= url_for(navPath('home')) %>" aria-label="Seraph Research and Engineering Portfolio">
+    <a class="site-brand" href="<%= url_for(navPath('home')) %>" aria-label="Seraph">
       <span class="site-brand__text">
         <strong>SERAPH</strong>
-        <small>Research &amp; Engineering Portfolio</small>
+        <small>Security / Embedded / Infrastructure</small>
       </span>
     </a>
 

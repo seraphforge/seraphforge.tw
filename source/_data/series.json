@@ -1,0 +1,40 @@
+{
+  "medtrust": {
+    "slug": "medtrust",
+    "title": "MedTrust",
+    "subtitle": "Medical IoT Trust & Evidence System",
+    "description": "MedTrust development journal. This series records the iterations behind message trust, replay protection, attack validation, experiment evidence, and evidence integrity.",
+    "status": "In Progress",
+    "startedYear": 2026,
+    "tags": ["ESP32-S3", "Medical IoT", "HMAC-SHA256", "Replay Protection", "Evidence Integrity"],
+    "articles": [
+      { "number": "00", "slug": "why-medtrust", "title": "我為什麼開始做 MedTrust", "status": "draft", "date": "2026-08-10", "description": "", "path": "/journal/series/medtrust/00/", "exists": true },
+      { "number": "01", "slug": "esp32-to-gateway", "title": "從 ESP32 到 Gateway", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/01/" },
+      { "number": "02", "slug": "is-data-authentic", "title": "Gateway 收到資料，不代表資料值得信任", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/02/" },
+      { "number": "03", "slug": "hmac-sha256-first-pass", "title": "第一次 HMAC-SHA256 驗證", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/03/" },
+      { "number": "04", "slug": "signature-verification-failed", "title": "為什麼 Signature 驗證失敗", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/04/" },
+      { "number": "05", "slug": "secret-mismatch", "title": "ESP32 與 Gateway 的 Secret 不一致", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/05/" },
+      { "number": "06", "slug": "first-valid-message", "title": "第一筆 VALID 訊息", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/06/" },
+      { "number": "07", "slug": "signature-is-not-enough", "title": "Signature 不夠", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/07/" },
+      { "number": "08", "slug": "timestamp-sequence-nonce", "title": "Timestamp / Sequence / Nonce", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/08/" },
+      { "number": "09", "slug": "replay-attack-test", "title": "Replay Attack 測試", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/09/" },
+      { "number": "10", "slug": "attack-esp32", "title": "Attack ESP32", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/10/" },
+      { "number": "11", "slug": "invalid-signature-scenario", "title": "INVALID_SIGNATURE Scenario", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/11/" },
+      { "number": "12", "slug": "gateway-blocked-it", "title": "Gateway 擋下攻擊訊息", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/12/" },
+      { "number": "13", "slug": "experiment-scenarios", "title": "Experiment Scenarios", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/13/" },
+      { "number": "14", "slug": "how-to-keep-evidence", "title": "如何保存實驗證據", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/14/" },
+      { "number": "15", "slug": "experiment-batch", "title": "Experiment Batch", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/15/" },
+      { "number": "16", "slug": "report-package", "title": "Report Package", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/16/" },
+      { "number": "17", "slug": "export-html-markdown-csv", "title": "Export: HTML / Markdown / CSV", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/17/" },
+      { "number": "18", "slug": "tampered-results-question", "title": "如果實驗結果被改過怎麼辦", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/18/" },
+      { "number": "19", "slug": "sha256-evidence-files", "title": "Evidence File SHA-256", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/19/" },
+      { "number": "20", "slug": "integrity-manifest", "title": "integrity-manifest.json", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/20/" },
+      { "number": "21", "slug": "package-digest", "title": "Package Digest", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/21/" },
+      { "number": "22", "slug": "offline-verifier", "title": "Offline Verifier", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/22/" },
+      { "number": "23", "slug": "tamper-experiments-csv", "title": "修改 experiments.csv 的 Tamper Test", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/23/" },
+      { "number": "24", "slug": "hash-mismatch", "title": "HASH MISMATCH", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/24/" },
+      { "number": "25", "slug": "integrity-not-signature", "title": "Integrity 不是 Digital Signature", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/25/" },
+      { "number": "26", "slug": "current-state", "title": "目前 MedTrust 做到哪裡", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/26/" }
+    ]
+  }
+}

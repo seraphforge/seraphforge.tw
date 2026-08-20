@@ -8,10 +8,10 @@
     return '';
   };
   const explicitHtmlLang = htmlParts[0] === 'zh' ? 'zh-Hant' : (htmlParts[0] === 'en' ? 'en' : '');
-  const htmlLang = explicitHtmlLang || normalizeHtmlLang(page.site_lang) || 'en';
+  const htmlLang = explicitHtmlLang || normalizeHtmlLang(page.site_lang) || normalizeHtmlLang(config.language) || 'zh-Hant';
   const localHtmlParts = explicitHtmlLang ? htmlParts.slice(1) : htmlParts;
   const isProjectDetailPage = String(page.type || '').toLowerCase() === 'project' || (localHtmlParts[0] === 'projects' && localHtmlParts.length === 2);
-  const isPostPage = page.layout === 'post';
+  const isPostPage = page.layout === 'post' || page.layout === 'series-article';
 %>
 <!DOCTYPE html>
 <html lang="<%= htmlLang %>">

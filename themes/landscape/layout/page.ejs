@@ -12,7 +12,8 @@
   const localPageParts = explicitPageLang ? pageParts.slice(1) : pageParts;
   const pageSection = localPageParts[0] || 'home';
   const pageType = String(page.type || '').toLowerCase();
-  const isSystemDetail = pageType === 'system' || pageType === 'system-detail' || Boolean(page.system) || (pageSection === 'systems' && localPageParts.length === 2);
+  const isIaPage = pageType === 'ia';
+  const isSystemDetail = pageType === 'system' || pageType === 'system-detail' || Boolean(page.system);
   const isProjectDetail = String(page.type || '').toLowerCase() === 'project' || (pageSection === 'projects' && localPageParts.length === 2);
   const isExperienceLanding = pageSection === 'experience' && localPageParts.length === 1;
   const isExperienceDetail = pageSection === 'experience' && localPageParts.length === 2;
@@ -20,8 +21,6 @@
   const i18nPagePaths = [
     '',
     'dashboard',
-    'about',
-    'systems',
     'projects',
     'outcomes',
     'now',
@@ -29,16 +28,12 @@
     'writing',
     'timeline',
     'en',
-    'en/about',
-    'en/systems',
     'en/projects',
     'en/outcomes',
     'en/now',
     'en/experience',
     'zh',
     'zh/dashboard',
-    'zh/about',
-    'zh/systems',
     'zh/projects',
     'zh/outcomes',
     'zh/now',
@@ -132,6 +127,13 @@
   }
 
   const projectBody = transformProjectTechList(stripDuplicateProjectLead(page.content, page.title));
+  const iaBody = String(page.content || '')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#039;/g, "'")
+    .replace(/&amp;/g, '&');
 %>
 
 <% if (isExperienceLanding) { %>
@@ -164,6 +166,12 @@
 
     <div class="project-detail__body">
       <%- projectBody %>
+    </div>
+  </article>
+<% } else if (isIaPage) { %>
+  <article class="page-content notebook-page ia-shell">
+    <div class="page-body">
+      <%- iaBody %>
     </div>
   </article>
 <% } else if (isI18nPage) { %>

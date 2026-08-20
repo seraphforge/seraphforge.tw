@@ -1,0 +1,77 @@
+<%
+  const seriesSlug = page.series || 'medtrust';
+  const series = site.data && site.data.series && site.data.series[seriesSlug];
+  const articles = series ? (series.articles || []) : [];
+  const total = articles.length;
+  const published = articles.filter(function(article) {
+    return article.status === 'published';
+  }).length;
+
+  function statusClass(status) {
+    return String(status || 'planned').toLowerCase();
+  }
+
+  function statusLabel(status) {
+    const value = statusClass(status);
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+%>
+
+<% if (series) { %>
+  <section class="series-page series-overview" aria-labelledby="series-overview-title">
+    <header class="series-page__header series-overview__header">
+      <div>
+        <p class="series-page__eyebrow">MEDTRUST / SERIES</p>
+        <h1 id="series-overview-title"><%= series.title %></h1>
+        <p class="series-page__subtitle"><%= series.subtitle %></p>
+      </div>
+      <div class="series-overview__status">
+        <span class="series-status series-status--in-progress"><%= series.status %></span>
+      </div>
+      <p><%= series.description %></p>
+      <div class="series-progress" aria-label="<%= published %> of <%= total %> articles published">
+        <div class="series-progress__label">
+          <span><%= published %> / <%= total %> Published</span>
+          <span><%= total - published %> Remaining</span>
+        </div>
+        <span class="series-progress__track"><span style="width: <%= total ? Math.round((published / total) * 100) : 0 %>%"></span></span>
+      </div>
+      <ul class="series-tag-list" aria-label="Series tags">
+        <% (series.tags || []).forEach(function(tag) { %>
+          <li><%= tag %></li>
+        <% }) %>
+      </ul>
+    </header>
+
+    <ol class="series-article-list">
+      <% articles.forEach(function(article) {
+        const isAvailable = Boolean(article.exists && article.path);
+        const itemClass = 'series-article-item series-article-item--' + statusClass(article.status) + (isAvailable ? ' is-available' : ' is-unavailable');
+      %>
+        <li class="<%= itemClass %>">
+          <div class="series-article-number"><%= article.number %></div>
+          <div class="series-article-body">
+            <h2>
+              <% if (isAvailable) { %>
+                <a href="<%= url_for(article.path) %>"><%= article.title %></a>
+              <% } else { %>
+                <span><%= article.title %></span>
+              <% } %>
+            </h2>
+            <% if (article.description) { %><p><%= article.description %></p><% } %>
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--<%= statusClass(article.status) %>"><%= statusLabel(article.status) %></span>
+          </div>
+        </li>
+      <% }) %>
+    </ol>
+  </section>
+<% } else { %>
+  <section class="series-page">
+    <header class="series-page__header">
+      <p class="series-page__eyebrow">JOURNAL / SERIES</p>
+      <h1>Series not found</h1>
+    </header>
+  </section>
+<% } %>

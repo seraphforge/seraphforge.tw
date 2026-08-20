@@ -1,0 +1,53 @@
+<%
+  const allSeriesData = (site.data && site.data.series) || {};
+  const seriesList = Object.keys(allSeriesData).map(function(key) {
+    return allSeriesData[key];
+  }).filter(Boolean);
+
+  function statusClass(status) {
+    return String(status || '').toLowerCase().replace(/\s+/g, '-');
+  }
+
+  function publishedCount(series) {
+    return (series.articles || []).filter(function(article) {
+      return article.status === 'published';
+    }).length;
+  }
+%>
+
+<section class="series-page series-index" aria-labelledby="series-index-title">
+  <header class="series-page__header">
+    <p class="series-page__eyebrow">JOURNAL / SERIES</p>
+    <h1 id="series-index-title">Series</h1>
+    <p>Research notes grouped by project and topic.</p>
+  </header>
+
+  <div class="series-index-list">
+    <% seriesList.forEach(function(series) {
+      const total = (series.articles || []).length;
+      const published = publishedCount(series);
+    %>
+      <article class="series-index-item">
+        <div class="series-index-item__meta">
+          <span class="series-status series-status--<%= statusClass(series.status) %>"><%= series.status %></span>
+          <span><%= total %> Articles</span>
+          <span>Started: <%= series.startedYear %></span>
+        </div>
+        <div class="series-index-item__body">
+          <h2><a href="<%= url_for('/journal/series/' + series.slug + '/') %>"><%= series.title %></a></h2>
+          <p class="series-index-item__subtitle"><%= series.subtitle %></p>
+          <p><%= series.description %></p>
+          <div class="series-progress" aria-label="<%= published %> of <%= total %> articles published">
+            <div class="series-progress__label"><span><%= published %> / <%= total %> Published</span></div>
+            <span class="series-progress__track"><span style="width: <%= total ? Math.round((published / total) * 100) : 0 %>%"></span></span>
+          </div>
+          <ul class="series-tag-list" aria-label="Series tags">
+            <% (series.tags || []).forEach(function(tag) { %>
+              <li><%= tag %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
