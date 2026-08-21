@@ -1,11 +1,13 @@
 <%
   const i18nPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const i18nParts = i18nPath.split('/').filter(Boolean);
-  const lang = i18nParts[0] === 'zh' ? 'zh' : (i18nParts[0] === 'ja' ? 'ja' : 'en');
+  const declaredLang = String(page.site_lang || '').toLowerCase();
+  const lang = i18nParts[0] === 'en' ? 'en' : (i18nParts[0] === 'zh' ? 'zh' : (i18nParts[0] === 'ja' ? 'ja' : (declaredLang === 'en' ? 'en' : 'zh')));
   const localParts = ['en', 'zh', 'ja'].includes(i18nParts[0]) ? i18nParts.slice(1) : i18nParts;
   const section = (localParts[0] || '') === '' ? 'home' : (localParts[0] === 'archives' ? 'writing' : localParts[0]);
   const data = site.data.research || {};
   const nowData = site.data.now || {};
+  const experienceData = (site.data.experience && site.data.experience[lang]) || {};
   const safeArray = function(value) { return Array.isArray(value) ? value.filter(function(item) { return item !== undefined && item !== null && item !== ''; }) : []; };
   const projects = (data.projects || []).filter(function(item) { return item.visible !== false; });
   const publicProjectIds = new Set(projects.map(function(item) { return item.id; }));
@@ -52,8 +54,8 @@
     });
 
   const paths = {
-    en: { home: '/', systems: '/systems/', research: '/projects/', projects: '/projects/', outcomes: '/outcomes/', now: '/now/', timeline: '/timeline/', writing: '/writing/', profile: '/about/', about: '/about/' },
-    zh: { home: '/zh/', systems: '/zh/systems/', research: '/zh/projects/', projects: '/zh/projects/', outcomes: '/zh/outcomes/', now: '/zh/now/', timeline: '/zh/timeline/', writing: '/zh/writing/', profile: '/zh/about/', about: '/zh/about/' },
+    en: { home: '/en/', systems: '/en/systems/', research: '/en/projects/', projects: '/en/projects/', outcomes: '/en/outcomes/', now: '/en/now/', timeline: '/en/timeline/', writing: '/en/writing/', profile: '/en/about/', about: '/en/about/' },
+    zh: { home: '/', systems: '/systems/', research: '/projects/', projects: '/projects/', outcomes: '/outcomes/', now: '/now/', timeline: '/timeline/', writing: '/writing/', profile: '/about/', about: '/about/' },
     ja: { home: '/ja/', systems: '/ja/systems/', research: '/ja/projects/', projects: '/ja/projects/', outcomes: '/ja/outcomes/', now: '/ja/now/', timeline: '/ja/timeline/', writing: '/ja/writing/', profile: '/ja/about/', about: '/ja/about/' }
   };
   const localHref = function(key) { return url_for((paths[lang] && paths[lang][key]) || '/'); };
@@ -345,7 +347,7 @@
 <%
   const context = {
     lang, isZh, isJa, section, pageLangAttr, c, ec,
-    data, nowData, projects, areas, evidence, outcomes, capabilities, timeline, engineeringDomains, engineeringProcess, homepageFocus, identity,
+    data, nowData, experienceData, projects, areas, evidence, outcomes, capabilities, timeline, engineeringDomains, engineeringProcess, homepageFocus, identity,
     nowFocus, nowLogs, notes, featuredSystems, selectedHomeSystems,
     safeArray, hasText, nowText, localHref, localizedDetailHref, localizedNowHref, formatNowDate, projectHref, maybeZh, joinList, projectById, evidenceById, projectTitle, statusLabel, strip, postSummary, readingMinutes, firstTag, localizedField, homeSystemTitle, homeSystemSummary, listingSummary, systemCardTags
   };

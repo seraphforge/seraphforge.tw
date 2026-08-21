@@ -13,7 +13,7 @@
 
   function statusLabel(status) {
     const value = statusClass(status);
-    return value.charAt(0).toUpperCase() + value.slice(1);
+    return { published: '已發布', draft: '草稿', planned: '規劃中', 'in progress': '進行中' }[value] || status;
   }
 
   function hasGeneratedRoute(article) {
@@ -29,22 +29,22 @@
   <section class="series-page series-overview" aria-labelledby="series-overview-title">
     <header class="series-page__header series-overview__header">
       <div>
-        <p class="series-page__eyebrow">MEDTRUST / SERIES</p>
+        <p class="series-page__eyebrow">MEDTRUST／系列</p>
         <h1 id="series-overview-title"><%= series.title %></h1>
-        <p class="series-page__subtitle"><%= series.subtitle %></p>
+        <p class="series-page__subtitle">Medical IoT 信任與證據系統</p>
       </div>
       <div class="series-overview__status">
-        <span class="series-status series-status--in-progress"><%= series.status %></span>
+        <span class="series-status series-status--in-progress"><%= statusLabel(series.status) %></span>
       </div>
-      <p><%= series.description %></p>
-      <div class="series-progress" aria-label="<%= published %> of <%= total %> articles published">
+      <p>MedTrust 開發紀錄，整理訊息信任、Replay Protection、Attack Validation、實驗證據與 Evidence Integrity 的迭代過程。</p>
+      <div class="series-progress" aria-label="已發布 <%= published %>／<%= total %> 篇">
         <div class="series-progress__label">
-          <span><%= published %> / <%= total %> Published</span>
-          <span><%= total - published %> Remaining</span>
+          <span><%= published %>／<%= total %> 已發布</span>
+          <span>剩餘 <%= total - published %> 篇</span>
         </div>
         <span class="series-progress__track"><span style="width: <%= total ? Math.round((published / total) * 100) : 0 %>%"></span></span>
       </div>
-      <ul class="series-tag-list" aria-label="Series tags">
+      <ul class="series-tag-list" aria-label="系列標籤">
         <% (series.tags || []).forEach(function(tag) { %>
           <li><%= tag %></li>
         <% }) %>
@@ -78,8 +78,8 @@
 <% } else { %>
   <section class="series-page">
     <header class="series-page__header">
-      <p class="series-page__eyebrow">JOURNAL / SERIES</p>
-      <h1>Series not found</h1>
+      <p class="series-page__eyebrow">研究筆記／系列</p>
+      <h1>找不到系列</h1>
     </header>
   </section>
 <% } %>

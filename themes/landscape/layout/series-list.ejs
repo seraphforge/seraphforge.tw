@@ -17,9 +17,9 @@
 
 <section class="series-page series-index" aria-labelledby="series-index-title">
   <header class="series-page__header">
-    <p class="series-page__eyebrow">JOURNAL / SERIES</p>
-    <h1 id="series-index-title">Series</h1>
-    <p>Research notes grouped by project and topic.</p>
+    <p class="series-page__eyebrow">研究筆記／系列</p>
+    <h1 id="series-index-title">系列</h1>
+    <p>依專案與主題整理的研究筆記。</p>
   </header>
 
   <div class="series-index-list">
@@ -29,19 +29,19 @@
     %>
       <article class="series-index-item">
         <div class="series-index-item__meta">
-          <span class="series-status series-status--<%= statusClass(series.status) %>"><%= series.status %></span>
-          <span><%= total %> Articles</span>
-          <span>Started: <%= series.startedYear %></span>
+          <span class="series-status series-status--<%= statusClass(series.status) %>"><%= series.status === 'In Progress' ? '進行中' : series.status %></span>
+          <span><%= total %> 篇</span>
+          <span>開始年份：<%= series.startedYear %></span>
         </div>
         <div class="series-index-item__body">
           <h2><a href="<%= url_for('/journal/series/' + series.slug + '/') %>"><%= series.title %></a></h2>
-          <p class="series-index-item__subtitle"><%= series.subtitle %></p>
-          <p><%= series.description %></p>
-          <div class="series-progress" aria-label="<%= published %> of <%= total %> articles published">
-            <div class="series-progress__label"><span><%= published %> / <%= total %> Published</span></div>
+          <p class="series-index-item__subtitle">Medical IoT 信任與證據系統</p>
+          <p>MedTrust 開發紀錄，整理訊息信任、Replay Protection、Attack Validation、實驗證據與 Evidence Integrity 的迭代過程。</p>
+          <div class="series-progress" aria-label="已發布 <%= published %>／<%= total %> 篇">
+            <div class="series-progress__label"><span><%= published %>／<%= total %> 已發布</span></div>
             <span class="series-progress__track"><span style="width: <%= total ? Math.round((published / total) * 100) : 0 %>%"></span></span>
           </div>
-          <ul class="series-tag-list" aria-label="Series tags">
+          <ul class="series-tag-list" aria-label="系列標籤">
             <% (series.tags || []).forEach(function(tag) { %>
               <li><%= tag %></li>
             <% }) %>

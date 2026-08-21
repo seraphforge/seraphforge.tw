@@ -1,7 +1,6 @@
 ---
 title: Projects
-published: false
-description: Engineering project archive for the things RYVÆN is building and the questions behind them.
+description: RYVÆN projects, research directions, and competition records.
 site_lang: en
 comments: true
 ---

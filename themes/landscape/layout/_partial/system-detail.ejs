@@ -10,7 +10,6 @@
   const detailEvidence = (researchData.evidence || []).filter(function(item) { return item.visible !== false; });
   const detailSystems = detailProjects.filter(function(project) { return project.systemId && project.featured; });
   const detailRoutes = {
-    securecare: '/systems/securecare/',
     'home-lab-infrastructure': '/systems/home-lab-infrastructure/',
     'embedded-secure-device': '/systems/embedded-secure-device/'
   };
@@ -33,7 +32,7 @@
     researchView: isDetailZh ? '研究方向' : 'Research Projects',
     previous: isDetailZh ? '上一個系統' : 'Previous System',
     next: isDetailZh ? '下一個系統' : 'Next System',
-    systemId: 'System ID',
+    systemId: isDetailZh ? '系統 ID' : 'System ID',
     title: isDetailZh ? '標題' : 'Title',
     domain: isDetailZh ? '領域' : 'Domain',
     projectType: isDetailZh ? '專案類型' : 'Project Type',
@@ -206,7 +205,7 @@
   const nodes = flowNodes.length ? flowNodes : safeArray(architecture.nodes);
 %>
   <% if (nodes.length) { %>
-    <div class="architecture-snapshot system-detail-architecture" aria-label="Architecture snapshot">
+    <div class="architecture-snapshot system-detail-architecture" aria-label="<%= isDetailZh ? '架構摘要' : 'Architecture snapshot' %>">
       <div class="architecture-flow">
         <% nodes.forEach(function(node, index) { %>
           <div class="architecture-node">

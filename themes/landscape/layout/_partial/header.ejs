@@ -9,6 +9,7 @@
     if (!localPathParts.length) return 'home';
     if (localPathParts[0] === 'research') return 'research';
     if (localPathParts[0] === 'systems') return 'systems';
+    if (localPathParts[0] === 'projects') return 'projects';
     if (localPathParts[0] === 'journal' || localPathParts[0] === 'writing') return 'journal';
     if (localPathParts[0] === 'uses') return 'uses';
     if (localPathParts[0] === 'archive' || localPathParts[0] === 'archives' || localPathParts[0] === 'outcomes' || localPathParts[0] === 'timeline') return 'archive';
@@ -16,14 +17,15 @@
     return '';
   })();
   const localizedPaths = {
-    zh: { home: '/', research: '/research/', systems: '/systems/', journal: '/journal/', uses: '/uses/', archive: '/archive/', profile: '/about/' },
-    en: { home: '/en/', research: '/en/research/', systems: '/en/systems/', journal: '/en/journal/', uses: '/en/uses/', archive: '/en/archive/', profile: '/en/about/' }
+    zh: { home: '/', research: '/research/', systems: '/systems/', projects: '/projects/', journal: '/journal/', uses: '/uses/', archive: '/archive/', profile: '/about/' },
+    en: { home: '/en/', research: '/en/research/', systems: '/en/systems/', projects: '/en/projects/', journal: '/en/journal/', uses: '/en/uses/', archive: '/en/archive/', profile: '/en/about/' }
   };
   const labels = {
     zh: {
       home: '首頁',
       research: '研究方向',
       systems: '工程系統',
+      projects: '專案',
       journal: '研究筆記',
       uses: '技術環境',
       archive: '結案紀錄',
@@ -36,6 +38,7 @@
       home: 'Home',
       research: 'Research',
       systems: 'Systems',
+      projects: 'Projects',
       journal: 'Journal',
       uses: 'Uses',
       archive: 'Archive',
@@ -50,7 +53,7 @@
     return paths[key] || paths.home;
   };
   const langPath = function(targetLang) {
-    const corePaths = ['', 'research', 'systems', 'systems/medtrust', 'systems/home-lab', 'journal', 'uses', 'archive', 'about'];
+    const corePaths = ['', 'research', 'systems', 'projects', 'systems/medtrust', 'systems/home-lab', 'journal', 'uses', 'archive', 'about'];
     const seriesPaths = ['journal/series', 'journal/series/medtrust', 'journal/series/medtrust/00'];
     if (targetLang === 'en') {
       if (corePaths.indexOf(localDetailPath) >= 0) return '/en' + (localDetailPath ? '/' + localDetailPath : '') + '/';
@@ -66,6 +69,7 @@
     { key: 'home', label: h.home },
     { key: 'research', label: h.research },
     { key: 'systems', label: h.systems },
+    { key: 'projects', label: h.projects },
     { key: 'journal', label: h.journal },
     { key: 'uses', label: h.uses },
     { key: 'archive', label: h.archive },

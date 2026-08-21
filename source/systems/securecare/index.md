@@ -1,5 +1,6 @@
 ---
 title: SecureCare
+published: false
 description: SecureCare 早期醫療資安方向與相容說明。
 site_lang: zh-TW
 layout: page

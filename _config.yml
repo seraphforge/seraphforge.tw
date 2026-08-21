@@ -22,7 +22,6 @@ exclude:
   - systems/hpc-teaching-transfer/**
   - zh/systems/hpc-teaching-transfer/**
   - works/**
-  - en/projects/**
   - experience/community/**
   - experience/leadership/**
   - experience/projects/**
@@ -33,6 +32,10 @@ exclude:
   - experience/competitions/**
   - zh/experience/competitions/**
   - en/experience/competitions/**
+  - systems/securecare/**
+  - systems/securecare-platform/**
+  - zh/systems/securecare/**
+  - zh/systems/securecare-platform/**
 
 deploy:
   type: git

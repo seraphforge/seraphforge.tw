@@ -17,7 +17,7 @@
       "nextMilestoneZh": "整理可公開的架構筆記與測試證據。",
       "evidenceStatus": "Private / In Progress",
       "evidenceStatusZh": "Private／整理中",
-      "relatedPath": "/systems/securecare/",
+      "relatedPath": "",
       "order": 1,
       "visible": true
     },
@@ -107,7 +107,7 @@
         { "type": "Build output", "label": "Generated routes", "status": "Verified", "visibility": "Private" }
       ],
       "visibility": "Private",
-      "relatedPath": "/systems/securecare/",
+      "relatedPath": "",
       "featured": true,
       "visible": true,
       "order": 1

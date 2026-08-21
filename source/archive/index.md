@@ -10,21 +10,21 @@ comments: true
 <section class="ia-page ia-page--archive" lang="zh-Hant">
   <header class="ia-hero">
     <div class="ia-hero__copy">
-      <p class="ia-eyebrow">ARCHIVE</p>
+      <p class="ia-eyebrow">結案紀錄</p>
       <h1>已完成的技術階段</h1>
       <p>這裡記錄已完成並驗證的技術成果。專案可以繼續往下做，但完成一個階段就留下結案紀錄。</p>
     </div>
     <dl class="ia-hero-meta">
-      <div><dt>模式</dt><dd>Phase closure</dd></div>
-      <div><dt>Status</dt><dd>CLOSED records</dd></div>
-      <div><dt>Current</dt><dd>MedTrust</dd></div>
+      <div><dt>模式</dt><dd>階段結案</dd></div>
+      <div><dt>狀態</dt><dd>已結案紀錄</dd></div>
+      <div><dt>目前專案</dt><dd>MedTrust</dd></div>
     </dl>
   </header>
 
   <article class="ia-milestone">
     <aside class="ia-milestone__stamp">
       <span>2026.08</span>
-      <strong>CLOSED</strong>
+      <strong>已結案</strong>
       <span>MedTrust</span>
     </aside>
     <div>
@@ -62,9 +62,9 @@ comments: true
   </article>
 
   <section class="ia-grid ia-grid--two" aria-label="過往工作分類">
-    <article class="ia-panel"><p class="ia-tech-label">PREVIOUS DIRECTION</p><h2>SecureCare</h2><p>早期的醫療系統探索，後續的 trust validation 問題已逐步收斂到 MedTrust。</p><p class="ia-related"><a href="/systems/securecare/">查看歷史系統</a></p></article>
-    <article class="ia-panel"><p class="ia-tech-label">COMPETITIONS</p><h2>競賽與團隊工程</h2><p>保留已公開的 CTF 與過往競賽紀錄，但不作為首頁主要內容。</p></article>
-    <article class="ia-panel"><p class="ia-tech-label">OLDER SYSTEMS</p><h2>過往專案</h2><p>已完成或不再是當前重點的工程系統，仍保留可追溯的設計與反思。</p><p class="ia-related"><a href="/projects/">查看舊專案</a></p></article>
-    <article class="ia-panel"><p class="ia-tech-label">PAST RESEARCH</p><h2>過往研究方向</h2><p>未繼續發展的假設與早期探索會留在這裡，讓技術決策的脈絡仍可被理解。</p><p class="ia-related"><a href="/experience/research/">查看研究經歷</a></p></article>
+    <article class="ia-panel"><p class="ia-tech-label">早期方向</p><h2>SecureCare</h2><p>MedTrust 之前的早期醫療資安探索。</p></article>
+    <article class="ia-panel"><p class="ia-tech-label">競賽經歷</p><h2>競賽與團隊工程</h2><p>保留已公開的 CTF 與過往競賽紀錄，但不作為首頁主要內容。</p></article>
+    <article class="ia-panel"><p class="ia-tech-label">過往系統</p><h2>過往專案</h2><p>已完成或不再是當前重點的工程系統，仍保留可追溯的設計與反思。</p><p class="ia-related"><a href="/projects/">查看舊專案</a></p></article>
+    <article class="ia-panel"><p class="ia-tech-label">過往研究</p><h2>過往研究方向</h2><p>未繼續發展的假設與早期探索會留在這裡，讓技術決策的脈絡仍可被理解。</p><p class="ia-related"><a href="/experience/research/">查看研究經歷</a></p></article>
   </section>
 </section>
