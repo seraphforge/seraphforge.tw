@@ -1,494 +1,869 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/en/experience/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/journal/series/</loc>
     
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/systems/</loc>
     
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/labs/</loc>
     
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/</loc>
     
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/07/18/retail-work-sme-security-culture/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/projects/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/07/18/retail-work-sme-security-culture/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/writing/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/07/18/retail-work-sme-security-culture/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/timeline/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/07/08/ctf-meets-malware-analysis-windows/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/outcomes/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/07/08/ctf-meets-malware-analysis-windows/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/contact/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/07/08/ctf-meets-malware-analysis-windows/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/dashboard/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/06/25/why-i-still-use-codex/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/archives/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/06/25/why-i-still-use-codex/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/research/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/uses/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/experience/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/06/25/why-i-still-use-codex/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/writing/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/projects/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/06/23/ten-years-from-now-dont-forget-who-you-are-now/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/uses/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/06/23/taiwan-student-cybersecurity-growing-apart/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/timeline/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/06/23/taiwan-student-cybersecurity-growing-apart/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/outcomes/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/06/23/prologue-the-people-i-met-along-the-way/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/research/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/06/23/prologue-the-people-i-met-along-the-way/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/labs/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/06/23/taiwan-student-cybersecurity-growing-apart/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/dashboard/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/06/23/prologue-the-people-i-met-along-the-way/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/contact/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/07/07/infosec-taiwan-2026-student-industry-gap/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/lab/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/07/07/infosec-taiwan-2026-student-industry-gap/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/about/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/07/07/infosec-taiwan-2026-student-industry-gap/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/</loc>
     
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/projects/medical-cybersecurity/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/projects/nihs-control-team/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/about/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/projects/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/about/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/projects/autonomous-robot/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/2026/08/17/frc-engineering-team/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/labs/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/archive/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/research/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/archive/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/archives/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/journal/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/projects/nihs-control-team/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/home-lab/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/about/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/medtrust/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/projects/medical-cybersecurity/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/securecare/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/projects/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/journal/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/projects/autonomous-robot/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/home-lab/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/labs/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/medtrust/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/lab/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/home-lab-infrastructure/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/projects/nihs-control-team/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/journal/series/medtrust/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/projects/medical-cybersecurity/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/systems/securecare/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/projects/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/systems/securecare-platform/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/projects/autonomous-robot/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/systems/home-lab-infrastructure/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/labs/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/systems/embedded-secure-device/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/research/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/projects/autonomous-robot/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/archives/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/projects/medical-cybersecurity/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/about/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/now/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/research/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/securecare-platform/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/about/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/systems/embedded-secure-device/</loc>
     
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/writing/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/projects/medical-cybersecurity/</loc>
     
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/writing/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/projects/autonomous-robot/</loc>
     
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/</loc>
+    
+    <lastmod>2026-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/now/</loc>
+    
+    <lastmod>2026-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/workshops/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/research/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/ctf/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/competitions/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/certifications/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/awards/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/workshops/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/speaking/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/research/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/ctf/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/competitions/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/certifications/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/awards/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/2026/07/18/retail-work-sme-security-culture/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/2026/07/18/retail-work-sme-security-culture/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/2026/07/07/infosec-taiwan-2026-student-industry-gap/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/2026/07/07/infosec-taiwan-2026-student-industry-gap/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/2026/07/08/ctf-meets-malware-analysis-windows/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/2026/07/08/ctf-meets-malware-analysis-windows/</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/404.html</loc>
+    
+    <lastmod>2026-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/labs/web-security/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -496,8 +871,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/labs/ros2-topic-communication/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -505,8 +882,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/timeline/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/labs/medical-cybersecurity-research/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -514,8 +893,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/labs/web-security/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/labs/esp32-uart-test/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -523,8 +904,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/labs/ros2-topic-communication/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/labs/ctf-web-practice/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -532,8 +915,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/labs/medical-cybersecurity-research/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/labs/web-security/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -541,368 +926,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/labs/esp32-uart-test/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/labs/ctf-web-practice/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/workshops/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/speaking/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/projects/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/leadership/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/ctf/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/competitions/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/community/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/certifications/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/experience/awards/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/dashboard/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/timeline/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/labs/web-security/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/labs/ros2-topic-communication/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/labs/medical-cybersecurity-research/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/labs/esp32-uart-test/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/labs/ctf-web-practice/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/workshops/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/speaking/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/projects/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/leadership/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/ctf/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/competitions/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/community/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/certifications/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/dashboard/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/experience/awards/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/community/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/workshops/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/leadership/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/ctf/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/awards/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/speaking/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/competitions/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/projects/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/experience/certifications/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/labs/web-security/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/timeline/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/dashboard/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/labs/ctf-web-practice/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/labs/ctf-web-practice/</loc>
     
     <lastmod>2026-06-27</lastmod>
     
@@ -910,8 +937,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/labs/medical-cybersecurity-research/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/labs/medical-cybersecurity-research/</loc>
     
     <lastmod>2026-06-27</lastmod>
     
@@ -919,8 +948,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/labs/ros2-topic-communication/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/labs/ros2-topic-communication/</loc>
     
     <lastmod>2026-06-27</lastmod>
     
@@ -928,8 +959,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/labs/esp32-uart-test/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/labs/esp32-uart-test/</loc>
     
     <lastmod>2026-06-27</lastmod>
     
@@ -937,35 +970,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/writing/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/works/</loc>
-    
-    <lastmod>2026-06-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/404.html</loc>
-    
-    <lastmod>2026-06-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/search/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/search/</loc>
     
     <lastmod>2026-06-23</lastmod>
     
@@ -973,35 +981,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/05/16/from-nihscsed-to-control-team/</loc>
-    
-    <lastmod>2026-05-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/05/16/from-nihscsed-to-control-team/</loc>
-    
-    <lastmod>2026-05-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/05/16/from-nihscsed-to-control-team/</loc>
-    
-    <lastmod>2026-05-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/05/09/2026-security-conference/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/2026/05/09/2026-security-conference/</loc>
     
     <lastmod>2026-05-14</lastmod>
     
@@ -1009,8 +992,10 @@
     <priority>0.6</priority>
   </url>
   
+  
+  
   <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/05/09/2026-security-conference/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/zh/2026/05/09/2026-security-conference/</loc>
     
     <lastmod>2026-05-14</lastmod>
     
@@ -1018,481 +1003,250 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/2026/04/18/not-everyone-has-to-walk-the-same-road/</loc>
-    
-    <lastmod>2026-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/05/09/2026-security-conference/</loc>
-    
-    <lastmod>2026-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/ja/2026/04/18/not-everyone-has-to-walk-the-same-road/</loc>
-    
-    <lastmod>2026-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/zh/2026/04/18/not-everyone-has-to-walk-the-same-road/</loc>
-    
-    <lastmod>2026-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
   
 
   <url>
-    <loc>https://casper3790.github.io/casper.tw</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/CYBERSEC/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/CYBERSEC/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/2026-%E8%B3%87%E5%AE%89%E5%A4%A7%E6%9C%83/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/2026-Cybersecurity-Conference/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Zero-Trust/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/AI-SOC/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/AI-SOC/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E9%86%AB%E7%99%82%E8%B3%87%E5%AE%89/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Medical-Cybersecurity/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/OT-%E8%B3%87%E5%AE%89/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/OT-Security/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/2026-Cybersecurity-Conference/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/CTF/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Zero-Trust/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Malware-Analysis/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Medical-Cybersecurity/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Windows-Malware/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/OT-Security/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Windows-Forensics/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/my-story/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Blue-Team/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Growth/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/DFIR/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Cybersecurity/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Wireshark/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/High-School-Life/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/2026-%E8%B3%87%E5%AE%89%E5%A4%A7%E6%9C%83/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Choices/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E6%88%90%E9%95%B7/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/%E9%86%AB%E7%99%82%E8%B3%87%E5%AE%89/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E8%B3%87%E5%AE%89/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/OT-%E8%B3%87%E5%AE%89/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E9%AB%98%E4%B8%AD%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/InfoSec-Taiwan/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E9%81%B8%E6%93%87/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Cybersecurity/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Future/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/SOC/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Reflection/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Incident-Response/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Personal/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Compliance/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Journey/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Financial-Security/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/CTF/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/AI-Security/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Malware-Analysis/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Post-Quantum-Cryptography/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Windows-Malware/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Career/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Windows-Forensics/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Students/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Blue-Team/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Security-Culture/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/DFIR/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Responsible-Security-Culture/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Wireshark/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/SME-Security/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/NIHSCED/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Retail/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/NIHSCED-IWHC/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Personal/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Security-Community/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Healthcare/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Control-Engineering/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Competition-Team/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Neihu-Vocational-High-School/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Legacy/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E8%B3%87%E5%AE%89%E7%A4%BE%E7%BE%A4/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E6%8E%A7%E5%88%B6%E7%A7%91/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E9%81%B8%E6%89%8B%E5%9C%98%E9%9A%8A/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E5%85%A7%E6%B9%96%E9%AB%98%E5%B7%A5/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/%E5%82%B3%E6%89%BF/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/InfoSec-Taiwan/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/SOC/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Incident-Response/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Compliance/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Financial-Security/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/AI-Security/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Post-Quantum-Cryptography/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Career/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Students/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Introduction/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Memories/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Security-Culture/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Responsible-Security-Culture/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/SME-Security/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Retail/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Education/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/AI/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Codex/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Healthcare/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/tags/Medical-Security/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/Medical-Security/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -1500,50 +1254,22 @@
 
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/%E8%B3%87%E5%AE%89/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/categories/Cybersecurity/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/Cybersecurity/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/categories/%E8%B3%87%E5%AE%89/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/Personal-Story/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/%E5%80%8B%E4%BA%BA%E6%95%85%E4%BA%8B/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/Personal/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/Thoughts/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://casper3790.github.io/casper.tw/categories/Medical-Security/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://seraphforge.github.io/seraphforge.tw/categories/Medical-Security/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

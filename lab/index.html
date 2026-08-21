@@ -1,202 +1,130 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
-<title>Casper Lab | Casper&#39;s SECURITY LAB</title>
+<title>RYVÆN Lab — RYVÆN</title>
 <meta name="description" content="A public lab for cybersecurity, robotics, medical security, and web experiments.">
-<meta name="keywords" content="資安, CTF, Web, Robotics, IoT">
-<meta name="author" content="Casper">
-<link rel="canonical" href="https://casper3790.github.io/casper.tw/lab/">
+
+<meta name="keywords" content="Security, Embedded, Infrastructure, Medical IoT, MedTrust">
+<meta name="author" content="RYVÆN">
+<link rel="canonical" href="https://seraphforge.github.io/seraphforge.tw/lab/">
 
 
-<meta property="og:site_name" content="Casper&#39;s SECURITY LAB">
-<meta property="og:title" content="Casper Lab | Casper&#39;s SECURITY LAB">
+<meta property="og:site_name" content="RYVÆN">
+<meta property="og:title" content="RYVÆN Lab — RYVÆN">
 <meta property="og:description" content="A public lab for cybersecurity, robotics, medical security, and web experiments.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://casper3790.github.io/casper.tw/lab/">
-<meta property="og:image" content="https://casper3790.github.io/casper.tw/images/casper-og.png">
-<meta property="og:image:alt" content="Casper Lab preview image">
-<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://seraphforge.github.io/seraphforge.tw/lab/">
 
-<meta property="article:published_time" content="2026-07-19T16:53:53.989Z">
+<meta property="og:locale" content="zh_TW">
 
-
-<meta property="article:modified_time" content="2026-07-06T10:06:43.509Z">
+<meta property="article:published_time" content="2026-08-21T12:46:22.490Z">
 
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Casper Lab | Casper&#39;s SECURITY LAB">
+<meta property="article:modified_time" content="2026-08-21T12:46:22.490Z">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RYVÆN Lab — RYVÆN">
 <meta name="twitter:description" content="A public lab for cybersecurity, robotics, medical security, and web experiments.">
-<meta name="twitter:image" content="https://casper3790.github.io/casper.tw/images/casper-og.png">
-<meta name="twitter:image:alt" content="Casper Lab preview image">
 
-<link rel="icon" type="image/svg+xml" href="/casper.tw/favicon.svg">
-<link rel="shortcut icon" href="/casper.tw/favicon.svg">
-<script>
-  (function() {
-    try {
-      document.documentElement.setAttribute('data-theme', localStorage.getItem('casper-theme') || 'light');
-    } catch (error) {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  })();
-</script>
-<link rel="stylesheet" href="/casper.tw/css/custom.css?v=20">
 
-<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/casper.tw/feed.xml" title="Casper's SECURITY LAB" type="application/atom+xml">
+<link rel="icon" type="image/svg+xml" href="/seraphforge.tw/favicon.svg">
+<link rel="shortcut icon" href="/seraphforge.tw/favicon.svg">
+<link rel="stylesheet" href="/seraphforge.tw/css/custom.css?v=23">
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/seraphforge.tw/feed.xml" title="RYVÆN" type="application/atom+xml">
 </head>
 <body>
   <div class="site-wrapper">
-    <header class="site-header">
-  
-  <div class="brand-row">
-    <a class="brand-avatar" href="/casper.tw/" aria-label="Home">
-      <img src="/casper.tw/images/casper.png" alt="Casper avatar">
+    
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="/seraphforge.tw/" aria-label="RYVÆN">
+      <span class="site-brand__text">
+        <strong>RYVÆN</strong>
+        <small>Security / Embedded / Infrastructure</small>
+      </span>
     </a>
 
-    <div class="brand-content">
-      <div class="site-title">
-        <a href="/casper.tw/"><span>Casper</span></a>
-      </div>
+    <nav class="site-navigation" aria-label="主導覽">
+      <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+    </nav>
 
-      <div class="site-subtitle">Find Your Polaris.</div>
-
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="/casper.tw/">Home</a><a href="/casper.tw/about/">About</a><a href="/casper.tw/experience/projects/">Projects</a><a href="/casper.tw/en/experience/">Experience</a><a href="/casper.tw/archives/">Articles</a><a href="#contact">Contact</a>
-      </nav>
-
-      <div class="header-controls">
-        <nav class="site-nav language-switcher" aria-label="Language switcher">
-          <a href="/casper.tw/lab/" lang="en" aria-current=true>EN</a>
-          <a href="/casper.tw/zh/lab/" lang="zh-Hant" >ZH</a>
-          <a href="/casper.tw/ja/lab/" lang="ja" >JA</a>
-        </nav>
-        <span class="header-controls-separator" aria-hidden="true"></span>
-
-        <button class="theme-toggle-button" type="button" data-theme-toggle aria-label="Toggle color theme" title="Toggle color theme">
-          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
-          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
-          <span class="theme-toggle-label">Toggle color theme</span>
-        </button>
-      </div>
-
-      <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
-        <span class="mobile-menu-label">Menu</span>
-        <span class="mobile-menu-icon" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-
-      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
-        <section class="mobile-nav-section mobile-nav-section-navigation" aria-labelledby="mobile-nav-navigation-label">
-          <p id="mobile-nav-navigation-label" class="mobile-nav-label">Navigation</p>
-          <div class="mobile-nav-links">
-            <a href="/casper.tw/">Home</a><a href="/casper.tw/about/">About</a><a href="/casper.tw/experience/projects/">Projects</a><a href="/casper.tw/en/experience/">Experience</a><a href="/casper.tw/archives/">Articles</a><a href="#contact">Contact</a>
-          </div>
-        </section>
-
-        <span class="mobile-nav-divider" aria-hidden="true"></span>
-
-        <section class="mobile-nav-section mobile-nav-section-language" aria-labelledby="mobile-nav-language-label">
-          <p id="mobile-nav-language-label" class="mobile-nav-label">Language</p>
-          <nav class="mobile-language-switcher" aria-label="Language switcher">
-            <a href="/casper.tw/lab/" lang="en" aria-current=true>EN</a>
-            <a href="/casper.tw/zh/lab/" lang="zh-Hant" >ZH</a>
-            <a href="/casper.tw/ja/lab/" lang="ja" >JA</a>
-          </nav>
-        </section>
-
-        <span class="mobile-nav-divider" aria-hidden="true"></span>
-
-        <section class="mobile-nav-section mobile-nav-section-appearance" aria-labelledby="mobile-nav-appearance-label">
-          <p id="mobile-nav-appearance-label" class="mobile-nav-label">Appearance</p>
-          <button class="theme-toggle-button theme-toggle-button-mobile" type="button" data-theme-toggle aria-label="Toggle color theme" title="Toggle color theme">
-            <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
-            <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
-            <span class="theme-toggle-label">Toggle color theme</span>
-          </button>
-        </section>
-      </nav>
+    <div class="site-header__actions">
+      <nav class="language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
     </div>
+
+    <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      <span class="mobile-menu-label">選單</span>
+      <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
   </div>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-navigation-label">
+      <p id="mobile-nav-navigation-label" class="mobile-nav-label">主導覽</p>
+      <div class="mobile-nav-links">
+        <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+      </div>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-language-label">
+      <p id="mobile-nav-language-label" class="mobile-nav-label">語言</p>
+      <nav class="mobile-language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </section>
+  </nav>
 </header>
 
 <script>
   (function() {
-    var storageKey = 'casper-theme';
-    var root = document.documentElement;
-    var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-toggle]'));
-
-    function applyTheme(theme) {
-      var nextTheme = theme === 'dark' ? 'dark' : 'light';
-      root.setAttribute('data-theme', nextTheme);
-      buttons.forEach(function(button) {
-        button.setAttribute('aria-pressed', String(nextTheme === 'dark'));
-        button.setAttribute('aria-label', 'Toggle color theme: ' + (nextTheme === 'light' ? 'Light' : 'Dark'));
-        button.setAttribute('title', nextTheme === 'light' ? 'Light' : 'Dark');
-      });
-    }
-
-    try {
-      applyTheme(localStorage.getItem(storageKey) || 'light');
-    } catch (error) {
-      applyTheme('light');
-    }
-
-    buttons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        var nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        applyTheme(nextTheme);
-        try {
-          localStorage.setItem(storageKey, nextTheme);
-        } catch (error) {}
-      });
-    });
-
     var menuButton = document.querySelector('.mobile-menu-button');
     var menu = document.getElementById('mobile-nav');
     var header = document.querySelector('.site-header');
+
+    function closeMenu() {
+      if (!menuButton || !menu) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
     function updateHeaderState() {
       if (!header) return;
       header.classList.toggle('is-scrolled', window.scrollY > 12);
     }
+
     updateHeaderState();
     window.addEventListener('scroll', updateHeaderState, { passive: true });
 
     if (!menuButton || !menu) return;
-
     menuButton.addEventListener('click', function() {
       var isOpen = menuButton.getAttribute('aria-expanded') === 'true';
       menuButton.setAttribute('aria-expanded', String(!isOpen));
       menu.hidden = isOpen;
     });
-
     menu.addEventListener('click', function(event) {
-      if (event.target && event.target.tagName === 'A') {
-        menuButton.setAttribute('aria-expanded', 'false');
-        menu.hidden = true;
-      }
+      if (event.target && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
     });
   })();
 </script>
 
 
     <main class="main-container">
-      <link rel="stylesheet" href="/casper.tw/css/lab.css?v=2">
+      <link rel="stylesheet" href="/seraphforge.tw/css/lab.css?v=2">
 
 <section class="lab-page" data-lab-page>
   <section class="lab-hero lab-reveal" aria-labelledby="lab-title">
     <div class="lab-hero-grid">
       <div class="lab-hero-copy">
-        <p class="lab-kicker">public-lab://casper</p>
-        <h1 id="lab-title">Casper Lab</h1>
+        <p class="lab-kicker">public-lab://RYVAEN</p>
+        <h1 id="lab-title">RYVÆN Lab</h1>
         <p class="lab-subtitle">A public experimental lab for research in progress, prototypes in motion, and systems still being tested.</p>
         <div class="lab-tags" aria-label="Research areas">
           <span>Cybersecurity</span>
@@ -253,16 +181,6 @@
 
       <article class="lab-card">
         <span class="lab-card-index">03</span>
-        <h3>NIHS Platform</h3>
-        <p>Platform notes and control-team tooling for cybersecurity training, operations, and event support.</p>
-        <div class="lab-card-meta">
-          <span>Platform</span>
-          <span>Web</span>
-        </div>
-      </article>
-
-      <article class="lab-card">
-        <span class="lab-card-index">04</span>
         <h3>CTF Writeups</h3>
         <p>Practical writeups from web security practice, challenge analysis, and repeatable learning notes.</p>
         <div class="lab-card-meta">
@@ -313,7 +231,7 @@
       <p role="listitem"><span>[active]</span> Building ROS2 robot base</p>
       <p role="listitem"><span>[research]</span> Medical device trust model</p>
       <p role="listitem"><span>[writeup]</span> CTF learning notes</p>
-      <p role="listitem"><span>[web]</span> Improving casper.tw<span class="lab-cursor" aria-hidden="true"></span></p>
+      <p role="listitem"><span>[web]</span> Improving RYVÆN on seraphforge.github.io<span class="lab-cursor" aria-hidden="true"></span></p>
     </div>
   </section>
 
@@ -323,24 +241,56 @@
       <h2>Explore the rest of the lab.</h2>
     </div>
     <div class="lab-actions">
-      <a href="/casper.tw/writing/">Read Articles</a>
-      <a href="/casper.tw/projects/">View Projects</a>
-      <a href="https://github.com/casper3790" rel="noopener noreferrer" target="_blank">View GitHub</a>
+      <a href="/seraphforge.tw/writing/">Read Articles</a>
+      <a href="/seraphforge.tw/projects/">View Projects</a>
+      <a href="https://github.com/seraphforge" rel="noopener noreferrer" target="_blank">View GitHub</a>
     </div>
   </section>
 </section>
 
-<script src="/casper.tw/js/lab.js?v=1" defer></script>
+<script src="/seraphforge.tw/js/lab.js?v=1" defer></script>
 
     </main>
 
     
-<footer id="contact" class="site-footer polaris-footer" aria-label="Site footer">
-  <p class="polaris-footer-title">Find Your Polaris.</p>
-  <p class="polaris-footer-note">Curiosity matters more than rushing to prove yourself.</p>
-  <p class="footer-copy">&copy; 2026 Casper.</p>
+<footer id="contact" class="site-footer polaris-footer" aria-label="頁尾">
+  <p class="polaris-footer-title">RYVÆN</p>
+  <p class="polaris-footer-note">Security / Embedded / Infrastructure.</p>
+  <nav class="footer-links" aria-label="頁尾">
+    <a href="/seraphforge.tw/">首頁</a>
+    <a href="/seraphforge.tw/research/">研究方向</a>
+    <a href="/seraphforge.tw/systems/">工程系統</a>
+    <a href="/seraphforge.tw/journal/">研究筆記</a>
+    <a href="/seraphforge.tw/archive/">結案紀錄</a>
+    <a href="/seraphforge.tw/about/">關於</a>
+  </nav>
+  <p class="footer-copy">Last updated: 2026-08 / &copy; 2026 RYVÆN.</p>
 </footer>
 
   </div>
+  <script>
+    (function() {
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+      copyButtons.forEach(function(button) {
+        var originalText = button.textContent;
+        button.addEventListener('click', function() {
+          var email = button.getAttribute('data-copy-email') || '';
+          var status = button.parentElement ? button.parentElement.querySelector('[data-copy-email-status]') : null;
+          if (!email || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          navigator.clipboard.writeText(email).then(function() {
+            var isZh = document.documentElement.lang === 'zh-Hant';
+            button.textContent = isZh ? '已複製' : 'Copied';
+            if (status) status.textContent = isZh ? '已複製' : 'Copied';
+            window.setTimeout(function() {
+              button.textContent = originalText;
+              if (status) status.textContent = '';
+            }, 1800);
+          }).catch(function() {
+            return;
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

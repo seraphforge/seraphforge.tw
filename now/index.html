@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Now — Engineering Log — RYVÆN</title>
+<meta name="description" content="Current systems, experiments, testing, debugging and documentation across security, software, embedded devices and infrastructure.">
+
+<meta name="keywords" content="Security, Embedded, Infrastructure, Medical IoT, MedTrust">
+<meta name="author" content="RYVÆN">
+<link rel="canonical" href="https://seraphforge.github.io/seraphforge.tw/now/">
+
+<link rel="alternate" hreflang="en" href="https://seraphforge.github.io/seraphforge.tw/now/">
+<link rel="alternate" hreflang="zh-TW" href="https://seraphforge.github.io/seraphforge.tw/zh/now/">
+<link rel="alternate" hreflang="x-default" href="https://seraphforge.github.io/seraphforge.tw/now/">
+
+
+<meta property="og:site_name" content="RYVÆN">
+<meta property="og:title" content="Now — Engineering Log — RYVÆN">
+<meta property="og:description" content="Current systems, experiments, testing, debugging and documentation across security, software, embedded devices and infrastructure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://seraphforge.github.io/seraphforge.tw/now/">
+
+<meta property="og:locale" content="en_US">
+
+<meta property="article:published_time" content="2026-08-21T08:17:09.141Z">
+
+
+<meta property="article:modified_time" content="2026-08-02T18:58:12.686Z">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Now — Engineering Log — RYVÆN">
+<meta name="twitter:description" content="Current systems, experiments, testing, debugging and documentation across security, software, embedded devices and infrastructure.">
+
+
+<link rel="icon" type="image/svg+xml" href="/seraphforge.tw/favicon.svg">
+<link rel="shortcut icon" href="/seraphforge.tw/favicon.svg">
+<link rel="stylesheet" href="/seraphforge.tw/css/custom.css?v=23">
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/seraphforge.tw/feed.xml" title="RYVÆN" type="application/atom+xml">
+</head>
+<body>
+  <div class="site-wrapper">
+    
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="/seraphforge.tw/" aria-label="RYVÆN">
+      <span class="site-brand__text">
+        <strong>RYVÆN</strong>
+        <small>Security / Embedded / Infrastructure</small>
+      </span>
+    </a>
+
+    <nav class="site-navigation" aria-label="主導覽">
+      <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+    </nav>
+
+    <div class="site-header__actions">
+      <nav class="language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </div>
+
+    <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      <span class="mobile-menu-label">選單</span>
+      <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-navigation-label">
+      <p id="mobile-nav-navigation-label" class="mobile-nav-label">主導覽</p>
+      <div class="mobile-nav-links">
+        <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+      </div>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-language-label">
+      <p id="mobile-nav-language-label" class="mobile-nav-label">語言</p>
+      <nav class="mobile-language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </section>
+  </nav>
+</header>
+
+<script>
+  (function() {
+    var menuButton = document.querySelector('.mobile-menu-button');
+    var menu = document.getElementById('mobile-nav');
+    var header = document.querySelector('.site-header');
+
+    function closeMenu() {
+      if (!menuButton || !menu) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
+    function updateHeaderState() {
+      if (!header) return;
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    }
+
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+
+    if (!menuButton || !menu) return;
+    menuButton.addEventListener('click', function() {
+      var isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menu.hidden = isOpen;
+    });
+    menu.addEventListener('click', function(event) {
+      if (event.target && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+
+    <main class="main-container">
+      
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="home-page research-portfolio-page i18n-page i18n-page-now" lang="en">
+  
+    
+  <header class="research-section-header">
+    <p class="research-section-kicker">Current Focus</p>
+    <h2>Current Focus</h2>
+    <p>All visible current focus items with current goal, next milestone, and evidence status.</p>
+  </header>
+
+  <span class="research-status-badge" data-status-tone="neutral">Documenting</span>
+
+  <span class="research-status-badge" data-status-tone="neutral">Debugging</span>
+
+  <span class="research-status-badge" data-status-tone="neutral">Experimenting</span>
+
+  <header class="research-section-header">
+    <p class="research-section-kicker">Engineering Log</p>
+    <h2>Engineering Log</h2>
+    <p>Short-term Build, Test, Debug, Failure, Fix, and Next Step records; failures and planned work remain visible.</p>
+  </header>
+
+  <span class="research-status-badge" data-status-tone="neutral">Documentation</span>
+
+  <span class="research-status-badge" data-status-tone="good">Completed</span>
+
+  <div class="research-tag-list">
+    <span>FastAPI</span><span>JWT</span><span>RBAC</span><span>MQTT</span><span>HMAC</span>
+  </div>
+
+  <span class="research-status-badge" data-status-tone="neutral">Infrastructure</span>
+
+  <span class="research-status-badge" data-status-tone="good">Completed</span>
+
+  <div class="research-tag-list">
+    <span>Linux</span><span>Docker</span><span>MQTT</span><span>OpenWrt</span><span>Node-RED</span>
+  </div>
+
+  <span class="research-status-badge" data-status-tone="neutral">Build</span>
+
+  <span class="research-status-badge" data-status-tone="good">Completed</span>
+
+  <div class="research-tag-list">
+    <span>EJS</span><span>Hexo</span><span>JSON</span>
+  </div>
+
+  <span class="research-status-badge" data-status-tone="neutral">Infrastructure</span>
+
+  <span class="research-status-badge" data-status-tone="warn">Planned</span>
+
+  <div class="research-tag-list">
+    <span>Node-RED</span><span>Telegram Bot</span><span>MQTT</span>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <section class="research-page now-page" aria-labelledby="en-now-title">
+    <header class="research-page-header now-page-header">
+      <p class="research-section-kicker">Now</p>
+      <h1 id="en-now-title">Now</h1>
+      <p class="now-page-subtitle">Engineering Log</p>
+      <p>Short records of systems being built, tested, debugged and documented.</p>
+      <dl class="now-summary-grid">
+        <div><dt>Last Updated</dt><dd>Jul 31, 2026</dd></div>
+        <div><dt>Active Focus</dt><dd>3</dd></div>
+        <div><dt>Recent Logs</dt><dd>4</dd></div>
+        <div><dt>Systems</dt><dd>4</dd></div>
+        <div><dt>Current Modes</dt><dd>Documenting / Debugging / Experimenting</dd></div>
+      </dl>
+    </header>
+
+    <section class="research-section now-current-focus" aria-labelledby="en-now-focus-title">
+      
+      <div class="current-focus-list">
+        
+  <article class="current-focus-item">
+    <div class="current-focus-item__meta">
+      <span>SYS-001</span>
+      
+    </div>
+    <div class="current-focus-item__body">
+      <h3>SecureCare</h3>
+      <dl class="research-metadata-list">
+        
+          <div><dt>Domain</dt><dd>Healthcare Security / Full-system Prototype</dd></div>
+        
+          <div><dt>Current Goal</dt><dd>Organize architecture, security assumptions, evidence and limitations for review.</dd></div>
+        
+          <div><dt>Next Milestone</dt><dd>Publish sanitized architecture notes and testing evidence.</dd></div>
+        
+          <div><dt>Evidence Status</dt><dd>Private / In Progress</dd></div>
+        
+      </dl>
+      
+        <a class="research-inline-link" href="/seraphforge.tw/systems/securecare/">Related System</a>
+      
+    </div>
+  </article>
+
+  <article class="current-focus-item">
+    <div class="current-focus-item__meta">
+      <span>SYS-002</span>
+      
+    </div>
+    <div class="current-focus-item__body">
+      <h3>Home Lab Infrastructure</h3>
+      <dl class="research-metadata-list">
+        
+          <div><dt>Domain</dt><dd>Infrastructure / Networking / Security Lab</dd></div>
+        
+          <div><dt>Current Goal</dt><dd>Document Linux services, router topology, remote access and recovery records.</dd></div>
+        
+          <div><dt>Next Milestone</dt><dd>Prepare a sanitized topology and service recovery index.</dd></div>
+        
+          <div><dt>Evidence Status</dt><dd>Private / Available on Request</dd></div>
+        
+      </dl>
+      
+        <a class="research-inline-link" href="/seraphforge.tw/systems/home-lab-infrastructure/">Related System</a>
+      
+    </div>
+  </article>
+
+  <article class="current-focus-item">
+    <div class="current-focus-item__meta">
+      <span>SYS-003</span>
+      
+    </div>
+    <div class="current-focus-item__body">
+      <h3>Embedded Secure Device Experiments</h3>
+      <dl class="research-metadata-list">
+        
+          <div><dt>Domain</dt><dd>Embedded / Device Communication</dd></div>
+        
+          <div><dt>Current Goal</dt><dd>Clarify device message format, offline states and validation assumptions.</dd></div>
+        
+          <div><dt>Next Milestone</dt><dd>Document device reconnect and message validation behavior.</dd></div>
+        
+          <div><dt>Evidence Status</dt><dd>In Progress</dd></div>
+        
+      </dl>
+      
+        <a class="research-inline-link" href="/seraphforge.tw/systems/">Related System</a>
+      
+    </div>
+  </article>
+
+      </div>
+    </section>
+
+    <section class="research-section now-engineering-log" aria-labelledby="en-engineering-log-title">
+      
+      <form class="now-filter-bar" aria-label="Engineering log filters">
+        <label><span>Search</span><input type="search" data-now-search placeholder="Search title, summary, system, or fix"></label>
+        <label><span>Type</span><select data-now-filter="type"><option value="">All types</option><option value="Documentation">Documentation</option><option value="Infrastructure">Infrastructure</option><option value="Build">Build</option></select></label>
+        <label><span>System</span><select data-now-filter="system"><option value="">All systems</option><option value="SYS-001">SYS-001</option><option value="SYS-002">SYS-002</option><option value="SYS-001 / SYS-002">SYS-001 / SYS-002</option></select></label>
+        <label><span>Status</span><select data-now-filter="status"><option value="">All status</option><option value="Completed">Completed</option><option value="Planned">Planned</option></select></label>
+      </form>
+      <p class="research-empty-state" data-now-live aria-live="polite"></p>
+      <div class="now-log-list">
+        
+  <article class="now-log-entry" data-now-log data-type="Documentation" data-system="SYS-001" data-status="Completed" data-search="securecare system detail implementation built bilingual securecare engineering system detail pages and organized architecture, security controls, testing, evidence, limitations and research direction. sys-001 fastapi jwt rbac mqtt hmac securecare detail route was generated and passed hexo build.   ">
+    <div class="now-log-entry__aside">
+      <time datetime="2026-07-31">Jul 31, 2026</time>
+      <span>SYS-001</span>
+      
+      
+    </div>
+    <div class="now-log-entry__body">
+      <h3>SecureCare system detail implementation</h3>
+      <p>Built bilingual SecureCare engineering system detail pages and organized architecture, security controls, testing, evidence, limitations and research direction.</p>
+      
+      
+        <details class="now-log-details">
+          <summary>View Engineering Details</summary>
+          
+            <dl class="research-metadata-list">
+              <div><dt>Result</dt><dd>SecureCare detail route was generated and passed Hexo build.</dd></div><div><dt>Next Step</dt><dd>Continue organizing public testing evidence.</dd></div>
+            </dl>
+          
+          
+  
+    <div class="now-evidence-list">
+      
+        <div class="now-evidence-item">
+          <span>Build output</span>
+          <strong>Generated routes</strong>
+          <small>Verified / Private</small>
+          
+          
+        </div>
+      
+    </div>
+  
+
+          <a class="research-inline-link" href="/seraphforge.tw/systems/securecare/">Related Link</a>
+        </details>
+      
+    </div>
+  </article>
+
+  <article class="now-log-entry" data-now-log data-type="Infrastructure" data-system="SYS-002" data-status="Completed" data-search="home lab detail implementation built bilingual home lab infrastructure detail pages and organized networking, linux, docker, mqtt, remote access and failure cases. sys-002 linux docker mqtt openwrt node-red home lab detail route was generated and passed hexo build.   ">
+    <div class="now-log-entry__aside">
+      <time datetime="2026-07-31">Jul 31, 2026</time>
+      <span>SYS-002</span>
+      
+      
+    </div>
+    <div class="now-log-entry__body">
+      <h3>Home Lab detail implementation</h3>
+      <p>Built bilingual Home Lab Infrastructure detail pages and organized networking, Linux, Docker, MQTT, remote access and failure cases.</p>
+      
+      
+        <details class="now-log-details">
+          <summary>View Engineering Details</summary>
+          
+            <dl class="research-metadata-list">
+              <div><dt>Result</dt><dd>Home Lab detail route was generated and passed Hexo build.</dd></div><div><dt>Next Step</dt><dd>Prepare sanitized topology and recovery notes.</dd></div>
+            </dl>
+          
+          
+  
+    <div class="now-evidence-list">
+      
+        <div class="now-evidence-item">
+          <span>Build output</span>
+          <strong>Generated routes</strong>
+          <small>Verified / Private</small>
+          
+          
+        </div>
+      
+    </div>
+  
+
+          <a class="research-inline-link" href="/seraphforge.tw/systems/home-lab-infrastructure/">Related Link</a>
+        </details>
+      
+    </div>
+  </article>
+
+  <article class="now-log-entry" data-now-log data-type="Build" data-system="SYS-001 / SYS-002" data-status="Completed" data-search="shared system detail template converted system-detail.ejs into a data-driven shared template, removed securecare-specific hardcoding and handled optional fields safely. sys-001 / sys-002 ejs hexo json securecare and home lab pages share the same renderer.   ">
+    <div class="now-log-entry__aside">
+      <time datetime="2026-07-31">Jul 31, 2026</time>
+      <span>SYS-001 / SYS-002</span>
+      
+      
+    </div>
+    <div class="now-log-entry__body">
+      <h3>Shared system detail template</h3>
+      <p>Converted system-detail.ejs into a data-driven shared template, removed SecureCare-specific hardcoding and handled optional fields safely.</p>
+      
+      
+        <details class="now-log-details">
+          <summary>View Engineering Details</summary>
+          
+            <dl class="research-metadata-list">
+              <div><dt>Result</dt><dd>SecureCare and Home Lab pages share the same renderer.</dd></div>
+            </dl>
+          
+          
+  
+    <div class="now-evidence-list">
+      
+        <div class="now-evidence-item">
+          <span>Build output</span>
+          <strong>Hexo generate</strong>
+          <small>Verified / Private</small>
+          
+          
+        </div>
+      
+        <div class="now-evidence-item">
+          <span>Source template</span>
+          <strong>system-detail.ejs</strong>
+          <small>Verified / Available on Request</small>
+          
+          
+        </div>
+      
+    </div>
+  
+
+          <a class="research-inline-link" href="/seraphforge.tw/systems/">Related Link</a>
+        </details>
+      
+    </div>
+  </article>
+
+  <article class="now-log-entry" data-now-log data-type="Infrastructure" data-system="SYS-002" data-status="Planned" data-search="home lab telegram notification planning planned sending non-sensitive home lab status summaries to a phone through telegram bot. sys-002 node-red telegram bot mqtt    notifications must be separated from sensitive data handling.">
+    <div class="now-log-entry__aside">
+      <time datetime="2026-07-31">Jul 31, 2026</time>
+      <span>SYS-002</span>
+      
+      
+    </div>
+    <div class="now-log-entry__body">
+      <h3>Home Lab Telegram notification planning</h3>
+      <p>Planned sending non-sensitive Home Lab status summaries to a phone through Telegram Bot.</p>
+      
+      
+        <details class="now-log-details">
+          <summary>View Engineering Details</summary>
+          
+            <dl class="research-metadata-list">
+              <div><dt>Lesson</dt><dd>Notifications must be separated from sensitive data handling.</dd></div><div><dt>Next Step</dt><dd>Complete Bot setup, message minimization and retry behavior.</dd></div>
+            </dl>
+          
+          
+  
+
+          <a class="research-inline-link" href="/seraphforge.tw/systems/home-lab-infrastructure/">Related Link</a>
+        </details>
+      
+    </div>
+  </article>
+
+      </div>
+      <p class="research-empty-state" data-now-empty hidden>No engineering logs match the selected filters.</p>
+      <script>
+        (function() {
+          var root = document.currentScript.closest('.now-engineering-log');
+          if (!root) return;
+          var search = root.querySelector('[data-now-search]');
+          var filters = Array.prototype.slice.call(root.querySelectorAll('[data-now-filter]'));
+          var items = Array.prototype.slice.call(root.querySelectorAll('[data-now-log]'));
+          var empty = root.querySelector('[data-now-empty]');
+          var live = root.querySelector('[data-now-live]');
+          function matches(item) {
+            var query = search ? search.value.trim().toLowerCase() : '';
+            if (query && (item.getAttribute('data-search') || '').indexOf(query) === -1) return false;
+            return filters.every(function(filter) {
+              var value = filter.value;
+              if (!value) return true;
+              return (item.getAttribute('data-' + filter.getAttribute('data-now-filter')) || '') === value;
+            });
+          }
+          function apply() {
+            var visible = 0;
+            items.forEach(function(item) {
+              var ok = matches(item);
+              item.hidden = !ok;
+              if (ok) visible += 1;
+            });
+            if (empty) empty.hidden = visible !== 0;
+            if (live) live.textContent = visible + ' logs visible';
+          }
+          if (search) search.addEventListener('input', apply);
+          filters.forEach(function(filter) { filter.addEventListener('change', apply); });
+          apply();
+        })();
+      </script>
+    </section>
+  </section>
+
+
+
+  
+</section>
+
+
+
+    </main>
+
+    
+<footer id="contact" class="site-footer polaris-footer" aria-label="頁尾">
+  <p class="polaris-footer-title">RYVÆN</p>
+  <p class="polaris-footer-note">Security / Embedded / Infrastructure.</p>
+  <nav class="footer-links" aria-label="頁尾">
+    <a href="/seraphforge.tw/">首頁</a>
+    <a href="/seraphforge.tw/research/">研究方向</a>
+    <a href="/seraphforge.tw/systems/">工程系統</a>
+    <a href="/seraphforge.tw/journal/">研究筆記</a>
+    <a href="/seraphforge.tw/archive/">結案紀錄</a>
+    <a href="/seraphforge.tw/about/">關於</a>
+  </nav>
+  <p class="footer-copy">Last updated: 2026-08 / &copy; 2026 RYVÆN.</p>
+</footer>
+
+  </div>
+  <script>
+    (function() {
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+      copyButtons.forEach(function(button) {
+        var originalText = button.textContent;
+        button.addEventListener('click', function() {
+          var email = button.getAttribute('data-copy-email') || '';
+          var status = button.parentElement ? button.parentElement.querySelector('[data-copy-email-status]') : null;
+          if (!email || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          navigator.clipboard.writeText(email).then(function() {
+            var isZh = document.documentElement.lang === 'zh-Hant';
+            button.textContent = isZh ? '已複製' : 'Copied';
+            if (status) status.textContent = isZh ? '已複製' : 'Copied';
+            window.setTimeout(function() {
+              button.textContent = originalText;
+              if (status) status.textContent = '';
+            }, 1800);
+          }).catch(function() {
+            return;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

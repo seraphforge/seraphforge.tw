@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /casper.tw/
+Allow: /
 
-Sitemap: https://casper3790.github.io/casper.tw/sitemap.xml
+Sitemap: https://seraphforge.github.io/seraphforge.tw/sitemap.xml

@@ -1,0 +1,71 @@
+/* Reusable controls and small UI elements. */
+.os-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 42px;
+  padding: 0.55rem 0.9rem;
+  color: var(--seraph-text);
+  text-decoration: none;
+  font-family: var(--seraph-font-mono);
+  font-size: 0.82rem;
+  background: transparent;
+  border: var(--seraph-line);
+  border-radius: var(--seraph-radius-sm);
+}
+
+.os-button:hover {
+  color: var(--seraph-text-strong);
+  border-color: var(--seraph-border-strong);
+}
+
+.os-button:focus-visible,
+.os-button:active {
+  color: var(--seraph-text-strong);
+}
+
+.os-button-primary {
+  color: var(--seraph-bg);
+  background: var(--seraph-text-strong);
+  border-color: var(--seraph-text-strong);
+}
+
+.os-button-primary:hover,
+.os-button-primary:focus-visible,
+.os-button-primary:active {
+  color: var(--seraph-bg);
+  background: var(--seraph-text-strong);
+  border-color: var(--seraph-text-strong);
+}
+
+.os-button-secondary {
+  background: var(--seraph-surface-muted);
+}
+
+.terminal-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.terminal-stat-card {
+  padding: 0.9rem;
+}
+
+.terminal-stat-number {
+  color: var(--seraph-text-strong);
+  font-family: var(--seraph-font-serif);
+  font-size: 1.55rem;
+}
+
+.terminal-stat-label,
+.terminal-stat-caption {
+  color: var(--seraph-muted);
+  font-size: 0.85rem;
+}
+
+.terminal-stat-caption {
+  margin-top: 0.35rem;
+  color: var(--seraph-muted-2);
+}

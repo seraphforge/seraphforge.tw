@@ -1,0 +1,397 @@
+/* Responsive behavior for tablet and mobile viewports. */
+@media (max-width: 1100px) {
+  .site-navigation,
+  .site-header__actions {
+    display: none !important;
+  }
+
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: min(100% - 44px, 900px);
+  }
+
+  .mobile-menu-button {
+    display: flex !important;
+  }
+
+  .mobile-nav:not([hidden]) {
+    display: block;
+  }
+}
+
+@media (max-width: 980px) {
+  :root {
+    --seraph-pad-x: 20px;
+  }
+
+  .main-container,
+  .site-footer {
+    width: min(100% - 40px, 760px);
+  }
+
+  .brand-row {
+    align-items: flex-start;
+  }
+
+  .site-navigation,
+  .site-header__actions {
+    display: none !important;
+  }
+
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: min(100% - 40px, 760px);
+  }
+
+  .mobile-menu-button {
+    display: flex !important;
+  }
+
+  .mobile-nav:not([hidden]) {
+    display: block;
+  }
+
+  .featured-project-grid,
+  .case-study-list,
+  .experience-grid,
+  .contact-layout,
+  .profile-panel-grid,
+  .exploration-areas-list,
+  .research-hero,
+  .now-summary-grid,
+  .now-filter-bar,
+  .capability-group__items,
+  .research-filter-bar,
+  .system-detail__hero,
+  .system-detail-section--overview,
+  .system-detail-grid,
+  .system-detail-card-grid,
+  .system-detail-card-grid--zones,
+  .system-detail-nav,
+  .terminal-stats-grid,
+  .tags-list-grid,
+  .engineering-projects-summary-grid,
+  .engineering-projects-skill-grid,
+  .engineering-projects-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-space-guide-row,
+  .writing-all-card,
+  .writing-item,
+  .field-notes-index-item,
+  .timeline-card,
+  .featured-system,
+  .current-focus-item,
+  .now-log-entry,
+  .system-index-item,
+  .engineering-domain,
+  .research-field-item,
+  .research-project-row,
+  .research-evidence-item,
+  .research-note-row,
+  .research-timeline-entry,
+  .i18n-page-about .featured-project-card,
+  .project-index-item,
+  .experience-year-group,
+  .experience-card {
+    grid-template-columns: 1fr;
+  }
+
+  .site-space-guide-desc {
+    grid-column: auto;
+  }
+
+  .research-outcome-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+
+  .activity-card,
+  .outcome-card,
+  .activity-card__meta div,
+  .outcome-card__meta div {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-subsection__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .engineering-process-list {
+    grid-template-columns: 1fr;
+  }
+
+  .system-detail-layer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .now-evidence-list {
+    grid-template-columns: 1fr;
+  }
+
+  .engineering-process-step,
+  .engineering-process-step:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .experience-year {
+    position: static;
+  }
+
+  .experience-card-aside {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  :root { --seraph-blueprint: 0.018; }
+
+  body::before {
+    top: 5rem;
+    right: -18vw;
+    width: 82vw;
+  }
+
+  .site-header__inner { padding-block: 0.68rem; }
+  .entry-home-hero { min-height: auto; }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+    background-size: 52px 52px;
+  }
+
+  .site-header {
+    position: sticky;
+    padding-top: 0.85rem;
+  }
+
+  .site-header__inner,
+  .mobile-nav {
+    width: calc(100% - 36px);
+  }
+
+  .main-container,
+  .site-footer {
+    width: calc(100% - 36px);
+  }
+
+  .mobile-menu-button {
+    min-height: 38px;
+  }
+
+  .main-container {
+    padding: 2.4rem 0;
+  }
+
+  .home-page {
+    gap: 3rem;
+  }
+
+  .project-page-hero h1,
+  .field-notes-index-header h1,
+  .post-title {
+    font-size: clamp(2.05rem, 11vw, 3rem);
+  }
+
+  .home-positioning-copy h1 {
+    font-size: clamp(3rem, 18vw, 4.4rem);
+  }
+
+  .writing-all-card,
+  .writing-item,
+  .field-notes-index-item {
+    gap: 0.55rem;
+  }
+
+  .seraph-page__header {
+    margin-bottom: 2.2rem;
+  }
+
+  .seraph-page__title {
+    font-size: clamp(2.05rem, 11vw, 3rem);
+  }
+
+  .project-index-item,
+  .experience-card,
+  .experience-grid .experience-card {
+    padding: 1.25rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: var(--seraph-line);
+    border-radius: 0;
+  }
+
+  .project-index-title {
+    font-size: clamp(1.2rem, 7vw, 1.45rem);
+  }
+
+  .project-index-description {
+    font-size: 0.98rem;
+  }
+
+  .project-index-tech li {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .research-metadata-list div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .architecture-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .architecture-node {
+    width: 100%;
+    max-width: none;
+  }
+
+  .architecture-arrow {
+    justify-content: center;
+    min-height: 20px;
+    transform: none;
+  }
+
+  .architecture-arrow::before {
+    content: "\2193";
+    font-size: 0.72rem;
+  }
+
+  .architecture-arrow {
+    font-size: 0;
+  }
+
+  .research-hero h1 {
+    font-size: clamp(2.6rem, 17vw, 4.3rem);
+  }
+
+  .system-detail__hero h1 {
+    max-width: none;
+    font-size: clamp(2rem, 11vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .system-detail__hero {
+    gap: 1rem;
+    padding-top: 1.35rem;
+    padding-bottom: 1.15rem;
+  }
+
+  .system-detail__hero p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .system-detail__actions {
+    display: grid;
+  }
+
+  .system-detail__actions .os-button {
+    width: 100%;
+  }
+
+  .system-detail__hero aside {
+    display: none;
+  }
+
+  .system-card-cta {
+    display: grid;
+    justify-items: start;
+  }
+
+  .research-page-header h1 {
+    font-size: clamp(1.85rem, 9vw, 2.55rem);
+  }
+
+  .research-direction-item,
+  .system-index-item {
+    padding: 1rem;
+  }
+
+  .research-direction-link-list a,
+  .research-direction-log-card,
+  .research-direction-log-card a,
+  .research-note-row h2,
+  .research-note-summary,
+  .system-index-summary p,
+  .system-card-cta p {
+    overflow-wrap: anywhere;
+  }
+
+  .research-note-cta,
+  .system-card-cta .os-button,
+  .research-direction-cta .os-button {
+    max-width: 100%;
+  }
+
+  .research-direction-log-card {
+    grid-template-columns: 1fr;
+  }
+
+  .system-detail-layer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .system-detail-section--overview > div,
+  .system-detail-grid > section,
+  .system-detail-layer-grid > section,
+  .system-detail-card,
+  .system-detail-evidence-item,
+  .system-detail-metadata {
+    padding: 0.85rem;
+  }
+
+  .research-tag-list span,
+  .research-status-badge,
+  .now-summary-grid dd,
+  .now-log-entry,
+  .current-focus-item {
+    overflow-wrap: anywhere;
+  }
+
+  .experience-section {
+    gap: 1rem;
+  }
+
+  .experience-section + .experience-section {
+    margin-top: 1.8rem;
+  }
+
+  .contact-email-card__address {
+    align-items: flex-start;
+  }
+
+  .contact-email-card__actions,
+  .about-card-actions {
+    display: grid;
+  }
+
+  .contact-email-card__actions .os-button,
+  .about-card-actions .os-button {
+    width: 100%;
+  }
+
+  .writing-all-body h3,
+  .writing-title > span {
+    font-size: 1.28rem;
+  }
+
+  .post-body {
+    font-size: 16.5px;
+    line-height: 1.8;
+  }
+
+  .post-body pre {
+    margin-inline: -0.25rem;
+  }
+}

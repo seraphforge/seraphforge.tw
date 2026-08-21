@@ -1,0 +1,2422 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Home Lab Infrastructure — 個人基礎設施與資安實驗環境 — RYVÆN</title>
+<meta name="description" content="用於 Linux 服務、網路架構、裝置通訊、遠端管理與服務恢復實驗的個人基礎設施環境。">
+
+<meta name="keywords" content="Security, Embedded, Infrastructure, Medical IoT, MedTrust">
+<meta name="author" content="RYVÆN">
+<link rel="canonical" href="https://seraphforge.github.io/seraphforge.tw/zh/systems/home-lab-infrastructure/">
+
+<link rel="alternate" hreflang="en" href="https://seraphforge.github.io/seraphforge.tw/systems/home-lab-infrastructure/">
+<link rel="alternate" hreflang="zh-TW" href="https://seraphforge.github.io/seraphforge.tw/zh/systems/home-lab-infrastructure/">
+<link rel="alternate" hreflang="x-default" href="https://seraphforge.github.io/seraphforge.tw/systems/home-lab-infrastructure/">
+
+
+<meta property="og:site_name" content="RYVÆN">
+<meta property="og:title" content="Home Lab Infrastructure — 個人基礎設施與資安實驗環境 — RYVÆN">
+<meta property="og:description" content="用於 Linux 服務、網路架構、裝置通訊、遠端管理與服務恢復實驗的個人基礎設施環境。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://seraphforge.github.io/seraphforge.tw/zh/systems/home-lab-infrastructure/">
+
+<meta property="og:locale" content="zh_TW">
+
+<meta property="article:published_time" content="2026-08-21T08:17:09.153Z">
+
+
+<meta property="article:modified_time" content="2026-08-02T18:58:12.700Z">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Home Lab Infrastructure — 個人基礎設施與資安實驗環境 — RYVÆN">
+<meta name="twitter:description" content="用於 Linux 服務、網路架構、裝置通訊、遠端管理與服務恢復實驗的個人基礎設施環境。">
+
+
+<link rel="icon" type="image/svg+xml" href="/seraphforge.tw/favicon.svg">
+<link rel="shortcut icon" href="/seraphforge.tw/favicon.svg">
+<link rel="stylesheet" href="/seraphforge.tw/css/custom.css?v=23">
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/seraphforge.tw/feed.xml" title="RYVÆN" type="application/atom+xml">
+</head>
+<body>
+  <div class="site-wrapper">
+    
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="/seraphforge.tw/" aria-label="RYVÆN">
+      <span class="site-brand__text">
+        <strong>RYVÆN</strong>
+        <small>Security / Embedded / Infrastructure</small>
+      </span>
+    </a>
+
+    <nav class="site-navigation" aria-label="主導覽">
+      <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/" aria-current="page"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+    </nav>
+
+    <div class="site-header__actions">
+      <nav class="language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </div>
+
+    <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      <span class="mobile-menu-label">選單</span>
+      <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-navigation-label">
+      <p id="mobile-nav-navigation-label" class="mobile-nav-label">主導覽</p>
+      <div class="mobile-nav-links">
+        <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/" aria-current="page"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+      </div>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-language-label">
+      <p id="mobile-nav-language-label" class="mobile-nav-label">語言</p>
+      <nav class="mobile-language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </section>
+  </nav>
+</header>
+
+<script>
+  (function() {
+    var menuButton = document.querySelector('.mobile-menu-button');
+    var menu = document.getElementById('mobile-nav');
+    var header = document.querySelector('.site-header');
+
+    function closeMenu() {
+      if (!menuButton || !menu) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
+    function updateHeaderState() {
+      if (!header) return;
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    }
+
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+
+    if (!menuButton || !menu) return;
+    menuButton.addEventListener('click', function() {
+      var isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menu.hidden = isOpen;
+    });
+    menu.addEventListener('click', function(event) {
+      if (event.target && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+
+    <main class="main-container">
+      
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="system-detail" lang="zh-Hant">
+  <header class="system-detail__hero">
+    <div>
+      <p class="research-section-kicker">工程系統詳情</p>
+      <h1>Home Lab Infrastructure</h1>
+      
+        <p class="system-detail__subtitle">個人基礎設施與資安實驗環境</p>
+      
+      
+        <p>用於 Linux 服務、網路架構、裝置通訊、遠端管理、服務恢復與安全邊界實驗的個人基礎設施環境。</p>
+      
+      <div class="system-detail__actions">
+        <a class="os-button os-button-secondary" href="/seraphforge.tw/zh/systems/">返回系統列表</a>
+        <a class="os-button os-button-secondary" href="/seraphforge.tw/zh/projects/">研究方向</a>
+      </div>
+    </div>
+    <aside>
+      
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>System ID</dt>
+          <dd>SYS-002</dd>
+        </div>
+      
+        <div>
+          <dt>領域</dt>
+          <dd>Infrastructure / Networking / Security Lab</dd>
+        </div>
+      
+        <div>
+          <dt>專案類型</dt>
+          <dd>Personal Engineering Lab</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>Ongoing</dd>
+        </div>
+      
+        <div>
+          <dt>年份</dt>
+          <dd>2026</dd>
+        </div>
+      
+        <div>
+          <dt>團隊脈絡</dt>
+          <dd>Personal lab environment</dd>
+        </div>
+      
+    </dl>
+  
+
+    </aside>
+  </header>
+
+  
+    <section class="system-detail-section system-detail-section--overview">
+      
+        <div><h2>為什麼開始做</h2><p>需要建立一個可重複實驗的環境，用來理解 Linux 主機與服務部署、IoT 裝置回報、MQTT 訊息流程、路由器與子網路設定、遠端存取、固定 IP、網路切換後的連線問題、服務中斷與恢復、裝置離線，以及敏感資料與非敏感通知的分離。</p></div>
+      
+      
+        <div><h2>系統簡介</h2><p>此環境使用 Raspberry Pi 與既有路由器建立，主要用於個人學習與專案驗證。它與 SecureCare 等醫療原型保持邏輯與環境分離，網路架構、服務監控與復原方式仍在逐步整理。</p></div>
+      
+      
+        <div><h2>我的角色</h2><p>Architecture planning, Linux configuration, network configuration, service deployment, device integration, remote access exploration, monitoring, troubleshooting, and documentation</p></div>
+      
+      
+        <div><h2>系統層級</h2>
+  
+    <div class="research-tag-list">
+      
+        
+          <span>裝置</span>
+        
+      
+        
+          <span>網路</span>
+        
+      
+        
+          <span>基礎設施</span>
+        
+      
+        
+          <span>服務</span>
+        
+      
+        
+          <span>通訊</span>
+        
+      
+        
+          <span>安全</span>
+        
+      
+        
+          <span>監控</span>
+        
+      
+    </div>
+  
+</div>
+      
+    </section>
+
+    
+  
+    <section class="system-detail-section">
+      <h2>系統簡介</h2>
+      
+      <p>用於 Linux 服務、網路架構、裝置通訊、遠端管理、服務恢復與安全邊界實驗的個人基礎設施環境。</p>
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>使用的系統、程式語言與裝置</h2>
+      
+      
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Raspberry Pi / Applied</span>
+        
+      
+        
+          <span>Linux / Applied</span>
+        
+      
+        
+          <span>Docker / Applied</span>
+        
+      
+        
+          <span>MQTT / Experimenting</span>
+        
+      
+        
+          <span>Node-RED / Experimenting</span>
+        
+      
+        
+          <span>OpenWrt / Applied</span>
+        
+      
+        
+          <span>Tailscale / Exploring</span>
+        
+      
+        
+          <span>WireGuard / Exploring</span>
+        
+      
+        
+          <span>SSH / Applied</span>
+        
+      
+        
+          <span>XRDP / Applied</span>
+        
+      
+        
+          <span>Router configuration / Applied</span>
+        
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>初步構想</h2>
+      
+  
+    <ul class="system-detail-list">
+      <li>建立穩定的 Linux 實驗主機</li><li>部署 Docker services</li><li>建立 MQTT Broker</li><li>整合 Node-RED</li><li>接收 ESP32 或其他裝置訊息</li><li>理解 OpenWrt 網路設定</li><li>建立固定 IP 與服務定位</li><li>探索較安全的遠端存取</li><li>記錄故障與修復流程</li><li>規劃非敏感 Telegram 通知</li>
+    </ul>
+  
+
+    </section>
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>非目標</h2>
+      
+  
+    <ul class="system-detail-list">
+      <li>不作為企業級基礎設施</li><li>不承諾 24/7 可用性</li><li>不存放正式醫療資料</li><li>不公開暴露所有內部服務</li><li>不將 Telegram 作為敏感資料傳輸管道</li><li>不宣稱完成完整零信任架構</li><li>不宣稱企業級備援</li><li>不宣稱已完成正式資安稽核</li>
+    </ul>
+  
+
+    </section>
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>系統流程圖</h2>
+      
+  
+    <div class="architecture-snapshot system-detail-architecture" aria-label="Architecture snapshot">
+      <div class="architecture-flow">
+        
+          <div class="architecture-node">
+            <span>使用者</span>
+            <strong>使用者／管理者</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>連線</span>
+            <strong>SSH / WireGuard / Tailscale</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>路由</span>
+            <strong>OpenWrt / ASUS Router</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>主機</span>
+            <strong>Raspberry Pi</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>服務</span>
+            <strong>Docker Services</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>維運</span>
+            <strong>MQTT / Node-RED / Monitoring</strong>
+          </div>
+          
+        
+      </div>
+      
+        <div class="architecture-security">
+          <span>資安標籤</span>
+          
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Private remote access exploration</span>
+        
+      
+        
+          <span>網路邊界檢視</span>
+        
+      
+        
+          <span>憑證分離</span>
+        
+      
+        
+          <span>只傳送非敏感通知</span>
+        
+      
+    </div>
+  
+
+        </div>
+      
+    </div>
+  
+
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>詳細架構</h2>
+      
+      
+  
+    <div class="system-detail-card-grid system-detail-card-grid--zones">
+      
+        <article class="system-detail-card">
+          <h3>外部用戶端區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>遠端管理與維護。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>管理者用戶端 / 遠端存取工具</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>避免將不必要的服務直接暴露到公開網路。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>路由器／閘道區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>處理路由、無線網路與網路邊界控制。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>OpenWrt / ASUS router / Xiaomi router environment</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>設定錯誤可能造成管理介面失聯或服務暴露。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>內部網路區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>在可行範圍內分離實驗服務、裝置與無關網路。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>LAN 設定 / 固定 IP 規劃 / Wi-Fi 設定</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>拓撲變更需要文件與復原路徑。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Linux 主機區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>執行長時間運作的實驗服務。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>Raspberry Pi / Linux</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>主機存取、服務帳號與更新需要持續管理。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>容器／服務區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>隔離服務並提高部署可重複性。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>Docker / MQTT Broker / Node-RED</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>容器網路與服務憑證必須被文件化。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>接收實驗裝置的遙測與狀態回報。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>ESP32 / M5StickC / 其他實驗裝置</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>離線、重連與訊息驗證行為仍需要更多測試。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>系統層級</h2>
+      
+      
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>硬體層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>已應用</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Raspberry Pi 4</span>
+        
+      
+        
+          <span>Raspberry Pi Zero 2</span>
+        
+      
+        
+          <span>既有路由器</span>
+        
+      
+        
+          <span>ESP32 / M5StickC 實驗裝置</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>作業系統層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>已應用</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Linux</span>
+        
+      
+        
+          <span>適用情境下的 Ubuntu</span>
+        
+      
+        
+          <span>Raspberry Pi environment</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>網路層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>OpenWrt</span>
+        
+      
+        
+          <span>Router topology</span>
+        
+      
+        
+          <span>固定 IP</span>
+        
+      
+        
+          <span>LAN 設定</span>
+        
+      
+        
+          <span>Wi-Fi 設定</span>
+        
+      
+        
+          <span>網路分區探索</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>服務層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>已應用</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Docker</span>
+        
+      
+        
+          <span>MQTT Broker</span>
+        
+      
+        
+          <span>Node-RED</span>
+        
+      
+        
+          <span>Remote desktop</span>
+        
+      
+        
+          <span>SSH</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置通訊層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>實驗中</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>MQTT</span>
+        
+      
+        
+          <span>Device status</span>
+        
+      
+        
+          <span>Sensor or telemetry reports</span>
+        
+      
+        
+          <span>Offline state</span>
+        
+      
+        
+          <span>Reconnect planning</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>遠端存取層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>探索中</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>SSH</span>
+        
+      
+        
+          <span>XRDP</span>
+        
+      
+        
+          <span>Tailscale observed or used</span>
+        
+      
+        
+          <span>WireGuard exploration</span>
+        
+      
+        
+          <span>適用情境下的 Termius client</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>監控與通知層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>規劃中</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Node-RED flows</span>
+        
+      
+        
+          <span>Device heartbeat or availability</span>
+        
+      
+        
+          <span>Telegram Bot planning</span>
+        
+      
+        
+          <span>只傳送非敏感摘要</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>資安設計</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>網路分區</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>在可行範圍內分離實驗裝置、基礎設施服務與無關網路。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>透過路由器與 LAN 設定實驗，同時記錄拓撲。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>探索中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>完整分區驗證尚未完成。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>服務暴露</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>避免不必要地暴露內部 dashboard 或 broker。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>優先使用本地或 private access 存取內部服務。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>拓撲變更後需要重新檢查暴露面。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>遠端存取</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>優先使用經驗證的 private access，而不是直接公開服務。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>比較 SSH、XRDP、Tailscale 與 WireGuard 類型的方式。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>探索中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>最終遠端存取模式仍在評估。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>憑證管理</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>分離密碼、金鑰與服務憑證。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>避免在公開文件中放入憑證。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>Secret management 仍需要更完整整理。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>敏感資料處理</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>將敏感資訊保留在本地環境。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>Home Lab 只處理學習與非敏感系統狀態。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>已應用</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>不宣稱已建立正式敏感資料處理流程。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>通知邊界</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>Telegram 只傳送非敏感狀態摘要。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>規劃最小化訊息內容的 Telegram notification。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>規劃中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>訊息內容政策與實作尚未完成。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>路由器安全</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>檢視舊韌體、管理介面與不必要服務。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>在實驗中記錄路由器環境與設定風險。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>部分舊路由器韌體可能停止取得安全更新。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>紀錄與復原</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>保留足夠紀錄以理解故障與服務行為。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>使用實驗筆記與服務狀態檢查。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>集中式 logging 是未來工作。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>目前完成內容</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>SSH connectivity</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認主機管理路徑可用。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>已應用</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private / Available on Request</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Local service access</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認服務可在實驗網路內被存取。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Router management access</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認管理介面仍可復原。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Docker container status</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認服務執行狀態。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>已應用</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Available on Request</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>MQTT broker availability</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認 broker 可以接收裝置資料。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>實驗中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Node-RED availability</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認自動化 flow 服務可用。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>實驗中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Device publishes message</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認實驗裝置能回報狀態或遙測資料。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>實驗中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>External private access</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>評估不直接公開服務的遠端管理方式。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>探索中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Service restart</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>驗證服務中斷後的恢復流程。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Available on Request</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Sensitive notification boundary</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認 Telegram 只傳送非敏感摘要。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>規劃中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Not Public</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>現在遇到的問題</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>外部網路無法連回 Home Lab</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>在外部環境無法直接連回 Home Lab。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查網路位置、遠端存取方式與路由假設。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>探索透過 Tailscale 或 WireGuard 類型方式建立 private remote access。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>進行中</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>遠端存取必須同時考慮復原能力與暴露面控制。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>OpenWrt GUI 無法連線</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>修改路由器設定後，管理介面無法正常連線。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查網路介面、IP 與 LAN 設定。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>先恢復可管理狀態，再繼續調整設定。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>修改網路設定前必須保留復原路徑。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>SSH host key changed</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>重新安裝或更換裝置後，SSH 顯示 host key mismatch。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>先確認裝置身分，再修改本機 SSH 記錄。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>確認後移除舊 known_hosts 記錄並重新連線。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>已應用</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>不可在未確認主機身分時直接忽略 host key 警告。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Node-RED 初次部署問題</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>首次部署 flows.json 或服務時未如預期生效。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查服務狀態、流程檔案位置與重新部署方式。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>調整部署流程並記錄問題。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>自動化流程需要部署紀錄，不只是視覺化 flow 設計。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置離線或無法重新連線</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>網路切換、服務中斷或重新啟動後，裝置可能停止回報。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢視 reconnect、buffering 與 retry 行為。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>規劃重連與可能的訊息暫存機制。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>需要更多測試</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>裝置曾經連線成功，不等於系統具備可靠性。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>路由器設定造成網路中斷</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>調整 OpenWrt、ASUS 或 Xiaomi router 拓撲時可能造成連線中斷。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查拓撲、管理 IP 與復原步驟。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>在後續修改前先記錄拓撲與回復步驟。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>路由器、主機、容器與裝置問題需要分層排查。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>證據與紀錄</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>網路拓撲筆記</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>架構</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>In Progress</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>網路層</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>正在整理不包含內部 IP 的拓撲摘要。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>路由器關係文件</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>架構</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>In Progress</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>路由器／閘道區域</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>記錄既有路由器如何被用於實驗環境。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Docker service configuration</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>設定</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>Available on Request</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>服務層</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>移除敏感路徑與 secrets 後，可作為部署證據。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>MQTT 與 Node-RED 設定筆記</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>設定</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>In Progress</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>通訊與自動化</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>記錄 broker 與自動化設定，不公開憑證。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>服務狀態輸出</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>操作</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>Available on Request</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>服務層</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>作為服務檢查的操作證據。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>路由器復原筆記</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>故障排除</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>In Progress</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>路由器／閘道區域</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>記錄路由器設定錯誤後的復原流程。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>SSH host key fix</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>故障排除</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>Documented</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Available on Request</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>遠端存取層</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>記錄確認裝置身分後處理 host key mismatch 的方式。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>已有解決方案</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>Raspberry Pi</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>低成本、低功耗，適合長時間執行 Linux 實驗。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>效能與資源比完整伺服器有限。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Docker</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>分離服務並提高部署可重複性。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>增加容器網路與儲存設定複雜度。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>MQTT</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>適合裝置遙測與狀態回報的輕量通訊。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>需要處理身分驗證、存取控制與重連機制。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Node-RED</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>能快速串接裝置訊息、自動化與通知。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>Flow 需要文件化，憑證也需要控管。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>OpenWrt</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>提供較高的網路設定可見度與控制能力。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>設定錯誤可能造成網路失聯。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Private Remote Access</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>降低內部服務直接公開的風險。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>需要額外處理身分、路由與復原規劃。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>Telegram Notification</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>將非敏感系統摘要傳送到手機。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>敏感資料必須留在本地，訊息內容要最小化。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>限制</h2>
+      
+      
+  
+    <ul class="system-detail-list">
+      <li>目前是個人學習實驗環境。</li><li>不具備企業級備援。</li><li>不承諾持續可用性。</li><li>監控與告警仍在逐步建立。</li><li>網路拓撲仍可能調整。</li><li>遠端存取方案仍在比較或測試。</li><li>部分舊路由器可能停止取得安全更新。</li><li>金鑰與憑證管理仍需深化。</li><li>尚未完成完整網路分區驗證。</li><li>尚未完成正式弱點掃描與滲透測試。</li><li>裝置離線補送機制尚未完整實作。</li><li>Telegram 通知仍為規劃或初期實作。</li><li>不處理正式醫療或敏感資料。</li>
+    </ul>
+  
+
+    
+    </section>
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>學到的內容</h2>
+      
+  
+    <ul class="system-detail-list">
+      <li>網路修改前必須先設計恢復路徑。</li><li>固定 IP、服務名稱與拓撲文件能降低除錯成本。</li><li>裝置連線成功不代表服務具備可靠性。</li><li>遠端存取必須同時考慮安全與可恢復性。</li><li>路由器、主機、容器與裝置問題需要分層排查。</li><li>敏感資料與通知摘要需要分開處理。</li><li>Home Lab 的價值不只是運行服務，而是記錄失敗與修復方式。</li><li>自動化流程同樣需要權限與憑證管理。</li>
+    </ul>
+  
+
+    </section>
+  
+
+
+    
+    
+    
+    
+    
+  
+    <section class="system-detail-section">
+      <h2>研究觀點</h2>
+      
+      
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>研究 / 工程問題</dt>
+          <dd>如何在低成本個人環境中，建立可重複、可觀察、可恢復且具基本安全邊界的裝置與服務實驗平台？</dd>
+        </div>
+      
+    </dl>
+  
+
+      <h3>子問題</h3>
+  
+    <ul class="system-detail-list">
+      <li>如何安全地從外部管理內部服務？</li><li>如何降低路由設定錯誤造成的失聯風險？</li><li>如何讓裝置在中斷後重新連線或補送資料？</li><li>如何區分敏感資料與可外送的狀態摘要？</li><li>如何記錄服務與裝置的健康狀態？</li><li>如何用有限硬體設計可重複的教學環境？</li>
+    </ul>
+  
+
+      <h3>後續工作</h3>
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Telegram Bot status reporting</span>
+        
+      
+        
+          <span>Device reconnect and message buffering</span>
+        
+      
+        
+          <span>Service health monitoring</span>
+        
+      
+        
+          <span>Network segmentation</span>
+        
+      
+        
+          <span>Configuration backup</span>
+        
+      
+        
+          <span>Recovery documentation</span>
+        
+      
+        
+          <span>Centralized logging</span>
+        
+      
+        
+          <span>Secret management</span>
+        
+      
+        
+          <span>Safer remote access</span>
+        
+      
+        
+          <span>高中基礎設施學習環境</span>
+        
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+
+    
+    
+  
+
+
+    
+    
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>下一步</h2>
+      
+      <p>整理不含內部位址與敏感資訊的網路拓撲、服務檢查與故障復原索引。</p>
+    
+    </section>
+  
+
+
+    
+      <nav class="system-detail-nav" aria-label="System detail navigation">
+        
+          <a href="/seraphforge.tw/zh/systems/securecare/"><span>上一個系統</span><strong>SecureCare</strong></a>
+        
+        
+          <a href="/seraphforge.tw/zh/systems/embedded-secure-device/"><span>下一個系統</span><strong>ESP32 通訊資安與網路安全實驗</strong></a>
+        
+      </nav>
+    
+  
+</article>
+
+
+
+    </main>
+
+    
+<footer id="contact" class="site-footer polaris-footer" aria-label="頁尾">
+  <p class="polaris-footer-title">RYVÆN</p>
+  <p class="polaris-footer-note">Security / Embedded / Infrastructure.</p>
+  <nav class="footer-links" aria-label="頁尾">
+    <a href="/seraphforge.tw/">首頁</a>
+    <a href="/seraphforge.tw/research/">研究方向</a>
+    <a href="/seraphforge.tw/systems/">工程系統</a>
+    <a href="/seraphforge.tw/journal/">研究筆記</a>
+    <a href="/seraphforge.tw/archive/">結案紀錄</a>
+    <a href="/seraphforge.tw/about/">關於</a>
+  </nav>
+  <p class="footer-copy">Last updated: 2026-08 / &copy; 2026 RYVÆN.</p>
+</footer>
+
+  </div>
+  <script>
+    (function() {
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+      copyButtons.forEach(function(button) {
+        var originalText = button.textContent;
+        button.addEventListener('click', function() {
+          var email = button.getAttribute('data-copy-email') || '';
+          var status = button.parentElement ? button.parentElement.querySelector('[data-copy-email-status]') : null;
+          if (!email || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          navigator.clipboard.writeText(email).then(function() {
+            var isZh = document.documentElement.lang === 'zh-Hant';
+            button.textContent = isZh ? '已複製' : 'Copied';
+            if (status) status.textContent = isZh ? '已複製' : 'Copied';
+            window.setTimeout(function() {
+              button.textContent = originalText;
+              if (status) status.textContent = '';
+            }, 1800);
+          }).catch(function() {
+            return;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

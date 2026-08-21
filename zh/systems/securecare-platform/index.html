@@ -1,0 +1,1584 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>SecureCare Platform — 工程系統詳情 — RYVÆN</title>
+<meta name="description" content="SecureCare 工程系統詳情，包含架構、安全控制、測試、證據與限制。">
+
+<meta name="keywords" content="Security, Embedded, Infrastructure, Medical IoT, MedTrust">
+<meta name="author" content="RYVÆN">
+<link rel="canonical" href="https://seraphforge.github.io/seraphforge.tw/zh/systems/securecare/">
+
+<link rel="alternate" hreflang="en" href="https://seraphforge.github.io/seraphforge.tw/systems/securecare-platform/">
+<link rel="alternate" hreflang="zh-TW" href="https://seraphforge.github.io/seraphforge.tw/zh/systems/securecare-platform/">
+<link rel="alternate" hreflang="x-default" href="https://seraphforge.github.io/seraphforge.tw/systems/securecare-platform/">
+
+
+<meta property="og:site_name" content="RYVÆN">
+<meta property="og:title" content="SecureCare Platform — 工程系統詳情 — RYVÆN">
+<meta property="og:description" content="SecureCare 工程系統詳情，包含架構、安全控制、測試、證據與限制。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://seraphforge.github.io/seraphforge.tw/zh/systems/securecare/">
+
+<meta property="og:locale" content="zh_TW">
+
+<meta property="article:published_time" content="2026-08-21T08:17:09.155Z">
+
+
+<meta property="article:modified_time" content="2026-08-02T18:58:12.704Z">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SecureCare Platform — 工程系統詳情 — RYVÆN">
+<meta name="twitter:description" content="SecureCare 工程系統詳情，包含架構、安全控制、測試、證據與限制。">
+
+
+<link rel="icon" type="image/svg+xml" href="/seraphforge.tw/favicon.svg">
+<link rel="shortcut icon" href="/seraphforge.tw/favicon.svg">
+<link rel="stylesheet" href="/seraphforge.tw/css/custom.css?v=23">
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/seraphforge.tw/feed.xml" title="RYVÆN" type="application/atom+xml">
+</head>
+<body>
+  <div class="site-wrapper">
+    
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="/seraphforge.tw/" aria-label="RYVÆN">
+      <span class="site-brand__text">
+        <strong>RYVÆN</strong>
+        <small>Security / Embedded / Infrastructure</small>
+      </span>
+    </a>
+
+    <nav class="site-navigation" aria-label="主導覽">
+      <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/" aria-current="page"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+    </nav>
+
+    <div class="site-header__actions">
+      <nav class="language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </div>
+
+    <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      <span class="mobile-menu-label">選單</span>
+      <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-navigation-label">
+      <p id="mobile-nav-navigation-label" class="mobile-nav-label">主導覽</p>
+      <div class="mobile-nav-links">
+        <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/" aria-current="page"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+      </div>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-language-label">
+      <p id="mobile-nav-language-label" class="mobile-nav-label">語言</p>
+      <nav class="mobile-language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/" lang="en">EN</a></nav>
+    </section>
+  </nav>
+</header>
+
+<script>
+  (function() {
+    var menuButton = document.querySelector('.mobile-menu-button');
+    var menu = document.getElementById('mobile-nav');
+    var header = document.querySelector('.site-header');
+
+    function closeMenu() {
+      if (!menuButton || !menu) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
+    function updateHeaderState() {
+      if (!header) return;
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    }
+
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+
+    if (!menuButton || !menu) return;
+    menuButton.addEventListener('click', function() {
+      var isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menu.hidden = isOpen;
+    });
+    menu.addEventListener('click', function(event) {
+      if (event.target && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+
+    <main class="main-container">
+      
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="system-detail" lang="zh-Hant">
+  <header class="system-detail__hero">
+    <div>
+      <p class="research-section-kicker">工程系統詳情</p>
+      <h1>SecureCare</h1>
+      
+      
+        <p>以身分驗證、裝置可信度、稽核紀錄與異常回報為核心的醫療資安原型。</p>
+      
+      <div class="system-detail__actions">
+        <a class="os-button os-button-secondary" href="/seraphforge.tw/zh/systems/">返回系統列表</a>
+        <a class="os-button os-button-secondary" href="/seraphforge.tw/zh/projects/">研究方向</a>
+      </div>
+    </div>
+    <aside>
+      
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>System ID</dt>
+          <dd>SYS-001</dd>
+        </div>
+      
+        <div>
+          <dt>領域</dt>
+          <dd>Healthcare Security / Full-system Prototype</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>Working Prototype</dd>
+        </div>
+      
+        <div>
+          <dt>年份</dt>
+          <dd>2026</dd>
+        </div>
+      
+        <div>
+          <dt>團隊脈絡</dt>
+          <dd>Personal prototype and research preparation</dd>
+        </div>
+      
+    </dl>
+  
+
+    </aside>
+  </header>
+
+  
+    <section class="system-detail-section system-detail-section--overview">
+      
+        <div><h2>為什麼開始做</h2><p>臨床資料與裝置事件需要可信邊界，但同時必須適應醫療現場的時間壓力。</p></div>
+      
+      
+        <div><h2>系統簡介</h2><p>此系統以醫療紀錄與裝置事件流程作為原型情境，用來整理身分驗證、權限控制、裝置信任、稽核紀錄與異常回報之間的關係；目前仍屬個人研究準備與工程原型，不代表正式臨床部署。</p></div>
+      
+      
+        <div><h2>我的角色</h2><p>System design, backend implementation, security workflow, and device integration</p></div>
+      
+      
+        <div><h2>系統層級</h2>
+  
+    <div class="research-tag-list">
+      
+        
+          <span>前端介面</span>
+        
+      
+        
+          <span>後端 API</span>
+        
+      
+        
+          <span>裝置通訊</span>
+        
+      
+        
+          <span>身分驗證</span>
+        
+      
+        
+          <span>權限控制</span>
+        
+      
+        
+          <span>稽核紀錄</span>
+        
+      
+        
+          <span>異常事件回報</span>
+        
+      
+    </div>
+  
+</div>
+      
+    </section>
+
+    
+  
+    <section class="system-detail-section">
+      <h2>系統簡介</h2>
+      
+      <p>以身分驗證、裝置可信度、稽核紀錄與異常回報為核心的醫療資安原型。</p>
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>使用的系統、程式語言與裝置</h2>
+      
+      
+  
+    <div class="research-tag-list">
+      
+        
+          <span>FastAPI</span>
+        
+      
+        
+          <span>JWT</span>
+        
+      
+        
+          <span>RBAC</span>
+        
+      
+        
+          <span>MQTT</span>
+        
+      
+        
+          <span>HMAC</span>
+        
+      
+        
+          <span>Audit Log</span>
+        
+      
+        
+          <span>React</span>
+        
+      
+        
+          <span>SQLite</span>
+        
+      
+        
+          <span>ESP32 or device workflow</span>
+        
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+    
+  
+
+    
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>系統流程圖</h2>
+      
+  
+    <div class="architecture-snapshot system-detail-architecture" aria-label="Architecture snapshot">
+      <div class="architecture-flow">
+        
+          <div class="architecture-node">
+            <span>輸入</span>
+            <strong>護理人員／臨床輸入</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>裝置</span>
+            <strong>ESP32 或醫療裝置</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>通訊</span>
+            <strong>MQTT + HMAC</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>後端</span>
+            <strong>FastAPI 後端</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>儲存</span>
+            <strong>SQLite / Audit Log</strong>
+          </div>
+          <span class="architecture-arrow" aria-hidden="true">&rarr;</span>
+        
+          <div class="architecture-node">
+            <span>介面</span>
+            <strong>React 護理介面</strong>
+          </div>
+          
+        
+      </div>
+      
+        <div class="architecture-security">
+          <span>資安標籤</span>
+          
+  
+    <div class="research-tag-list">
+      
+        
+          <span>JWT</span>
+        
+      
+        
+          <span>RBAC</span>
+        
+      
+        
+          <span>重送防護</span>
+        
+      
+        
+          <span>稽核紀錄</span>
+        
+      
+        
+          <span>裝置信任</span>
+        
+      
+    </div>
+  
+
+        </div>
+      
+    </div>
+  
+
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>詳細架構</h2>
+      
+      
+  
+    <div class="system-detail-card-grid system-detail-card-grid--zones">
+      
+        <article class="system-detail-card">
+          <h3>使用者身分區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>處理登入、身分驗證與使用者操作脈絡。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>使用者帳號 / JWT / 角色資訊</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>身分驗證與授權不可混在一起，必須分開檢查。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>後端 API 區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>集中處理資料驗證、權限控制與稽核紀錄。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>FastAPI / RBAC / REST API</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>API 必須避免未授權存取與不完整的輸入驗證。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置通訊區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>接收裝置事件與狀態回報。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>ESP32 / MQTT / HMAC</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>裝置訊息需要簽章、時間或序號假設，避免簡單重送。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>稽核與儲存區域</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>保留可追蹤的操作與異常紀錄。</dd>
+        </div>
+      
+        <div>
+          <dt>組成</dt>
+          <dd>SQLite / Audit Log</dd>
+        </div>
+      
+        <div>
+          <dt>資安考量</dt>
+          <dd>稽核紀錄必須避免被任意修改，且不能公開敏感內容。</dd>
+        </div>
+      
+    </dl>
+  
+
+      
+        </article>
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>系統層級</h2>
+      
+      
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>前端介面層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>React 介面</span>
+        
+      
+        
+          <span>操作流程</span>
+        
+      
+        
+          <span>狀態顯示</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>後端服務層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>FastAPI</span>
+        
+      
+        
+          <span>REST API</span>
+        
+      
+        
+          <span>SQLite</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>身分與權限層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>JWT</span>
+        
+      
+        
+          <span>RBAC</span>
+        
+      
+        
+          <span>授權檢查</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置通訊層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>整理中</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>MQTT</span>
+        
+      
+        
+          <span>HMAC 簽章</span>
+        
+      
+        
+          <span>裝置狀態回報</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>稽核與證據層</h3>
+          
+        
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>整理中</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+  
+    <div class="research-tag-list">
+      
+        
+          <span>Audit Log</span>
+        
+      
+        
+          <span>異常事件紀錄</span>
+        
+      
+        
+          <span>測試證據</span>
+        
+      
+    </div>
+  
+
+      
+        </article>
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>資安設計</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>身分驗證</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認使用者身分並建立可追蹤的操作脈絡。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>使用 JWT 作為原型階段的身分驗證機制。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>尚未完成正式臨床使用情境的身分管理驗證。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>授權／權限控制</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>限制不同角色可執行的操作。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>以 RBAC 概念整理 API 權限。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>角色模型仍需要與真實流程比對。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置信任</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>降低偽造裝置訊息或不可信回報的風險。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>使用 HMAC 簽章與重送防護假設整理裝置訊息。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>整理中</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>尚未完成正式韌體與金鑰管理設計。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>稽核紀錄</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>保留可追蹤的操作、異常與系統事件。</dd>
+        </div>
+      
+        <div>
+          <dt>目前做法</dt>
+          <dd>在原型中整理 Audit Log 欄位與事件流程。</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+        <div>
+          <dt>限制</dt>
+          <dd>尚未完成防竄改與長期保存機制。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>目前完成內容</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>API 行為檢查</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認後端在正常與異常請求下的回應。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>整理中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>權限控制檢查</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認角色不應執行的操作會被拒絕。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Available on Request</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置訊息驗證</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認裝置訊息格式、簽章與重送情境。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>整理中</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>稽核紀錄檢查</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>目的</dt>
+          <dd>確認關鍵操作與異常事件會被記錄。</dd>
+        </div>
+      
+        <div>
+          <dt>目前狀態</dt>
+          <dd>原型</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>現在遇到的問題</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>錯誤權限</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>使用者嘗試執行不符合角色權限的操作。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查 API 權限檢查與 RBAC 規則。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>將權限失敗納入測試與稽核紀錄。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>權限錯誤應被明確拒絕並留下可追蹤紀錄。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>訊息重送</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>裝置或攻擊者重送先前的有效訊息。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查簽章、時間或序號假設。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>將重送防護列為裝置通訊設計重點。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>整理中</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>簽章只能證明來源假設，仍需處理重送情境。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>裝置離線</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>裝置中斷連線後無法即時回報狀態。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查 MQTT 流程與裝置狀態回報。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>將離線狀態列入後續測試。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>需要更多測試</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>裝置可信度包含連線狀態與失敗處理，不只是通訊成功。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>無效訊息簽章</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>系統簡介</dt>
+          <dd>後端收到簽章不符合預期的裝置訊息。</dd>
+        </div>
+      
+        <div>
+          <dt>排查</dt>
+          <dd>檢查 HMAC 驗證與訊息格式。</dd>
+        </div>
+      
+        <div>
+          <dt>處理方式</dt>
+          <dd>拒絕訊息並保留異常紀錄。</dd>
+        </div>
+      
+        <div>
+          <dt>目前驗證</dt>
+          <dd>部分完成</dd>
+        </div>
+      
+        <div>
+          <dt>學到的內容</dt>
+          <dd>安全控制必須同時考慮拒絕策略與可觀察性。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>證據與紀錄</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>SecureCare API 與裝置流程原型</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>原型</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>後端／裝置通訊</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>原型證據存在，但公開前需要移除內部細節。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>SecureCare 架構與安全假設</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>技術文件</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>In Progress</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>架構／安全控制</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>正在整理架構、威脅假設、限制與下一步。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>醫療流程觀察筆記</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>類型</dt>
+          <dd>訪談／觀察紀錄</dd>
+        </div>
+      
+        <div>
+          <dt>狀態</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>可見性</dt>
+          <dd>Private</dd>
+        </div>
+      
+        <div>
+          <dt>相關層級</dt>
+          <dd>問題定義</dd>
+        </div>
+      
+        <div>
+          <dt>說明</dt>
+          <dd>為避免公開個人或敏感脈絡，相關筆記不公開。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>已有解決方案</h2>
+      
+      
+        
+  
+    <div class="system-detail-card-grid">
+      
+        <article class="system-detail-card">
+          <h3>分離使用者身分與裝置信任</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>使用者登入成功不代表裝置訊息可信。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>需要額外設計裝置簽章、金鑰與重送防護。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>保留稽核紀錄</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>醫療與安全情境需要能追蹤誰在何時做了什麼。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>必須控制紀錄內容，避免保存過多敏感資料。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+        <article class="system-detail-card">
+          <h3>先做可運作原型</h3>
+          
+          
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>原因</dt>
+          <dd>原型能用來驗證流程與安全假設。</dd>
+        </div>
+      
+        <div>
+          <dt>取捨</dt>
+          <dd>不能把原型描述成正式產品或臨床部署。</dd>
+        </div>
+      
+    </dl>
+  
+
+        
+        </article>
+      
+    </div>
+  
+
+      
+    
+    </section>
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>尚未解決的問題</h2>
+      
+  
+    <ul class="system-detail-list">
+      <li>Clinical workflow assumptions need careful validation</li><li>Private implementation details must be sanitized before public release</li>
+    </ul>
+  
+
+    </section>
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>限制</h2>
+      
+      
+  
+    <ul class="system-detail-list">
+      <li>目前是工程原型，不是正式醫療系統。</li><li>尚未完成臨床部署、使用者測試與正式資安評估。</li><li>裝置金鑰管理與韌體安全仍需深化。</li><li>稽核紀錄尚未完成防竄改與長期保存設計。</li><li>公開文件需要移除內部實作與敏感脈絡。</li>
+    </ul>
+  
+
+    
+    </section>
+  
+
+    
+  
+    <section class="system-detail-section">
+      <h2>學到的內容</h2>
+      
+  
+    <ul class="system-detail-list">
+      <li>安全控制必須符合時間壓力下的使用流程。</li><li>身分驗證、授權、裝置信任與稽核紀錄需要分層設計。</li><li>原型可以驗證假設，但不能取代正式測試。</li><li>公開成果需要清楚區分證據、限制與未完成項目。</li>
+    </ul>
+  
+
+    </section>
+  
+
+
+    
+    
+    
+    
+    
+  
+    <section class="system-detail-section">
+      <h2>研究觀點</h2>
+      
+      
+  
+    <dl class="system-detail-metadata">
+      
+        <div>
+          <dt>研究 / 工程問題</dt>
+          <dd>如何在降低護理紀錄負擔的同時，保留身分驗證、裝置可信度、稽核與異常回報能力？</dd>
+        </div>
+      
+    </dl>
+  
+
+      <h3>子問題</h3>
+  
+    <ul class="system-detail-list">
+      <li>如何在不增加過多操作負擔下保留身分驗證與稽核紀錄？</li><li>如何判斷裝置回報是否可信？</li><li>如何處理重送訊息、錯誤權限與裝置離線？</li><li>哪些資料可以公開作為證據，哪些必須保持 private？</li>
+    </ul>
+  
+
+      <h3>後續工作</h3>
+  
+    <div class="research-tag-list">
+      
+        
+          <span>整理威脅模型</span>
+        
+      
+        
+          <span>補齊測試證據</span>
+        
+      
+        
+          <span>設計更清楚的裝置信任流程</span>
+        
+      
+        
+          <span>區分公開文件與 private implementation details</span>
+        
+      
+        
+          <span>探索醫療資訊安全與臨床流程的交界</span>
+        
+      
+    </div>
+  
+
+    
+    </section>
+  
+
+
+    
+    
+  
+
+
+    
+    
+  
+
+
+    
+  
+    <section class="system-detail-section">
+      <h2>下一步</h2>
+      
+      <p>整理可公開的架構文件、威脅假設與測試證據，並分離 private implementation details。</p>
+    
+    </section>
+  
+
+
+    
+      <nav class="system-detail-nav" aria-label="System detail navigation">
+        
+        
+          <a href="/seraphforge.tw/zh/systems/home-lab-infrastructure/"><span>下一個系統</span><strong>Home Lab Infrastructure</strong></a>
+        
+      </nav>
+    
+  
+</article>
+
+
+
+    </main>
+
+    
+<footer id="contact" class="site-footer polaris-footer" aria-label="頁尾">
+  <p class="polaris-footer-title">RYVÆN</p>
+  <p class="polaris-footer-note">Security / Embedded / Infrastructure.</p>
+  <nav class="footer-links" aria-label="頁尾">
+    <a href="/seraphforge.tw/">首頁</a>
+    <a href="/seraphforge.tw/research/">研究方向</a>
+    <a href="/seraphforge.tw/systems/">工程系統</a>
+    <a href="/seraphforge.tw/journal/">研究筆記</a>
+    <a href="/seraphforge.tw/archive/">結案紀錄</a>
+    <a href="/seraphforge.tw/about/">關於</a>
+  </nav>
+  <p class="footer-copy">Last updated: 2026-08 / &copy; 2026 RYVÆN.</p>
+</footer>
+
+  </div>
+  <script>
+    (function() {
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+      copyButtons.forEach(function(button) {
+        var originalText = button.textContent;
+        button.addEventListener('click', function() {
+          var email = button.getAttribute('data-copy-email') || '';
+          var status = button.parentElement ? button.parentElement.querySelector('[data-copy-email-status]') : null;
+          if (!email || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          navigator.clipboard.writeText(email).then(function() {
+            var isZh = document.documentElement.lang === 'zh-Hant';
+            button.textContent = isZh ? '已複製' : 'Copied';
+            if (status) status.textContent = isZh ? '已複製' : 'Copied';
+            window.setTimeout(function() {
+              button.textContent = originalText;
+              if (status) status.textContent = '';
+            }, 1800);
+          }).catch(function() {
+            return;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

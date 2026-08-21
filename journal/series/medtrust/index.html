@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>MedTrust Series — RYVÆN</title>
+<meta name="description" content="Medical IoT Security Research series index.">
+
+<meta name="keywords" content="Security, Embedded, Infrastructure, Medical IoT, MedTrust">
+<meta name="author" content="RYVÆN">
+<link rel="canonical" href="https://seraphforge.github.io/seraphforge.tw/journal/series/medtrust/">
+
+
+<meta property="og:site_name" content="RYVÆN">
+<meta property="og:title" content="MedTrust Series — RYVÆN">
+<meta property="og:description" content="Medical IoT Security Research series index.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://seraphforge.github.io/seraphforge.tw/journal/series/medtrust/">
+
+<meta property="og:locale" content="zh_TW">
+
+<meta property="article:published_time" content="2026-08-21T08:17:09.139Z">
+
+
+<meta property="article:modified_time" content="2026-08-09T19:12:55.150Z">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MedTrust Series — RYVÆN">
+<meta name="twitter:description" content="Medical IoT Security Research series index.">
+
+
+<link rel="icon" type="image/svg+xml" href="/seraphforge.tw/favicon.svg">
+<link rel="shortcut icon" href="/seraphforge.tw/favicon.svg">
+<link rel="stylesheet" href="/seraphforge.tw/css/custom.css?v=23">
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/seraphforge.tw/feed.xml" title="RYVÆN" type="application/atom+xml">
+</head>
+<body>
+  <div class="site-wrapper">
+    
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="/seraphforge.tw/" aria-label="RYVÆN">
+      <span class="site-brand__text">
+        <strong>RYVÆN</strong>
+        <small>Security / Embedded / Infrastructure</small>
+      </span>
+    </a>
+
+    <nav class="site-navigation" aria-label="主導覽">
+      <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/" aria-current="page"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+    </nav>
+
+    <div class="site-header__actions">
+      <nav class="language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/journal/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/journal/" lang="en">EN</a></nav>
+    </div>
+
+    <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      <span class="mobile-menu-label">選單</span>
+      <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-navigation-label">
+      <p id="mobile-nav-navigation-label" class="mobile-nav-label">主導覽</p>
+      <div class="mobile-nav-links">
+        <a class="nav-item" href="/seraphforge.tw/"><span class="nav-item__index">01</span><span class="nav-item__label">首頁</span></a><a class="nav-item" href="/seraphforge.tw/research/"><span class="nav-item__index">02</span><span class="nav-item__label">研究方向</span></a><a class="nav-item" href="/seraphforge.tw/systems/"><span class="nav-item__index">03</span><span class="nav-item__label">工程系統</span></a><a class="nav-item" href="/seraphforge.tw/journal/" aria-current="page"><span class="nav-item__index">04</span><span class="nav-item__label">研究筆記</span></a><a class="nav-item" href="/seraphforge.tw/uses/"><span class="nav-item__index">05</span><span class="nav-item__label">技術環境</span></a><a class="nav-item" href="/seraphforge.tw/archive/"><span class="nav-item__index">06</span><span class="nav-item__label">結案紀錄</span></a><a class="nav-item" href="/seraphforge.tw/about/"><span class="nav-item__index">07</span><span class="nav-item__label">關於</span></a>
+      </div>
+    </section>
+    <section class="mobile-nav-section" aria-labelledby="mobile-nav-language-label">
+      <p id="mobile-nav-language-label" class="mobile-nav-label">語言</p>
+      <nav class="mobile-language-switcher" aria-label="語言"><a class="language-option is-active" href="/seraphforge.tw/journal/" lang="zh-Hant" aria-current="page">繁中</a><a class="language-option" href="/seraphforge.tw/en/journal/" lang="en">EN</a></nav>
+    </section>
+  </nav>
+</header>
+
+<script>
+  (function() {
+    var menuButton = document.querySelector('.mobile-menu-button');
+    var menu = document.getElementById('mobile-nav');
+    var header = document.querySelector('.site-header');
+
+    function closeMenu() {
+      if (!menuButton || !menu) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
+    function updateHeaderState() {
+      if (!header) return;
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    }
+
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+
+    if (!menuButton || !menu) return;
+    menuButton.addEventListener('click', function() {
+      var isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menu.hidden = isOpen;
+    });
+    menu.addEventListener('click', function(event) {
+      if (event.target && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+
+    <main class="main-container">
+      
+
+
+  <section class="series-page series-overview" aria-labelledby="series-overview-title">
+    <header class="series-page__header series-overview__header">
+      <div>
+        <p class="series-page__eyebrow">MEDTRUST / SERIES</p>
+        <h1 id="series-overview-title">MedTrust</h1>
+        <p class="series-page__subtitle">Medical IoT Trust &amp; Evidence System</p>
+      </div>
+      <div class="series-overview__status">
+        <span class="series-status series-status--in-progress">In Progress</span>
+      </div>
+      <p>MedTrust development journal. This series records the iterations behind message trust, replay protection, attack validation, experiment evidence, and evidence integrity.</p>
+      <div class="series-progress" aria-label="0 of 27 articles published">
+        <div class="series-progress__label">
+          <span>0 / 27 Published</span>
+          <span>27 Remaining</span>
+        </div>
+        <span class="series-progress__track"><span style="width: 0%"></span></span>
+      </div>
+      <ul class="series-tag-list" aria-label="Series tags">
+        
+          <li>ESP32-S3</li>
+        
+          <li>Medical IoT</li>
+        
+          <li>HMAC-SHA256</li>
+        
+          <li>Replay Protection</li>
+        
+          <li>Evidence Integrity</li>
+        
+      </ul>
+    </header>
+
+    <ol class="series-article-list">
+      
+        <li class="series-article-item series-article-item--draft is-available">
+          <div class="series-article-number">00</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <a href="/seraphforge.tw/journal/series/medtrust/00/">我為什麼開始做 MedTrust</a>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--draft">Draft</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">01</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>從 ESP32 到 Gateway</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">02</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Gateway 收到資料，不代表資料值得信任</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">03</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>第一次 HMAC-SHA256 驗證</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">04</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>為什麼 Signature 驗證失敗</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">05</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>ESP32 與 Gateway 的 Secret 不一致</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">06</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>第一筆 VALID 訊息</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">07</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Signature 不夠</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">08</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Timestamp / Sequence / Nonce</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">09</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Replay Attack 測試</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">10</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Attack ESP32</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">11</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>INVALID_SIGNATURE Scenario</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">12</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Gateway 擋下攻擊訊息</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">13</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Experiment Scenarios</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">14</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>如何保存實驗證據</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">15</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Experiment Batch</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">16</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Report Package</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">17</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Export: HTML / Markdown / CSV</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">18</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>如果實驗結果被改過怎麼辦</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">19</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Evidence File SHA-256</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">20</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>integrity-manifest.json</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">21</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Package Digest</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">22</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Offline Verifier</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">23</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>修改 experiments.csv 的 Tamper Test</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">24</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>HASH MISMATCH</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">25</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>Integrity 不是 Digital Signature</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+        <li class="series-article-item series-article-item--planned is-unavailable">
+          <div class="series-article-number">26</div>
+          <div class="series-article-body">
+            <h2>
+              
+                <span>目前 MedTrust 做到哪裡</span>
+              
+            </h2>
+            
+          </div>
+          <div class="series-article-status">
+            <span class="article-status article-status--planned">Planned</span>
+          </div>
+        </li>
+      
+    </ol>
+  </section>
+
+
+    </main>
+
+    
+<footer id="contact" class="site-footer polaris-footer" aria-label="頁尾">
+  <p class="polaris-footer-title">RYVÆN</p>
+  <p class="polaris-footer-note">Security / Embedded / Infrastructure.</p>
+  <nav class="footer-links" aria-label="頁尾">
+    <a href="/seraphforge.tw/">首頁</a>
+    <a href="/seraphforge.tw/research/">研究方向</a>
+    <a href="/seraphforge.tw/systems/">工程系統</a>
+    <a href="/seraphforge.tw/journal/">研究筆記</a>
+    <a href="/seraphforge.tw/archive/">結案紀錄</a>
+    <a href="/seraphforge.tw/about/">關於</a>
+  </nav>
+  <p class="footer-copy">Last updated: 2026-08 / &copy; 2026 RYVÆN.</p>
+</footer>
+
+  </div>
+  <script>
+    (function() {
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+      copyButtons.forEach(function(button) {
+        var originalText = button.textContent;
+        button.addEventListener('click', function() {
+          var email = button.getAttribute('data-copy-email') || '';
+          var status = button.parentElement ? button.parentElement.querySelector('[data-copy-email-status]') : null;
+          if (!email || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          navigator.clipboard.writeText(email).then(function() {
+            var isZh = document.documentElement.lang === 'zh-Hant';
+            button.textContent = isZh ? '已複製' : 'Copied';
+            if (status) status.textContent = isZh ? '已複製' : 'Copied';
+            window.setTimeout(function() {
+              button.textContent = originalText;
+              if (status) status.textContent = '';
+            }, 1800);
+          }).catch(function() {
+            return;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
