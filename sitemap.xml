@@ -3,6 +3,127 @@
   
   
   <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/experience/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/medtrust/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/home-lab/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/about/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/archive/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/uses/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/journal/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/research/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/en/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/archive/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/journal/series/</loc>
     
     <lastmod>2026-08-21</lastmod>
@@ -114,50 +235,6 @@
   
   <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/zh/archives/</loc>
-    
-    <lastmod>2026-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/</loc>
-    
-    <lastmod>2026-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/research/</loc>
-    
-    <lastmod>2026-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/uses/</loc>
-    
-    <lastmod>2026-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/experience/</loc>
     
     <lastmod>2026-08-21</lastmod>
     
@@ -311,28 +388,6 @@
   
   
   <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/</loc>
-    
-    <lastmod>2026-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/about/</loc>
-    
-    <lastmod>2026-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/about/</loc>
     
     <lastmod>2026-08-21</lastmod>
@@ -347,61 +402,6 @@
     <loc>https://seraphforge.github.io/seraphforge.tw/2026/08/17/frc-engineering-team/</loc>
     
     <lastmod>2026-08-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/archive/</loc>
-    
-    <lastmod>2026-08-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/archive/</loc>
-    
-    <lastmod>2026-08-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/journal/</loc>
-    
-    <lastmod>2026-08-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/home-lab/</loc>
-    
-    <lastmod>2026-08-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/en/systems/medtrust/</loc>
-    
-    <lastmod>2026-08-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -599,7 +599,7 @@
   
   
   <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/experience/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/now/</loc>
     
     <lastmod>2026-08-02</lastmod>
     
@@ -610,7 +610,7 @@
   
   
   <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/now/</loc>
+    <loc>https://seraphforge.github.io/seraphforge.tw/experience/</loc>
     
     <lastmod>2026-08-02</lastmod>
     
@@ -644,17 +644,6 @@
   
   <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/ctf/</loc>
-    
-    <lastmod>2026-07-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/zh/experience/competitions/</loc>
     
     <lastmod>2026-07-26</lastmod>
     
@@ -721,17 +710,6 @@
   
   <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/experience/ctf/</loc>
-    
-    <lastmod>2026-07-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/experience/competitions/</loc>
     
     <lastmod>2026-07-26</lastmod>
     
@@ -1056,6 +1034,34 @@
   </url>
   
   <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/2026-%E8%B3%87%E5%AE%89%E5%A4%A7%E6%9C%83/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/%E9%86%AB%E7%99%82%E8%B3%87%E5%AE%89/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/tags/OT-%E8%B3%87%E5%AE%89/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/tags/CTF/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -1099,34 +1105,6 @@
   
   <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/tags/Wireshark/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/tags/2026-%E8%B3%87%E5%AE%89%E5%A4%A7%E6%9C%83/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/tags/%E9%86%AB%E7%99%82%E8%B3%87%E5%AE%89/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seraphforge.github.io/seraphforge.tw/tags/OT-%E8%B3%87%E5%AE%89/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
