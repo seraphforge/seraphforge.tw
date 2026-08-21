@@ -6,11 +6,12 @@ html {
 }
 
 body {
+  position: relative;
   min-width: 0;
   color: var(--seraph-text);
   background:
-    linear-gradient(rgba(127, 169, 189, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(127, 169, 189, 0.022) 1px, transparent 1px),
+    linear-gradient(var(--seraph-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--seraph-grid) 1px, transparent 1px),
     var(--seraph-bg);
   background-size: 72px 72px;
   font-family: var(--seraph-font-sans);
@@ -33,7 +34,7 @@ a {
 }
 
 a:hover {
-  color: var(--seraph-text-strong);
+  color: var(--seraph-accent-2);
 }
 
 h1,
@@ -45,6 +46,35 @@ h4 {
   font-weight: 650;
   line-height: 1.22;
   letter-spacing: 0;
+}
+
+body::before {
+  position: fixed;
+  z-index: 0;
+  top: 7rem;
+  right: -5vw;
+  width: min(48vw, 680px);
+  aspect-ratio: 1;
+  background: url("../../images/05.png") center / contain no-repeat;
+  content: "";
+  filter: grayscale(1) contrast(0.65) brightness(1.35);
+  mix-blend-mode: multiply;
+  opacity: var(--seraph-blueprint);
+  pointer-events: none;
+}
+
+.site-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.entry-home-hero h1,
+.ia-hero h1,
+.page-header .section-title,
+.article-reading-layout .post-title,
+.project-detail__title {
+  font-family: var(--seraph-font-display);
+  font-weight: 600;
 }
 
 p + p {

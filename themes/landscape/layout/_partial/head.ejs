@@ -3,7 +3,7 @@
 
 <%
   const siteTitle = config.title || '';
-  const metaTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle;
+  const metaTitle = page.title ? page.title + ' — ' + siteTitle : siteTitle;
   const rawDescription = page.description || page.excerpt || page.content || config.description || '';
   const metaDescription = (strip_html(rawDescription).replace(/\s+/g, ' ').trim() || config.description || '').slice(0, 160);
   const metaKeywords = Array.isArray(page.keywords) ? page.keywords.join(', ') : (page.keywords || config.keywords || '');
@@ -48,7 +48,7 @@
     firstHeadPart === 'dashboard' ? 'dashboard' :
     firstHeadPart === 'works' ? 'projects' :
     firstHeadPart === 'archives' ? 'writing' :
-    ['about', 'experience', 'systems', 'projects', 'outcomes', 'now', 'labs', 'writing', 'timeline'].includes(firstHeadPart) && localHeadParts.length === 1 ? firstHeadPart :
+    ['about', 'experience', 'systems', 'projects', 'outcomes', 'now', 'labs', 'writing', 'timeline', 'research', 'journal', 'uses', 'archive'].includes(firstHeadPart) && localHeadParts.length === 1 ? firstHeadPart :
     null;
   const trilingualDetailPaths = [
     'experience/competitions',
@@ -91,7 +91,11 @@
     now: { en: '/now/', zh: '/zh/now/' },
     labs: { en: '/labs/', zh: '/zh/labs/' },
     writing: { en: '/writing/', zh: '/zh/writing/' },
-    timeline: { en: '/timeline/', zh: '/zh/timeline/' }
+    timeline: { en: '/timeline/', zh: '/zh/timeline/' },
+    research: { en: '/en/research/', zh: '/research/' },
+    journal: { en: '/en/journal/', zh: '/journal/' },
+    uses: { en: '/en/uses/', zh: '/uses/' },
+    archive: { en: '/en/archive/', zh: '/archive/' }
   }[headSection] : null;
   const hreflangPaths = detailHreflangPaths || postHreflangPaths || sectionHreflangPaths;
 %>
@@ -135,13 +139,4 @@
 
 <link rel="icon" type="image/svg+xml" href="<%= url_for('/favicon.svg') %>">
 <link rel="shortcut icon" href="<%= url_for('/favicon.svg') %>">
-<script>
-  (function() {
-    try {
-      document.documentElement.setAttribute('data-theme', localStorage.getItem('seraph-theme') || 'dark');
-    } catch (error) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  })();
-</script>
-<link rel="stylesheet" href="<%= url_for('/css/custom.css') %>?v=22">
+<link rel="stylesheet" href="<%= url_for('/css/custom.css') %>?v=23">

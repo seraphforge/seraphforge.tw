@@ -6,15 +6,13 @@
   const detailLocalParts = ['en', 'zh'].includes(detailParts[0]) ? detailParts.slice(1) : detailParts;
   const detailSlug = String(page.system || page.system_slug || page.slug || detailLocalParts[1] || '').toLowerCase();
   const researchData = site.data.research || {};
-  const detailProjects = researchData.projects || [];
-  const detailEvidence = researchData.evidence || [];
+  const detailProjects = (researchData.projects || []).filter(function(project) { return project.visible !== false; });
+  const detailEvidence = (researchData.evidence || []).filter(function(item) { return item.visible !== false; });
   const detailSystems = detailProjects.filter(function(project) { return project.systemId && project.featured; });
   const detailRoutes = {
     securecare: '/systems/securecare/',
     'home-lab-infrastructure': '/systems/home-lab-infrastructure/',
-    'embedded-secure-device': '/systems/embedded-secure-device/',
-    'hpc-teaching-transfer': '/systems/hpc-teaching-transfer/',
-    'nihs-control-team': '/systems/nihs-control-team/'
+    'embedded-secure-device': '/systems/embedded-secure-device/'
   };
   const systemProject = detailProjects.find(function(project) {
     return project.systemId === page.system_id ||

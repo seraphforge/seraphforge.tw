@@ -1,5 +1,5 @@
 ---
 title: Series
-description: Series index for Seraph's research journal.
+description: Series index for RYVÆN's research journal.
 layout: series-list
 ---

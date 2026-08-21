@@ -59,7 +59,7 @@
       "evidenceStatusZh": "規劃中",
       "relatedPath": "/systems/",
       "order": 3,
-      "visible": true
+      "visible": false
     },
     {
       "id": "FOCUS-004",
@@ -196,7 +196,7 @@
       "visibility": "Private",
       "relatedPath": "/systems/",
       "featured": true,
-      "visible": true,
+      "visible": false,
       "order": 4
     },
     {
@@ -220,7 +220,7 @@
       "visibility": "Private",
       "relatedPath": "/systems/",
       "featured": true,
-      "visible": true,
+      "visible": false,
       "order": 5
     },
     {

@@ -1,4 +1,4 @@
 ﻿---
 title: Dashboard
-description: Seraph 的儀表板入口。
+description: RYVÆN 的儀表板入口。
 ---

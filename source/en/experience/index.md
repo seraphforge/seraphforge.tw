@@ -1,7 +1,7 @@
 ﻿---
 title: Experience
-description: A record of Seraph's competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
-summary: A record of Seraph's competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
+description: A record of RYVÆN's competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
+summary: A record of RYVÆN's competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
 keywords: Experience, Competitions, Camps, Conferences, Workshops, Speaking, Certifications, Community, Cybersecurity, CTF
 cover: /images/seraph-og.png
 site_lang: en

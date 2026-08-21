@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-07-31",
   "identity": {
-    "brand": "Seraph",
+    "brand": "RYVÆN",
     "subtitle": "Research & Engineering Portfolio",
     "subtitleZh": "研究與工程作品集",
     "focusLine": "Security × Software × Embedded × Infrastructure",
@@ -535,6 +535,7 @@
     },
     {
       "id": "RC-004",
+      "visible": false,
       "slug": "nihs-control-team",
       "title": "NIHS Control Team Platform",
       "titleZh": "NIHS Control Team Platform",
@@ -624,6 +625,7 @@
     },
     {
       "id": "RC-006",
+      "visible": false,
       "slug": "hpc-teaching-transfer",
       "title": "HPC Learning and Teaching Transfer",
       "titleZh": "HPC 學習與教學轉化",
@@ -721,6 +723,7 @@
     },
     {
       "id": "EV-006",
+      "visible": false,
       "type": "Prototype",
       "title": "NIHS Control Team platform case study",
       "date": "2026",
@@ -741,6 +744,7 @@
     },
     {
       "id": "EV-008",
+      "visible": false,
       "type": "Teaching Material",
       "title": "HPC AI Summer Camp learning transfer plan",
       "date": "2026-07",

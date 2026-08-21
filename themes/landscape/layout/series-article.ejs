@@ -21,11 +21,19 @@
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
+  function hasGeneratedRoute(item) {
+    if (!item || !item.path) return false;
+    const expected = String(item.path).replace(/^\//, '').replace(/\/$/, '/index.html');
+    return site.pages.toArray().some(function(candidate) {
+      return String(candidate.path || '') === expected;
+    });
+  }
+
   function renderArticleNavItem(label, item, direction) {
     if (!item) return '';
     const arrowPrefix = direction === 'previous' ? '&larr; ' : '';
     const arrowSuffix = direction === 'next' ? ' &rarr;' : '';
-    if (!item.exists || !item.path) {
+    if (!hasGeneratedRoute(item)) {
       return '<div class="series-nav-link series-nav-link--' + direction + ' series-nav-link--disabled" aria-disabled="true"><span>' + label + '</span><strong>' + arrowPrefix + item.number + ' | ' + item.title + arrowSuffix + '</strong><em>' + statusLabel(item.status) + '</em></div>';
     }
     return '<a class="series-nav-link series-nav-link--' + direction + '" href="' + url_for(item.path) + '"><span>' + label + '</span><strong>' + arrowPrefix + item.number + ' | ' + item.title + arrowSuffix + '</strong></a>';

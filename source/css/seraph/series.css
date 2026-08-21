@@ -182,6 +182,14 @@
   opacity: 0.68;
 }
 
+.series-article-item.is-unavailable {
+  cursor: default;
+}
+
+.series-article-item.is-unavailable .series-article-body h2 span {
+  color: var(--seraph-muted);
+}
+
 .series-article-body {
   min-width: 0;
 }

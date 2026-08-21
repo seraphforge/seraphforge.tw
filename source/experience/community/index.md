@@ -1,5 +1,6 @@
 ﻿---
 title: Community Roles
+published: false
 description: Structured community records around Cybersecurity learning, student coordination, CTF practice, and Raspberry Pi teaching.
 summary: Structured community records around Cybersecurity learning, student coordination, CTF practice, and Raspberry Pi teaching.
 organization: Multiple records

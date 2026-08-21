@@ -1,6 +1,7 @@
 ﻿---
 title: From the NIHSCED Security Community to a Control Engineering Competition Team
 date: 2026-05-16
+published: false
 updated: 2026-05-16
 site_lang: en
 translation_key: from-nihscsed-to-control-team

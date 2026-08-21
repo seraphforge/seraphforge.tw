@@ -1,5 +1,6 @@
 ﻿---
 title: Leadership
+published: false
 description: Structured leadership records from technical community work, teaching support, student coordination, and competition preparation.
 summary: Structured leadership records from technical community work, teaching support, student coordination, and competition preparation.
 organization: Multiple records

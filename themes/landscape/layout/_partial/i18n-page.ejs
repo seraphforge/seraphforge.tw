@@ -6,20 +6,32 @@
   const section = (localParts[0] || '') === '' ? 'home' : (localParts[0] === 'archives' ? 'writing' : localParts[0]);
   const data = site.data.research || {};
   const nowData = site.data.now || {};
-  const projects = data.projects || [];
-  const areas = data.areas || [];
-  const evidence = data.evidence || [];
-  const outcomes = data.outcomes || [];
-  const capabilities = data.capabilities || [];
-  const timeline = data.timeline || [];
-  const engineeringDomains = data.engineeringDomains || [];
+  const safeArray = function(value) { return Array.isArray(value) ? value.filter(function(item) { return item !== undefined && item !== null && item !== ''; }) : []; };
+  const projects = (data.projects || []).filter(function(item) { return item.visible !== false; });
+  const publicProjectIds = new Set(projects.map(function(item) { return item.id; }));
+  const isPublicProjectRef = function(value) { return !value || publicProjectIds.has(value); };
+  const hasPrivateProjectToken = function(value) { return /RC-004|RC-006|NIHS|Neihu|\u5167\u6e56\u9ad8\u5de5|HPC (?:Teaching|Learning)/i.test(String(value || '')); };
+  const areas = (data.areas || []).map(function(item) {
+    return Object.assign({}, item, { projectIds: safeArray(item.projectIds).filter(function(id) { return publicProjectIds.has(id); }) });
+  }).filter(function(item) { return !item.projectIds || item.projectIds.length; });
+  const evidence = (data.evidence || []).filter(function(item) { return item.visible !== false && isPublicProjectRef(item.projectId); });
+  const outcomes = (data.outcomes || []).filter(function(item) { return item.visible !== false && isPublicProjectRef(item.projectId); });
+  const capabilities = (data.capabilities || []).map(function(group) {
+    const items = safeArray(group.items).map(function(item) {
+      return Object.assign({}, item, { evidence: safeArray(item.evidence).filter(function(value) { return !hasPrivateProjectToken(value); }) });
+    }).filter(function(item) { return item.evidence.length; });
+    return Object.assign({}, group, { items: items });
+  }).filter(function(group) { return group.items.length; });
+  const timeline = (data.timeline || []).filter(function(item) { return !hasPrivateProjectToken([item.category, item.title, item.output, item.outputZh].join(' ')); });
+  const engineeringDomains = (data.engineeringDomains || []).map(function(item) {
+    return Object.assign({}, item, { relatedProjects: safeArray(item.relatedProjects).filter(function(id) { return publicProjectIds.has(id); }) });
+  });
   const engineeringProcess = data.engineeringProcess || [];
   const homepageFocus = data.homepageFocus || [];
   const identity = data.identity || {};
   const isZh = lang === 'zh';
   const isJa = lang === 'ja';
   const pageLangAttr = isZh ? 'zh-Hant' : (isJa ? 'ja' : 'en');
-  const safeArray = function(value) { return Array.isArray(value) ? value.filter(function(item) { return item !== undefined && item !== null && item !== ''; }) : []; };
   const hasText = function(value) { return typeof value === 'string' && value.trim().length > 0; };
   const nowText = function(item, key) {
     if (!item) return '';
@@ -160,7 +172,7 @@
     return /[\u4e00-\u9fff]/.test(post.title || '') ? 'zh' : 'en';
   };
   const notes = allPosts.filter(function(post) {
-    return postLang(post) === lang;
+    return postLang(post) === lang && post.draft !== true && post.hidden !== true && post.published !== false;
   }).slice(0, section === 'writing' ? 60 : 5);
   const postSummary = function(post) {
     const text = strip(post.description || post.excerpt || post.content || '');
@@ -182,7 +194,7 @@
   }).slice(0, 2);
   const entryCopy = {
     en: {
-      systemResearch: 'SERAPH / SYSTEMS RESEARCH',
+      systemResearch: 'RYVÆN / SYSTEMS RESEARCH',
       heroTitle: 'Building practical systems across cloud communication, cybersecurity, healthcare, and experimental computing.',
       heroDescription: 'Independent engineering portfolio documenting systems, infrastructure, research, and field experiments.',
       exploreSystems: 'Explore Systems',
@@ -202,10 +214,10 @@
       shortAbout: 'Short About',
       aboutOne: 'I build and document practical systems that connect infrastructure, communication, cybersecurity, and healthcare.',
       aboutTwo: 'My work is developed through home labs, technical experiments, student research, and long-term engineering projects.',
-      moreAbout: 'More about Seraph'
+      moreAbout: 'More about RYVÆN'
     },
     zh: {
-      systemResearch: 'SERAPH / SYSTEMS RESEARCH',
+      systemResearch: 'RYVÆN / SYSTEMS RESEARCH',
       heroTitle: '建置橫跨雲端通訊、資安、醫療與實驗運算的實用系統。',
       heroDescription: '獨立工程作品集，記錄系統、基礎設施、研究與實地實驗。',
       exploreSystems: '探索系統',
@@ -225,10 +237,10 @@
       shortAbout: '簡短介紹',
       aboutOne: '我建置並記錄連結基礎設施、通訊、資安與醫療的實用系統。',
       aboutTwo: '我的工作透過 Home Lab、技術實驗、學生研究與長期工程專案累積。',
-      moreAbout: '更多關於 Seraph'
+      moreAbout: '更多關於 RYVÆN'
     },
     ja: {
-      systemResearch: 'SERAPH / SYSTEMS RESEARCH',
+      systemResearch: 'RYVÆN / SYSTEMS RESEARCH',
       heroTitle: 'クラウド通信、サイバーセキュリティ、医療技術、実験的コンピューティングを横断する実践的なシステムを構築しています。',
       heroDescription: 'システム、インフラ、研究課題、フィールド実験を記録する、研究主導のエンジニアリングポートフォリオです。',
       exploreSystems: 'システムを見る',
@@ -248,7 +260,7 @@
       shortAbout: 'Short About',
       aboutOne: 'インフラ、通信、サイバーセキュリティ、医療をつなぐ実践的なシステムを構築し、記録しています。',
       aboutTwo: 'Home Lab、技術実験、学生研究、長期的なエンジニアリングプロジェクトを通して取り組んでいます。',
-      moreAbout: 'Seraph について'
+      moreAbout: 'RYVÆN について'
     }
   };
   const ec = entryCopy[lang] || entryCopy.en;

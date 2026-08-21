@@ -1,6 +1,7 @@
 ﻿---
 title: 從 NIHSCED 資安社群，轉變到控制科選手團隊
 date: 2026-05-16
+published: false
 updated: 2026-05-16
 site_lang: zh-TW
 translation_key: from-nihscsed-to-control-team

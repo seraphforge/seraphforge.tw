@@ -1,6 +1,6 @@
 ---
 title: Contact
-description: Contact Seraph by email.
+description: Contact RYVÆN by email.
 site_lang: en
 ---
 

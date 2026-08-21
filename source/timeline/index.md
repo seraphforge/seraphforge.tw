@@ -1,4 +1,4 @@
 ---
 title: Timeline
-description: Timeline page for Seraph.
+description: Timeline page for RYVÆN.
 ---

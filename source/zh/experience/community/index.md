@@ -1,5 +1,6 @@
 ﻿---
 title: 社群身份
+published: false
 description: 以資料庫格式整理 Cybersecurity 學習、學生協調、CTF 練習與 Raspberry Pi 教學身份。
 summary: 以資料庫格式整理 Cybersecurity 學習、學生協調、CTF 練習與 Raspberry Pi 教學身份。
 organization: Multiple records

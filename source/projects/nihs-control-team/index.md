@@ -1,5 +1,6 @@
 ---
 title: NIHS Control Team
+published: false
 description: A case study about building a small internal platform for a student technical team.
 summary: A case study about keeping a student technical team organized without turning the tool into a product pitch.
 type: project

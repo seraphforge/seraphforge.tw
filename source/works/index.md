@@ -1,6 +1,7 @@
 ---
 title: Works
-description: Project index for Seraph's work across cybersecurity, medical cybersecurity, and robotics.
+published: false
+description: Project index for RYVÆN's work across cybersecurity, medical cybersecurity, and robotics.
 ---
 
 # Works

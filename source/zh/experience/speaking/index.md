@@ -1,5 +1,6 @@
 ﻿---
 title: 分享與教學
+published: false
 description: 以資料庫格式整理 CTF、Raspberry Pi、Cybersecurity 支援與技術活動引導紀錄。
 summary: 以資料庫格式整理 CTF、Raspberry Pi、Cybersecurity 支援與技術活動引導紀錄。
 organization: Multiple records

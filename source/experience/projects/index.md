@@ -1,5 +1,6 @@
 ﻿---
 title: Engineering Projects
+published: false
 description: Structured project records across team platforms, Medical Cybersecurity, autonomous Robotics, embedded systems, and web systems.
 summary: Structured project records across team platforms, Medical Cybersecurity, autonomous Robotics, embedded systems, and web systems.
 organization: Multiple records

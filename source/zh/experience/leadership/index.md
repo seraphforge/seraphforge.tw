@@ -1,5 +1,6 @@
 ﻿---
 title: 領導角色
+published: false
 description: 以資料庫格式整理技術社群、教學支援、學生協調與競賽準備中的領導角色。
 summary: 以資料庫格式整理技術社群、教學支援、學生協調與競賽準備中的領導角色。
 organization: Multiple records

@@ -1,6 +1,6 @@
 ---
 title: Home
-description: Seraph homepage.
+description: RYVÆN homepage.
 site_lang: en
 layout: page
 type: ia
@@ -10,9 +10,9 @@ comments: true
 <section class="entry-home seraph-current-home" aria-labelledby="seraph-home-title" lang="en">
   <section class="entry-home-hero">
     <div class="entry-home-hero__copy">
-      <p class="entry-home-eyebrow">SERAPH</p>
+      <p class="entry-home-eyebrow">RYVÆN</p>
       <h1 id="seraph-home-title">Security / Embedded / Infrastructure</h1>
-      <p class="entry-home-hero__summary">Seraph is my technical identity. This site records the systems, research questions, and engineering iterations I am working through now.</p>
+      <p class="entry-home-hero__summary">RYVÆN is my technical identity. This site records the systems, research questions, and engineering iterations I am working through now.</p>
       <div class="entry-home-hero__actions">
         <a class="os-button os-button-primary" href="/en/research/">Research</a>
         <a class="os-button os-button-secondary" href="/en/systems/">Systems</a>

@@ -1,5 +1,6 @@
 <%
   const rawPostText = strip_html(page.content || '').replace(/\s+/g, ' ').trim();
+  const hasPostOutline = /<h[2-6]\b/i.test(String(page.content || ''));
   const cjkPostChars = (rawPostText.match(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g) || []).length;
   const postWords = rawPostText.replace(/[\u4e00-\u9fff\u3040-\u30ff\u3400-\u4dbf]/g, ' ').split(/\s+/).filter(Boolean).length;
   const postMinutes = Math.max(1, Math.ceil((postWords + cjkPostChars / 2) / 220));
@@ -61,7 +62,7 @@
     <nav aria-label="<%= postCopy.outline %>"><ol data-article-toc-mobile-list></ol></nav>
   </details>
 
-  <div class="article-reading-grid">
+  <div class="article-reading-grid<%= hasPostOutline ? ' article-reading-grid--with-toc' : '' %>">
     <aside class="article-toc" data-article-toc hidden>
       <p><%= postCopy.outline %></p>
       <nav aria-label="<%= postCopy.outline %>"><ol data-article-toc-list></ol></nav>

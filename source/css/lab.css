@@ -28,21 +28,6 @@
   isolation: isolate;
 }
 
-html[data-theme="light"] .lab-page {
-  --lab-local-bg: #edf3f7;
-  --lab-local-panel: #f8fbfd;
-  --lab-local-card: #ffffff;
-  --lab-local-card-2: #eef5f7;
-  --lab-local-border: rgba(81, 103, 127, 0.24);
-  --lab-local-text: #172033;
-  --lab-local-muted: #506174;
-  --lab-local-soft: #718096;
-  --lab-local-accent: #087f8c;
-  --lab-local-green: #117d53;
-  --lab-local-warning: #9a6700;
-  --lab-local-shadow: rgba(34, 48, 64, 0.12);
-}
-
 .main-container:has(.lab-page) {
   width: 100% !important;
   max-width: 100% !important;

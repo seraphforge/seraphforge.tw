@@ -1,73 +1,40 @@
-<section class="entry-home seraph-current-home" aria-labelledby="seraph-home-title" lang="zh-Hant">
-  <section class="entry-home-hero">
-    <div class="entry-home-hero__copy">
-      <p class="entry-home-eyebrow">SERAPH</p>
-      <h1 id="seraph-home-title">Security / Embedded / Infrastructure</h1>
-      <p class="entry-home-hero__summary">我目前主要做 Medical IoT Security、Embedded Security 與 Infrastructure / Home Lab。這個網站記錄我正在做的系統、研究中的問題，以及它們一路改變的過程。</p>
-      <div class="entry-home-hero__actions">
-        <a class="os-button os-button-primary" href="<%= url_for('/research/') %>">研究方向</a>
-        <a class="os-button os-button-secondary" href="<%= url_for('/systems/') %>">工程系統</a>
-      </div>
-    </div>
-    <dl class="entry-home-hero__meta" aria-label="目前技術方向">
-      <div><dt>目前研究</dt><dd>Medical IoT Trust</dd></div>
-      <div><dt>目前系統</dt><dd>MedTrust</dd></div>
-      <div><dt>最新結案</dt><dd>Evidence Integrity Phase</dd></div>
-    </dl>
-  </section>
-
-  <section class="entry-home-section">
-    <header class="entry-home-section__header">
-      <p class="entry-home-eyebrow">目前研究</p>
-      <h2>Medical IoT Trust</h2>
-      <p>我目前在研究醫療 IoT 裝置產生的資料，如何在 Gateway 端被驗證、辨識 Replay，並保留下可以再次驗證的實驗證據。</p>
-    </header>
-    <a class="entry-home-more-link" href="<%= url_for('/research/') %>">看研究問題 &rarr;</a>
-  </section>
-
-  <section class="entry-home-section">
-    <header class="entry-home-section__header">
-      <p class="entry-home-eyebrow">目前系統</p>
-      <h2>MedTrust</h2>
-      <p>Medical IoT Trust &amp; Evidence System。重點是 Gateway Verification、Attack Validation、Replay Protection 與 Evidence Integrity。</p>
-    </header>
-    <div class="entry-home-system-grid">
-      <article class="entry-home-system-card">
-        <div class="entry-home-card__meta"><span>CURRENT</span><span>Medical IoT</span></div>
-        <h3><a href="<%= url_for('/systems/medtrust/') %>">MedTrust</a></h3>
-        <p>ESP32-S3、FastAPI Gateway、React Dashboard、Experiment Batch、Evidence Package、Offline Verification 與 Tamper Detection。</p>
-      </article>
-      <article class="entry-home-system-card">
-        <div class="entry-home-card__meta"><span>CURRENT</span><span>Infrastructure</span></div>
-        <h3><a href="<%= url_for('/systems/home-lab/') %>">Home Lab</a></h3>
-        <p>Ubuntu Server、Docker、Tailscale、OpenWrt、MQTT、Node-RED 與自架服務環境。</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="entry-home-section">
-    <header class="entry-home-section__header">
-      <p class="entry-home-eyebrow">最新結案</p>
-      <h2>MedTrust / Evidence Integrity Phase</h2>
-      <p>2026.08 / CLOSED / pytest: 76 passed</p>
-    </header>
-    <a class="entry-home-more-link" href="<%= url_for('/archive/') %>">看結案紀錄 &rarr;</a>
-  </section>
-
-  <section class="entry-home-section">
-    <header class="entry-home-section__header">
-      <p class="entry-home-eyebrow">最新紀錄</p>
-      <h2>MedTrust Series</h2>
-      <p>00｜我為什麼開始做 MedTrust / Draft</p>
-    </header>
-    <a class="entry-home-more-link" href="<%= url_for('/journal/series/medtrust/00/') %>">開啟 Draft &rarr;</a>
-  </section>
-
-  <nav class="seraph-home-nav" aria-label="主要區域">
-    <a href="<%= url_for('/research/') %>">研究方向</a>
-    <a href="<%= url_for('/systems/') %>">工程系統</a>
-    <a href="<%= url_for('/journal/') %>">研究筆記</a>
-    <a href="<%= url_for('/archive/') %>">結案紀錄</a>
-    <a href="<%= url_for('/about/') %>">關於</a>
-  </nav>
+<%
+  const homePath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
+  const isEnglishHome = homePath === 'en' || String(page.site_lang || '').toLowerCase() === 'en';
+  const copy = isEnglishHome ? {
+    lang: 'en', hero: 'Build and document research and engineering work across security, systems, embedded platforms, and Medical IoT.',
+    researchLabel: 'Current Research', question: 'After a Gateway receives Medical IoT data, what can we actually trust?',
+    systemsLabel: 'Selected Systems', journalLabel: 'Latest Journal', nowHeading: 'Current research and engineering directions', allJournal: 'View all journal entries', researchLink: 'Research question', systemLink: 'Open system', usesLink: 'Technical environment', archiveLink: 'Past work',
+    medtrustBody: 'The primary Medical IoT trust and evidence validation system.', labBody: 'Infrastructure for research, deployment experiments, and recovery practice.',
+    medtrustTags: ['ESP32-S3','FastAPI','HMAC','Replay Protection'], labTags: ['Ubuntu Server','Docker','OpenWrt','Tailscale'],
+    nowItems: [
+      { title: 'Medical IoT Trust', description: 'Validating what a Gateway can trust after device data arrives.', meta: ['PRIMARY RESEARCH', 'CURRENT'] },
+      { title: 'Embedded Security', description: 'Examining trust at the device and message boundary.', meta: ['ENGINEERING', 'ACTIVE'] },
+      { title: 'ROS 2 Jazzy', description: 'Learning distributed robotics communication and integration.', meta: ['EXPLORING'] }
+    ]
+  } : {
+    lang: 'zh-Hant', hero: '建置並記錄資訊安全、系統、嵌入式與醫療 IoT 相關的研究與工程實作。',
+    researchLabel: '目前研究', question: '當 Gateway 收到醫療 IoT 裝置資料後，我們究竟可以相信什麼？',
+    systemsLabel: '精選系統', journalLabel: '最新筆記', nowHeading: '目前正在進行的研究與工程方向', allJournal: '查看全部研究筆記', researchLink: '研究問題', systemLink: '開啟系統', usesLink: '技術環境', archiveLink: '過往工作',
+    medtrustBody: '目前主要的 Medical IoT trust 與證據驗證系統。', labBody: '支撐研究、部署實驗與復原練習的基礎設施。',
+    medtrustTags: ['ESP32-S3','FastAPI','HMAC','Replay Protection'], labTags: ['Ubuntu Server','Docker','OpenWrt','Tailscale'],
+    nowItems: [
+      { title: 'Medical IoT Trust', description: '驗證醫療裝置資料抵達 Gateway 後，哪些資訊值得信任。', meta: ['PRIMARY RESEARCH', 'CURRENT'] },
+      { title: 'Embedded Security', description: '持續檢查裝置端與訊息邊界的信任問題。', meta: ['ENGINEERING', 'ACTIVE'] },
+      { title: 'ROS 2 Jazzy', description: '探索分散式機器人通訊與系統整合。', meta: ['EXPLORING'] }
+    ]
+  };
+  const latestPosts = site.posts.toArray().filter(post => {
+    if (post.draft === true || post.hidden === true || post.published === false) return false;
+    return isEnglishHome ? String(post.site_lang || post.lang || '').toLowerCase() === 'en' : String(post.site_lang || post.lang || '').toLowerCase() !== 'en';
+  }).slice(0, 4);
+  const taxonomy = post => { const c = post.categories && post.categories.toArray ? post.categories.toArray() : []; const t = post.tags && post.tags.toArray ? post.tags.toArray() : []; return (c[0] && c[0].name) || (t[0] && t[0].name) || (isEnglishHome ? 'Notes' : '筆記'); };
+  const excerpt = post => strip_html(post.description || post.excerpt || post.content || '').replace(/\s+/g, ' ').trim().slice(0, 150);
+%>
+<section class="entry-home seraph-current-home" lang="<%= copy.lang %>">
+  <section class="entry-home-hero" aria-labelledby="seraph-home-title"><div class="entry-home-hero__copy"><p class="entry-home-eyebrow">RYVÆN / RESEARCH + ENGINEERING</p><h1 id="seraph-home-title">Security × Systems × Embedded × Medical IoT</h1><p class="entry-home-hero__summary"><%= copy.hero %></p><div class="entry-home-hero__actions"><a class="os-button os-button-primary" href="<%= url_for(isEnglishHome ? '/en/research/' : '/research/') %>"><%= copy.researchLink %></a><a class="os-button os-button-secondary" href="<%= url_for(isEnglishHome ? '/en/systems/' : '/systems/') %>"><%= copy.systemLink %></a></div></div></section>
+  <section class="entry-home-section entry-home-research"><header class="entry-home-section__header"><p class="entry-home-eyebrow"><%= copy.researchLabel %></p><h2>MedTrust</h2><p class="entry-home-subtitle">Medical IoT Trust &amp; Evidence System</p><p class="entry-home-question"><%= copy.question %></p></header><ul class="entry-home-tag-list"><% copy.medtrustTags.forEach(tag => { %><li><%= tag %></li><% }) %></ul><div class="entry-home-inline-links"><a class="entry-home-more-link" href="<%= url_for(isEnglishHome ? '/en/research/' : '/research/') %>">Research →</a><a class="entry-home-more-link" href="<%= url_for(isEnglishHome ? '/en/systems/medtrust/' : '/systems/medtrust/') %>">MedTrust →</a></div></section>
+  <section class="entry-home-section"><header class="entry-home-section__header"><p class="entry-home-eyebrow"><%= copy.systemsLabel %></p><h2>Systems</h2></header><div class="entry-home-system-grid"><article class="entry-home-system-card"><div class="entry-home-card__meta"><span>CURRENT</span></div><h3>MedTrust</h3><p><%= copy.medtrustBody %></p><ul class="entry-home-tag-list"><% copy.medtrustTags.forEach(tag => { %><li><%= tag %></li><% }) %></ul><a class="entry-home-link" href="<%= url_for(isEnglishHome ? '/en/systems/medtrust/' : '/systems/medtrust/') %>">View system →</a></article><article class="entry-home-system-card"><div class="entry-home-card__meta"><span>CURRENT</span></div><h3>Home Lab</h3><p><%= copy.labBody %></p><ul class="entry-home-tag-list"><% copy.labTags.forEach(tag => { %><li><%= tag %></li><% }) %></ul><a class="entry-home-link" href="<%= url_for(isEnglishHome ? '/en/systems/home-lab/' : '/systems/home-lab/') %>">View system →</a></article></div></section>
+  <section class="entry-home-section"><header class="entry-home-section__header"><p class="entry-home-eyebrow"><%= copy.journalLabel %></p><h2>Journal</h2></header><div class="entry-home-writing-list"><% latestPosts.forEach(post => { const summary = excerpt(post); %><article class="entry-home-writing-item"><div class="entry-home-card__meta"><time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time><span><%= taxonomy(post) %></span></div><div><h3><a href="<%= url_for(post.path) %>"><%= post.title %></a></h3><p><%= summary %><%= summary.length >= 150 ? '…' : '' %></p></div></article><% }) %></div><a class="entry-home-more-link" href="<%= url_for(isEnglishHome ? '/en/journal/' : '/journal/') %>"><%= copy.allJournal %> →</a></section>
+  <section class="entry-home-section entry-home-now" aria-labelledby="seraph-now-title"><header class="entry-home-section__header entry-home-now__header"><p class="entry-home-eyebrow">NOW / CURRENT</p><h2 id="seraph-now-title"><%= copy.nowHeading %></h2></header><ol class="entry-home-now__list"><% copy.nowItems.forEach((item, index) => { %><li class="entry-home-now__item<%= index === 0 ? ' entry-home-now__item--primary' : '' %>"><span class="entry-home-now__number">0<%= index + 1 %></span><div class="entry-home-now__body"><h3><%= item.title %></h3><p><%= item.description %></p></div><div class="entry-home-now__meta"><% item.meta.forEach(value => { %><span><%= value %></span><% }) %></div></li><% }) %></ol></section>
 </section>

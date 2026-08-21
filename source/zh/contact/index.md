@@ -1,6 +1,6 @@
 ---
 title: Contact
-description: 透過 Email 聯絡 Seraph。
+description: 透過 Email 聯絡 RYVÆN。
 site_lang: zh
 ---
 

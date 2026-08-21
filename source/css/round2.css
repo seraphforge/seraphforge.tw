@@ -9,15 +9,6 @@
   --r2-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "Noto Sans JP", sans-serif;
 }
 
-html[data-theme="dark"] {
-  --r2-paper: #171a19;
-  --r2-surface: #202422;
-  --r2-ink: #ece8de;
-  --r2-muted: #a8aaa4;
-  --r2-line: rgba(236, 232, 222, .16);
-  --r2-accent: #c37464;
-}
-
 html { scroll-behavior: smooth; }
 body { background: var(--r2-paper) !important; color: var(--r2-ink) !important; font-family: var(--r2-sans) !important; overflow-x: clip; }
 .site-wrapper { max-width: none !important; background: var(--r2-paper) !important; }

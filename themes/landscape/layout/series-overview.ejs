@@ -15,6 +15,14 @@
     const value = statusClass(status);
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
+
+  function hasGeneratedRoute(article) {
+    if (!article || !article.path) return false;
+    const expected = String(article.path).replace(/^\//, '').replace(/\/$/, '/index.html');
+    return site.pages.toArray().some(function(candidate) {
+      return String(candidate.path || '') === expected;
+    });
+  }
 %>
 
 <% if (series) { %>
@@ -45,7 +53,7 @@
 
     <ol class="series-article-list">
       <% articles.forEach(function(article) {
-        const isAvailable = Boolean(article.exists && article.path);
+        const isAvailable = hasGeneratedRoute(article);
         const itemClass = 'series-article-item series-article-item--' + statusClass(article.status) + (isAvailable ? ' is-available' : ' is-unavailable');
       %>
         <li class="<%= itemClass %>">

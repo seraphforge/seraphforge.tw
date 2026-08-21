@@ -10,13 +10,14 @@
     if (localPathParts[0] === 'research') return 'research';
     if (localPathParts[0] === 'systems') return 'systems';
     if (localPathParts[0] === 'journal' || localPathParts[0] === 'writing') return 'journal';
+    if (localPathParts[0] === 'uses') return 'uses';
     if (localPathParts[0] === 'archive' || localPathParts[0] === 'archives' || localPathParts[0] === 'outcomes' || localPathParts[0] === 'timeline') return 'archive';
     if (localPathParts[0] === 'about') return 'profile';
     return '';
   })();
   const localizedPaths = {
-    zh: { home: '/', research: '/research/', systems: '/systems/', journal: '/journal/', archive: '/archive/', profile: '/about/' },
-    en: { home: '/en/', research: '/en/research/', systems: '/en/systems/', journal: '/en/journal/', archive: '/en/archive/', profile: '/en/about/' }
+    zh: { home: '/', research: '/research/', systems: '/systems/', journal: '/journal/', uses: '/uses/', archive: '/archive/', profile: '/about/' },
+    en: { home: '/en/', research: '/en/research/', systems: '/en/systems/', journal: '/en/journal/', uses: '/en/uses/', archive: '/en/archive/', profile: '/en/about/' }
   };
   const labels = {
     zh: {
@@ -24,30 +25,24 @@
       research: '研究方向',
       systems: '工程系統',
       journal: '研究筆記',
+      uses: '技術環境',
       archive: '結案紀錄',
       profile: '關於',
       menu: '選單',
       language: '語言',
-      navigation: '主導覽',
-      appearance: '外觀',
-      light: 'Light',
-      dark: 'Dark',
-      toggleTheme: '切換顯示模式'
+      navigation: '主導覽'
     },
     en: {
       home: 'Home',
       research: 'Research',
       systems: 'Systems',
       journal: 'Journal',
+      uses: 'Uses',
       archive: 'Archive',
       profile: 'About',
       menu: 'Menu',
       language: 'Language',
-      navigation: 'Navigation',
-      appearance: 'Appearance',
-      light: 'Light',
-      dark: 'Dark',
-      toggleTheme: 'Toggle display theme'
+      navigation: 'Navigation'
     }
   };
   const navPath = function(key) {
@@ -55,7 +50,7 @@
     return paths[key] || paths.home;
   };
   const langPath = function(targetLang) {
-    const corePaths = ['', 'research', 'systems', 'systems/medtrust', 'systems/home-lab', 'journal', 'archive', 'about'];
+    const corePaths = ['', 'research', 'systems', 'systems/medtrust', 'systems/home-lab', 'journal', 'uses', 'archive', 'about'];
     const seriesPaths = ['journal/series', 'journal/series/medtrust', 'journal/series/medtrust/00'];
     if (targetLang === 'en') {
       if (corePaths.indexOf(localDetailPath) >= 0) return '/en' + (localDetailPath ? '/' + localDetailPath : '') + '/';
@@ -72,6 +67,7 @@
     { key: 'research', label: h.research },
     { key: 'systems', label: h.systems },
     { key: 'journal', label: h.journal },
+    { key: 'uses', label: h.uses },
     { key: 'archive', label: h.archive },
     { key: 'profile', label: h.profile }
   ];
@@ -88,9 +84,9 @@
 %>
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-brand" href="<%= url_for(navPath('home')) %>" aria-label="Seraph">
+    <a class="site-brand" href="<%= url_for(navPath('home')) %>" aria-label="RYVÆN">
       <span class="site-brand__text">
-        <strong>SERAPH</strong>
+        <strong>RYVÆN</strong>
         <small>Security / Embedded / Infrastructure</small>
       </span>
     </a>
@@ -101,13 +97,6 @@
 
     <div class="site-header__actions">
       <%- renderLanguageSwitcher('language-switcher') %>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" aria-pressed="false">
-        <span class="theme-toggle__icon" aria-hidden="true"></span>
-        <span class="theme-toggle__label">
-          <small>Theme</small>
-          <strong data-theme-label><%= h.dark %></strong>
-        </span>
-      </button>
     </div>
 
     <button class="mobile-menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false">
@@ -127,56 +116,11 @@
       <p id="mobile-nav-language-label" class="mobile-nav-label"><%= h.language %></p>
       <%- renderLanguageSwitcher('mobile-language-switcher') %>
     </section>
-    <section class="mobile-nav-section" aria-labelledby="mobile-nav-appearance-label">
-      <p id="mobile-nav-appearance-label" class="mobile-nav-label"><%= h.appearance %></p>
-      <button class="theme-toggle theme-toggle--mobile" type="button" data-theme-toggle aria-label="<%= h.toggleTheme %>" aria-pressed="false">
-        <span class="theme-toggle__icon" aria-hidden="true"></span>
-        <span class="theme-toggle__label"><small>Theme</small><strong data-theme-label><%= h.dark %></strong></span>
-      </button>
-    </section>
   </nav>
 </header>
 
 <script>
   (function() {
-    var storageKey = 'seraph-theme';
-    var root = document.documentElement;
-    var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-toggle]'));
-    var labels = Array.prototype.slice.call(document.querySelectorAll('[data-theme-label]'));
-    var lightLabel = '<%= h.light %>';
-    var darkLabel = '<%= h.dark %>';
-
-    function applyTheme(theme) {
-      var nextTheme = theme === 'light' ? 'light' : 'dark';
-      root.setAttribute('data-theme', nextTheme);
-      buttons.forEach(function(button) {
-        button.setAttribute('aria-pressed', String(nextTheme === 'dark'));
-        button.setAttribute('aria-label', '<%= h.toggleTheme %>: ' + (nextTheme === 'light' ? lightLabel : darkLabel));
-        button.setAttribute('title', nextTheme === 'light' ? lightLabel : darkLabel);
-      });
-      labels.forEach(function(label) {
-        label.textContent = nextTheme === 'light' ? lightLabel : darkLabel;
-      });
-    }
-
-    try {
-      applyTheme(localStorage.getItem(storageKey) || 'dark');
-    } catch (error) {
-      applyTheme('dark');
-    }
-
-    buttons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        var nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        applyTheme(nextTheme);
-        try {
-          localStorage.setItem(storageKey, nextTheme);
-        } catch (error) {
-          return;
-        }
-      });
-    });
-
     var menuButton = document.querySelector('.mobile-menu-button');
     var menu = document.getElementById('mobile-nav');
     var header = document.querySelector('.site-header');

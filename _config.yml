@@ -1,8 +1,8 @@
-title: Seraph
+title: RYVÆN
 subtitle: Security / Embedded / Infrastructure
 description: Medical IoT security, embedded security, infrastructure, and engineering iteration records.
 keywords: Security, Embedded, Infrastructure, Medical IoT, MedTrust
-author: Seraph
+author: RYVÆN
 language: zh-TW
 timezone: Asia/Taipei
 
@@ -11,9 +11,29 @@ root: /seraphforge.tw/
 
 theme: landscape
 
+# Private or unfinished material retained in source without generating public routes.
+exclude:
+  - _posts/from-nihscsed-to-control-team.md
+  - _posts/from-nihscsed-to-control-team.en.md
+  - projects/nihs-control-team/**
+  - zh/projects/nihs-control-team/**
+  - systems/nihs-control-team/**
+  - zh/systems/nihs-control-team/**
+  - systems/hpc-teaching-transfer/**
+  - zh/systems/hpc-teaching-transfer/**
+  - works/**
+  - en/projects/**
+  - experience/community/**
+  - experience/leadership/**
+  - experience/projects/**
+  - zh/experience/community/**
+  - zh/experience/leadership/**
+  - zh/experience/projects/**
+  - zh/experience/speaking/**
+
 deploy:
   type: git
-  repo: https://github.com/seraphforge/seraphforge.github.io.git
+  repo: https://github.com/seraphforge/seraphforge.tw.git
   branch: gh-pages
 
 feed:

@@ -1,4 +1,4 @@
 ---
 title: Dashboard
-description: Dashboard entry for Seraph.
+description: Dashboard entry for RYVÆN.
 ---

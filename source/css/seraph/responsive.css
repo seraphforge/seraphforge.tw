@@ -146,6 +146,19 @@
   }
 }
 
+@media (max-width: 768px) {
+  :root { --seraph-blueprint: 0.018; }
+
+  body::before {
+    top: 5rem;
+    right: -18vw;
+    width: 82vw;
+  }
+
+  .site-header__inner { padding-block: 0.68rem; }
+  .entry-home-hero { min-height: auto; }
+}
+
 @media (max-width: 640px) {
   body {
     font-size: 16px;
@@ -374,8 +387,8 @@
   }
 
   .post-body {
-    font-size: 16.8px;
-    line-height: 1.82;
+    font-size: 16.5px;
+    line-height: 1.8;
   }
 
   .post-body pre {

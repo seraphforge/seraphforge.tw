@@ -1,5 +1,6 @@
 ---
 title: NIHS Control Team
+published: false
 description: 一篇關於學生技術團隊內部平台的案例研究。
 summary: 這是一篇關於團隊工具的案例研究：我想知道，怎麼讓資訊被整理起來，而不是把它包裝成一個漂亮產品。
 type: project
