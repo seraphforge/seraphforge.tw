@@ -1,7 +1,7 @@
 ﻿---
 title: Experience
-description: A record of RYVÆN's competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
-summary: A record of RYVÆN's competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
+description: Notes from RYVÆN competitions, camps, conferences, workshops, certifications, and community work.
+summary: Notes from RYVÆN competitions, camps, conferences, workshops, certifications, and community work.
 keywords: Experience, Competitions, Camps, Conferences, Workshops, Speaking, Certifications, Community, Cybersecurity, CTF
 cover: /images/seraph-og.png
 site_lang: en
@@ -12,4 +12,4 @@ canonical_url: https://seraphforge.github.io/en/experience/
 
 # Experience
 
-A record of competitions, camps, conferences, workshops, certifications, community involvement, and continued growth.
+Notes from competitions, camps, conferences, workshops, certifications, and community work.

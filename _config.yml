@@ -30,6 +30,9 @@ exclude:
   - zh/experience/leadership/**
   - zh/experience/projects/**
   - zh/experience/speaking/**
+  - experience/competitions/**
+  - zh/experience/competitions/**
+  - en/experience/competitions/**
 
 deploy:
   type: git

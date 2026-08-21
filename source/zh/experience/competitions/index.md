@@ -1,5 +1,6 @@
 ﻿---
 title: 競賽經歷
+published: false
 description: 以資料庫格式整理 Cybersecurity、Robotics、程式、AI 與工程展示相關競賽。
 summary: 以資料庫格式整理 Cybersecurity、Robotics、程式、AI 與工程展示相關競賽。
 organization: Multiple records

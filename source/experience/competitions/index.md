@@ -1,5 +1,6 @@
 ﻿---
 title: Competitions
+published: false
 description: Structured competition records across Cybersecurity, Robotics, programming, AI, and engineering demos.
 summary: Structured competition records across Cybersecurity, Robotics, programming, AI, and engineering demos.
 organization: Multiple records

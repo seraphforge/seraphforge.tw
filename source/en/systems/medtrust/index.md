@@ -1,6 +1,6 @@
 ---
 title: MedTrust
-description: Medical IoT Trust & Evidence System.
+description: MedTrust is my system for testing trust and evidence handling in Medical IoT.
 site_lang: en
 layout: page
 type: ia
@@ -12,7 +12,7 @@ comments: true
     <div class="ia-hero__copy">
       <p class="ia-eyebrow">SYSTEM / CURRENT</p>
       <h1>MedTrust</h1>
-      <p>Medical IoT Trust &amp; Evidence System. MedTrust verifies medical IoT messages, records Attack Validation, packages experiment evidence, and checks Evidence Integrity consistency.</p>
+      <p>MedTrust is my Medical IoT Trust &amp; Evidence System. It verifies Medical IoT messages, records Attack Validation, packages experiment evidence, and checks Evidence Integrity.</p>
     </div>
     <dl class="ia-hero-meta">
       <div><dt>Domain</dt><dd>Medical IoT Trust</dd></div>
