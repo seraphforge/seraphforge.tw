@@ -3,6 +3,28 @@
   
   
   <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/journal/series/medtrust/01/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://seraphforge.github.io/seraphforge.tw/journal/series/medtrust/00/</loc>
+    
+    <lastmod>2026-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  
+  
+  <url>
     <loc>https://seraphforge.github.io/seraphforge.tw/en/projects/</loc>
     
     <lastmod>2026-08-21</lastmod>
@@ -472,8 +494,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  
   
   
   
