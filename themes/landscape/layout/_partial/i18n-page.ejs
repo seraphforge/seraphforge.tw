@@ -7,7 +7,6 @@
   const section = (localParts[0] || '') === '' ? 'home' : (localParts[0] === 'archives' ? 'writing' : localParts[0]);
   const data = site.data.research || {};
   const nowData = site.data.now || {};
-  const experienceData = (site.data.experience && site.data.experience[lang]) || {};
   const safeArray = function(value) { return Array.isArray(value) ? value.filter(function(item) { return item !== undefined && item !== null && item !== ''; }) : []; };
   const projects = (data.projects || []).filter(function(item) { return item.visible !== false; });
   const publicProjectIds = new Set(projects.map(function(item) { return item.id; }));
@@ -347,7 +346,7 @@
 <%
   const context = {
     lang, isZh, isJa, section, pageLangAttr, c, ec,
-    data, nowData, experienceData, projects, areas, evidence, outcomes, capabilities, timeline, engineeringDomains, engineeringProcess, homepageFocus, identity,
+    data, nowData, projects, areas, evidence, outcomes, capabilities, timeline, engineeringDomains, engineeringProcess, homepageFocus, identity,
     nowFocus, nowLogs, notes, featuredSystems, selectedHomeSystems,
     safeArray, hasText, nowText, localHref, localizedDetailHref, localizedNowHref, formatNowDate, projectHref, maybeZh, joinList, projectById, evidenceById, projectTitle, statusLabel, strip, postSummary, readingMinutes, firstTag, localizedField, homeSystemTitle, homeSystemSummary, listingSummary, systemCardTags
   };

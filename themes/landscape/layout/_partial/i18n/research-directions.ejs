@@ -47,49 +47,6 @@
     const priorityDiff = (Number(b.priority) || 0) - (Number(a.priority) || 0);
     return priorityDiff || (a._originalIndex - b._originalIndex);
   });
-  const competitionGroups = (((experienceData || {}).sections || {}).competitions || {}).groups || [];
-  const competitionItems = competitionGroups.reduce(function(items, group) {
-    return items.concat(safeArray(group.items).filter(function(item) { return Boolean(item.year); }));
-  }, []);
-  const competitionTypes = [
-    {
-      key: 'security',
-      title: isZh ? '資安競賽' : 'Cybersecurity competitions',
-      matches: function(tags) { return tags.some(function(tag) { return /CTF|Cybersecurity|Cryptography|Hackathon/i.test(tag); }); }
-    },
-    {
-      key: 'robotics',
-      title: isZh ? '機器人競賽' : 'Robotics competitions',
-      matches: function(tags) { return tags.some(function(tag) { return /Robotics|FTC|MARC/i.test(tag); }); }
-    },
-    {
-      key: 'other',
-      title: isZh ? '其他技術競賽' : 'Other technical competitions',
-      matches: function() { return true; }
-    }
-  ];
-  const classifiedCompetitions = competitionTypes.map(function(type, typeIndex) {
-    return {
-      title: type.title,
-      items: competitionItems.filter(function(item) {
-        const tags = safeArray(item.tags);
-        const earlierMatch = competitionTypes.slice(0, typeIndex).some(function(previous) { return previous.matches(tags); });
-        return !earlierMatch && type.matches(tags);
-      })
-    };
-  }).filter(function(group) { return group.items.length; });
-  const competitionName = function(item) {
-    if (isZh) return item.nameZh || item.name;
-    return item.name || item.nameZh;
-  };
-  const competitionRole = function(item) {
-    if (isZh) return item.roleZh || item.role || '';
-    return item.role || '';
-  };
-  const competitionResults = function(item) {
-    const values = isZh && item.resultZh ? item.resultZh : item.result;
-    return safeArray(values);
-  };
 %>
 <section class="research-page research-page--projects research-directions-page" aria-labelledby="<%= lang %>-projects-title">
   <header class="research-page-header">
@@ -170,30 +127,4 @@
       </article>
     <% }) %>
   </div>
-
-  <section class="research-page-section" aria-labelledby="<%= lang %>-competition-title">
-    <header class="research-section-header">
-      <p class="research-section-kicker"><%= isZh ? '競賽經歷' : 'Competition record' %></p>
-      <h2 id="<%= lang %>-competition-title"><%= isZh ? '競賽經歷' : 'Competitions' %></h2>
-      <p><%= isZh ? '依現有公開紀錄整理的參賽經歷。' : 'A short record of competitions I have taken part in.' %></p>
-    </header>
-    <% classifiedCompetitions.forEach(function(group) { %>
-      <section class="series-index" aria-label="<%= group.title %>">
-        <h3><%= group.title %></h3>
-        <ol class="series-article-list">
-          <% group.items.forEach(function(item) {
-            const details = [competitionRole(item)].concat(competitionResults(item)).filter(Boolean);
-          %>
-            <li class="series-article-item">
-              <div class="series-article-number"><%= item.year %></div>
-              <div class="series-article-body">
-                <h4><%= competitionName(item) %></h4>
-                <% if (details.length) { %><p><%= details.join(isZh ? '／' : ' / ') %></p><% } %>
-              </div>
-            </li>
-          <% }) %>
-        </ol>
-      </section>
-    <% }) %>
-  </section>
 </section>

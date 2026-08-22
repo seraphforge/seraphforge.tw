@@ -1,262 +1,92 @@
 <%
   const expPath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
   const expParts = expPath.split('/').filter(Boolean);
-  const expLang = expParts[0] === 'zh' ? 'zh' : 'en';
+  const expLang = expParts[0] === 'en' ? 'en' : 'zh';
   const isExpZh = expLang === 'zh';
-  const expData = ((site.data && site.data.experience) || {}).en || {};
-  const expSections = (expData && expData.sections) || {};
-
-  const copy = {
-    eyebrow: isExpZh ? '參賽與研習' : 'Competitions & Learning',
-    title: isExpZh ? '參賽與研習紀錄' : 'Competitions and Learning Activities',
-    description: isExpZh
-      ? '整理實際參與過的競賽、研習、營隊、工作坊、講座與社群教學活動。'
-      : 'A record of competitions, camps, workshops, talks, community activities, and learning milestones.',
-    countSuffix: isExpZh ? '筆紀錄' : 'records',
-    details: isExpZh ? '查看詳細紀錄' : 'View Details',
-    competitionRecords: isExpZh ? '競賽紀錄' : 'Competition Records',
-    ctf: isExpZh ? 'CTF 競賽' : 'CTF Competitions',
-    robotics: isExpZh ? '機器人競賽' : 'Robotics Competitions',
-    other: isExpZh ? '其他競賽' : 'Other Competitions',
-    camps: isExpZh ? '研習與營隊' : 'Learning Activities and Camps',
-    workshops: isExpZh ? '工作坊與講座' : 'Workshops and Talks',
-    role: isExpZh ? '身分' : 'Role',
-    team: isExpZh ? '隊伍' : 'Team',
-    topic: isExpZh ? '主題或專案' : 'Topic or Project',
-    result: isExpZh ? '結果或狀態' : 'Result or Status',
-    takeaway: isExpZh ? '收穫' : 'Takeaway'
-  };
-
-  const roleMap = {
-    Competitor: '參賽者',
-    Student: '學員',
-    Participant: '參與者',
-    Attendee: '參與者'
-  };
-  const resultMap = {
-    Finalist: '決賽入選',
-    'Honorable Mention': '佳作',
-    'High School Division Finalist': '高中職組決賽入圍',
-    'University Division Finalist': '大專組決賽入圍',
-    'University Division Honorable Mention': '大專組佳作',
-    'High School and University Divisions Finalist': '高中職組與大專組決賽入選',
-    'Easter Egg Expert Award': 'Easter Egg Expert Award'
-  };
-  const sectionTypeMap = {
-    camps: isExpZh ? '營隊／研習' : 'Camp / Learning Activity',
-    workshops: isExpZh ? '工作坊／講座' : 'Workshop / Talk',
-    conferences: isExpZh ? '講座／研討會' : 'Conference / Talk'
-  };
+  const expData = ((site.data && site.data.experience) || {})[expLang] || {};
+  const expSections = expData.sections || {};
   const safeArray = function(value) {
-    if (Array.isArray(value)) return value.filter(function(item) { return item !== undefined && item !== null && String(item).trim(); });
-    if (value === undefined || value === null || String(value).trim() === '') return [];
-    return [value];
+    if (Array.isArray(value)) return value.filter(Boolean);
+    return value ? [value] : [];
   };
-  const safeTags = function(value) {
-    if (Array.isArray(value)) return value.map(String).map(function(tag) { return tag.trim(); }).filter(Boolean);
-    if (!value) return [];
-    const text = String(value).trim();
-    const split = text.split(/\s*[,;|/]\s*|\s{2,}/).filter(Boolean);
-    if (split.length > 1) return split;
-    const known = ['Quantum Computing', 'Information Technology', 'Cybersecurity', 'Cryptography', 'Programming', 'Engineering', 'Innovation', 'Robotics', 'Teamwork', 'Physics', 'Quantum', 'Hackathon', 'Competition', 'Creativity', 'Open Source', 'Community', 'Conference', 'CTF', 'FTC', 'FRC', 'MARC', 'AiFRC', 'AI'];
-    const found = [];
-    let rest = text;
-    while (rest.length) {
-      const match = known.find(function(token) { return rest.indexOf(token) === 0; });
-      if (!match) return [text];
-      found.push(match);
-      rest = rest.slice(match.length).trim();
+  const collectSectionItems = function(section) {
+    if (!section) return [];
+    if (Array.isArray(section.groups)) {
+      return section.groups.reduce(function(rows, group) {
+        return rows.concat(safeArray(group.items).map(function(item) {
+          return Object.assign({ groupYear: group.year }, item);
+        }));
+      }, []);
     }
-    return found;
+    return safeArray(section.items);
   };
-  const itemDate = function(item) {
-    return item.date || item.year || item.groupYear || '';
+  const itemYear = function(item) { return item.year || item.groupYear || ''; };
+  const itemName = function(item) { return isExpZh ? (item.nameZh || item.name) : (item.name || item.nameZh); };
+  const itemRole = function(item) { return isExpZh ? (item.roleZh || item.role || '') : (item.role || ''); };
+  const itemResults = function(item) { return safeArray(isExpZh && item.resultZh ? item.resultZh : item.result); };
+  const sortRecords = function(items) {
+    return items.slice().sort(function(a, b) { return String(itemYear(b)).localeCompare(String(itemYear(a))); });
   };
-  const sortableDate = function(item) {
-    const raw = String(item.date || '').trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
-    if (/^\d{4}-\d{2}$/.test(raw)) return raw + '-01';
-    return '';
-  };
-  const sortableYear = function(item) {
-    const raw = String(item.year || item.groupYear || item.date || '').trim();
-    const match = raw.match(/\d{4}/);
-    return match ? parseInt(match[0], 10) : NaN;
-  };
-  const itemName = function(item) {
-    return isExpZh ? (item.nameZh || item.name || item.title) : (item.name || item.title);
-  };
-  const displayRole = function(item) {
-    const role = isExpZh ? (item.roleZh || roleMap[item.role] || item.role) : item.role;
-    return role || '';
-  };
-  const displayResults = function(item) {
-    const zhValues = safeArray(item.resultZh);
-    const values = zhValues.length && isExpZh ? zhValues : safeArray(item.result);
-    return values.map(function(value) {
-      return isExpZh ? (resultMap[value] || value) : value;
-    }).filter(Boolean);
-  };
-  const localHref = function(path) {
-    if (!path) return '';
-    return url_for(isExpZh ? '/zh' + path : path);
-  };
-  const sortByDateDesc = function(items) {
-    return items.slice().sort(function(a, b) {
-      const ad = sortableDate(a);
-      const bd = sortableDate(b);
-      if (ad && bd && ad !== bd) return bd.localeCompare(ad);
-      if (ad && !bd) return -1;
-      if (!ad && bd) return 1;
-      const ay = sortableYear(a);
-      const by = sortableYear(b);
-      if (Number.isNaN(ay) && Number.isNaN(by)) return 0;
-      if (Number.isNaN(ay)) return 1;
-      if (Number.isNaN(by)) return -1;
-      return (by - ay) || ((a.originalIndex || 0) - (b.originalIndex || 0));
-    });
-  };
-  const collectItems = function(keys) {
-    const rows = [];
-    let originalIndex = 0;
-    keys.forEach(function(key) {
-      const section = expSections[key];
-      if (!section) return;
-      if (Array.isArray(section.groups)) {
-        section.groups.forEach(function(group) {
-          safeArray(group.items).forEach(function(item) {
-            rows.push(Object.assign({ sectionKey: key, groupYear: group.year, originalIndex: originalIndex++ }, item));
-          });
-        });
-      } else {
-        safeArray(section.items).forEach(function(item) {
-          rows.push(Object.assign({ sectionKey: key, originalIndex: originalIndex++ }, item));
-        });
-      }
-    });
-    return sortByDateDesc(rows);
-  };
-  const isCtfCompetition = function(item) {
-    const haystack = [item.name, item.nameZh].concat(safeTags(item.tags)).join(' ').toLowerCase();
-    return haystack.includes('ctf') || haystack.includes('crypt') || haystack.includes('hackathon') || haystack.includes('cybersecurity');
-  };
-  const isRoboticsCompetition = function(item) {
-    const haystack = [item.name, item.nameZh].concat(safeTags(item.tags)).join(' ').toLowerCase();
-    return haystack.includes('robot') || haystack.includes('robotics') || haystack.includes('frc') || haystack.includes('ftc') || haystack.includes('marc') || haystack.includes('aifrc') || haystack.includes('automation');
-  };
-  const competitionGroups = [
-    { key: 'ctf', title: copy.ctf, items: [] },
-    { key: 'robotics', title: copy.robotics, items: [] },
-    { key: 'other', title: copy.other, items: [] }
+  const competitionItems = sortRecords(collectSectionItems(expSections.competitions));
+  const competitionTypes = [
+    { title: isExpZh ? '資安競賽' : 'Cybersecurity competitions', test: /CTF|Cybersecurity|Cryptography|Hackathon/i },
+    { title: isExpZh ? '機器人競賽' : 'Robotics competitions', test: /Robotics|FRC|FTC|MARC/i },
+    { title: isExpZh ? '其他技術競賽' : 'Other technical competitions', test: null }
   ];
-  collectItems(['competitions']).forEach(function(item) {
-    if (isCtfCompetition(item)) {
-      competitionGroups[0].items.push(item);
-    } else if (isRoboticsCompetition(item)) {
-      competitionGroups[1].items.push(item);
-    } else {
-      competitionGroups[2].items.push(item);
-    }
-  });
-  const activitySections = [
-    { key: 'camps', title: copy.camps, items: collectItems(['camps']) },
-    { key: 'workshops', title: copy.workshops, items: collectItems(['workshops', 'conferences']) }
-  ];
+  const competitionGroups = competitionTypes.map(function(type, index) {
+    return {
+      title: type.title,
+      items: competitionItems.filter(function(item) {
+        const tags = safeArray(item.tags).join(' ');
+        const earlier = competitionTypes.slice(0, index).some(function(previous) { return previous.test && previous.test.test(tags); });
+        return !earlier && (!type.test || type.test.test(tags));
+      })
+    };
+  }).filter(function(group) { return group.items.length; });
+  const sections = [
+    { key: 'camps', title: isExpZh ? '營隊' : 'Camps' },
+    { key: 'conferences', title: isExpZh ? '研討會與年會' : 'Conferences' },
+    { key: 'workshops', title: isExpZh ? '工作坊' : 'Workshops' },
+    { key: 'certifications', title: isExpZh ? '證照' : 'Certifications' }
+  ].map(function(section) {
+    return Object.assign({}, section, { items: sortRecords(collectSectionItems(expSections[section.key])) });
+  }).filter(function(section) { return section.items.length; });
 %>
-<article class="experience-page seraph-page seraph-page--experience" lang="<%= isExpZh ? 'zh-Hant' : 'en' %>">
-  <header class="seraph-page__header">
-    <p class="seraph-page__eyebrow"><%= copy.eyebrow %></p>
-    <h1 class="seraph-page__title"><%= copy.title %></h1>
-    <p class="seraph-page__intro"><%= copy.description %></p>
+
+<% function renderRecordList(items, label) { %>
+  <ol class="series-article-list" aria-label="<%= label %>">
+    <% items.forEach(function(item) {
+      const details = [itemRole(item)].concat(itemResults(item)).filter(Boolean);
+    %>
+      <li class="series-article-item">
+        <div class="series-article-number"><%= itemYear(item) %></div>
+        <div class="series-article-body">
+          <h3><%= itemName(item) %></h3>
+          <% if (details.length) { %><p><%= details.join(isExpZh ? '／' : ' / ') %></p><% } %>
+        </div>
+      </li>
+    <% }) %>
+  </ol>
+<% } %>
+
+<article class="research-page experience-page" lang="<%= isExpZh ? 'zh-Hant' : 'en' %>">
+  <header class="research-page-header">
+    <p class="research-section-kicker"><%= isExpZh ? '經歷' : 'Experience' %></p>
+    <h1><%= isExpZh ? '經歷' : 'Experience' %></h1>
+    <p><%= isExpZh ? '整理我參與過的競賽、營隊、研討會、工作坊與取得的證照。' : 'A simple record of competitions, camps, conferences, workshops, and certifications I have taken part in.' %></p>
   </header>
 
-  <section class="activity-section activity-section--competitions" aria-labelledby="activity-competitions-title">
-    <header class="activity-section__header">
-      <h2 id="activity-competitions-title"><%= copy.competitionRecords %></h2>
-    </header>
-    <% competitionGroups.forEach(function(group) {
-      if (!group.items.length) return;
-    %>
-      <section class="activity-subsection" aria-labelledby="activity-competition-<%= group.key %>-title">
-        <header class="activity-subsection__header">
-          <h3 id="activity-competition-<%= group.key %>-title"><%= group.title %></h3>
-          <p><%= group.items.length %> <%= copy.countSuffix %></p>
-        </header>
-        <div class="activity-list">
-          <% group.items.forEach(function(item) {
-            const results = displayResults(item);
-            const tags = safeTags(item.tags).slice(0, 4);
-            const detailHref = item.detailRoute ? localHref(item.detailRoute) : '';
-          %>
-            <article class="activity-card">
-              <div class="activity-card__date"><%= itemDate(item) %></div>
-              <div class="activity-card__body">
-                <p class="activity-card__type"><%= group.title %></p>
-                <h4><%= itemName(item) %></h4>
-                <dl class="activity-card__meta">
-                  <% if (displayRole(item)) { %><div><dt><%= copy.role %></dt><dd><%= displayRole(item) %></dd></div><% } %>
-                  <% if (item.team) { %><div><dt><%= copy.team %></dt><dd><%= item.team %></dd></div><% } %>
-                  <% if (results.length) { %>
-                    <div>
-                      <dt><%= copy.result %></dt>
-                      <dd>
-                        <% if (results.length > 1) { %>
-                          <ul class="activity-result-list">
-                            <% results.forEach(function(result) { %><li><%= result %></li><% }) %>
-                          </ul>
-                        <% } else { %>
-                          <%= results[0] %>
-                        <% } %>
-                      </dd>
-                    </div>
-                  <% } %>
-                </dl>
-                <% if (tags.length) { %>
-                  <div class="experience-tags"><% tags.forEach(function(tag) { %><span><%= tag %></span><% }) %></div>
-                <% } %>
-                <% if (detailHref) { %><a class="activity-card__link" href="<%= detailHref %>"><%= copy.details %></a><% } %>
-              </div>
-            </article>
-          <% }) %>
-        </div>
-      </section>
+  <section class="research-page-section" aria-labelledby="experience-competitions-title">
+    <header class="research-section-header"><p class="research-section-kicker"><%= isExpZh ? '參與紀錄' : 'Participation' %></p><h2 id="experience-competitions-title"><%= isExpZh ? '競賽' : 'Competitions' %></h2></header>
+    <% competitionGroups.forEach(function(group) { %>
+      <section class="series-index"><h3><%= group.title %></h3><% renderRecordList(group.items, group.title); %></section>
     <% }) %>
   </section>
 
-  <% activitySections.forEach(function(section) {
-    if (!section.items.length) return;
-  %>
-    <section class="activity-section" aria-labelledby="activity-<%= section.key %>-title">
-      <header class="activity-section__header">
-        <h2 id="activity-<%= section.key %>-title"><%= section.title %></h2>
-        <p><%= section.items.length %> <%= copy.countSuffix %></p>
-      </header>
-      <div class="activity-list">
-        <% section.items.forEach(function(item) {
-          const results = displayResults(item);
-          const tags = safeTags(item.tags).slice(0, 4);
-          const type = sectionTypeMap[item.sectionKey] || item.sectionKey;
-          const detailHref = item.detailRoute ? localHref(item.detailRoute) : '';
-        %>
-          <article class="activity-card">
-            <div class="activity-card__date"><%= itemDate(item) %></div>
-            <div class="activity-card__body">
-              <p class="activity-card__type"><%= type %></p>
-              <h3><%= itemName(item) %></h3>
-              <dl class="activity-card__meta">
-                <% if (displayRole(item)) { %><div><dt><%= copy.role %></dt><dd><%= displayRole(item) %></dd></div><% } %>
-                <% if (item.topic || item.project) { %><div><dt><%= copy.topic %></dt><dd><%= item.topic || item.project %></dd></div><% } %>
-                <% if (results.length || item.status) { %><div><dt><%= copy.result %></dt><dd><%= results.length ? results.join(' / ') : item.status %></dd></div><% } %>
-                <% if (item.description) { %><div><dt><%= copy.takeaway %></dt><dd><%= item.description %></dd></div><% } %>
-              </dl>
-              <% if (tags.length) { %>
-                <div class="experience-tags"><% tags.forEach(function(tag) { %><span><%= tag %></span><% }) %></div>
-              <% } %>
-              <% if (detailHref) { %><a class="activity-card__link" href="<%= detailHref %>"><%= copy.details %></a><% } %>
-            </div>
-          </article>
-        <% }) %>
-      </div>
+  <% sections.forEach(function(section) { %>
+    <section class="research-page-section" aria-labelledby="experience-<%= section.key %>-title">
+      <header class="research-section-header"><h2 id="experience-<%= section.key %>-title"><%= section.title %></h2></header>
+      <% renderRecordList(section.items, section.title); %>
     </section>
   <% }) %>
 </article>

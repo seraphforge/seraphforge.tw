@@ -8,8 +8,8 @@
     "startedYear": 2026,
     "tags": ["ESP32-S3", "Medical IoT", "HMAC-SHA256", "Replay Protection", "Evidence Integrity"],
     "articles": [
-      { "number": "00", "slug": "why-medtrust", "title": "我為什麼開始做 MedTrust", "status": "draft", "date": "2026-08-10", "description": "", "path": "/journal/series/medtrust/00/", "exists": true },
-      { "number": "01", "slug": "esp32-to-gateway", "title": "從 ESP32 到 Gateway", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/01/" },
+      { "number": "00", "slug": "why-medtrust", "title": "我為什麼開始做 MedTrust", "status": "published", "date": "2026-08-10", "description": "", "path": "/journal/series/medtrust/00/", "exists": true },
+      { "number": "01", "slug": "gateway-data-trust", "title": "01｜從高中專題，走到今天的 MedTrust", "status": "published", "date": "2026-08-22", "description": "從 ESP32 傳送 JSON 到 Gateway 的流程開始，整理 MedTrust 為什麼不能把收到資料直接當成可信資料。", "path": "/journal/series/medtrust/01/", "exists": true },
       { "number": "02", "slug": "is-data-authentic", "title": "Gateway 收到資料，不代表資料值得信任", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/02/" },
       { "number": "03", "slug": "hmac-sha256-first-pass", "title": "第一次 HMAC-SHA256 驗證", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/03/" },
       { "number": "04", "slug": "signature-verification-failed", "title": "為什麼 Signature 驗證失敗", "status": "planned", "date": "", "description": "", "path": "/journal/series/medtrust/04/" },
